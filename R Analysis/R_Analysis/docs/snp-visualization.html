@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 SNP visualization | Pv-WGS-Analysis</title>
+  <meta name="description" content="McCosker Dissertation Chapter 3 Analyses" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 SNP visualization | Pv-WGS-Analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 SNP visualization | Pv-WGS-Analysis" />
+  
+  <meta name="twitter:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+<meta name="author" content="Christina McCosker" />
+
+
+<meta name="date" content="2025-07-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="snp-annotation.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Pv-WGS-Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html"><i class="fa fa-check"></i><b>2</b> Tidy Data &amp; Exploratory</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#libraries"><i class="fa fa-check"></i><b>2.1</b> Libraries</a></li>
+<li class="chapter" data-level="2.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#descriptive-statistics"><i class="fa fa-check"></i><b>2.3</b> Descriptive Statistics</a></li>
+<li class="chapter" data-level="2.4" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#exclude-samples"><i class="fa fa-check"></i><b>2.4</b> Exclude samples</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#duringafter-outbreak---tufts-only"><i class="fa fa-check"></i><b>2.4.1</b> During/After Outbreak - Tufts Only</a></li>
+<li class="chapter" data-level="2.4.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#sample-statistics"><i class="fa fa-check"></i><b>2.4.2</b> Sample statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#map-of-strandings"><i class="fa fa-check"></i><b>2.5</b> Map of Strandings</a></li>
+<li class="chapter" data-level="2.6" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#case-v-control-factors"><i class="fa fa-check"></i><b>2.6</b> Case v Control ~ Factors</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#duringafter-outbreak---all-data"><i class="fa fa-check"></i><b>2.6.1</b> During/After Outbreak - All Data</a></li>
+<li class="chapter" data-level="2.6.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#sex"><i class="fa fa-check"></i><b>2.6.2</b> Sex</a></li>
+<li class="chapter" data-level="2.6.3" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#age"><i class="fa fa-check"></i><b>2.6.3</b> Age</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html"><i class="fa fa-check"></i><b>3</b> PCA - High Coverage</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#libraries-1"><i class="fa fa-check"></i><b>3.1</b> Libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#data-1"><i class="fa fa-check"></i><b>3.2</b> Data</a></li>
+<li class="chapter" data-level="3.3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#vcf-to-gds"><i class="fa fa-check"></i><b>3.3</b> VCF to GDS</a></li>
+<li class="chapter" data-level="3.4" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#ld-based-snp-pruning"><i class="fa fa-check"></i><b>3.4</b> LD-based SNP Pruning</a></li>
+<li class="chapter" data-level="3.5" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca"><i class="fa fa-check"></i><b>3.5</b> PCA</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-original"><i class="fa fa-check"></i><b>3.5.1</b> PCA Original</a></li>
+<li class="chapter" data-level="3.5.2" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-wo-outliers"><i class="fa fa-check"></i><b>3.5.2</b> PCA w/o Outliers</a></li>
+<li class="chapter" data-level="3.5.3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-by-chromosome"><i class="fa fa-check"></i><b>3.5.3</b> PCA by Chromosome</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#relatedness"><i class="fa fa-check"></i><b>3.6</b> Relatedness</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html"><i class="fa fa-check"></i><b>4</b> Density Plot Filter Metrics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#libraries-2"><i class="fa fa-check"></i><b>4.1</b> Libraries</a></li>
+<li class="chapter" data-level="4.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#data-2"><i class="fa fa-check"></i><b>4.2</b> Data</a></li>
+<li class="chapter" data-level="4.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#density-plots"><i class="fa fa-check"></i><b>4.3</b> Density Plots</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-qd"><i class="fa fa-check"></i><b>4.3.1</b> Metric: QD</a></li>
+<li class="chapter" data-level="4.3.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-fs"><i class="fa fa-check"></i><b>4.3.2</b> Metric: FS</a></li>
+<li class="chapter" data-level="4.3.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-sor"><i class="fa fa-check"></i><b>4.3.3</b> Metric: SOR</a></li>
+<li class="chapter" data-level="4.3.4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mq"><i class="fa fa-check"></i><b>4.3.4</b> Metric: MQ</a></li>
+<li class="chapter" data-level="4.3.5" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mqranksum"><i class="fa fa-check"></i><b>4.3.5</b> Metric: MQRankSum</a></li>
+<li class="chapter" data-level="4.3.6" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-readposranksum"><i class="fa fa-check"></i><b>4.3.6</b> Metric: ReadPosRankSum</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html"><i class="fa fa-check"></i><b>5</b> GWAS - rrBLUP</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#libraries-3"><i class="fa fa-check"></i><b>5.1</b> Libraries</a></li>
+<li class="chapter" data-level="5.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#data-3"><i class="fa fa-check"></i><b>5.2</b> Data</a></li>
+<li class="chapter" data-level="5.3" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#calculating-grm"><i class="fa fa-check"></i><b>5.3</b> Calculating GRM</a></li>
+<li class="chapter" data-level="5.4" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#population-structure"><i class="fa fa-check"></i><b>5.4</b> Population structure</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#heatmap"><i class="fa fa-check"></i><b>5.4.1</b> Heatmap</a></li>
+<li class="chapter" data-level="5.4.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#pca-1"><i class="fa fa-check"></i><b>5.4.2</b> PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-data"><i class="fa fa-check"></i><b>5.5</b> Configure data</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#create-matrix"><i class="fa fa-check"></i><b>5.5.1</b> Create matrix</a></li>
+<li class="chapter" data-level="5.5.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-phenotype-data"><i class="fa fa-check"></i><b>5.5.2</b> Configure phenotype data</a></li>
+<li class="chapter" data-level="5.5.3" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-grm-snp-info"><i class="fa fa-check"></i><b>5.5.3</b> Configure grm &amp; snp info</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#gwas-model-1-genomic-relationship-matrix"><i class="fa fa-check"></i><b>5.6</b> GWAS Model 1: genomic relationship matrix</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#extract-results"><i class="fa fa-check"></i><b>5.6.1</b> Extract results</a></li>
+<li class="chapter" data-level="5.6.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#manhattan-plot"><i class="fa fa-check"></i><b>5.6.2</b> Manhattan Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#id-snps-in-ld-with-gwas-snp"><i class="fa fa-check"></i><b>5.7</b> ID SNPs in LD with GWAS SNP</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-data-1"><i class="fa fa-check"></i><b>5.7.1</b> Configure data</a></li>
+<li class="chapter" data-level="5.7.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#calcualte-ld"><i class="fa fa-check"></i><b>5.7.2</b> Calcualte LD</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="fst-based-approach.html"><a href="fst-based-approach.html"><i class="fa fa-check"></i><b>6</b> Fst-based Approach</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="fst-based-approach.html"><a href="fst-based-approach.html#libraries-4"><i class="fa fa-check"></i><b>6.1</b> Libraries</a></li>
+<li class="chapter" data-level="6.2" data-path="fst-based-approach.html"><a href="fst-based-approach.html#data-4"><i class="fa fa-check"></i><b>6.2</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="fst-based-approach.html"><a href="fst-based-approach.html#visualize-snp-fst-distribution"><i class="fa fa-check"></i><b>6.3</b> Visualize SNP Fst distribution</a></li>
+<li class="chapter" data-level="6.4" data-path="fst-based-approach.html"><a href="fst-based-approach.html#select-outlier-snps"><i class="fa fa-check"></i><b>6.4</b> Select outlier SNPs</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="fst-based-approach.html"><a href="fst-based-approach.html#sd"><i class="fa fa-check"></i><b>6.4.1</b> &gt; 5SD</a></li>
+<li class="chapter" data-level="6.4.2" data-path="fst-based-approach.html"><a href="fst-based-approach.html#extract-snps-600-bp-positions"><i class="fa fa-check"></i><b>6.4.2</b> Extract SNPs &amp; 600 bp positions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="snp-annotation.html"><a href="snp-annotation.html"><i class="fa fa-check"></i><b>7</b> SNP Annotation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="snp-annotation.html"><a href="snp-annotation.html#libraries-5"><i class="fa fa-check"></i><b>7.1</b> Libraries</a></li>
+<li class="chapter" data-level="7.2" data-path="snp-annotation.html"><a href="snp-annotation.html#data-5"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
+<li class="chapter" data-level="7.3" data-path="snp-annotation.html"><a href="snp-annotation.html#tidy-harbor-seal-genes"><i class="fa fa-check"></i><b>7.3</b> Tidy Harbor seal genes</a></li>
+<li class="chapter" data-level="7.4" data-path="snp-annotation.html"><a href="snp-annotation.html#fst-5-sd"><i class="fa fa-check"></i><b>7.4</b> FST 5 SD</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="snp-annotation.html"><a href="snp-annotation.html#id-genes"><i class="fa fa-check"></i><b>7.4.1</b> ID genes</a></li>
+<li class="chapter" data-level="7.4.2" data-path="snp-annotation.html"><a href="snp-annotation.html#over-representation"><i class="fa fa-check"></i><b>7.4.2</b> Over-representation</a></li>
+<li class="chapter" data-level="7.4.3" data-path="snp-annotation.html"><a href="snp-annotation.html#biomart-annotation"><i class="fa fa-check"></i><b>7.4.3</b> Biomart annotation</a></li>
+<li class="chapter" data-level="7.4.4" data-path="snp-annotation.html"><a href="snp-annotation.html#exonic-cds-genes"><i class="fa fa-check"></i><b>7.4.4</b> Exonic, CDS Genes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="snp-annotation.html"><a href="snp-annotation.html#gwas"><i class="fa fa-check"></i><b>7.5</b> GWAS</a></li>
+<li class="chapter" data-level="7.6" data-path="snp-annotation.html"><a href="snp-annotation.html#follow-up-for-discussion"><i class="fa fa-check"></i><b>7.6</b> Follow up for Discussion</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="snp-annotation.html"><a href="snp-annotation.html#innate-immune-system"><i class="fa fa-check"></i><b>7.6.1</b> Innate Immune System</a></li>
+<li class="chapter" data-level="7.6.2" data-path="snp-annotation.html"><a href="snp-annotation.html#signal-transduction"><i class="fa fa-check"></i><b>7.6.2</b> Signal Transduction</a></li>
+<li class="chapter" data-level="7.6.3" data-path="snp-annotation.html"><a href="snp-annotation.html#cytokines"><i class="fa fa-check"></i><b>7.6.3</b> Cytokines</a></li>
+<li class="chapter" data-level="7.6.4" data-path="snp-annotation.html"><a href="snp-annotation.html#adaptive-immune-system"><i class="fa fa-check"></i><b>7.6.4</b> Adaptive Immune System</a></li>
+<li class="chapter" data-level="7.6.5" data-path="snp-annotation.html"><a href="snp-annotation.html#nervous-system"><i class="fa fa-check"></i><b>7.6.5</b> Nervous System</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="snp-annotation.html"><a href="snp-annotation.html#manuscript-figure"><i class="fa fa-check"></i><b>7.7</b> Manuscript Figure</a></li>
+<li class="chapter" data-level="7.8" data-path="snp-annotation.html"><a href="snp-annotation.html#presentation-figure"><i class="fa fa-check"></i><b>7.8</b> Presentation Figure</a></li>
+<li class="chapter" data-level="7.9" data-path="snp-annotation.html"><a href="snp-annotation.html#link-genes-to-snps-for-figure"><i class="fa fa-check"></i><b>7.9</b> Link genes to SNPs for figure</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="snp-visualization.html"><a href="snp-visualization.html"><i class="fa fa-check"></i><b>8</b> SNP visualization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="snp-visualization.html"><a href="snp-visualization.html#libraries-6"><i class="fa fa-check"></i><b>8.1</b> Libraries</a></li>
+<li class="chapter" data-level="8.2" data-path="snp-visualization.html"><a href="snp-visualization.html#data-6"><i class="fa fa-check"></i><b>8.2</b> Data</a></li>
+<li class="chapter" data-level="8.3" data-path="snp-visualization.html"><a href="snp-visualization.html#plot-immune-nervous-system-genes"><i class="fa fa-check"></i><b>8.3</b> Plot Immune &amp; Nervous System Genes</a></li>
+<li class="chapter" data-level="8.4" data-path="snp-visualization.html"><a href="snp-visualization.html#plot-all-genes-associated-with-snps"><i class="fa fa-check"></i><b>8.4</b> Plot all Genes associated with SNPs</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/christinamccosker/pv-wgs.git" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pv-WGS-Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="snp-visualization" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> SNP visualization<a href="snp-visualization.html#snp-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="libraries-6" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Libraries<a href="snp-visualization.html#libraries-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="snp-visualization.html#cb303-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb303-2"><a href="snp-visualization.html#cb303-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb303-3"><a href="snp-visualization.html#cb303-3" tabindex="-1"></a><span class="fu">library</span>(ggh4x)</span>
+<span id="cb303-4"><a href="snp-visualization.html#cb303-4" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb303-5"><a href="snp-visualization.html#cb303-5" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb303-6"><a href="snp-visualization.html#cb303-6" tabindex="-1"></a></span>
+<span id="cb303-7"><a href="snp-visualization.html#cb303-7" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;as.factor&quot;</span>, <span class="st">&quot;base&quot;</span>)</span></code></pre></div>
+<pre><code>## [conflicted] Will prefer base::as.factor over any other
+## package.</code></pre>
+</div>
+<div id="data-6" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Data<a href="snp-visualization.html#data-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>SNP Matrix coded as AD (additive dominant): 0 = Homozygous dominant, 1 = heterozygous, 2 = Homozygous minor</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="snp-visualization.html#cb305-1" tabindex="-1"></a>snp.genes.role <span class="ot">&lt;-</span> </span>
+<span id="cb305-2"><a href="snp-visualization.html#cb305-2" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Output Files/snp_gene_roles.csv&quot;</span>, </span>
+<span id="cb305-3"><a href="snp-visualization.html#cb305-3" tabindex="-1"></a>           <span class="at">row.names =</span> <span class="dv">1</span>)</span>
+<span id="cb305-4"><a href="snp-visualization.html#cb305-4" tabindex="-1"></a></span>
+<span id="cb305-5"><a href="snp-visualization.html#cb305-5" tabindex="-1"></a>meta <span class="ot">&lt;-</span> </span>
+<span id="cb305-6"><a href="snp-visualization.html#cb305-6" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Output Files/metadata_tidy.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb305-7"><a href="snp-visualization.html#cb305-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seq.id =</span> <span class="fu">gsub</span>(<span class="st">&quot;B5GAN&quot;</span>, <span class="st">&quot;&quot;</span>, seq.id))</span>
+<span id="cb305-8"><a href="snp-visualization.html#cb305-8" tabindex="-1"></a></span>
+<span id="cb305-9"><a href="snp-visualization.html#cb305-9" tabindex="-1"></a>snp.matrix <span class="ot">&lt;-</span></span>
+<span id="cb305-10"><a href="snp-visualization.html#cb305-10" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf_prune_dom.raw&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb305-11"><a href="snp-visualization.html#cb305-11" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">&quot;HET&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb305-12"><a href="snp-visualization.html#cb305-12" tabindex="-1"></a>  <span class="fu">rename_with</span>(gsub, </span>
+<span id="cb305-13"><a href="snp-visualization.html#cb305-13" tabindex="-1"></a>              <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">_[A-Z]{1}$&quot;</span>, </span>
+<span id="cb305-14"><a href="snp-visualization.html#cb305-14" tabindex="-1"></a>              <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(.)) <span class="sc">%&gt;%</span> </span>
+<span id="cb305-15"><a href="snp-visualization.html#cb305-15" tabindex="-1"></a>  <span class="fu">merge</span>(., meta, <span class="at">by.x =</span> <span class="st">&quot;FID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;seq.id&quot;</span>) </span>
+<span id="cb305-16"><a href="snp-visualization.html#cb305-16" tabindex="-1"></a></span>
+<span id="cb305-17"><a href="snp-visualization.html#cb305-17" tabindex="-1"></a>snp.fst.genes <span class="ot">&lt;-</span> </span>
+<span id="cb305-18"><a href="snp-visualization.html#cb305-18" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Output Files/allsamples_fst_sd_snp_geneid.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb305-19"><a href="snp-visualization.html#cb305-19" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">snp =</span> <span class="fu">paste</span>(V1, <span class="st">&quot;_&quot;</span>, V4, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb305-20"><a href="snp-visualization.html#cb305-20" tabindex="-1"></a>  <span class="fu">select</span>(gene, snp)</span></code></pre></div>
+</div>
+<div id="plot-immune-nervous-system-genes" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Plot Immune &amp; Nervous System Genes<a href="snp-visualization.html#plot-immune-nervous-system-genes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Genotype AA = homozygous dominant
+Genotype AB = heterozygous
+Genotype BB = homozygous recessive</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="snp-visualization.html#cb306-1" tabindex="-1"></a>snp.frequency.role <span class="ot">&lt;-</span> </span>
+<span id="cb306-2"><a href="snp-visualization.html#cb306-2" tabindex="-1"></a>  snp.matrix <span class="sc">%&gt;%</span> </span>
+<span id="cb306-3"><a href="snp-visualization.html#cb306-3" tabindex="-1"></a>  <span class="fu">select</span>(FID, snp.genes.role<span class="sc">$</span>snp, classification) <span class="sc">%&gt;%</span> </span>
+<span id="cb306-4"><a href="snp-visualization.html#cb306-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span><span class="fu">c</span>(FID, classification), <span class="at">names_to =</span> <span class="st">&quot;snp&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;genotype&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb306-5"><a href="snp-visualization.html#cb306-5" tabindex="-1"></a>  <span class="fu">group_by</span>(classification, snp, genotype) <span class="sc">%&gt;%</span> </span>
+<span id="cb306-6"><a href="snp-visualization.html#cb306-6" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sum =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb306-7"><a href="snp-visualization.html#cb306-7" tabindex="-1"></a>  <span class="fu">merge</span>(., snp.genes.role, <span class="at">by =</span> <span class="st">&quot;snp&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb306-8"><a href="snp-visualization.html#cb306-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genotype =</span> <span class="fu">ifelse</span>(genotype <span class="sc">==</span> <span class="st">&quot;0&quot;</span>, <span class="st">&quot;AA&quot;</span>, </span>
+<span id="cb306-9"><a href="snp-visualization.html#cb306-9" tabindex="-1"></a>                           <span class="fu">ifelse</span>(genotype <span class="sc">==</span> <span class="st">&quot;1&quot;</span>, <span class="st">&quot;AB&quot;</span>, <span class="st">&quot;BB&quot;</span>)))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;classification&#39;, &#39;snp&#39;.
+## You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="snp-visualization.html#cb308-1" tabindex="-1"></a>snp.frequency.immune.plot <span class="ot">&lt;-</span> </span>
+<span id="cb308-2"><a href="snp-visualization.html#cb308-2" tabindex="-1"></a>  snp.frequency.role <span class="sc">%&gt;%</span> </span>
+<span id="cb308-3"><a href="snp-visualization.html#cb308-3" tabindex="-1"></a>  <span class="fu">filter</span>(role <span class="sc">==</span> <span class="st">&quot;Immune System&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb308-4"><a href="snp-visualization.html#cb308-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genotype =</span> <span class="fu">as.factor</span>(genotype)) <span class="sc">%&gt;%</span> </span>
+<span id="cb308-5"><a href="snp-visualization.html#cb308-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> gene, <span class="at">y =</span> sum, <span class="at">fill =</span> genotype)) <span class="sc">+</span></span>
+<span id="cb308-6"><a href="snp-visualization.html#cb308-6" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb308-7"><a href="snp-visualization.html#cb308-7" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#8AD0D0&quot;</span>,<span class="st">&quot;#40A0A0&quot;</span>, <span class="st">&quot;#296666&quot;</span>),</span>
+<span id="cb308-8"><a href="snp-visualization.html#cb308-8" tabindex="-1"></a>                    <span class="at">name =</span> <span class="st">&quot;Genotype&quot;</span>) <span class="sc">+</span></span>
+<span id="cb308-9"><a href="snp-visualization.html#cb308-9" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb308-10"><a href="snp-visualization.html#cb308-10" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb308-11"><a href="snp-visualization.html#cb308-11" tabindex="-1"></a>  <span class="fu">facet_nested_wrap</span>(<span class="fu">vars</span>(role, classification), <span class="at">dir=</span><span class="st">&quot;h&quot;</span>,,</span>
+<span id="cb308-12"><a href="snp-visualization.html#cb308-12" tabindex="-1"></a>                    <span class="at">strip.position=</span><span class="st">&quot;top&quot;</span>, <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">drop=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb308-13"><a href="snp-visualization.html#cb308-13" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb308-14"><a href="snp-visualization.html#cb308-14" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb308-15"><a href="snp-visualization.html#cb308-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb308-16"><a href="snp-visualization.html#cb308-16" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) </span>
+<span id="cb308-17"><a href="snp-visualization.html#cb308-17" tabindex="-1"></a>snp.frequency.immune.plot</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="snp-visualization.html#cb309-1" tabindex="-1"></a>genotype.legend <span class="ot">&lt;-</span> <span class="fu">get_legend</span>(snp.frequency.immune.plot)</span>
+<span id="cb309-2"><a href="snp-visualization.html#cb309-2" tabindex="-1"></a></span>
+<span id="cb309-3"><a href="snp-visualization.html#cb309-3" tabindex="-1"></a>snp.frequency.immune.plot <span class="ot">&lt;-</span> </span>
+<span id="cb309-4"><a href="snp-visualization.html#cb309-4" tabindex="-1"></a>  snp.frequency.immune.plot <span class="sc">+</span></span>
+<span id="cb309-5"><a href="snp-visualization.html#cb309-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb309-6"><a href="snp-visualization.html#cb309-6" tabindex="-1"></a></span>
+<span id="cb309-7"><a href="snp-visualization.html#cb309-7" tabindex="-1"></a>snp.frequency.nervous.plot <span class="ot">&lt;-</span> </span>
+<span id="cb309-8"><a href="snp-visualization.html#cb309-8" tabindex="-1"></a>  snp.frequency.role <span class="sc">%&gt;%</span> </span>
+<span id="cb309-9"><a href="snp-visualization.html#cb309-9" tabindex="-1"></a>  <span class="fu">filter</span>(role <span class="sc">==</span> <span class="st">&quot;Nervous System&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb309-10"><a href="snp-visualization.html#cb309-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genotype =</span> <span class="fu">as.factor</span>(genotype)) <span class="sc">%&gt;%</span> </span>
+<span id="cb309-11"><a href="snp-visualization.html#cb309-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> gene, <span class="at">y =</span> sum, <span class="at">fill =</span> genotype)) <span class="sc">+</span></span>
+<span id="cb309-12"><a href="snp-visualization.html#cb309-12" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb309-13"><a href="snp-visualization.html#cb309-13" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#8AD0D0&quot;</span>,<span class="st">&quot;#40A0A0&quot;</span>, <span class="st">&quot;#296666&quot;</span>),</span>
+<span id="cb309-14"><a href="snp-visualization.html#cb309-14" tabindex="-1"></a>                    <span class="at">name =</span> <span class="st">&quot;Genotype&quot;</span>) <span class="sc">+</span></span>
+<span id="cb309-15"><a href="snp-visualization.html#cb309-15" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb309-16"><a href="snp-visualization.html#cb309-16" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb309-17"><a href="snp-visualization.html#cb309-17" tabindex="-1"></a>  <span class="fu">facet_nested_wrap</span>(<span class="fu">vars</span>(role, classification), <span class="at">dir=</span><span class="st">&quot;h&quot;</span>,,</span>
+<span id="cb309-18"><a href="snp-visualization.html#cb309-18" tabindex="-1"></a>                    <span class="at">strip.position=</span><span class="st">&quot;top&quot;</span>, <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">drop=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb309-19"><a href="snp-visualization.html#cb309-19" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb309-20"><a href="snp-visualization.html#cb309-20" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb309-21"><a href="snp-visualization.html#cb309-21" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb309-22"><a href="snp-visualization.html#cb309-22" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) </span>
+<span id="cb309-23"><a href="snp-visualization.html#cb309-23" tabindex="-1"></a>snp.frequency.nervous.plot</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-2.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="snp-visualization.html#cb310-1" tabindex="-1"></a>snp.frequency.immunenervous.plot <span class="ot">&lt;-</span> </span>
+<span id="cb310-2"><a href="snp-visualization.html#cb310-2" tabindex="-1"></a>  snp.frequency.role <span class="sc">%&gt;%</span> </span>
+<span id="cb310-3"><a href="snp-visualization.html#cb310-3" tabindex="-1"></a>  <span class="fu">filter</span>(role <span class="sc">==</span> <span class="st">&quot;Immune &amp; Nervous System&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb310-4"><a href="snp-visualization.html#cb310-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genotype =</span> <span class="fu">as.factor</span>(genotype)) <span class="sc">%&gt;%</span> </span>
+<span id="cb310-5"><a href="snp-visualization.html#cb310-5" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> gene, <span class="at">y =</span> sum, <span class="at">fill =</span> genotype)) <span class="sc">+</span></span>
+<span id="cb310-6"><a href="snp-visualization.html#cb310-6" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb310-7"><a href="snp-visualization.html#cb310-7" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#8AD0D0&quot;</span>,<span class="st">&quot;#40A0A0&quot;</span>, <span class="st">&quot;#296666&quot;</span>),</span>
+<span id="cb310-8"><a href="snp-visualization.html#cb310-8" tabindex="-1"></a>                    <span class="at">name =</span> <span class="st">&quot;Genotype&quot;</span>) <span class="sc">+</span></span>
+<span id="cb310-9"><a href="snp-visualization.html#cb310-9" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb310-10"><a href="snp-visualization.html#cb310-10" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb310-11"><a href="snp-visualization.html#cb310-11" tabindex="-1"></a>  <span class="fu">facet_nested_wrap</span>(<span class="fu">vars</span>(role, classification), <span class="at">dir=</span><span class="st">&quot;h&quot;</span>,,</span>
+<span id="cb310-12"><a href="snp-visualization.html#cb310-12" tabindex="-1"></a>                    <span class="at">strip.position=</span><span class="st">&quot;top&quot;</span>, <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">drop=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb310-13"><a href="snp-visualization.html#cb310-13" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb310-14"><a href="snp-visualization.html#cb310-14" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb310-15"><a href="snp-visualization.html#cb310-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb310-16"><a href="snp-visualization.html#cb310-16" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>) </span>
+<span id="cb310-17"><a href="snp-visualization.html#cb310-17" tabindex="-1"></a>snp.frequency.immunenervous.plot</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-3.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="snp-visualization.html#cb311-1" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">grid.arrange</span>(<span class="fu">arrangeGrob</span>(snp.frequency.immune.plot,</span>
+<span id="cb311-2"><a href="snp-visualization.html#cb311-2" tabindex="-1"></a>                         snp.frequency.immunenervous.plot, </span>
+<span id="cb311-3"><a href="snp-visualization.html#cb311-3" tabindex="-1"></a>                         <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">heights =</span> <span class="fu">c</span>(<span class="fl">5.6</span>, <span class="dv">4</span>)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-4.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="snp-visualization.html#cb312-1" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">grid.arrange</span>(<span class="fu">arrangeGrob</span>(plot1, snp.frequency.nervous.plot,</span>
+<span id="cb312-2"><a href="snp-visualization.html#cb312-2" tabindex="-1"></a>                                  <span class="at">ncol =</span> <span class="dv">2</span>),</span>
+<span id="cb312-3"><a href="snp-visualization.html#cb312-3" tabindex="-1"></a>                      <span class="at">bottom =</span> <span class="st">&quot;Frequency&quot;</span>, <span class="at">left =</span> <span class="st">&quot;Gene&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-5.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="snp-visualization.html#cb313-1" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> <span class="fu">grid.arrange</span>(plot2, genotype.legend, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-6.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="snp-visualization.html#cb314-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Figures/snp_frequency_immunenervous.jpg&quot;</span>, plot3, </span>
+<span id="cb314-2"><a href="snp-visualization.html#cb314-2" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
+</div>
+<div id="plot-all-genes-associated-with-snps" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Plot all Genes associated with SNPs<a href="snp-visualization.html#plot-all-genes-associated-with-snps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="snp-visualization.html#cb315-1" tabindex="-1"></a>snp.fst.frequency <span class="ot">&lt;-</span> </span>
+<span id="cb315-2"><a href="snp-visualization.html#cb315-2" tabindex="-1"></a>  snp.matrix <span class="sc">%&gt;%</span> </span>
+<span id="cb315-3"><a href="snp-visualization.html#cb315-3" tabindex="-1"></a>  <span class="fu">select</span>(FID, snp.fst.genes<span class="sc">$</span>snp, classification) <span class="sc">%&gt;%</span> </span>
+<span id="cb315-4"><a href="snp-visualization.html#cb315-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span><span class="fu">c</span>(FID, classification), <span class="at">names_to =</span> <span class="st">&quot;snp&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;genotype&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb315-5"><a href="snp-visualization.html#cb315-5" tabindex="-1"></a>  <span class="fu">group_by</span>(classification, snp, genotype) <span class="sc">%&gt;%</span> </span>
+<span id="cb315-6"><a href="snp-visualization.html#cb315-6" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sum =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb315-7"><a href="snp-visualization.html#cb315-7" tabindex="-1"></a>  <span class="fu">merge</span>(., snp.fst.genes, <span class="at">by =</span> <span class="st">&quot;snp&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb315-8"><a href="snp-visualization.html#cb315-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genotype =</span> <span class="fu">ifelse</span>(genotype <span class="sc">==</span> <span class="st">&quot;0&quot;</span>, <span class="st">&quot;AA&quot;</span>, </span>
+<span id="cb315-9"><a href="snp-visualization.html#cb315-9" tabindex="-1"></a>                           <span class="fu">ifelse</span>(genotype <span class="sc">==</span> <span class="st">&quot;1&quot;</span>, <span class="st">&quot;AB&quot;</span>, <span class="st">&quot;BB&quot;</span>)))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;classification&#39;, &#39;snp&#39;.
+## You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="snp-visualization.html#cb317-1" tabindex="-1"></a>snp.frequency.fst.plot <span class="ot">&lt;-</span></span>
+<span id="cb317-2"><a href="snp-visualization.html#cb317-2" tabindex="-1"></a>  snp.fst.frequency <span class="sc">%&gt;%</span> </span>
+<span id="cb317-3"><a href="snp-visualization.html#cb317-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">genotype =</span> <span class="fu">as.factor</span>(genotype)) <span class="sc">%&gt;%</span> </span>
+<span id="cb317-4"><a href="snp-visualization.html#cb317-4" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> gene, <span class="at">y =</span> sum, <span class="at">fill =</span> genotype)) <span class="sc">+</span></span>
+<span id="cb317-5"><a href="snp-visualization.html#cb317-5" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb317-6"><a href="snp-visualization.html#cb317-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Gene&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb317-7"><a href="snp-visualization.html#cb317-7" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#8AD0D0&quot;</span>,<span class="st">&quot;#40A0A0&quot;</span>, <span class="st">&quot;#296666&quot;</span>),</span>
+<span id="cb317-8"><a href="snp-visualization.html#cb317-8" tabindex="-1"></a>                    <span class="at">name =</span> <span class="st">&quot;Genotype&quot;</span>) <span class="sc">+</span></span>
+<span id="cb317-9"><a href="snp-visualization.html#cb317-9" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb317-10"><a href="snp-visualization.html#cb317-10" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>classification) <span class="sc">+</span></span>
+<span id="cb317-11"><a href="snp-visualization.html#cb317-11" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb317-12"><a href="snp-visualization.html#cb317-12" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb317-13"><a href="snp-visualization.html#cb317-13" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) </span>
+<span id="cb317-14"><a href="snp-visualization.html#cb317-14" tabindex="-1"></a>snp.frequency.fst.plot</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="snp-visualization.html#cb318-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Figures/snp_frequency_fst.jpg&quot;</span>, snp.frequency.fst.plot, </span>
+<span id="cb318-2"><a href="snp-visualization.html#cb318-2" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">15</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">dpi =</span> <span class="dv">600</span>)</span>
+<span id="cb318-3"><a href="snp-visualization.html#cb318-3" tabindex="-1"></a></span>
+<span id="cb318-4"><a href="snp-visualization.html#cb318-4" tabindex="-1"></a>snp.fst.frequency.overall <span class="ot">&lt;-</span></span>
+<span id="cb318-5"><a href="snp-visualization.html#cb318-5" tabindex="-1"></a>  snp.fst.frequency <span class="sc">%&gt;%</span> </span>
+<span id="cb318-6"><a href="snp-visualization.html#cb318-6" tabindex="-1"></a>  <span class="fu">group_by</span>(classification, genotype) <span class="sc">%&gt;%</span> </span>
+<span id="cb318-7"><a href="snp-visualization.html#cb318-7" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">sum</span>(sum)) <span class="sc">%&gt;%</span> </span>
+<span id="cb318-8"><a href="snp-visualization.html#cb318-8" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> <span class="fu">ifelse</span>(classification <span class="sc">==</span> <span class="st">&quot;Non-survivor&quot;</span>, n<span class="sc">/</span><span class="dv">4841</span>, n<span class="sc">/</span><span class="dv">5665</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb318-9"><a href="snp-visualization.html#cb318-9" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb318-10"><a href="snp-visualization.html#cb318-10" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> classification, <span class="at">y =</span> n, <span class="at">fill =</span> genotype)) <span class="sc">+</span></span>
+<span id="cb318-11"><a href="snp-visualization.html#cb318-11" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb318-12"><a href="snp-visualization.html#cb318-12" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb318-13"><a href="snp-visualization.html#cb318-13" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb318-14"><a href="snp-visualization.html#cb318-14" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#8AD0D0&quot;</span>,<span class="st">&quot;#40A0A0&quot;</span>, <span class="st">&quot;#296666&quot;</span>),</span>
+<span id="cb318-15"><a href="snp-visualization.html#cb318-15" tabindex="-1"></a>                    <span class="at">name =</span> <span class="st">&quot;Genotype&quot;</span>) <span class="sc">+</span></span>
+<span id="cb318-16"><a href="snp-visualization.html#cb318-16" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb318-17"><a href="snp-visualization.html#cb318-17" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb318-18"><a href="snp-visualization.html#cb318-18" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;classification&#39;. You can
+## override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="snp-visualization.html#cb320-1" tabindex="-1"></a>snp.fst.frequency.overall</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-2.png" alt="" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="snp-annotation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  },
+  "info": false
+});
+});
+</script>
+
+</body>
+
+</html>

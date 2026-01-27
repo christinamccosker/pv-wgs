@@ -19,6 +19,10 @@ library(qqman)
 library(factoextra)
 library(ggfortify)
 library(snpStats)
+library(conflicted)
+
+conflict_prefer("select", "dplyr")
+conflict_prefer("filter", "dplyr")
 ```
 
 ## Data

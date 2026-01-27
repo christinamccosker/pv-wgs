@@ -1,0 +1,2797 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 SNP Annotation | Pv-WGS-Analysis</title>
+  <meta name="description" content="McCosker Dissertation Chapter 3 Analyses" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 SNP Annotation | Pv-WGS-Analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 SNP Annotation | Pv-WGS-Analysis" />
+  
+  <meta name="twitter:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+<meta name="author" content="Christina McCosker" />
+
+
+<meta name="date" content="2025-07-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="fst-based-approach.html"/>
+<link rel="next" href="snp-visualization.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Pv-WGS-Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html"><i class="fa fa-check"></i><b>2</b> Tidy Data &amp; Exploratory</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#libraries"><i class="fa fa-check"></i><b>2.1</b> Libraries</a></li>
+<li class="chapter" data-level="2.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#descriptive-statistics"><i class="fa fa-check"></i><b>2.3</b> Descriptive Statistics</a></li>
+<li class="chapter" data-level="2.4" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#exclude-samples"><i class="fa fa-check"></i><b>2.4</b> Exclude samples</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#duringafter-outbreak---tufts-only"><i class="fa fa-check"></i><b>2.4.1</b> During/After Outbreak - Tufts Only</a></li>
+<li class="chapter" data-level="2.4.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#sample-statistics"><i class="fa fa-check"></i><b>2.4.2</b> Sample statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#map-of-strandings"><i class="fa fa-check"></i><b>2.5</b> Map of Strandings</a></li>
+<li class="chapter" data-level="2.6" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#case-v-control-factors"><i class="fa fa-check"></i><b>2.6</b> Case v Control ~ Factors</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#duringafter-outbreak---all-data"><i class="fa fa-check"></i><b>2.6.1</b> During/After Outbreak - All Data</a></li>
+<li class="chapter" data-level="2.6.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#sex"><i class="fa fa-check"></i><b>2.6.2</b> Sex</a></li>
+<li class="chapter" data-level="2.6.3" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#age"><i class="fa fa-check"></i><b>2.6.3</b> Age</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html"><i class="fa fa-check"></i><b>3</b> PCA - High Coverage</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#libraries-1"><i class="fa fa-check"></i><b>3.1</b> Libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#data-1"><i class="fa fa-check"></i><b>3.2</b> Data</a></li>
+<li class="chapter" data-level="3.3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#vcf-to-gds"><i class="fa fa-check"></i><b>3.3</b> VCF to GDS</a></li>
+<li class="chapter" data-level="3.4" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#ld-based-snp-pruning"><i class="fa fa-check"></i><b>3.4</b> LD-based SNP Pruning</a></li>
+<li class="chapter" data-level="3.5" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca"><i class="fa fa-check"></i><b>3.5</b> PCA</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-original"><i class="fa fa-check"></i><b>3.5.1</b> PCA Original</a></li>
+<li class="chapter" data-level="3.5.2" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-wo-outliers"><i class="fa fa-check"></i><b>3.5.2</b> PCA w/o Outliers</a></li>
+<li class="chapter" data-level="3.5.3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-by-chromosome"><i class="fa fa-check"></i><b>3.5.3</b> PCA by Chromosome</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#relatedness"><i class="fa fa-check"></i><b>3.6</b> Relatedness</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html"><i class="fa fa-check"></i><b>4</b> Density Plot Filter Metrics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#libraries-2"><i class="fa fa-check"></i><b>4.1</b> Libraries</a></li>
+<li class="chapter" data-level="4.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#data-2"><i class="fa fa-check"></i><b>4.2</b> Data</a></li>
+<li class="chapter" data-level="4.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#density-plots"><i class="fa fa-check"></i><b>4.3</b> Density Plots</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-qd"><i class="fa fa-check"></i><b>4.3.1</b> Metric: QD</a></li>
+<li class="chapter" data-level="4.3.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-fs"><i class="fa fa-check"></i><b>4.3.2</b> Metric: FS</a></li>
+<li class="chapter" data-level="4.3.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-sor"><i class="fa fa-check"></i><b>4.3.3</b> Metric: SOR</a></li>
+<li class="chapter" data-level="4.3.4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mq"><i class="fa fa-check"></i><b>4.3.4</b> Metric: MQ</a></li>
+<li class="chapter" data-level="4.3.5" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mqranksum"><i class="fa fa-check"></i><b>4.3.5</b> Metric: MQRankSum</a></li>
+<li class="chapter" data-level="4.3.6" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-readposranksum"><i class="fa fa-check"></i><b>4.3.6</b> Metric: ReadPosRankSum</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html"><i class="fa fa-check"></i><b>5</b> GWAS - rrBLUP</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#libraries-3"><i class="fa fa-check"></i><b>5.1</b> Libraries</a></li>
+<li class="chapter" data-level="5.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#data-3"><i class="fa fa-check"></i><b>5.2</b> Data</a></li>
+<li class="chapter" data-level="5.3" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#calculating-grm"><i class="fa fa-check"></i><b>5.3</b> Calculating GRM</a></li>
+<li class="chapter" data-level="5.4" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#population-structure"><i class="fa fa-check"></i><b>5.4</b> Population structure</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#heatmap"><i class="fa fa-check"></i><b>5.4.1</b> Heatmap</a></li>
+<li class="chapter" data-level="5.4.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#pca-1"><i class="fa fa-check"></i><b>5.4.2</b> PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-data"><i class="fa fa-check"></i><b>5.5</b> Configure data</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#create-matrix"><i class="fa fa-check"></i><b>5.5.1</b> Create matrix</a></li>
+<li class="chapter" data-level="5.5.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-phenotype-data"><i class="fa fa-check"></i><b>5.5.2</b> Configure phenotype data</a></li>
+<li class="chapter" data-level="5.5.3" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-grm-snp-info"><i class="fa fa-check"></i><b>5.5.3</b> Configure grm &amp; snp info</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#gwas-model-1-genomic-relationship-matrix"><i class="fa fa-check"></i><b>5.6</b> GWAS Model 1: genomic relationship matrix</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#extract-results"><i class="fa fa-check"></i><b>5.6.1</b> Extract results</a></li>
+<li class="chapter" data-level="5.6.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#manhattan-plot"><i class="fa fa-check"></i><b>5.6.2</b> Manhattan Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#id-snps-in-ld-with-gwas-snp"><i class="fa fa-check"></i><b>5.7</b> ID SNPs in LD with GWAS SNP</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-data-1"><i class="fa fa-check"></i><b>5.7.1</b> Configure data</a></li>
+<li class="chapter" data-level="5.7.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#calcualte-ld"><i class="fa fa-check"></i><b>5.7.2</b> Calcualte LD</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="fst-based-approach.html"><a href="fst-based-approach.html"><i class="fa fa-check"></i><b>6</b> Fst-based Approach</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="fst-based-approach.html"><a href="fst-based-approach.html#libraries-4"><i class="fa fa-check"></i><b>6.1</b> Libraries</a></li>
+<li class="chapter" data-level="6.2" data-path="fst-based-approach.html"><a href="fst-based-approach.html#data-4"><i class="fa fa-check"></i><b>6.2</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="fst-based-approach.html"><a href="fst-based-approach.html#visualize-snp-fst-distribution"><i class="fa fa-check"></i><b>6.3</b> Visualize SNP Fst distribution</a></li>
+<li class="chapter" data-level="6.4" data-path="fst-based-approach.html"><a href="fst-based-approach.html#select-outlier-snps"><i class="fa fa-check"></i><b>6.4</b> Select outlier SNPs</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="fst-based-approach.html"><a href="fst-based-approach.html#sd"><i class="fa fa-check"></i><b>6.4.1</b> &gt; 5SD</a></li>
+<li class="chapter" data-level="6.4.2" data-path="fst-based-approach.html"><a href="fst-based-approach.html#extract-snps-600-bp-positions"><i class="fa fa-check"></i><b>6.4.2</b> Extract SNPs &amp; 600 bp positions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="snp-annotation.html"><a href="snp-annotation.html"><i class="fa fa-check"></i><b>7</b> SNP Annotation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="snp-annotation.html"><a href="snp-annotation.html#libraries-5"><i class="fa fa-check"></i><b>7.1</b> Libraries</a></li>
+<li class="chapter" data-level="7.2" data-path="snp-annotation.html"><a href="snp-annotation.html#data-5"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
+<li class="chapter" data-level="7.3" data-path="snp-annotation.html"><a href="snp-annotation.html#tidy-harbor-seal-genes"><i class="fa fa-check"></i><b>7.3</b> Tidy Harbor seal genes</a></li>
+<li class="chapter" data-level="7.4" data-path="snp-annotation.html"><a href="snp-annotation.html#fst-5-sd"><i class="fa fa-check"></i><b>7.4</b> FST 5 SD</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="snp-annotation.html"><a href="snp-annotation.html#id-genes"><i class="fa fa-check"></i><b>7.4.1</b> ID genes</a></li>
+<li class="chapter" data-level="7.4.2" data-path="snp-annotation.html"><a href="snp-annotation.html#over-representation"><i class="fa fa-check"></i><b>7.4.2</b> Over-representation</a></li>
+<li class="chapter" data-level="7.4.3" data-path="snp-annotation.html"><a href="snp-annotation.html#biomart-annotation"><i class="fa fa-check"></i><b>7.4.3</b> Biomart annotation</a></li>
+<li class="chapter" data-level="7.4.4" data-path="snp-annotation.html"><a href="snp-annotation.html#exonic-cds-genes"><i class="fa fa-check"></i><b>7.4.4</b> Exonic, CDS Genes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="snp-annotation.html"><a href="snp-annotation.html#gwas"><i class="fa fa-check"></i><b>7.5</b> GWAS</a></li>
+<li class="chapter" data-level="7.6" data-path="snp-annotation.html"><a href="snp-annotation.html#follow-up-for-discussion"><i class="fa fa-check"></i><b>7.6</b> Follow up for Discussion</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="snp-annotation.html"><a href="snp-annotation.html#innate-immune-system"><i class="fa fa-check"></i><b>7.6.1</b> Innate Immune System</a></li>
+<li class="chapter" data-level="7.6.2" data-path="snp-annotation.html"><a href="snp-annotation.html#signal-transduction"><i class="fa fa-check"></i><b>7.6.2</b> Signal Transduction</a></li>
+<li class="chapter" data-level="7.6.3" data-path="snp-annotation.html"><a href="snp-annotation.html#cytokines"><i class="fa fa-check"></i><b>7.6.3</b> Cytokines</a></li>
+<li class="chapter" data-level="7.6.4" data-path="snp-annotation.html"><a href="snp-annotation.html#adaptive-immune-system"><i class="fa fa-check"></i><b>7.6.4</b> Adaptive Immune System</a></li>
+<li class="chapter" data-level="7.6.5" data-path="snp-annotation.html"><a href="snp-annotation.html#nervous-system"><i class="fa fa-check"></i><b>7.6.5</b> Nervous System</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="snp-annotation.html"><a href="snp-annotation.html#manuscript-figure"><i class="fa fa-check"></i><b>7.7</b> Manuscript Figure</a></li>
+<li class="chapter" data-level="7.8" data-path="snp-annotation.html"><a href="snp-annotation.html#presentation-figure"><i class="fa fa-check"></i><b>7.8</b> Presentation Figure</a></li>
+<li class="chapter" data-level="7.9" data-path="snp-annotation.html"><a href="snp-annotation.html#link-genes-to-snps-for-figure"><i class="fa fa-check"></i><b>7.9</b> Link genes to SNPs for figure</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="snp-visualization.html"><a href="snp-visualization.html"><i class="fa fa-check"></i><b>8</b> SNP visualization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="snp-visualization.html"><a href="snp-visualization.html#libraries-6"><i class="fa fa-check"></i><b>8.1</b> Libraries</a></li>
+<li class="chapter" data-level="8.2" data-path="snp-visualization.html"><a href="snp-visualization.html#data-6"><i class="fa fa-check"></i><b>8.2</b> Data</a></li>
+<li class="chapter" data-level="8.3" data-path="snp-visualization.html"><a href="snp-visualization.html#plot-immune-nervous-system-genes"><i class="fa fa-check"></i><b>8.3</b> Plot Immune &amp; Nervous System Genes</a></li>
+<li class="chapter" data-level="8.4" data-path="snp-visualization.html"><a href="snp-visualization.html#plot-all-genes-associated-with-snps"><i class="fa fa-check"></i><b>8.4</b> Plot all Genes associated with SNPs</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/christinamccosker/pv-wgs.git" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pv-WGS-Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="snp-annotation" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> SNP Annotation<a href="snp-annotation.html#snp-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="libraries-5" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Libraries<a href="snp-annotation.html#libraries-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="snp-annotation.html#cb244-1" tabindex="-1"></a><span class="fu">library</span>(reactome.db)</span>
+<span id="cb244-2"><a href="snp-annotation.html#cb244-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb244-3"><a href="snp-annotation.html#cb244-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb244-4"><a href="snp-annotation.html#cb244-4" tabindex="-1"></a><span class="fu">library</span>(WebGestaltR)</span></code></pre></div>
+<pre><code>## ******************************************</code></pre>
+<pre><code>## *                                        *</code></pre>
+<pre><code>## *          Welcome to WebGestaltR !      *</code></pre>
+<pre><code>## *                                        *</code></pre>
+<pre><code>## ******************************************</code></pre>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="snp-annotation.html#cb250-1" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb250-2"><a href="snp-annotation.html#cb250-2" tabindex="-1"></a><span class="fu">library</span>(biomaRt)</span>
+<span id="cb250-3"><a href="snp-annotation.html#cb250-3" tabindex="-1"></a><span class="fu">library</span>(ReactomePA)</span></code></pre></div>
+<pre><code>## </code></pre>
+<pre><code>## ReactomePA v1.54.0 Learn more at https://yulab-smu.top/contribution-knowledge-mining/
+## 
+## Please cite:
+## 
+## Guangchuang Yu, Qing-Yu He. ReactomePA: an R/Bioconductor package for
+## reactome pathway analysis and visualization. Molecular BioSystems.
+## 2016, 12(2):477-479</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="snp-annotation.html#cb253-1" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb253-2"><a href="snp-annotation.html#cb253-2" tabindex="-1"></a></span>
+<span id="cb253-3"><a href="snp-annotation.html#cb253-3" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;intersect&quot;</span>, <span class="st">&quot;base&quot;</span>)</span></code></pre></div>
+<pre><code>## [conflicted] Will prefer base::intersect over any other
+## package.</code></pre>
+</div>
+<div id="data-5" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Data<a href="snp-annotation.html#data-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Read in: SNP gene/exon/cds information</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="snp-annotation.html#cb255-1" tabindex="-1"></a>gwas_snp <span class="ot">&lt;-</span> </span>
+<span id="cb255-2"><a href="snp-annotation.html#cb255-2" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Output Files/allsamples_gwas.csv&quot;</span>)</span>
+<span id="cb255-3"><a href="snp-annotation.html#cb255-3" tabindex="-1"></a></span>
+<span id="cb255-4"><a href="snp-annotation.html#cb255-4" tabindex="-1"></a>fst_sd_genes <span class="ot">&lt;-</span> </span>
+<span id="cb255-5"><a href="snp-annotation.html#cb255-5" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_outlier_genes_snps.txt&quot;</span>)</span>
+<span id="cb255-6"><a href="snp-annotation.html#cb255-6" tabindex="-1"></a></span>
+<span id="cb255-7"><a href="snp-annotation.html#cb255-7" tabindex="-1"></a>fst_sd_exons <span class="ot">&lt;-</span> </span>
+<span id="cb255-8"><a href="snp-annotation.html#cb255-8" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_outlier_exons_snps.txt&quot;</span>)</span>
+<span id="cb255-9"><a href="snp-annotation.html#cb255-9" tabindex="-1"></a></span>
+<span id="cb255-10"><a href="snp-annotation.html#cb255-10" tabindex="-1"></a>fst_sd_cds <span class="ot">&lt;-</span> </span>
+<span id="cb255-11"><a href="snp-annotation.html#cb255-11" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_outlier_cds_snps.txt&quot;</span>)</span>
+<span id="cb255-12"><a href="snp-annotation.html#cb255-12" tabindex="-1"></a></span>
+<span id="cb255-13"><a href="snp-annotation.html#cb255-13" tabindex="-1"></a>fst_sd_fst <span class="ot">&lt;-</span> </span>
+<span id="cb255-14"><a href="snp-annotation.html#cb255-14" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Output Files/allsamples_fst_sd_outlierposition.csv&quot;</span>)</span>
+<span id="cb255-15"><a href="snp-annotation.html#cb255-15" tabindex="-1"></a></span>
+<span id="cb255-16"><a href="snp-annotation.html#cb255-16" tabindex="-1"></a>pv_genes <span class="ot">&lt;-</span> </span>
+<span id="cb255-17"><a href="snp-annotation.html#cb255-17" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/GSC_HSeal_1.0_HiC_genes.gff3&quot;</span>)</span></code></pre></div>
+</div>
+<div id="tidy-harbor-seal-genes" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Tidy Harbor seal genes<a href="snp-annotation.html#tidy-harbor-seal-genes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="snp-annotation.html#cb256-1" tabindex="-1"></a>pv_genes_tidy <span class="ot">&lt;-</span> </span>
+<span id="cb256-2"><a href="snp-annotation.html#cb256-2" tabindex="-1"></a>  pv_genes <span class="sc">%&gt;%</span> </span>
+<span id="cb256-3"><a href="snp-annotation.html#cb256-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene =</span> V9,</span>
+<span id="cb256-4"><a href="snp-annotation.html#cb256-4" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_split_fixed</span>(gene, <span class="st">&quot;;&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb256-5"><a href="snp-annotation.html#cb256-5" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_extract</span>(gene[,<span class="dv">4</span>], <span class="st">&quot;(?&lt;=to ).*(?=:)&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb256-6"><a href="snp-annotation.html#cb256-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gene))</span></code></pre></div>
+</div>
+<div id="fst-5-sd" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> FST 5 SD<a href="snp-annotation.html#fst-5-sd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="id-genes" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> ID genes<a href="snp-annotation.html#id-genes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="snp-annotation.html#cb257-1" tabindex="-1"></a>fst_sd_genes_tidy <span class="ot">&lt;-</span> </span>
+<span id="cb257-2"><a href="snp-annotation.html#cb257-2" tabindex="-1"></a>  fst_sd_genes <span class="sc">%&gt;%</span> </span>
+<span id="cb257-3"><a href="snp-annotation.html#cb257-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene =</span> V9,</span>
+<span id="cb257-4"><a href="snp-annotation.html#cb257-4" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_split_fixed</span>(gene, <span class="st">&quot;;&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb257-5"><a href="snp-annotation.html#cb257-5" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_extract</span>(gene[,<span class="dv">4</span>], <span class="st">&quot;(?&lt;=to ).*(?=:)&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb257-6"><a href="snp-annotation.html#cb257-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gene)) <span class="sc">%&gt;%</span> </span>
+<span id="cb257-7"><a href="snp-annotation.html#cb257-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">classification =</span> </span>
+<span id="cb257-8"><a href="snp-annotation.html#cb257-8" tabindex="-1"></a>           <span class="fu">ifelse</span>(V4 <span class="sc">%in%</span> fst_sd_cds<span class="sc">$</span>V4, <span class="st">&quot;cds&quot;</span>, </span>
+<span id="cb257-9"><a href="snp-annotation.html#cb257-9" tabindex="-1"></a>                  <span class="fu">ifelse</span>(V4 <span class="sc">%in%</span> fst_sd_exons<span class="sc">$</span>V4, <span class="st">&quot;exon&quot;</span>, <span class="st">&quot;gene&quot;</span>)))</span>
+<span id="cb257-10"><a href="snp-annotation.html#cb257-10" tabindex="-1"></a></span>
+<span id="cb257-11"><a href="snp-annotation.html#cb257-11" tabindex="-1"></a><span class="fu">write.csv</span>(fst_sd_genes_tidy, <span class="st">&quot;Output Files/allsamples_fst_sd_snp_geneid.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="over-representation" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Over-representation<a href="snp-annotation.html#over-representation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="go-terms" class="section level4 hasAnchor" number="7.4.2.1">
+<h4><span class="header-section-number">7.4.2.1</span> GO Terms<a href="snp-annotation.html#go-terms" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="snp-annotation.html#cb258-1" tabindex="-1"></a>go_bp_sd <span class="ot">&lt;-</span> </span>
+<span id="cb258-2"><a href="snp-annotation.html#cb258-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb258-3"><a href="snp-annotation.html#cb258-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Biological_Process&quot;</span>,</span>
+<span id="cb258-4"><a href="snp-annotation.html#cb258-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
+<span id="cb258-5"><a href="snp-annotation.html#cb258-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb258-6"><a href="snp-annotation.html#cb258-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb258-7"><a href="snp-annotation.html#cb258-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<pre><code>## Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+## minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="snp-annotation.html#cb261-1" tabindex="-1"></a>go_cc_sd <span class="ot">&lt;-</span> </span>
+<span id="cb261-2"><a href="snp-annotation.html#cb261-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb261-3"><a href="snp-annotation.html#cb261-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Cellular_Component&quot;</span>,</span>
+<span id="cb261-4"><a href="snp-annotation.html#cb261-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
+<span id="cb261-5"><a href="snp-annotation.html#cb261-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb261-6"><a href="snp-annotation.html#cb261-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb261-7"><a href="snp-annotation.html#cb261-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<pre><code>## Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+## minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="snp-annotation.html#cb264-1" tabindex="-1"></a>go_mf_sd <span class="ot">&lt;-</span> </span>
+<span id="cb264-2"><a href="snp-annotation.html#cb264-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb264-3"><a href="snp-annotation.html#cb264-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Molecular_Function&quot;</span>,</span>
+<span id="cb264-4"><a href="snp-annotation.html#cb264-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
+<span id="cb264-5"><a href="snp-annotation.html#cb264-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb264-6"><a href="snp-annotation.html#cb264-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb264-7"><a href="snp-annotation.html#cb264-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<pre><code>## Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+## minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+</div>
+<div id="kegg-pathway" class="section level4 hasAnchor" number="7.4.2.2">
+<h4><span class="header-section-number">7.4.2.2</span> KEGG Pathway<a href="snp-annotation.html#kegg-pathway" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="snp-annotation.html#cb267-1" tabindex="-1"></a>kegg_sd <span class="ot">&lt;-</span></span>
+<span id="cb267-2"><a href="snp-annotation.html#cb267-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod =</span> <span class="st">&quot;ORA&quot;</span>, <span class="at">organism =</span> <span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb267-3"><a href="snp-annotation.html#cb267-3" tabindex="-1"></a>              <span class="at">enrichDatabase =</span> <span class="st">&quot;pathway_KEGG&quot;</span>,</span>
+<span id="cb267-4"><a href="snp-annotation.html#cb267-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
+<span id="cb267-5"><a href="snp-annotation.html#cb267-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb267-6"><a href="snp-annotation.html#cb267-6" tabindex="-1"></a>              <span class="at">minNum =</span> <span class="dv">5</span>, <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">isOutput =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="snp-annotation.html#cb269-1" tabindex="-1"></a>kegg_sd <span class="sc">%&gt;%</span></span>
+<span id="cb269-2"><a href="snp-annotation.html#cb269-2" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb269-3"><a href="snp-annotation.html#cb269-3" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+geneSet
+</th>
+<th style="text-align:left;">
+description
+</th>
+<th style="text-align:left;">
+link
+</th>
+<th style="text-align:right;">
+size
+</th>
+<th style="text-align:right;">
+overlap
+</th>
+<th style="text-align:right;">
+expect
+</th>
+<th style="text-align:right;">
+enrichmentRatio
+</th>
+<th style="text-align:right;">
+pValue
+</th>
+<th style="text-align:right;">
+FDR
+</th>
+<th style="text-align:left;">
+overlapId
+</th>
+<th style="text-align:left;">
+userId
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+hsa04931
+</td>
+<td style="text-align:left;">
+Insulin resistance
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04931+11001+32+5291+5524+5792+5836+6720" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04931+11001+32+5291+5524+5792+5836+6720</a>
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.6380715
+</td>
+<td style="text-align:right;">
+10.970558
+</td>
+<td style="text-align:right;">
+0.0000025
+</td>
+<td style="text-align:right;">
+0.0008123
+</td>
+<td style="text-align:left;">
+11001;32;5291;5524;5792;5836;6720
+</td>
+<td style="text-align:left;">
+PTPA;ACACB;SREBF1;PTPRF;SLC27A2;PYGL;PIK3CB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04910
+</td>
+<td style="text-align:left;">
+Insulin signaling pathway
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04910+32+5291+5792+5836+6655+6720" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04910+32+5291+5792+5836+6655+6720</a>
+</td>
+<td style="text-align:right;">
+123
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0.7770574
+</td>
+<td style="text-align:right;">
+7.721438
+</td>
+<td style="text-align:right;">
+0.0001045
+</td>
+<td style="text-align:right;">
+0.0168825
+</td>
+<td style="text-align:left;">
+32;5291;5792;5836;6655;6720
+</td>
+<td style="text-align:left;">
+ACACB;SREBF1;PTPRF;SOS2;PYGL;PIK3CB
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="biomart-annotation" class="section level3 hasAnchor" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Biomart annotation<a href="snp-annotation.html#biomart-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Each gene was manually annotated with Ensembl identifier to query Ensembl’s Biomart</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="snp-annotation.html#cb270-1" tabindex="-1"></a>snp_ensembl <span class="ot">&lt;-</span></span>
+<span id="cb270-2"><a href="snp-annotation.html#cb270-2" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_snp_ensemblid.csv&quot;</span>) </span>
+<span id="cb270-3"><a href="snp-annotation.html#cb270-3" tabindex="-1"></a></span>
+<span id="cb270-4"><a href="snp-annotation.html#cb270-4" tabindex="-1"></a>ensembl <span class="ot">&lt;-</span> </span>
+<span id="cb270-5"><a href="snp-annotation.html#cb270-5" tabindex="-1"></a>  <span class="fu">useEnsembl</span>(<span class="at">biomart =</span> <span class="st">&quot;ensembl&quot;</span>, </span>
+<span id="cb270-6"><a href="snp-annotation.html#cb270-6" tabindex="-1"></a>             <span class="at">dataset =</span> <span class="st">&quot;hsapiens_gene_ensembl&quot;</span>)</span></code></pre></div>
+<pre><code>## Ensembl site unresponsive, trying asia mirror</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="snp-annotation.html#cb272-1" tabindex="-1"></a>filters <span class="ot">&lt;-</span> </span>
+<span id="cb272-2"><a href="snp-annotation.html#cb272-2" tabindex="-1"></a>  <span class="fu">listFilters</span>(ensembl)</span>
+<span id="cb272-3"><a href="snp-annotation.html#cb272-3" tabindex="-1"></a></span>
+<span id="cb272-4"><a href="snp-annotation.html#cb272-4" tabindex="-1"></a>attributes <span class="ot">&lt;-</span> </span>
+<span id="cb272-5"><a href="snp-annotation.html#cb272-5" tabindex="-1"></a>  <span class="fu">listAttributes</span>(ensembl)</span></code></pre></div>
+<div id="entrez-description" class="section level4 hasAnchor" number="7.4.3.1">
+<h4><span class="header-section-number">7.4.3.1</span> Entrez description<a href="snp-annotation.html#entrez-description" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="snp-annotation.html#cb273-1" tabindex="-1"></a>snp_entrez_description <span class="ot">&lt;-</span> </span>
+<span id="cb273-2"><a href="snp-annotation.html#cb273-2" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb273-3"><a href="snp-annotation.html#cb273-3" tabindex="-1"></a>                       <span class="st">&quot;entrezgene_description&quot;</span>),</span>
+<span id="cb273-4"><a href="snp-annotation.html#cb273-4" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb273-5"><a href="snp-annotation.html#cb273-5" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
+<span id="cb273-6"><a href="snp-annotation.html#cb273-6" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
+<span id="cb273-7"><a href="snp-annotation.html#cb273-7" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb273-8"><a href="snp-annotation.html#cb273-8" tabindex="-1"></a></span>
+<span id="cb273-9"><a href="snp-annotation.html#cb273-9" tabindex="-1"></a>snp_entrez_description <span class="sc">%&gt;%</span> </span>
+<span id="cb273-10"><a href="snp-annotation.html#cb273-10" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb273-11"><a href="snp-annotation.html#cb273-11" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+ensembl_gene_id
+</th>
+<th style="text-align:left;">
+entrezgene_description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ENSG00000004948
+</td>
+<td style="text-align:left;">
+calcitonin receptor
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000005206
+</td>
+<td style="text-align:left;">
+signal peptide peptidase like 2B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000006555
+</td>
+<td style="text-align:left;">
+tetratricopeptide repeat domain 22
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000011426
+</td>
+<td style="text-align:left;">
+anillin, actin binding protein
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000013374
+</td>
+<td style="text-align:left;">
+negative regulator of ubiquitin like proteins 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000014216
+</td>
+<td style="text-align:left;">
+calpain 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000023697
+</td>
+<td style="text-align:left;">
+deoxyribose-phosphate aldolase
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000025800
+</td>
+<td style="text-align:left;">
+karyopherin subunit alpha 6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000039560
+</td>
+<td style="text-align:left;">
+retinoic acid induced 14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000048342
+</td>
+<td style="text-align:left;">
+coiled-coil and C2 domain containing 2A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000051382
+</td>
+<td style="text-align:left;">
+phosphatidylinositol-4,5-bisphosphate 3-kinase catalytic subunit beta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000053108
+</td>
+<td style="text-align:left;">
+follistatin like 4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000064726
+</td>
+<td style="text-align:left;">
+BTB domain containing 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000064961
+</td>
+<td style="text-align:left;">
+high mobility group 20B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000069122
+</td>
+<td style="text-align:left;">
+adhesion G protein-coupled receptor F5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000069188
+</td>
+<td style="text-align:left;">
+sidekick cell adhesion molecule 2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000072310
+</td>
+<td style="text-align:left;">
+sterol regulatory element binding transcription factor 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000074603
+</td>
+<td style="text-align:left;">
+dipeptidyl peptidase 8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000076555
+</td>
+<td style="text-align:left;">
+acetyl-CoA carboxylase beta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000089199
+</td>
+<td style="text-align:left;">
+chromogranin B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000100485
+</td>
+<td style="text-align:left;">
+SOS Ras/Rho guanine nucleotide exchange factor 2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000100504
+</td>
+<td style="text-align:left;">
+glycogen phosphorylase L
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000103061
+</td>
+<td style="text-align:left;">
+solute carrier family 7 member 6 opposite strand
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000103091
+</td>
+<td style="text-align:left;">
+WD repeat domain 59
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000104731
+</td>
+<td style="text-align:left;">
+kelch domain containing 4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000109466
+</td>
+<td style="text-align:left;">
+kelch like family member 2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000110427
+</td>
+<td style="text-align:left;">
+KIAA1549 like
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000114113
+</td>
+<td style="text-align:left;">
+retinol binding protein 2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000115850
+</td>
+<td style="text-align:left;">
+lactase
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000116120
+</td>
+<td style="text-align:left;">
+phenylalanyl-tRNA synthetase subunit beta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000116141
+</td>
+<td style="text-align:left;">
+microtubule affinity regulating kinase 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000116198
+</td>
+<td style="text-align:left;">
+centrosomal protein 104
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000116604
+</td>
+<td style="text-align:left;">
+myocyte enhancer factor 2D
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000119383
+</td>
+<td style="text-align:left;">
+protein phosphatase 2 phosphatase activator
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000119408
+</td>
+<td style="text-align:left;">
+NIMA related kinase 6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000119414
+</td>
+<td style="text-align:left;">
+protein phosphatase 6 catalytic subunit
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000119844
+</td>
+<td style="text-align:left;">
+aftiphilin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000119979
+</td>
+<td style="text-align:left;">
+DENN domain containing 10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000120885
+</td>
+<td style="text-align:left;">
+clusterin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000122012
+</td>
+<td style="text-align:left;">
+synaptic vesicle glycoprotein 2C
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000123146
+</td>
+<td style="text-align:left;">
+adhesion G protein-coupled receptor E5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000125337
+</td>
+<td style="text-align:left;">
+kinesin family member 25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000128342
+</td>
+<td style="text-align:left;">
+LIF interleukin 6 family cytokine
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000130560
+</td>
+<td style="text-align:left;">
+UBA domain containing 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000132623
+</td>
+<td style="text-align:left;">
+ankyrin repeat and EF-hand domain containing 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000133962
+</td>
+<td style="text-align:left;">
+cation channel sperm associated auxiliary subunit beta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000138029
+</td>
+<td style="text-align:left;">
+hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit beta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000138448
+</td>
+<td style="text-align:left;">
+integrin subunit alpha V
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000140284
+</td>
+<td style="text-align:left;">
+solute carrier family 27 member 2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000141456
+</td>
+<td style="text-align:left;">
+proline, glutamate and leucine rich protein 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000142319
+</td>
+<td style="text-align:left;">
+solute carrier family 6 member 3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000142611
+</td>
+<td style="text-align:left;">
+PR/SET domain 16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000142949
+</td>
+<td style="text-align:left;">
+protein tyrosine phosphatase receptor type F
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000145536
+</td>
+<td style="text-align:left;">
+ADAM metallopeptidase with thrombospondin type 1 motif 16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000145681
+</td>
+<td style="text-align:left;">
+hyaluronan and proteoglycan link protein 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000146005
+</td>
+<td style="text-align:left;">
+pleckstrin and Sec7 domain containing 2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000147601
+</td>
+<td style="text-align:left;">
+telomeric repeat binding factor 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000148498
+</td>
+<td style="text-align:left;">
+par-3 family cell polarity regulator
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000148824
+</td>
+<td style="text-align:left;">
+mitochondrial ribosome associated GTPase 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000149547
+</td>
+<td style="text-align:left;">
+EI24 autophagy associated transmembrane protein
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000150551
+</td>
+<td style="text-align:left;">
+LY6/PLAUR domain containing 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000151572
+</td>
+<td style="text-align:left;">
+anoctamin 4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000152104
+</td>
+<td style="text-align:left;">
+protein tyrosine phosphatase non-receptor type 14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000152700
+</td>
+<td style="text-align:left;">
+secretion associated Ras related GTPase 1B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000153404
+</td>
+<td style="text-align:left;">
+pleckstrin homology and RhoGEF domain containing G4B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000154114
+</td>
+<td style="text-align:left;">
+tubulin folding cofactor E like
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000158270
+</td>
+<td style="text-align:left;">
+collectin subfamily member 12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000158683
+</td>
+<td style="text-align:left;">
+polycystin 1 like 1, transient receptor potential channel interacting
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000159398
+</td>
+<td style="text-align:left;">
+carboxylesterase 5A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000159409
+</td>
+<td style="text-align:left;">
+CUGBP Elav-like family member 3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000162390
+</td>
+<td style="text-align:left;">
+acyl-CoA thioesterase 11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000162851
+</td>
+<td style="text-align:left;">
+transcription factor B2, mitochondrial
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000163686
+</td>
+<td style="text-align:left;">
+abhydrolase domain containing 6, acylglycerol lipase
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000166411
+</td>
+<td style="text-align:left;">
+isocitrate dehydrogenase (NAD(+)) 3 catalytic subunit alpha
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000166796
+</td>
+<td style="text-align:left;">
+lactate dehydrogenase C
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000168061
+</td>
+<td style="text-align:left;">
+SAC3 domain containing 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000168477
+</td>
+<td style="text-align:left;">
+tenascin XB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000168676
+</td>
+<td style="text-align:left;">
+potassium channel tetramerization domain containing 19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000168872
+</td>
+<td style="text-align:left;">
+DEAD-box helicase 19A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000169220
+</td>
+<td style="text-align:left;">
+regulator of G protein signaling 14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000169550
+</td>
+<td style="text-align:left;">
+mucin 15, cell surface associated
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000169994
+</td>
+<td style="text-align:left;">
+myosin VIIB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000172893
+</td>
+<td style="text-align:left;">
+7-dehydrocholesterol reductase
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000173166
+</td>
+<td style="text-align:left;">
+Ras association (RalGDS/AF-6) and pleckstrin homology domains 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000177879
+</td>
+<td style="text-align:left;">
+adaptor related protein complex 3 subunit sigma 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000179820
+</td>
+<td style="text-align:left;">
+myeloid associated differentiation marker
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000179919
+</td>
+<td style="text-align:left;">
+olfactory receptor family 10 subfamily A member 7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000182985
+</td>
+<td style="text-align:left;">
+cell adhesion molecule 1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000184988
+</td>
+<td style="text-align:left;">
+transmembrane protein 106A
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000185963
+</td>
+<td style="text-align:left;">
+BICD cargo adaptor 2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000186395
+</td>
+<td style="text-align:left;">
+keratin 10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000186487
+</td>
+<td style="text-align:left;">
+myelin transcription factor 1 like
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000188730
+</td>
+<td style="text-align:left;">
+von Willebrand factor C domain containing 2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000196369
+</td>
+<td style="text-align:left;">
+SLIT-ROBO Rho GTPase activating protein 2B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000196549
+</td>
+<td style="text-align:left;">
+membrane metalloendopeptidase
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000198010
+</td>
+<td style="text-align:left;">
+DLG associated protein 2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000198734
+</td>
+<td style="text-align:left;">
+coagulation factor V
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000204764
+</td>
+<td style="text-align:left;">
+RAN binding protein 17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000213699
+</td>
+<td style="text-align:left;">
+solute carrier family 35 member F6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000224383
+</td>
+<td style="text-align:left;">
+proline rich 29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ENSG00000225697
+</td>
+<td style="text-align:left;">
+solute carrier family 26 member 6
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="go-terms-1" class="section level4 hasAnchor" number="7.4.3.2">
+<h4><span class="header-section-number">7.4.3.2</span> GO terms<a href="snp-annotation.html#go-terms-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="snp-annotation.html#cb274-1" tabindex="-1"></a>snp_go <span class="ot">&lt;-</span> </span>
+<span id="cb274-2"><a href="snp-annotation.html#cb274-2" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb274-3"><a href="snp-annotation.html#cb274-3" tabindex="-1"></a>                       <span class="st">&quot;go_id&quot;</span>, <span class="st">&quot;name_1006&quot;</span>, <span class="st">&quot;definition_1006&quot;</span>, <span class="st">&quot;namespace_1003&quot;</span>),</span>
+<span id="cb274-4"><a href="snp-annotation.html#cb274-4" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb274-5"><a href="snp-annotation.html#cb274-5" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
+<span id="cb274-6"><a href="snp-annotation.html#cb274-6" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
+<span id="cb274-7"><a href="snp-annotation.html#cb274-7" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb274-8"><a href="snp-annotation.html#cb274-8" tabindex="-1"></a></span>
+<span id="cb274-9"><a href="snp-annotation.html#cb274-9" tabindex="-1"></a>snp_go_tidy <span class="ot">&lt;-</span></span>
+<span id="cb274-10"><a href="snp-annotation.html#cb274-10" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb274-11"><a href="snp-annotation.html#cb274-11" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
+<span id="cb274-12"><a href="snp-annotation.html#cb274-12" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>())</span>
+<span id="cb274-13"><a href="snp-annotation.html#cb274-13" tabindex="-1"></a></span>
+<span id="cb274-14"><a href="snp-annotation.html#cb274-14" tabindex="-1"></a>snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb274-15"><a href="snp-annotation.html#cb274-15" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;biological_process&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb274-16"><a href="snp-annotation.html#cb274-16" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
+<span id="cb274-17"><a href="snp-annotation.html#cb274-17" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb274-18"><a href="snp-annotation.html#cb274-18" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb274-19"><a href="snp-annotation.html#cb274-19" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(name_1006, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
+<span id="cb274-20"><a href="snp-annotation.html#cb274-20" tabindex="-1"></a>                <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb274-21"><a href="snp-annotation.html#cb274-21" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb274-22"><a href="snp-annotation.html#cb274-22" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb274-23"><a href="snp-annotation.html#cb274-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Biological Process&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb274-24"><a href="snp-annotation.html#cb274-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb274-25"><a href="snp-annotation.html#cb274-25" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="snp-annotation.html#cb275-1" tabindex="-1"></a>snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb275-2"><a href="snp-annotation.html#cb275-2" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;molecular_function&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb275-3"><a href="snp-annotation.html#cb275-3" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
+<span id="cb275-4"><a href="snp-annotation.html#cb275-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb275-5"><a href="snp-annotation.html#cb275-5" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb275-6"><a href="snp-annotation.html#cb275-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(name_1006, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
+<span id="cb275-7"><a href="snp-annotation.html#cb275-7" tabindex="-1"></a>                <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb275-8"><a href="snp-annotation.html#cb275-8" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb275-9"><a href="snp-annotation.html#cb275-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb275-10"><a href="snp-annotation.html#cb275-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Molecular Function&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb275-11"><a href="snp-annotation.html#cb275-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb275-12"><a href="snp-annotation.html#cb275-12" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-2.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="snp-annotation.html#cb276-1" tabindex="-1"></a>snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb276-2"><a href="snp-annotation.html#cb276-2" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;cellular_component&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb276-3"><a href="snp-annotation.html#cb276-3" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
+<span id="cb276-4"><a href="snp-annotation.html#cb276-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb276-5"><a href="snp-annotation.html#cb276-5" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb276-6"><a href="snp-annotation.html#cb276-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(name_1006, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
+<span id="cb276-7"><a href="snp-annotation.html#cb276-7" tabindex="-1"></a>                <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb276-8"><a href="snp-annotation.html#cb276-8" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb276-9"><a href="snp-annotation.html#cb276-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb276-10"><a href="snp-annotation.html#cb276-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Cellular Component&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb276-11"><a href="snp-annotation.html#cb276-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb276-12"><a href="snp-annotation.html#cb276-12" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-3.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="snp-annotation.html#cb277-1" tabindex="-1"></a>snp_go_output <span class="ot">&lt;-</span> </span>
+<span id="cb277-2"><a href="snp-annotation.html#cb277-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb277-3"><a href="snp-annotation.html#cb277-3" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-4"><a href="snp-annotation.html#cb277-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-5"><a href="snp-annotation.html#cb277-5" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-6"><a href="snp-annotation.html#cb277-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>name_1006 <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-7"><a href="snp-annotation.html#cb277-7" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by =</span> <span class="st">&quot;name_1006&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>, <span class="at">all.y =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-8"><a href="snp-annotation.html#cb277-8" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(go_id))</span>
+<span id="cb277-9"><a href="snp-annotation.html#cb277-9" tabindex="-1"></a></span>
+<span id="cb277-10"><a href="snp-annotation.html#cb277-10" tabindex="-1"></a><span class="fu">write.csv</span>(snp_go_output, </span>
+<span id="cb277-11"><a href="snp-annotation.html#cb277-11" tabindex="-1"></a>          <span class="st">&quot;Output Files/allsamples_fst_sd_snp_goterm.csv&quot;</span>, </span>
+<span id="cb277-12"><a href="snp-annotation.html#cb277-12" tabindex="-1"></a>          <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="reactome-pathways" class="section level4 hasAnchor" number="7.4.3.3">
+<h4><span class="header-section-number">7.4.3.3</span> Reactome pathways<a href="snp-annotation.html#reactome-pathways" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="snp-annotation.html#cb278-1" tabindex="-1"></a>all_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb278-2"><a href="snp-annotation.html#cb278-2" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(reactomePATHID2NAME)</span>
+<span id="cb278-3"><a href="snp-annotation.html#cb278-3" tabindex="-1"></a></span>
+<span id="cb278-4"><a href="snp-annotation.html#cb278-4" tabindex="-1"></a>snp_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb278-5"><a href="snp-annotation.html#cb278-5" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb278-6"><a href="snp-annotation.html#cb278-6" tabindex="-1"></a>                       <span class="st">&quot;reactome&quot;</span>),</span>
+<span id="cb278-7"><a href="snp-annotation.html#cb278-7" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb278-8"><a href="snp-annotation.html#cb278-8" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
+<span id="cb278-9"><a href="snp-annotation.html#cb278-9" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
+<span id="cb278-10"><a href="snp-annotation.html#cb278-10" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-11"><a href="snp-annotation.html#cb278-11" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>reactome <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-12"><a href="snp-annotation.html#cb278-12" tabindex="-1"></a>  <span class="fu">merge</span>(., all_reactome, <span class="at">by.x =</span> <span class="st">&quot;reactome&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;DB_ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-13"><a href="snp-annotation.html#cb278-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">path_name =</span> <span class="fu">gsub</span>(<span class="st">&quot;Homo sapiens: &quot;</span>, <span class="st">&quot;&quot;</span>, path_name))</span>
+<span id="cb278-14"><a href="snp-annotation.html#cb278-14" tabindex="-1"></a></span>
+<span id="cb278-15"><a href="snp-annotation.html#cb278-15" tabindex="-1"></a>snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb278-16"><a href="snp-annotation.html#cb278-16" tabindex="-1"></a>  <span class="fu">group_by</span>(path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-17"><a href="snp-annotation.html#cb278-17" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-18"><a href="snp-annotation.html#cb278-18" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-19"><a href="snp-annotation.html#cb278-19" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(path_name, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
+<span id="cb278-20"><a href="snp-annotation.html#cb278-20" tabindex="-1"></a>                <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb278-21"><a href="snp-annotation.html#cb278-21" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb278-22"><a href="snp-annotation.html#cb278-22" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb278-23"><a href="snp-annotation.html#cb278-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Reactome Pathway&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequeny&quot;</span>) <span class="sc">+</span></span>
+<span id="cb278-24"><a href="snp-annotation.html#cb278-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb278-25"><a href="snp-annotation.html#cb278-25" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" alt="" width="672" /></p>
+</div>
+<div id="reactome-pathway-over-representation" class="section level4 hasAnchor" number="7.4.3.4">
+<h4><span class="header-section-number">7.4.3.4</span> Reactome Pathway Over-representation<a href="snp-annotation.html#reactome-pathway-over-representation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="snp-annotation.html#cb279-1" tabindex="-1"></a><span class="co"># Convert to entrez gene ID</span></span>
+<span id="cb279-2"><a href="snp-annotation.html#cb279-2" tabindex="-1"></a>snp_entrez_id <span class="ot">&lt;-</span> </span>
+<span id="cb279-3"><a href="snp-annotation.html#cb279-3" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="st">&quot;entrezgene_id&quot;</span>),</span>
+<span id="cb279-4"><a href="snp-annotation.html#cb279-4" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb279-5"><a href="snp-annotation.html#cb279-5" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
+<span id="cb279-6"><a href="snp-annotation.html#cb279-6" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
+<span id="cb279-7"><a href="snp-annotation.html#cb279-7" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb279-8"><a href="snp-annotation.html#cb279-8" tabindex="-1"></a></span>
+<span id="cb279-9"><a href="snp-annotation.html#cb279-9" tabindex="-1"></a>snp_overrep_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb279-10"><a href="snp-annotation.html#cb279-10" tabindex="-1"></a>  <span class="fu">enrichPathway</span>(<span class="at">gene =</span> snp_entrez_id<span class="sc">$</span>entrezgene_id,</span>
+<span id="cb279-11"><a href="snp-annotation.html#cb279-11" tabindex="-1"></a>                <span class="at">organism =</span> <span class="st">&quot;human&quot;</span>,</span>
+<span id="cb279-12"><a href="snp-annotation.html#cb279-12" tabindex="-1"></a>                <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb279-13"><a href="snp-annotation.html#cb279-13" tabindex="-1"></a>                <span class="at">pAdjustMethod =</span> <span class="st">&quot;fdr&quot;</span>,</span>
+<span id="cb279-14"><a href="snp-annotation.html#cb279-14" tabindex="-1"></a>                <span class="at">readable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb279-15"><a href="snp-annotation.html#cb279-15" tabindex="-1"></a>                <span class="at">universe =</span> pv_genes_tidy<span class="sc">$</span>gene,</span>
+<span id="cb279-16"><a href="snp-annotation.html#cb279-16" tabindex="-1"></a>                <span class="at">minGSSize =</span> <span class="dv">2</span>)<span class="sc">$</span>result</span></code></pre></div>
+<pre><code>## Loading required package: org.Hs.eg.db</code></pre>
+<pre><code>## </code></pre>
+<pre><code>## No gene sets have size between 2 and 500 ...</code></pre>
+<pre><code>## --&gt; return NULL...</code></pre>
+</div>
+</div>
+<div id="exonic-cds-genes" class="section level3 hasAnchor" number="7.4.4">
+<h3><span class="header-section-number">7.4.4</span> Exonic, CDS Genes<a href="snp-annotation.html#exonic-cds-genes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="identify-genes" class="section level4 hasAnchor" number="7.4.4.1">
+<h4><span class="header-section-number">7.4.4.1</span> Identify genes<a href="snp-annotation.html#identify-genes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="snp-annotation.html#cb284-1" tabindex="-1"></a>fst_sd_cds_tidy <span class="ot">&lt;-</span> </span>
+<span id="cb284-2"><a href="snp-annotation.html#cb284-2" tabindex="-1"></a>  fst_sd_cds <span class="sc">%&gt;%</span></span>
+<span id="cb284-3"><a href="snp-annotation.html#cb284-3" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy[,<span class="fu">c</span>(<span class="dv">12</span><span class="sc">:</span><span class="dv">14</span>)], <span class="at">by =</span> <span class="st">&quot;V12&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-4"><a href="snp-annotation.html#cb284-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;gene&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Gene&quot;</span>)</span>
+<span id="cb284-5"><a href="snp-annotation.html#cb284-5" tabindex="-1"></a></span>
+<span id="cb284-6"><a href="snp-annotation.html#cb284-6" tabindex="-1"></a>fst_sd_exons_tidy <span class="ot">&lt;-</span> </span>
+<span id="cb284-7"><a href="snp-annotation.html#cb284-7" tabindex="-1"></a>  fst_sd_exons <span class="sc">%&gt;%</span></span>
+<span id="cb284-8"><a href="snp-annotation.html#cb284-8" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy[,<span class="fu">c</span>(<span class="dv">12</span><span class="sc">:</span><span class="dv">14</span>)], <span class="at">by =</span> <span class="st">&quot;V12&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-9"><a href="snp-annotation.html#cb284-9" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;gene&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Gene&quot;</span>)</span></code></pre></div>
+</div>
+<div id="go-terms-2" class="section level4 hasAnchor" number="7.4.4.2">
+<h4><span class="header-section-number">7.4.4.2</span> GO terms<a href="snp-annotation.html#go-terms-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="snp-annotation.html#cb285-1" tabindex="-1"></a>fst_sd_cds_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb285-2"><a href="snp-annotation.html#cb285-2" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb285-3"><a href="snp-annotation.html#cb285-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb285-4"><a href="snp-annotation.html#cb285-4" tabindex="-1"></a>  <span class="fu">arrange</span>(namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb285-5"><a href="snp-annotation.html#cb285-5" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb285-6"><a href="snp-annotation.html#cb285-6" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+name_1006
+</th>
+<th style="text-align:left;">
+namespace_1003
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+apoptotic process
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+autophagy
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+intrinsic apoptotic signaling pathway in response to DNA damage
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+response to xenobiotic stimulus
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+negative regulation of cell growth
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+neuromuscular process controlling balance
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+positive regulation of intrinsic apoptotic signaling pathway
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+macroautophagy
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nucleus
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cytoplasm
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+membrane
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+endoplasmic reticulum
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cytosol
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Golgi apparatus
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+endoplasmic reticulum membrane
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nuclear membrane
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+protein binding
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+importin-alpha family protein binding
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="snp-annotation.html#cb286-1" tabindex="-1"></a>fst_sd_exons_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb286-2"><a href="snp-annotation.html#cb286-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>classification <span class="sc">==</span> <span class="st">&quot;cds&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb286-3"><a href="snp-annotation.html#cb286-3" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb286-4"><a href="snp-annotation.html#cb286-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb286-5"><a href="snp-annotation.html#cb286-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>name_1006 <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb286-6"><a href="snp-annotation.html#cb286-6" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb286-7"><a href="snp-annotation.html#cb286-7" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb286-8"><a href="snp-annotation.html#cb286-8" tabindex="-1"></a>  <span class="fu">arrange</span>(namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb286-9"><a href="snp-annotation.html#cb286-9" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb286-10"><a href="snp-annotation.html#cb286-10" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;name_1006&#39;. You can
+## override using the `.groups` argument.</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+name_1006
+</th>
+<th style="text-align:left;">
+namespace_1003
+</th>
+<th style="text-align:right;">
+freq
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+cell adhesion
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cell differentiation
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+central nervous system development
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+membrane protein ectodomain proteolysis
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+membrane protein intracellular domain proteolysis
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+membrane protein proteolysis
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+muscle organ development
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+neurogenesis
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+protein ubiquitination
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+proteolysis
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+regulation of immune response
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+regulation of protein binding
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+regulation of tumor necrosis factor-mediated signaling pathway
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+skeletal system development
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Golgi apparatus
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Golgi-associated vesicle membrane
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P-body
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actin cytoskeleton
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+centrosome
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cytoplasm
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cytoplasmic ribonucleoprotein granule
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cytosol
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+endosome
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+endosome membrane
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+extracellular matrix
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+extracellular region
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+extracellular space
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lysosomal membrane
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lysosome
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+membrane
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nucleoplasm
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+perineuronal net
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+plasma membrane
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+protein-containing complex
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+synapse
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cullin family protein binding
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+extracellular matrix structural constituent conferring compression resistance
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hyaluronic acid binding
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hydrolase activity
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+identical protein binding
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+peptidase activity
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+protein binding
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+protein homodimerization activity
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="reactome-pathways-1" class="section level4 hasAnchor" number="7.4.4.3">
+<h4><span class="header-section-number">7.4.4.3</span> Reactome Pathways<a href="snp-annotation.html#reactome-pathways-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="snp-annotation.html#cb288-1" tabindex="-1"></a>fst_sd_cds_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb288-2"><a href="snp-annotation.html#cb288-2" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_reactome, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-3"><a href="snp-annotation.html#cb288-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(reactome, path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-4"><a href="snp-annotation.html#cb288-4" tabindex="-1"></a>  <span class="fu">arrange</span>(path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-5"><a href="snp-annotation.html#cb288-5" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb288-6"><a href="snp-annotation.html#cb288-6" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+reactome
+</th>
+<th style="text-align:left;">
+path_name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+:——–
+</td>
+<td style="text-align:left;">
+:———
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="snp-annotation.html#cb289-1" tabindex="-1"></a>fst_sd_exons_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb289-2"><a href="snp-annotation.html#cb289-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>classification <span class="sc">==</span> <span class="st">&quot;cds&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb289-3"><a href="snp-annotation.html#cb289-3" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_reactome, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb289-4"><a href="snp-annotation.html#cb289-4" tabindex="-1"></a>  <span class="fu">arrange</span>(path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb289-5"><a href="snp-annotation.html#cb289-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(reactome, path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb289-6"><a href="snp-annotation.html#cb289-6" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb289-7"><a href="snp-annotation.html#cb289-7" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+reactome
+</th>
+<th style="text-align:left;">
+path_name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+R-HSA-1280218
+</td>
+<td style="text-align:left;">
+Adaptive Immune System
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-983168
+</td>
+<td style="text-align:left;">
+Antigen processing: Ubiquitination &amp; Proteasome degradation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-983169
+</td>
+<td style="text-align:left;">
+Class I MHC mediated antigen processing &amp; presentation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-73887
+</td>
+<td style="text-align:left;">
+Death Receptor Signaling
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-168256
+</td>
+<td style="text-align:left;">
+Immune System
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-392499
+</td>
+<td style="text-align:left;">
+Metabolism of proteins
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-8951664
+</td>
+<td style="text-align:left;">
+Neddylation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-597592
+</td>
+<td style="text-align:left;">
+Post-translational protein modification
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-5357905
+</td>
+<td style="text-align:left;">
+Regulation of TNFR1 signaling
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-162582
+</td>
+<td style="text-align:left;">
+Signal Transduction
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-75893
+</td>
+<td style="text-align:left;">
+TNF signaling
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="gwas" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> GWAS<a href="snp-annotation.html#gwas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="snp-annotation.html#cb290-1" tabindex="-1"></a>gwas_snp <span class="ot">&lt;-</span> </span>
+<span id="cb290-2"><a href="snp-annotation.html#cb290-2" tabindex="-1"></a>  gwas_snp <span class="sc">%&gt;%</span> </span>
+<span id="cb290-3"><a href="snp-annotation.html#cb290-3" tabindex="-1"></a>  <span class="fu">filter</span>(fdr <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-4"><a href="snp-annotation.html#cb290-4" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy, <span class="at">by.x =</span> <span class="st">&quot;BP&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;V4&quot;</span>) </span>
+<span id="cb290-5"><a href="snp-annotation.html#cb290-5" tabindex="-1"></a></span>
+<span id="cb290-6"><a href="snp-annotation.html#cb290-6" tabindex="-1"></a>snp_ensembl <span class="sc">%&gt;%</span> </span>
+<span id="cb290-7"><a href="snp-annotation.html#cb290-7" tabindex="-1"></a>  <span class="fu">filter</span>(Gene <span class="sc">==</span> <span class="st">&quot;HAPLN1&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-8"><a href="snp-annotation.html#cb290-8" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-9"><a href="snp-annotation.html#cb290-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>name_1006 <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-10"><a href="snp-annotation.html#cb290-10" tabindex="-1"></a>  <span class="fu">arrange</span>(namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-11"><a href="snp-annotation.html#cb290-11" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-12"><a href="snp-annotation.html#cb290-12" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb290-13"><a href="snp-annotation.html#cb290-13" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+name_1006
+</th>
+<th style="text-align:left;">
+namespace_1003
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+cell adhesion
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+central nervous system development
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+skeletal system development
+</td>
+<td style="text-align:left;">
+biological_process
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+perineuronal net
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+extracellular region
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+extracellular space
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+synapse
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+extracellular matrix
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+extracellular matrix structural constituent conferring compression resistance
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hyaluronic acid binding
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="snp-annotation.html#cb291-1" tabindex="-1"></a>snp_ensembl <span class="sc">%&gt;%</span> </span>
+<span id="cb291-2"><a href="snp-annotation.html#cb291-2" tabindex="-1"></a>  <span class="fu">filter</span>(Gene <span class="sc">==</span> <span class="st">&quot;HAPLN1&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb291-3"><a href="snp-annotation.html#cb291-3" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_reactome, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb291-4"><a href="snp-annotation.html#cb291-4" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb291-5"><a href="snp-annotation.html#cb291-5" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Ensembl.ID
+</th>
+<th style="text-align:left;">
+Gene
+</th>
+<th style="text-align:left;">
+reactome
+</th>
+<th style="text-align:left;">
+path_name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+:———-
+</td>
+<td style="text-align:left;">
+:—-
+</td>
+<td style="text-align:left;">
+:——–
+</td>
+<td style="text-align:left;">
+:———
+</td>
+</tr>
+</tbody>
+</table>
+<p>HAPLN1:<br />
+Predicted to enable hyaluronic acid binding activity. Predicted to be an extracellular matrix structural constituent conferring compression resistance. Predicted to be involved in nervous system development; positive regulation of neuroblast proliferation; and skeletal system development.</p>
+</div>
+<div id="follow-up-for-discussion" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Follow up for Discussion<a href="snp-annotation.html#follow-up-for-discussion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="innate-immune-system" class="section level3 hasAnchor" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Innate Immune System<a href="snp-annotation.html#innate-immune-system" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="snp-annotation.html#cb292-1" tabindex="-1"></a>innate_go <span class="ot">&lt;-</span> </span>
+<span id="cb292-2"><a href="snp-annotation.html#cb292-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb292-3"><a href="snp-annotation.html#cb292-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;innate immune|cytokine|pattern recognition receptor&quot;</span>, name_1006, </span>
+<span id="cb292-4"><a href="snp-annotation.html#cb292-4" tabindex="-1"></a>               <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb292-5"><a href="snp-annotation.html#cb292-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb292-6"><a href="snp-annotation.html#cb292-6" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_entrez_description, <span class="at">by =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) </span>
+<span id="cb292-7"><a href="snp-annotation.html#cb292-7" tabindex="-1"></a></span>
+<span id="cb292-8"><a href="snp-annotation.html#cb292-8" tabindex="-1"></a>innate_reactome <span class="ot">&lt;-</span></span>
+<span id="cb292-9"><a href="snp-annotation.html#cb292-9" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb292-10"><a href="snp-annotation.html#cb292-10" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;innate|cytokine|interleukin&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb292-11"><a href="snp-annotation.html#cb292-11" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb292-12"><a href="snp-annotation.html#cb292-12" tabindex="-1"></a></span>
+<span id="cb292-13"><a href="snp-annotation.html#cb292-13" tabindex="-1"></a>innate_gene <span class="ot">&lt;-</span> </span>
+<span id="cb292-14"><a href="snp-annotation.html#cb292-14" tabindex="-1"></a>  <span class="fu">c</span>(innate_go<span class="sc">$</span>Gene, innate_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb292-15"><a href="snp-annotation.html#cb292-15" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb292-16"><a href="snp-annotation.html#cb292-16" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
+</div>
+<div id="signal-transduction" class="section level3 hasAnchor" number="7.6.2">
+<h3><span class="header-section-number">7.6.2</span> Signal Transduction<a href="snp-annotation.html#signal-transduction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="snp-annotation.html#cb293-1" tabindex="-1"></a>signal_go <span class="ot">&lt;-</span> </span>
+<span id="cb293-2"><a href="snp-annotation.html#cb293-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb293-3"><a href="snp-annotation.html#cb293-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;signal&quot;</span>, name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb293-4"><a href="snp-annotation.html#cb293-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb293-5"><a href="snp-annotation.html#cb293-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_entrez_description, <span class="at">by =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) </span>
+<span id="cb293-6"><a href="snp-annotation.html#cb293-6" tabindex="-1"></a></span>
+<span id="cb293-7"><a href="snp-annotation.html#cb293-7" tabindex="-1"></a>signal_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb293-8"><a href="snp-annotation.html#cb293-8" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb293-9"><a href="snp-annotation.html#cb293-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;signal&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb293-10"><a href="snp-annotation.html#cb293-10" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb293-11"><a href="snp-annotation.html#cb293-11" tabindex="-1"></a></span>
+<span id="cb293-12"><a href="snp-annotation.html#cb293-12" tabindex="-1"></a>signal_gene <span class="ot">&lt;-</span> </span>
+<span id="cb293-13"><a href="snp-annotation.html#cb293-13" tabindex="-1"></a>  <span class="fu">c</span>(signal_go<span class="sc">$</span>Gene, signal_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb293-14"><a href="snp-annotation.html#cb293-14" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb293-15"><a href="snp-annotation.html#cb293-15" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
+</div>
+<div id="cytokines" class="section level3 hasAnchor" number="7.6.3">
+<h3><span class="header-section-number">7.6.3</span> Cytokines<a href="snp-annotation.html#cytokines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="snp-annotation.html#cb294-1" tabindex="-1"></a>cytokine_go <span class="ot">&lt;-</span> </span>
+<span id="cb294-2"><a href="snp-annotation.html#cb294-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb294-3"><a href="snp-annotation.html#cb294-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;cytokine &quot;</span>, name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb294-4"><a href="snp-annotation.html#cb294-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb294-5"><a href="snp-annotation.html#cb294-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_entrez_description, <span class="at">by =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) </span>
+<span id="cb294-6"><a href="snp-annotation.html#cb294-6" tabindex="-1"></a></span>
+<span id="cb294-7"><a href="snp-annotation.html#cb294-7" tabindex="-1"></a>cytokine_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb294-8"><a href="snp-annotation.html#cb294-8" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb294-9"><a href="snp-annotation.html#cb294-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;cytokine &quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb294-10"><a href="snp-annotation.html#cb294-10" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb294-11"><a href="snp-annotation.html#cb294-11" tabindex="-1"></a></span>
+<span id="cb294-12"><a href="snp-annotation.html#cb294-12" tabindex="-1"></a>cytokine_gene <span class="ot">&lt;-</span> </span>
+<span id="cb294-13"><a href="snp-annotation.html#cb294-13" tabindex="-1"></a>  <span class="fu">c</span>(cytokine_go<span class="sc">$</span>Gene, cytokine_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb294-14"><a href="snp-annotation.html#cb294-14" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb294-15"><a href="snp-annotation.html#cb294-15" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
+</div>
+<div id="adaptive-immune-system" class="section level3 hasAnchor" number="7.6.4">
+<h3><span class="header-section-number">7.6.4</span> Adaptive Immune System<a href="snp-annotation.html#adaptive-immune-system" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="snp-annotation.html#cb295-1" tabindex="-1"></a>adaptive_go <span class="ot">&lt;-</span> </span>
+<span id="cb295-2"><a href="snp-annotation.html#cb295-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb295-3"><a href="snp-annotation.html#cb295-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;adaptive|antigen |MHC&quot;</span>, name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb295-4"><a href="snp-annotation.html#cb295-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) </span>
+<span id="cb295-5"><a href="snp-annotation.html#cb295-5" tabindex="-1"></a></span>
+<span id="cb295-6"><a href="snp-annotation.html#cb295-6" tabindex="-1"></a>adaptive_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb295-7"><a href="snp-annotation.html#cb295-7" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb295-8"><a href="snp-annotation.html#cb295-8" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;adaptive|antigen |MHC|complement&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb295-9"><a href="snp-annotation.html#cb295-9" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb295-10"><a href="snp-annotation.html#cb295-10" tabindex="-1"></a></span>
+<span id="cb295-11"><a href="snp-annotation.html#cb295-11" tabindex="-1"></a>adaptive_gene <span class="ot">&lt;-</span></span>
+<span id="cb295-12"><a href="snp-annotation.html#cb295-12" tabindex="-1"></a>  <span class="fu">c</span>(adaptive_go<span class="sc">$</span>Gene, adaptive_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb295-13"><a href="snp-annotation.html#cb295-13" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb295-14"><a href="snp-annotation.html#cb295-14" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
+</div>
+<div id="nervous-system" class="section level3 hasAnchor" number="7.6.5">
+<h3><span class="header-section-number">7.6.5</span> Nervous System<a href="snp-annotation.html#nervous-system" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="snp-annotation.html#cb296-1" tabindex="-1"></a>nervous_go <span class="ot">&lt;-</span> </span>
+<span id="cb296-2"><a href="snp-annotation.html#cb296-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb296-3"><a href="snp-annotation.html#cb296-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;nervous|neur|axon|synap|dendrit|brain|dopamine|norepinephrine|sensory&quot;</span>, </span>
+<span id="cb296-4"><a href="snp-annotation.html#cb296-4" tabindex="-1"></a>               name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb296-5"><a href="snp-annotation.html#cb296-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb296-6"><a href="snp-annotation.html#cb296-6" tabindex="-1"></a></span>
+<span id="cb296-7"><a href="snp-annotation.html#cb296-7" tabindex="-1"></a>nervous_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb296-8"><a href="snp-annotation.html#cb296-8" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb296-9"><a href="snp-annotation.html#cb296-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;nervous|neur|synap|axon&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb296-10"><a href="snp-annotation.html#cb296-10" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb296-11"><a href="snp-annotation.html#cb296-11" tabindex="-1"></a></span>
+<span id="cb296-12"><a href="snp-annotation.html#cb296-12" tabindex="-1"></a>nervous_gene <span class="ot">&lt;-</span> </span>
+<span id="cb296-13"><a href="snp-annotation.html#cb296-13" tabindex="-1"></a>  <span class="fu">c</span>(nervous_go<span class="sc">$</span>Gene, nervous_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb296-14"><a href="snp-annotation.html#cb296-14" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb296-15"><a href="snp-annotation.html#cb296-15" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
+</div>
+</div>
+<div id="manuscript-figure" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Manuscript Figure<a href="snp-annotation.html#manuscript-figure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="snp-annotation.html#cb297-1" tabindex="-1"></a>bp_freq <span class="ot">&lt;-</span> </span>
+<span id="cb297-2"><a href="snp-annotation.html#cb297-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb297-3"><a href="snp-annotation.html#cb297-3" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;biological_process&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-4"><a href="snp-annotation.html#cb297-4" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-5"><a href="snp-annotation.html#cb297-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-6"><a href="snp-annotation.html#cb297-6" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-7"><a href="snp-annotation.html#cb297-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">category =</span> <span class="st">&quot;GO Biological Process&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-8"><a href="snp-annotation.html#cb297-8" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;title&quot;</span>, <span class="st">&quot;freq&quot;</span>, <span class="st">&quot;category&quot;</span>))</span>
+<span id="cb297-9"><a href="snp-annotation.html#cb297-9" tabindex="-1"></a></span>
+<span id="cb297-10"><a href="snp-annotation.html#cb297-10" tabindex="-1"></a>reactome_freq <span class="ot">&lt;-</span> </span>
+<span id="cb297-11"><a href="snp-annotation.html#cb297-11" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb297-12"><a href="snp-annotation.html#cb297-12" tabindex="-1"></a>  <span class="fu">group_by</span>(path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-13"><a href="snp-annotation.html#cb297-13" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-14"><a href="snp-annotation.html#cb297-14" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-15"><a href="snp-annotation.html#cb297-15" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">category =</span> <span class="st">&quot;Reactome Pathway&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-16"><a href="snp-annotation.html#cb297-16" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;title&quot;</span>, <span class="st">&quot;freq&quot;</span>, <span class="st">&quot;category&quot;</span>))</span>
+<span id="cb297-17"><a href="snp-annotation.html#cb297-17" tabindex="-1"></a></span>
+<span id="cb297-18"><a href="snp-annotation.html#cb297-18" tabindex="-1"></a><span class="fu">ggplot</span>(bp_freq, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(title, freq), <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb297-19"><a href="snp-annotation.html#cb297-19" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb297-20"><a href="snp-annotation.html#cb297-20" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="cn">NULL</span>, <span class="at">y=</span><span class="st">&quot;Number of Genes&quot;</span>, <span class="at">title =</span> <span class="st">&quot;GO Biological Process&quot;</span>) <span class="sc">+</span></span>
+<span id="cb297-21"><a href="snp-annotation.html#cb297-21" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(description) <span class="fu">str_wrap</span>(description, <span class="at">width =</span> <span class="dv">60</span>)) <span class="sc">+</span></span>
+<span id="cb297-22"><a href="snp-annotation.html#cb297-22" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb297-23"><a href="snp-annotation.html#cb297-23" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb297-24"><a href="snp-annotation.html#cb297-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>(), <span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="snp-annotation.html#cb298-1" tabindex="-1"></a><span class="fu">ggplot</span>(reactome_freq, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(title, freq), <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb298-2"><a href="snp-annotation.html#cb298-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb298-3"><a href="snp-annotation.html#cb298-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="cn">NULL</span>, <span class="at">y=</span><span class="st">&quot;Number of Genes&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Reactome Pathway&quot;</span>) <span class="sc">+</span></span>
+<span id="cb298-4"><a href="snp-annotation.html#cb298-4" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(description) <span class="fu">str_wrap</span>(description, <span class="at">width =</span> <span class="dv">35</span>)) <span class="sc">+</span></span>
+<span id="cb298-5"><a href="snp-annotation.html#cb298-5" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb298-6"><a href="snp-annotation.html#cb298-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb298-7"><a href="snp-annotation.html#cb298-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>(), <span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-2.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="snp-annotation.html#cb299-1" tabindex="-1"></a>bp_reactome_freq <span class="ot">&lt;-</span> </span>
+<span id="cb299-2"><a href="snp-annotation.html#cb299-2" tabindex="-1"></a>  <span class="fu">rbind</span>(bp_freq, reactome_freq) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-3"><a href="snp-annotation.html#cb299-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">fct_reorder</span>(title, freq), <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb299-4"><a href="snp-annotation.html#cb299-4" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb299-5"><a href="snp-annotation.html#cb299-5" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(title) <span class="fu">str_wrap</span>(title, <span class="at">width =</span> <span class="dv">35</span>))<span class="sc">+</span></span>
+<span id="cb299-6"><a href="snp-annotation.html#cb299-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Number of Genes&quot;</span>) <span class="sc">+</span></span>
+<span id="cb299-7"><a href="snp-annotation.html#cb299-7" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>category, <span class="at">scale =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb299-8"><a href="snp-annotation.html#cb299-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb299-9"><a href="snp-annotation.html#cb299-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb299-10"><a href="snp-annotation.html#cb299-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb299-11"><a href="snp-annotation.html#cb299-11" tabindex="-1"></a>bp_reactome_freq</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-3.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="snp-annotation.html#cb300-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Figures/snp_bp_reactome.jpg&quot;</span>, bp_reactome_freq,</span>
+<span id="cb300-2"><a href="snp-annotation.html#cb300-2" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span></code></pre></div>
+</div>
+<div id="presentation-figure" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Presentation Figure<a href="snp-annotation.html#presentation-figure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="snp-annotation.html#cb301-1" tabindex="-1"></a>adaptive_gene <span class="ot">&lt;-</span> </span>
+<span id="cb301-2"><a href="snp-annotation.html#cb301-2" tabindex="-1"></a>  adaptive_gene <span class="sc">%&gt;%</span> </span>
+<span id="cb301-3"><a href="snp-annotation.html#cb301-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Adaptive Immunity&quot;</span>) </span>
+<span id="cb301-4"><a href="snp-annotation.html#cb301-4" tabindex="-1"></a></span>
+<span id="cb301-5"><a href="snp-annotation.html#cb301-5" tabindex="-1"></a>innate_gene <span class="ot">&lt;-</span> </span>
+<span id="cb301-6"><a href="snp-annotation.html#cb301-6" tabindex="-1"></a>  innate_gene <span class="sc">%&gt;%</span> </span>
+<span id="cb301-7"><a href="snp-annotation.html#cb301-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Innate Immunity&quot;</span>) </span>
+<span id="cb301-8"><a href="snp-annotation.html#cb301-8" tabindex="-1"></a></span>
+<span id="cb301-9"><a href="snp-annotation.html#cb301-9" tabindex="-1"></a>nervous_gene <span class="ot">&lt;-</span> </span>
+<span id="cb301-10"><a href="snp-annotation.html#cb301-10" tabindex="-1"></a>  nervous_gene <span class="sc">%&gt;%</span> </span>
+<span id="cb301-11"><a href="snp-annotation.html#cb301-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Nervous System&quot;</span>)</span>
+<span id="cb301-12"><a href="snp-annotation.html#cb301-12" tabindex="-1"></a></span>
+<span id="cb301-13"><a href="snp-annotation.html#cb301-13" tabindex="-1"></a>genes_all <span class="ot">&lt;-</span></span>
+<span id="cb301-14"><a href="snp-annotation.html#cb301-14" tabindex="-1"></a>  <span class="fu">rbind</span>(adaptive_gene, innate_gene, nervous_gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb301-15"><a href="snp-annotation.html#cb301-15" tabindex="-1"></a>  <span class="fu">group_by</span>(role) <span class="sc">%&gt;%</span> </span>
+<span id="cb301-16"><a href="snp-annotation.html#cb301-16" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sum =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb301-17"><a href="snp-annotation.html#cb301-17" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="fu">factor</span>(role, </span>
+<span id="cb301-18"><a href="snp-annotation.html#cb301-18" tabindex="-1"></a>                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Innate Immunity&quot;</span>, </span>
+<span id="cb301-19"><a href="snp-annotation.html#cb301-19" tabindex="-1"></a>                                  <span class="st">&quot;Adaptive Immunity&quot;</span>, </span>
+<span id="cb301-20"><a href="snp-annotation.html#cb301-20" tabindex="-1"></a>                                  <span class="st">&quot;Nervous System&quot;</span>)))</span>
+<span id="cb301-21"><a href="snp-annotation.html#cb301-21" tabindex="-1"></a></span>
+<span id="cb301-22"><a href="snp-annotation.html#cb301-22" tabindex="-1"></a>snp_genes_plot <span class="ot">&lt;-</span> </span>
+<span id="cb301-23"><a href="snp-annotation.html#cb301-23" tabindex="-1"></a>  genes_all <span class="sc">%&gt;%</span> </span>
+<span id="cb301-24"><a href="snp-annotation.html#cb301-24" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> role, <span class="at">y =</span> sum, <span class="at">fill =</span> role)) <span class="sc">+</span></span>
+<span id="cb301-25"><a href="snp-annotation.html#cb301-25" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb301-26"><a href="snp-annotation.html#cb301-26" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Innate Immunity&quot;</span> <span class="ot">=</span> <span class="st">&quot;#B5CDD3&quot;</span>, </span>
+<span id="cb301-27"><a href="snp-annotation.html#cb301-27" tabindex="-1"></a>                               <span class="st">&quot;Adaptive Immunity&quot;</span> <span class="ot">=</span> <span class="st">&quot;#AFBABB&quot;</span>,</span>
+<span id="cb301-28"><a href="snp-annotation.html#cb301-28" tabindex="-1"></a>                               <span class="st">&quot;Nervous System&quot;</span> <span class="ot">=</span> <span class="st">&quot;#7F7B9A&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb301-29"><a href="snp-annotation.html#cb301-29" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Number of Genes&quot;</span>) <span class="sc">+</span></span>
+<span id="cb301-30"><a href="snp-annotation.html#cb301-30" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(role) <span class="fu">str_wrap</span>(role, <span class="at">width =</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb301-31"><a href="snp-annotation.html#cb301-31" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb301-32"><a href="snp-annotation.html#cb301-32" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb301-33"><a href="snp-annotation.html#cb301-33" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb301-34"><a href="snp-annotation.html#cb301-34" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span>
+<span id="cb301-35"><a href="snp-annotation.html#cb301-35" tabindex="-1"></a></span>
+<span id="cb301-36"><a href="snp-annotation.html#cb301-36" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Figures/snp_annotation_num.jpeg&quot;</span>, snp_genes_plot,</span>
+<span id="cb301-37"><a href="snp-annotation.html#cb301-37" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span></code></pre></div>
+</div>
+<div id="link-genes-to-snps-for-figure" class="section level2 hasAnchor" number="7.9">
+<h2><span class="header-section-number">7.9</span> Link genes to SNPs for figure<a href="snp-annotation.html#link-genes-to-snps-for-figure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="snp-annotation.html#cb302-1" tabindex="-1"></a>snp_immune_genes <span class="ot">&lt;-</span></span>
+<span id="cb302-2"><a href="snp-annotation.html#cb302-2" tabindex="-1"></a>  <span class="fu">c</span>(adaptive_gene<span class="sc">$</span>., innate_gene<span class="sc">$</span>.) <span class="sc">%&gt;%</span> </span>
+<span id="cb302-3"><a href="snp-annotation.html#cb302-3" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb302-4"><a href="snp-annotation.html#cb302-4" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb302-5"><a href="snp-annotation.html#cb302-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Immune System&quot;</span>) </span>
+<span id="cb302-6"><a href="snp-annotation.html#cb302-6" tabindex="-1"></a></span>
+<span id="cb302-7"><a href="snp-annotation.html#cb302-7" tabindex="-1"></a>snp_immunenervous_genes <span class="ot">&lt;-</span></span>
+<span id="cb302-8"><a href="snp-annotation.html#cb302-8" tabindex="-1"></a>  <span class="fu">intersect</span>(snp_immune_genes<span class="sc">$</span>., nervous_gene<span class="sc">$</span>.) <span class="sc">%&gt;%</span> </span>
+<span id="cb302-9"><a href="snp-annotation.html#cb302-9" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb302-10"><a href="snp-annotation.html#cb302-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Immune &amp; Nervous System&quot;</span>)</span>
+<span id="cb302-11"><a href="snp-annotation.html#cb302-11" tabindex="-1"></a></span>
+<span id="cb302-12"><a href="snp-annotation.html#cb302-12" tabindex="-1"></a>snp_immune_genes <span class="ot">&lt;-</span> </span>
+<span id="cb302-13"><a href="snp-annotation.html#cb302-13" tabindex="-1"></a>  snp_immune_genes <span class="sc">%&gt;%</span> </span>
+<span id="cb302-14"><a href="snp-annotation.html#cb302-14" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>. <span class="sc">%in%</span> snp_immunenervous_genes<span class="sc">$</span>.)</span>
+<span id="cb302-15"><a href="snp-annotation.html#cb302-15" tabindex="-1"></a></span>
+<span id="cb302-16"><a href="snp-annotation.html#cb302-16" tabindex="-1"></a>snp_nervous_genes <span class="ot">&lt;-</span> </span>
+<span id="cb302-17"><a href="snp-annotation.html#cb302-17" tabindex="-1"></a>  nervous_gene <span class="sc">%&gt;%</span> </span>
+<span id="cb302-18"><a href="snp-annotation.html#cb302-18" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>. <span class="sc">%in%</span> snp_immunenervous_genes<span class="sc">$</span>.)</span>
+<span id="cb302-19"><a href="snp-annotation.html#cb302-19" tabindex="-1"></a></span>
+<span id="cb302-20"><a href="snp-annotation.html#cb302-20" tabindex="-1"></a>snp_genes <span class="ot">&lt;-</span> </span>
+<span id="cb302-21"><a href="snp-annotation.html#cb302-21" tabindex="-1"></a>  <span class="fu">rbind</span>(snp_immunenervous_genes, snp_immune_genes, snp_nervous_genes) <span class="sc">%&gt;%</span> </span>
+<span id="cb302-22"><a href="snp-annotation.html#cb302-22" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;gene&quot;</span>, <span class="st">&quot;role&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb302-23"><a href="snp-annotation.html#cb302-23" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy, <span class="at">by =</span> <span class="st">&quot;gene&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>, <span class="at">all.y =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb302-24"><a href="snp-annotation.html#cb302-24" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">snp =</span> <span class="fu">paste</span>(V1, <span class="st">&quot;_&quot;</span>, V4, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb302-25"><a href="snp-annotation.html#cb302-25" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(gene, role, snp))</span>
+<span id="cb302-26"><a href="snp-annotation.html#cb302-26" tabindex="-1"></a></span>
+<span id="cb302-27"><a href="snp-annotation.html#cb302-27" tabindex="-1"></a><span class="fu">write.csv</span>(snp_genes, <span class="st">&quot;Output Files/snp_gene_roles.csv&quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="fst-based-approach.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="snp-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  },
+  "info": false
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -12,6 +12,8 @@ library(data.table)
 library(ggh4x)
 library(gridExtra)
 library(ggpubr)
+
+conflict_prefer("as.factor", "base")
 ```
 
 ## Data

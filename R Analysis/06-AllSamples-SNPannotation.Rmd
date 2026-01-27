@@ -18,6 +18,8 @@ library(kableExtra)
 library(biomaRt)
 library(ReactomePA)
 library(gridExtra)
+
+conflict_prefer("intersect", "base")
 ```
 
 ## Data

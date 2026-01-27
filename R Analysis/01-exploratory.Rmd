@@ -10,6 +10,8 @@ editor_options:
 
 ## Libraries
 ```{r, warning=FALSE, message=FALSE}
+library(AnnotationDbi)
+library(data.table)
 library(sf)
 library(tidyverse)
 library(ggplot2)
