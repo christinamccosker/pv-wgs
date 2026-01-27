@@ -1,0 +1,5 @@
+HiC_scaffold_2	maker	exon	89017915	89017915	.	+	.	ID=Phoca_004126-RA:5;Parent=Phoca_004126-RA;	HiC_scaffold_2	89017914	89017915
+HiC_scaffold_2	maker	exon	185370558	185370558	.	+	.	ID=Phoca_005848-RA:2;Parent=Phoca_005848-RA;	HiC_scaffold_2	185370557	185370558
+HiC_scaffold_3	maker	exon	75149504	75149504	.	+	.	ID=Phoca_012249-RA:1;Parent=Phoca_012249-RA;	HiC_scaffold_3	75149503	75149504
+HiC_scaffold_11	maker	exon	3948981	3948981	.	+	.	ID=Phoca_021010-RA:10;Parent=Phoca_021010-RA;	HiC_scaffold_11	3948980	3948981
+HiC_scaffold_4	maker	exon	210322778	210322778	.	-	.	ID=Phoca_003128-RA:2;Parent=Phoca_003128-RA;	HiC_scaffold_4	210322777	210322778

@@ -1,0 +1,2185 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Low Coverage | Pv-WGS-Analysis</title>
+  <meta name="description" content="McCosker Dissertation Chapter 3 Analyses" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Low Coverage | Pv-WGS-Analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Low Coverage | Pv-WGS-Analysis" />
+  
+  <meta name="twitter:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+<meta name="author" content="Christina McCosker" />
+
+
+<meta name="date" content="2025-03-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="all-samples.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Pv-WGS-Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html"><i class="fa fa-check"></i><b>2</b> Tidy Data &amp; Exploratory</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#libraries"><i class="fa fa-check"></i><b>2.1</b> Libraries</a></li>
+<li class="chapter" data-level="2.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#descriptive-statistics"><i class="fa fa-check"></i><b>2.3</b> Descriptive Statistics</a></li>
+<li class="chapter" data-level="2.4" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#exclude-samples"><i class="fa fa-check"></i><b>2.4</b> Exclude samples</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#sample-statistics"><i class="fa fa-check"></i><b>2.4.1</b> Sample statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#map-of-strandings"><i class="fa fa-check"></i><b>2.5</b> Map of Strandings</a></li>
+<li class="chapter" data-level="2.6" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#case-v-control-factors"><i class="fa fa-check"></i><b>2.6</b> Case v Control ~ Factors</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#duringafter-outbreak"><i class="fa fa-check"></i><b>2.6.1</b> During/After Outbreak</a></li>
+<li class="chapter" data-level="2.6.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#sex"><i class="fa fa-check"></i><b>2.6.2</b> Sex</a></li>
+<li class="chapter" data-level="2.6.3" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#age"><i class="fa fa-check"></i><b>2.6.3</b> Age</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html"><i class="fa fa-check"></i><b>3</b> PCA - High Coverage</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#libraries-1"><i class="fa fa-check"></i><b>3.1</b> Libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#data-1"><i class="fa fa-check"></i><b>3.2</b> Data</a></li>
+<li class="chapter" data-level="3.3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#vcf-to-gds"><i class="fa fa-check"></i><b>3.3</b> VCF to GDS</a></li>
+<li class="chapter" data-level="3.4" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#ld-based-snp-pruning"><i class="fa fa-check"></i><b>3.4</b> LD-based SNP Pruning</a></li>
+<li class="chapter" data-level="3.5" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca"><i class="fa fa-check"></i><b>3.5</b> PCA</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-original"><i class="fa fa-check"></i><b>3.5.1</b> PCA Original</a></li>
+<li class="chapter" data-level="3.5.2" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-wo-outliers"><i class="fa fa-check"></i><b>3.5.2</b> PCA w/o Outliers</a></li>
+<li class="chapter" data-level="3.5.3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-by-chromosome"><i class="fa fa-check"></i><b>3.5.3</b> PCA by Chromosome</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#relatedness"><i class="fa fa-check"></i><b>3.6</b> Relatedness</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html"><i class="fa fa-check"></i><b>4</b> Density Plot Filter Metrics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#libraries-2"><i class="fa fa-check"></i><b>4.1</b> Libraries</a></li>
+<li class="chapter" data-level="4.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#data-2"><i class="fa fa-check"></i><b>4.2</b> Data</a></li>
+<li class="chapter" data-level="4.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#density-plots"><i class="fa fa-check"></i><b>4.3</b> Density Plots</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-qd"><i class="fa fa-check"></i><b>4.3.1</b> Metric: QD</a></li>
+<li class="chapter" data-level="4.3.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-fs"><i class="fa fa-check"></i><b>4.3.2</b> Metric: FS</a></li>
+<li class="chapter" data-level="4.3.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-sor"><i class="fa fa-check"></i><b>4.3.3</b> Metric: SOR</a></li>
+<li class="chapter" data-level="4.3.4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mq"><i class="fa fa-check"></i><b>4.3.4</b> Metric: MQ</a></li>
+<li class="chapter" data-level="4.3.5" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mqranksum"><i class="fa fa-check"></i><b>4.3.5</b> Metric: MQRankSum</a></li>
+<li class="chapter" data-level="4.3.6" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-readposranksum"><i class="fa fa-check"></i><b>4.3.6</b> Metric: ReadPosRankSum</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="all-samples.html"><a href="all-samples.html"><i class="fa fa-check"></i><b>5</b> All Samples</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="all-samples.html"><a href="all-samples.html#gwas---rrblup"><i class="fa fa-check"></i><b>5.1</b> GWAS - rrBLUP</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="all-samples.html"><a href="all-samples.html#libraries-3"><i class="fa fa-check"></i><b>5.1.1</b> Libraries</a></li>
+<li class="chapter" data-level="5.1.2" data-path="all-samples.html"><a href="all-samples.html#data-3"><i class="fa fa-check"></i><b>5.1.2</b> Data</a></li>
+<li class="chapter" data-level="5.1.3" data-path="all-samples.html"><a href="all-samples.html#calculating-grm"><i class="fa fa-check"></i><b>5.1.3</b> Calculating GRM</a></li>
+<li class="chapter" data-level="5.1.4" data-path="all-samples.html"><a href="all-samples.html#population-structure"><i class="fa fa-check"></i><b>5.1.4</b> Population structure</a></li>
+<li class="chapter" data-level="5.1.5" data-path="all-samples.html"><a href="all-samples.html#configure-data"><i class="fa fa-check"></i><b>5.1.5</b> Configure data</a></li>
+<li class="chapter" data-level="5.1.6" data-path="all-samples.html"><a href="all-samples.html#gwas-model-1-genomic-relationship-matrix"><i class="fa fa-check"></i><b>5.1.6</b> GWAS Model 1: genomic relationship matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="all-samples.html"><a href="all-samples.html#fst-based-approach"><i class="fa fa-check"></i><b>5.2</b> Fst-based Approach</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="all-samples.html"><a href="all-samples.html#libraries-4"><i class="fa fa-check"></i><b>5.2.1</b> Libraries</a></li>
+<li class="chapter" data-level="5.2.2" data-path="all-samples.html"><a href="all-samples.html#data-4"><i class="fa fa-check"></i><b>5.2.2</b> Data</a></li>
+<li class="chapter" data-level="5.2.3" data-path="all-samples.html"><a href="all-samples.html#visualize-snp-fst-distribution"><i class="fa fa-check"></i><b>5.2.3</b> Visualize SNP Fst distribution</a></li>
+<li class="chapter" data-level="5.2.4" data-path="all-samples.html"><a href="all-samples.html#select-outlier-snps"><i class="fa fa-check"></i><b>5.2.4</b> Select outlier SNPs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="all-samples.html"><a href="all-samples.html#snp-annotation"><i class="fa fa-check"></i><b>5.3</b> SNP Annotation</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="all-samples.html"><a href="all-samples.html#libraries-5"><i class="fa fa-check"></i><b>5.3.1</b> Libraries</a></li>
+<li class="chapter" data-level="5.3.2" data-path="all-samples.html"><a href="all-samples.html#data-5"><i class="fa fa-check"></i><b>5.3.2</b> Data</a></li>
+<li class="chapter" data-level="5.3.3" data-path="all-samples.html"><a href="all-samples.html#tidy-harbor-seal-genes"><i class="fa fa-check"></i><b>5.3.3</b> Tidy Harbor seal genes</a></li>
+<li class="chapter" data-level="5.3.4" data-path="all-samples.html"><a href="all-samples.html#fst-5-sd"><i class="fa fa-check"></i><b>5.3.4</b> FST 5 SD</a></li>
+<li class="chapter" data-level="5.3.5" data-path="all-samples.html"><a href="all-samples.html#fst-10"><i class="fa fa-check"></i><b>5.3.5</b> FST 10%</a></li>
+<li class="chapter" data-level="5.3.6" data-path="all-samples.html"><a href="all-samples.html#gwas"><i class="fa fa-check"></i><b>5.3.6</b> GWAS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="low-coverage.html"><a href="low-coverage.html"><i class="fa fa-check"></i><b>6</b> Low Coverage</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="low-coverage.html"><a href="low-coverage.html#gwas---rrblup-1"><i class="fa fa-check"></i><b>6.1</b> GWAS - rrBLUP</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="low-coverage.html"><a href="low-coverage.html#libraries-6"><i class="fa fa-check"></i><b>6.1.1</b> Libraries</a></li>
+<li class="chapter" data-level="6.1.2" data-path="low-coverage.html"><a href="low-coverage.html#data-6"><i class="fa fa-check"></i><b>6.1.2</b> Data</a></li>
+<li class="chapter" data-level="6.1.3" data-path="low-coverage.html"><a href="low-coverage.html#calculating-grm-1"><i class="fa fa-check"></i><b>6.1.3</b> Calculating GRM</a></li>
+<li class="chapter" data-level="6.1.4" data-path="low-coverage.html"><a href="low-coverage.html#population-structure-1"><i class="fa fa-check"></i><b>6.1.4</b> Population structure</a></li>
+<li class="chapter" data-level="6.1.5" data-path="low-coverage.html"><a href="low-coverage.html#configure-data-1"><i class="fa fa-check"></i><b>6.1.5</b> Configure data</a></li>
+<li class="chapter" data-level="6.1.6" data-path="low-coverage.html"><a href="low-coverage.html#gwas-model-1-genomic-relationship-matrix-1"><i class="fa fa-check"></i><b>6.1.6</b> GWAS Model 1: genomic relationship matrix</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="low-coverage.html"><a href="low-coverage.html#fst-based-approach-1"><i class="fa fa-check"></i><b>6.2</b> Fst-based Approach</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="low-coverage.html"><a href="low-coverage.html#libraries-7"><i class="fa fa-check"></i><b>6.2.1</b> Libraries</a></li>
+<li class="chapter" data-level="6.2.2" data-path="low-coverage.html"><a href="low-coverage.html#data-7"><i class="fa fa-check"></i><b>6.2.2</b> Data</a></li>
+<li class="chapter" data-level="6.2.3" data-path="low-coverage.html"><a href="low-coverage.html#visualize-snp-fst-distribution-1"><i class="fa fa-check"></i><b>6.2.3</b> Visualize SNP Fst distribution</a></li>
+<li class="chapter" data-level="6.2.4" data-path="low-coverage.html"><a href="low-coverage.html#select-outlier-snps-1"><i class="fa fa-check"></i><b>6.2.4</b> Select outlier SNPs</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="low-coverage.html"><a href="low-coverage.html#snp-annotation-1"><i class="fa fa-check"></i><b>6.3</b> SNP Annotation</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="low-coverage.html"><a href="low-coverage.html#libraries-8"><i class="fa fa-check"></i><b>6.3.1</b> Libraries</a></li>
+<li class="chapter" data-level="6.3.2" data-path="low-coverage.html"><a href="low-coverage.html#data-8"><i class="fa fa-check"></i><b>6.3.2</b> Data</a></li>
+<li class="chapter" data-level="6.3.3" data-path="low-coverage.html"><a href="low-coverage.html#tidy-harbor-seal-genes-1"><i class="fa fa-check"></i><b>6.3.3</b> Tidy Harbor seal genes</a></li>
+<li class="chapter" data-level="6.3.4" data-path="low-coverage.html"><a href="low-coverage.html#fst-5-sd-1"><i class="fa fa-check"></i><b>6.3.4</b> FST 5 SD</a></li>
+<li class="chapter" data-level="6.3.5" data-path="low-coverage.html"><a href="low-coverage.html#fst-10-1"><i class="fa fa-check"></i><b>6.3.5</b> FST 10%</a></li>
+<li class="chapter" data-level="6.3.6" data-path="low-coverage.html"><a href="low-coverage.html#gwas-1"><i class="fa fa-check"></i><b>6.3.6</b> GWAS</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/christinamccosker/pv-wgs.git" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pv-WGS-Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="low-coverage" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Low Coverage<a href="low-coverage.html#low-coverage" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="gwas---rrblup-1" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> GWAS - rrBLUP<a href="low-coverage.html#gwas---rrblup-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="libraries-6" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Libraries<a href="low-coverage.html#libraries-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="low-coverage.html#cb239-1" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb239-2"><a href="low-coverage.html#cb239-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb239-3"><a href="low-coverage.html#cb239-3" tabindex="-1"></a><span class="fu">library</span>(rrBLUP)</span>
+<span id="cb239-4"><a href="low-coverage.html#cb239-4" tabindex="-1"></a><span class="fu">library</span>(qqman)</span>
+<span id="cb239-5"><a href="low-coverage.html#cb239-5" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb239-6"><a href="low-coverage.html#cb239-6" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span></code></pre></div>
+</div>
+<div id="data-6" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Data<a href="low-coverage.html#data-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="low-coverage.html#cb240-1" tabindex="-1"></a>snp.matrix <span class="ot">&lt;-</span></span>
+<span id="cb240-2"><a href="low-coverage.html#cb240-2" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/lowcoverage_maf_prune.raw&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-3"><a href="low-coverage.html#cb240-3" tabindex="-1"></a>  <span class="fu">rename_with</span>(gsub, </span>
+<span id="cb240-4"><a href="low-coverage.html#cb240-4" tabindex="-1"></a>              <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">_[A-Z]{1}$&quot;</span>, </span>
+<span id="cb240-5"><a href="low-coverage.html#cb240-5" tabindex="-1"></a>              <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(.))</span>
+<span id="cb240-6"><a href="low-coverage.html#cb240-6" tabindex="-1"></a></span>
+<span id="cb240-7"><a href="low-coverage.html#cb240-7" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> </span>
+<span id="cb240-8"><a href="low-coverage.html#cb240-8" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/lowcoverage_maf_prune.map&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-9"><a href="low-coverage.html#cb240-9" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;chr&quot;</span>, <span class="st">&quot;snp&quot;</span>, <span class="st">&quot;cM&quot;</span>, <span class="st">&quot;pos&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-10"><a href="low-coverage.html#cb240-10" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>cM) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-11"><a href="low-coverage.html#cb240-11" tabindex="-1"></a>  <span class="fu">filter</span>(snp <span class="sc">%in%</span> <span class="fu">colnames</span>(snp.matrix))</span>
+<span id="cb240-12"><a href="low-coverage.html#cb240-12" tabindex="-1"></a>  </span>
+<span id="cb240-13"><a href="low-coverage.html#cb240-13" tabindex="-1"></a>meta <span class="ot">&lt;-</span> </span>
+<span id="cb240-14"><a href="low-coverage.html#cb240-14" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Output Files/metadata_tidy.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-15"><a href="low-coverage.html#cb240-15" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seq.id =</span> <span class="fu">gsub</span>(<span class="st">&quot;B5GAN&quot;</span>, <span class="st">&quot;&quot;</span>, seq.id)) <span class="sc">%&gt;%</span> </span>
+<span id="cb240-16"><a href="low-coverage.html#cb240-16" tabindex="-1"></a>  <span class="fu">filter</span>(seq.id <span class="sc">%in%</span> snp.matrix<span class="sc">$</span>IID) </span></code></pre></div>
+</div>
+<div id="calculating-grm-1" class="section level3 hasAnchor" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Calculating GRM<a href="low-coverage.html#calculating-grm-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>SNP calls need to be changed from 0, 1, 2 to -1, 0, 1 (for rrBLUP)</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="low-coverage.html#cb241-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> </span>
+<span id="cb241-2"><a href="low-coverage.html#cb241-2" tabindex="-1"></a>  snp.matrix[, <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)] <span class="sc">%&gt;%</span> </span>
+<span id="cb241-3"><a href="low-coverage.html#cb241-3" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span>
+<span id="cb241-4"><a href="low-coverage.html#cb241-4" tabindex="-1"></a></span>
+<span id="cb241-5"><a href="low-coverage.html#cb241-5" tabindex="-1"></a><span class="co"># Change from 0,1,2 to -1,0,1 for rrBLUP</span></span>
+<span id="cb241-6"><a href="low-coverage.html#cb241-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> x<span class="dv">-1</span></span>
+<span id="cb241-7"><a href="low-coverage.html#cb241-7" tabindex="-1"></a></span>
+<span id="cb241-8"><a href="low-coverage.html#cb241-8" tabindex="-1"></a><span class="co"># Row names = sample ID</span></span>
+<span id="cb241-9"><a href="low-coverage.html#cb241-9" tabindex="-1"></a><span class="fu">rownames</span>(x) <span class="ot">&lt;-</span> snp.matrix<span class="sc">$</span>IID</span>
+<span id="cb241-10"><a href="low-coverage.html#cb241-10" tabindex="-1"></a></span>
+<span id="cb241-11"><a href="low-coverage.html#cb241-11" tabindex="-1"></a>grm <span class="ot">&lt;-</span> <span class="fu">A.mat</span>(x)</span></code></pre></div>
+</div>
+<div id="population-structure-1" class="section level3 hasAnchor" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Population structure<a href="low-coverage.html#population-structure-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="heatmap-1" class="section level4 hasAnchor" number="6.1.4.1">
+<h4><span class="header-section-number">6.1.4.1</span> Heatmap<a href="low-coverage.html#heatmap-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>No obvious clustering of samples</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="low-coverage.html#cb242-1" tabindex="-1"></a><span class="fu">heatmap</span>(grm, <span class="at">col=</span><span class="fu">rev</span>(<span class="fu">heat.colors</span>(<span class="dv">75</span>)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+</div>
+<div id="pca-2" class="section level4 hasAnchor" number="6.1.4.2">
+<h4><span class="header-section-number">6.1.4.2</span> PCA<a href="low-coverage.html#pca-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Again, seemingly no sample clustering</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="low-coverage.html#cb243-1" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(grm, <span class="at">scale=</span><span class="cn">TRUE</span>, <span class="at">center=</span><span class="cn">TRUE</span>)</span>
+<span id="cb243-2"><a href="low-coverage.html#cb243-2" tabindex="-1"></a></span>
+<span id="cb243-3"><a href="low-coverage.html#cb243-3" tabindex="-1"></a><span class="co"># Variance explained by first 8 PCs</span></span>
+<span id="cb243-4"><a href="low-coverage.html#cb243-4" tabindex="-1"></a>eigenvalues <span class="ot">&lt;-</span> pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb243-5"><a href="low-coverage.html#cb243-5" tabindex="-1"></a>prop <span class="ot">&lt;-</span> <span class="fu">round</span>((eigenvalues<span class="sc">/</span><span class="fu">sum</span>(eigenvalues)<span class="sc">*</span><span class="dv">100</span>), <span class="dv">2</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>] </span>
+<span id="cb243-6"><a href="low-coverage.html#cb243-6" tabindex="-1"></a>prop</span></code></pre></div>
+<pre><code>## [1] 2.51 1.60 1.51 1.50 1.48 1.47 1.45 1.44</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="low-coverage.html#cb245-1" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca, <span class="at">ncp =</span> <span class="dv">8</span>) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="low-coverage.html#cb246-1" tabindex="-1"></a>pca.data <span class="ot">&lt;-</span></span>
+<span id="cb246-2"><a href="low-coverage.html#cb246-2" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb246-3"><a href="low-coverage.html#cb246-3" tabindex="-1"></a>    <span class="at">sample =</span> <span class="fu">rownames</span>(pca<span class="sc">$</span>x),</span>
+<span id="cb246-4"><a href="low-coverage.html#cb246-4" tabindex="-1"></a>    <span class="at">x =</span> pca<span class="sc">$</span>x[,<span class="dv">1</span>],</span>
+<span id="cb246-5"><a href="low-coverage.html#cb246-5" tabindex="-1"></a>    <span class="at">y =</span> pca<span class="sc">$</span>x[,<span class="dv">2</span>]) <span class="sc">%&gt;%</span> </span>
+<span id="cb246-6"><a href="low-coverage.html#cb246-6" tabindex="-1"></a>  <span class="fu">merge</span>(., meta, <span class="at">by.x=</span><span class="st">&quot;sample&quot;</span>, <span class="at">by.y=</span><span class="st">&quot;seq.id&quot;</span>)</span>
+<span id="cb246-7"><a href="low-coverage.html#cb246-7" tabindex="-1"></a></span>
+<span id="cb246-8"><a href="low-coverage.html#cb246-8" tabindex="-1"></a>labelx <span class="ot">&lt;-</span> </span>
+<span id="cb246-9"><a href="low-coverage.html#cb246-9" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;PC1 (&quot;</span>, prop[<span class="dv">1</span>], <span class="st">&quot;%)&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb246-10"><a href="low-coverage.html#cb246-10" tabindex="-1"></a>labely <span class="ot">&lt;-</span> </span>
+<span id="cb246-11"><a href="low-coverage.html#cb246-11" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;PC2 (&quot;</span>, prop[<span class="dv">2</span>], <span class="st">&quot;%)&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb246-12"><a href="low-coverage.html#cb246-12" tabindex="-1"></a></span>
+<span id="cb246-13"><a href="low-coverage.html#cb246-13" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>classification)) <span class="sc">+</span></span>
+<span id="cb246-14"><a href="low-coverage.html#cb246-14" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb246-15"><a href="low-coverage.html#cb246-15" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb246-16"><a href="low-coverage.html#cb246-16" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb246-17"><a href="low-coverage.html#cb246-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb246-18"><a href="low-coverage.html#cb246-18" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb246-19"><a href="low-coverage.html#cb246-19" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb246-20"><a href="low-coverage.html#cb246-20" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-2.png" width="672" /></p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="low-coverage.html#cb247-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>pdv)) <span class="sc">+</span></span>
+<span id="cb247-2"><a href="low-coverage.html#cb247-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb247-3"><a href="low-coverage.html#cb247-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb247-4"><a href="low-coverage.html#cb247-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb247-5"><a href="low-coverage.html#cb247-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb247-6"><a href="low-coverage.html#cb247-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb247-7"><a href="low-coverage.html#cb247-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb247-8"><a href="low-coverage.html#cb247-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-3.png" width="672" /></p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="low-coverage.html#cb248-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>sex)) <span class="sc">+</span></span>
+<span id="cb248-2"><a href="low-coverage.html#cb248-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb248-3"><a href="low-coverage.html#cb248-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb248-4"><a href="low-coverage.html#cb248-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb248-5"><a href="low-coverage.html#cb248-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb248-6"><a href="low-coverage.html#cb248-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb248-7"><a href="low-coverage.html#cb248-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb248-8"><a href="low-coverage.html#cb248-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<pre><code>## Too few points to calculate an ellipse</code></pre>
+<pre><code>## Warning: Removed 1 row containing missing values or values
+## outside the scale range (`geom_path()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-4.png" width="672" /></p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="low-coverage.html#cb251-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>age.class)) <span class="sc">+</span></span>
+<span id="cb251-2"><a href="low-coverage.html#cb251-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb251-3"><a href="low-coverage.html#cb251-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb251-4"><a href="low-coverage.html#cb251-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;magenta&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb251-5"><a href="low-coverage.html#cb251-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb251-6"><a href="low-coverage.html#cb251-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb251-7"><a href="low-coverage.html#cb251-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb251-8"><a href="low-coverage.html#cb251-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<pre><code>## Too few points to calculate an ellipse</code></pre>
+<pre><code>## Warning: Removed 1 row containing missing values or values
+## outside the scale range (`geom_path()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-5.png" width="672" /></p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="low-coverage.html#cb254-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>condition)) <span class="sc">+</span></span>
+<span id="cb254-2"><a href="low-coverage.html#cb254-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb254-3"><a href="low-coverage.html#cb254-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb254-4"><a href="low-coverage.html#cb254-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;magenta&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb254-5"><a href="low-coverage.html#cb254-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb254-6"><a href="low-coverage.html#cb254-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb254-7"><a href="low-coverage.html#cb254-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb254-8"><a href="low-coverage.html#cb254-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<pre><code>## Too few points to calculate an ellipse</code></pre>
+<pre><code>## Warning: Removed 1 row containing missing values or values
+## outside the scale range (`geom_path()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-6.png" width="672" /></p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="low-coverage.html#cb257-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span><span class="fu">factor</span>(seq.run))) <span class="sc">+</span></span>
+<span id="cb257-2"><a href="low-coverage.html#cb257-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb257-3"><a href="low-coverage.html#cb257-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb257-4"><a href="low-coverage.html#cb257-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb257-5"><a href="low-coverage.html#cb257-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb257-6"><a href="low-coverage.html#cb257-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb257-7"><a href="low-coverage.html#cb257-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb257-8"><a href="low-coverage.html#cb257-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-82-7.png" width="672" /></p>
+</div>
+</div>
+<div id="configure-data-1" class="section level3 hasAnchor" number="6.1.5">
+<h3><span class="header-section-number">6.1.5</span> Configure data<a href="low-coverage.html#configure-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="create-matrix-1" class="section level4 hasAnchor" number="6.1.5.1">
+<h4><span class="header-section-number">6.1.5.1</span> Create matrix<a href="low-coverage.html#create-matrix-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Add marker location and marker dosage</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="low-coverage.html#cb258-1" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> </span>
+<span id="cb258-2"><a href="low-coverage.html#cb258-2" tabindex="-1"></a>  <span class="fu">bind_cols</span>(snp.info, <span class="fu">as.data.frame</span>(<span class="fu">t</span>(x)))</span></code></pre></div>
+</div>
+<div id="configure-phenotype-data-1" class="section level4 hasAnchor" number="6.1.5.2">
+<h4><span class="header-section-number">6.1.5.2</span> Configure phenotype data<a href="low-coverage.html#configure-phenotype-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Non-survivor = 0, Survivor = 1</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="low-coverage.html#cb259-1" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> </span>
+<span id="cb259-2"><a href="low-coverage.html#cb259-2" tabindex="-1"></a>  meta <span class="sc">%&gt;%</span> </span>
+<span id="cb259-3"><a href="low-coverage.html#cb259-3" tabindex="-1"></a>  <span class="fu">select</span>(seq.id, classification) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-4"><a href="low-coverage.html#cb259-4" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;phenotype&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb259-5"><a href="low-coverage.html#cb259-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">phenotype =</span> <span class="fu">ifelse</span>(phenotype<span class="sc">==</span><span class="st">&quot;Non-survivor&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb259-6"><a href="low-coverage.html#cb259-6" tabindex="-1"></a></span>
+<span id="cb259-7"><a href="low-coverage.html#cb259-7" tabindex="-1"></a><span class="co"># Make sure sample ID order matches</span></span>
+<span id="cb259-8"><a href="low-coverage.html#cb259-8" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(x)) <span class="co"># no</span></span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="low-coverage.html#cb261-1" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> </span>
+<span id="cb261-2"><a href="low-coverage.html#cb261-2" tabindex="-1"></a>  phenotypes[<span class="fu">order</span>(<span class="fu">match</span>(phenotypes<span class="sc">$</span>id, <span class="fu">rownames</span>(x))), ]</span>
+<span id="cb261-3"><a href="low-coverage.html#cb261-3" tabindex="-1"></a></span>
+<span id="cb261-4"><a href="low-coverage.html#cb261-4" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(grm)) <span class="co"># yes</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="low-coverage.html#cb263-1" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(x)) <span class="co"># yes</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="configure-grm-snp.info" class="section level4 hasAnchor" number="6.1.5.3">
+<h4><span class="header-section-number">6.1.5.3</span> Configure grm &amp; snp.info<a href="low-coverage.html#configure-grm-snp.info" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="low-coverage.html#cb265-1" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">colnames</span>(grm) <span class="sc">%in%</span> phenotypes<span class="sc">$</span>id</span>
+<span id="cb265-2"><a href="low-coverage.html#cb265-2" tabindex="-1"></a>grm <span class="ot">&lt;-</span> grm[vec,vec]</span>
+<span id="cb265-3"><a href="low-coverage.html#cb265-3" tabindex="-1"></a></span>
+<span id="cb265-4"><a href="low-coverage.html#cb265-4" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(snp.info)</span>
+<span id="cb265-5"><a href="low-coverage.html#cb265-5" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> snp.info[,<span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">TRUE</span>,vec)]</span></code></pre></div>
+</div>
+</div>
+<div id="gwas-model-1-genomic-relationship-matrix-1" class="section level3 hasAnchor" number="6.1.6">
+<h3><span class="header-section-number">6.1.6</span> GWAS Model 1: genomic relationship matrix<a href="low-coverage.html#gwas-model-1-genomic-relationship-matrix-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="low-coverage.html#cb266-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">GWAS</span>(<span class="at">pheno =</span> phenotypes, </span>
+<span id="cb266-2"><a href="low-coverage.html#cb266-2" tabindex="-1"></a>                <span class="at">geno =</span> snp.info, </span>
+<span id="cb266-3"><a href="low-coverage.html#cb266-3" tabindex="-1"></a>                <span class="at">K =</span> grm, </span>
+<span id="cb266-4"><a href="low-coverage.html#cb266-4" tabindex="-1"></a>                <span class="at">fixed =</span> <span class="cn">NULL</span>, </span>
+<span id="cb266-5"><a href="low-coverage.html#cb266-5" tabindex="-1"></a>                <span class="at">plot =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;GWAS for trait: phenotype&quot;
+## [1] &quot;Variance components estimated. Testing markers.&quot;</code></pre>
+<div id="extract-results-1" class="section level4 hasAnchor" number="6.1.6.1">
+<h4><span class="header-section-number">6.1.6.1</span> Extract results<a href="low-coverage.html#extract-results-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Set names to defaults for manhattan plot.<br />
+GWAS outputs -log10(pvalues), convert to pvalues.<br />
+Try FDR and Bonferroni p-adjustment methods.</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="low-coverage.html#cb268-1" tabindex="-1"></a>gwasResults <span class="ot">&lt;-</span></span>
+<span id="cb268-2"><a href="low-coverage.html#cb268-2" tabindex="-1"></a>  model <span class="sc">%&gt;%</span> </span>
+<span id="cb268-3"><a href="low-coverage.html#cb268-3" tabindex="-1"></a>  <span class="fu">select</span>(snp, chr, pos, phenotype) <span class="sc">%&gt;%</span> </span>
+<span id="cb268-4"><a href="low-coverage.html#cb268-4" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;logP&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb268-5"><a href="low-coverage.html#cb268-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CHR =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&quot;HiC_scaffold_&quot;</span>, <span class="st">&quot;&quot;</span>, CHR))) <span class="sc">%&gt;%</span> </span>
+<span id="cb268-6"><a href="low-coverage.html#cb268-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">10</span><span class="sc">^</span>(<span class="sc">-</span>(logP)),</span>
+<span id="cb268-7"><a href="low-coverage.html#cb268-7" tabindex="-1"></a>         <span class="at">fdr =</span> <span class="fu">p.adjust</span>(P, <span class="at">method =</span> <span class="st">&quot;fdr&quot;</span>),</span>
+<span id="cb268-8"><a href="low-coverage.html#cb268-8" tabindex="-1"></a>         <span class="at">bonf =</span> <span class="fu">p.adjust</span>(P, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>))</span>
+<span id="cb268-9"><a href="low-coverage.html#cb268-9" tabindex="-1"></a></span>
+<span id="cb268-10"><a href="low-coverage.html#cb268-10" tabindex="-1"></a><span class="fu">write.csv</span>(gwasResults, <span class="st">&quot;Output Files/lowcoverage_gwas.csv&quot;</span>,</span>
+<span id="cb268-11"><a href="low-coverage.html#cb268-11" tabindex="-1"></a>          <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="manhattan-plot-1" class="section level4 hasAnchor" number="6.1.6.2">
+<h4><span class="header-section-number">6.1.6.2</span> Manhattan Plot<a href="low-coverage.html#manhattan-plot-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="low-coverage.html#cb269-1" tabindex="-1"></a><span class="co"># Threshold for significance</span></span>
+<span id="cb269-2"><a href="low-coverage.html#cb269-2" tabindex="-1"></a>bf <span class="ot">&lt;-</span> (<span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span> <span class="sc">/</span> <span class="fu">nrow</span>(snp.info)))</span>
+<span id="cb269-3"><a href="low-coverage.html#cb269-3" tabindex="-1"></a>fdr <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>)</span>
+<span id="cb269-4"><a href="low-coverage.html#cb269-4" tabindex="-1"></a></span>
+<span id="cb269-5"><a href="low-coverage.html#cb269-5" tabindex="-1"></a><span class="co"># Bonferroni</span></span>
+<span id="cb269-6"><a href="low-coverage.html#cb269-6" tabindex="-1"></a><span class="fu">manhattan</span>(gwasResults, </span>
+<span id="cb269-7"><a href="low-coverage.html#cb269-7" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
+<span id="cb269-8"><a href="low-coverage.html#cb269-8" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
+<span id="cb269-9"><a href="low-coverage.html#cb269-9" tabindex="-1"></a>          <span class="at">genomewideline =</span> bf, </span>
+<span id="cb269-10"><a href="low-coverage.html#cb269-10" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;P&quot;</span>, <span class="at">logp =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="low-coverage.html#cb270-1" tabindex="-1"></a><span class="co"># FDR</span></span>
+<span id="cb270-2"><a href="low-coverage.html#cb270-2" tabindex="-1"></a><span class="fu">manhattan</span>(gwasResults, </span>
+<span id="cb270-3"><a href="low-coverage.html#cb270-3" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
+<span id="cb270-4"><a href="low-coverage.html#cb270-4" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
+<span id="cb270-5"><a href="low-coverage.html#cb270-5" tabindex="-1"></a>          <span class="at">genomewideline =</span> fdr, </span>
+<span id="cb270-6"><a href="low-coverage.html#cb270-6" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">logp =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-88-2.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+<div id="fst-based-approach-1" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Fst-based Approach<a href="low-coverage.html#fst-based-approach-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To complement GWAS, conducting Fst test between cases and controls, selecting top 10% of SNPs as likely to be related to disease susceptibility.</p>
+<div id="libraries-7" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Libraries<a href="low-coverage.html#libraries-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="low-coverage.html#cb271-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+</div>
+<div id="data-7" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Data<a href="low-coverage.html#data-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="low-coverage.html#cb272-1" tabindex="-1"></a>fst <span class="ot">&lt;-</span> </span>
+<span id="cb272-2"><a href="low-coverage.html#cb272-2" tabindex="-1"></a>  <span class="fu">read.table</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/lowcov.casevcontrol.weir.fst&quot;</span>,</span>
+<span id="cb272-3"><a href="low-coverage.html#cb272-3" tabindex="-1"></a>             <span class="at">header =</span> <span class="dv">1</span>) </span></code></pre></div>
+</div>
+<div id="visualize-snp-fst-distribution-1" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Visualize SNP Fst distribution<a href="low-coverage.html#visualize-snp-fst-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="low-coverage.html#cb273-1" tabindex="-1"></a><span class="fu">hist</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+</div>
+<div id="select-outlier-snps-1" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Select outlier SNPs<a href="low-coverage.html#select-outlier-snps-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="top-10-1" class="section level4 hasAnchor" number="6.2.4.1">
+<h4><span class="header-section-number">6.2.4.1</span> Top 10%<a href="low-coverage.html#top-10-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Outlier = Within top 10% of Fst differentiation</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="low-coverage.html#cb274-1" tabindex="-1"></a>ten <span class="ot">&lt;-</span> </span>
+<span id="cb274-2"><a href="low-coverage.html#cb274-2" tabindex="-1"></a>  <span class="fu">quantile</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.9</span>))</span>
+<span id="cb274-3"><a href="low-coverage.html#cb274-3" tabindex="-1"></a></span>
+<span id="cb274-4"><a href="low-coverage.html#cb274-4" tabindex="-1"></a>fst <span class="ot">&lt;-</span> </span>
+<span id="cb274-5"><a href="low-coverage.html#cb274-5" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
+<span id="cb274-6"><a href="low-coverage.html#cb274-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">outlier.10 =</span> <span class="fu">ifelse</span>(WEIR_AND_COCKERHAM_FST <span class="sc">&gt;</span> ten, </span>
+<span id="cb274-7"><a href="low-coverage.html#cb274-7" tabindex="-1"></a>                             <span class="st">&quot;outlier&quot;</span>, <span class="st">&quot;snp&quot;</span>))</span>
+<span id="cb274-8"><a href="low-coverage.html#cb274-8" tabindex="-1"></a></span>
+<span id="cb274-9"><a href="low-coverage.html#cb274-9" tabindex="-1"></a><span class="fu">nrow</span>(<span class="fu">filter</span>(fst, outlier<span class="fl">.10</span> <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] 15240</code></pre>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="low-coverage.html#cb276-1" tabindex="-1"></a><span class="fu">ggplot</span>(fst, <span class="fu">aes</span>(WEIR_AND_COCKERHAM_FST, <span class="at">fill =</span> outlier<span class="fl">.10</span>)) <span class="sc">+</span></span>
+<span id="cb276-2"><a href="low-coverage.html#cb276-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.005</span>) <span class="sc">+</span></span>
+<span id="cb276-3"><a href="low-coverage.html#cb276-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;slategray3&quot;</span>, <span class="st">&quot;gray40&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb276-4"><a href="low-coverage.html#cb276-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;FST&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Low Coverage top 10%&quot;</span>) <span class="sc">+</span></span>
+<span id="cb276-5"><a href="low-coverage.html#cb276-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb276-6"><a href="low-coverage.html#cb276-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb276-7"><a href="low-coverage.html#cb276-7" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+</div>
+<div id="sd-1" class="section level4 hasAnchor" number="6.2.4.2">
+<h4><span class="header-section-number">6.2.4.2</span> &gt; 5SD<a href="low-coverage.html#sd-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="low-coverage.html#cb277-1" tabindex="-1"></a>sd <span class="ot">&lt;-</span> </span>
+<span id="cb277-2"><a href="low-coverage.html#cb277-2" tabindex="-1"></a>  <span class="fu">mean</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST) <span class="sc">+</span></span>
+<span id="cb277-3"><a href="low-coverage.html#cb277-3" tabindex="-1"></a>  <span class="dv">5</span><span class="sc">*</span><span class="fu">sd</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST)</span>
+<span id="cb277-4"><a href="low-coverage.html#cb277-4" tabindex="-1"></a></span>
+<span id="cb277-5"><a href="low-coverage.html#cb277-5" tabindex="-1"></a>fst <span class="ot">&lt;-</span> </span>
+<span id="cb277-6"><a href="low-coverage.html#cb277-6" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
+<span id="cb277-7"><a href="low-coverage.html#cb277-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">outlier.sd =</span> <span class="fu">ifelse</span>(WEIR_AND_COCKERHAM_FST <span class="sc">&gt;</span> sd, <span class="st">&quot;outlier&quot;</span>, <span class="st">&quot;snp&quot;</span>))</span>
+<span id="cb277-8"><a href="low-coverage.html#cb277-8" tabindex="-1"></a></span>
+<span id="cb277-9"><a href="low-coverage.html#cb277-9" tabindex="-1"></a><span class="fu">nrow</span>(fst <span class="sc">%&gt;%</span> <span class="fu">filter</span>(outlier.sd <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] 524</code></pre>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="low-coverage.html#cb279-1" tabindex="-1"></a><span class="fu">ggplot</span>(fst, <span class="fu">aes</span>(WEIR_AND_COCKERHAM_FST, <span class="at">fill =</span> outlier.sd)) <span class="sc">+</span></span>
+<span id="cb279-2"><a href="low-coverage.html#cb279-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.005</span>) <span class="sc">+</span></span>
+<span id="cb279-3"><a href="low-coverage.html#cb279-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;slategray3&quot;</span>, <span class="st">&quot;gray40&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb279-4"><a href="low-coverage.html#cb279-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;FST&quot;</span>) <span class="sc">+</span></span>
+<span id="cb279-5"><a href="low-coverage.html#cb279-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb279-6"><a href="low-coverage.html#cb279-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb279-7"><a href="low-coverage.html#cb279-7" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+</div>
+<div id="extract-snps-600-bp-positions-1" class="section level4 hasAnchor" number="6.2.4.3">
+<h4><span class="header-section-number">6.2.4.3</span> Extract SNPs &amp; 600 bp positions<a href="low-coverage.html#extract-snps-600-bp-positions-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="low-coverage.html#cb280-1" tabindex="-1"></a>fst<span class="fl">.10</span> <span class="ot">&lt;-</span> </span>
+<span id="cb280-2"><a href="low-coverage.html#cb280-2" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
+<span id="cb280-3"><a href="low-coverage.html#cb280-3" tabindex="-1"></a>  <span class="fu">filter</span>(outlier<span class="fl">.10</span> <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb280-4"><a href="low-coverage.html#cb280-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">minbp =</span> POS <span class="sc">-</span> <span class="dv">600</span>,</span>
+<span id="cb280-5"><a href="low-coverage.html#cb280-5" tabindex="-1"></a>         <span class="at">maxbp =</span> POS <span class="sc">+</span> <span class="dv">600</span>,</span>
+<span id="cb280-6"><a href="low-coverage.html#cb280-6" tabindex="-1"></a>         <span class="at">flank =</span> <span class="fu">paste0</span>(CHROM, <span class="st">&quot;:&quot;</span>, minbp, <span class="st">&quot;-&quot;</span>, maxbp, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)) </span>
+<span id="cb280-7"><a href="low-coverage.html#cb280-7" tabindex="-1"></a></span>
+<span id="cb280-8"><a href="low-coverage.html#cb280-8" tabindex="-1"></a><span class="fu">write.csv</span>(fst<span class="fl">.10</span>, <span class="st">&quot;Output Files/lowcoverage_fst_10_outlierposition.csv&quot;</span>, </span>
+<span id="cb280-9"><a href="low-coverage.html#cb280-9" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb280-10"><a href="low-coverage.html#cb280-10" tabindex="-1"></a></span>
+<span id="cb280-11"><a href="low-coverage.html#cb280-11" tabindex="-1"></a>fst.sd <span class="ot">&lt;-</span> </span>
+<span id="cb280-12"><a href="low-coverage.html#cb280-12" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
+<span id="cb280-13"><a href="low-coverage.html#cb280-13" tabindex="-1"></a>  <span class="fu">filter</span>(outlier.sd <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb280-14"><a href="low-coverage.html#cb280-14" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">minbp =</span> POS <span class="sc">-</span> <span class="dv">600</span>,</span>
+<span id="cb280-15"><a href="low-coverage.html#cb280-15" tabindex="-1"></a>         <span class="at">maxbp =</span> POS <span class="sc">+</span> <span class="dv">600</span>,</span>
+<span id="cb280-16"><a href="low-coverage.html#cb280-16" tabindex="-1"></a>         <span class="at">flank =</span> <span class="fu">paste0</span>(CHROM, <span class="st">&quot;:&quot;</span>, minbp, <span class="st">&quot;-&quot;</span>, maxbp, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>))</span>
+<span id="cb280-17"><a href="low-coverage.html#cb280-17" tabindex="-1"></a></span>
+<span id="cb280-18"><a href="low-coverage.html#cb280-18" tabindex="-1"></a><span class="fu">write.csv</span>(fst.sd, <span class="st">&quot;Output Files/lowcoverage_fst_sd_outlierposition.csv&quot;</span>, </span>
+<span id="cb280-19"><a href="low-coverage.html#cb280-19" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+<div id="snp-annotation-1" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> SNP Annotation<a href="low-coverage.html#snp-annotation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="libraries-8" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Libraries<a href="low-coverage.html#libraries-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="low-coverage.html#cb281-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb281-2"><a href="low-coverage.html#cb281-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb281-3"><a href="low-coverage.html#cb281-3" tabindex="-1"></a><span class="fu">library</span>(WebGestaltR)</span>
+<span id="cb281-4"><a href="low-coverage.html#cb281-4" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code></pre></div>
+</div>
+<div id="data-8" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Data<a href="low-coverage.html#data-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Read in: SNP gene/exon/cds information</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="low-coverage.html#cb282-1" tabindex="-1"></a>gwas_snp <span class="ot">&lt;-</span> </span>
+<span id="cb282-2"><a href="low-coverage.html#cb282-2" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Output Files/lowcoverage_gwas.csv&quot;</span>)</span>
+<span id="cb282-3"><a href="low-coverage.html#cb282-3" tabindex="-1"></a></span>
+<span id="cb282-4"><a href="low-coverage.html#cb282-4" tabindex="-1"></a>fst_sd_genes <span class="ot">&lt;-</span> </span>
+<span id="cb282-5"><a href="low-coverage.html#cb282-5" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/lowcoverage_fst_sd_outlier_genes_snps.txt&quot;</span>)</span>
+<span id="cb282-6"><a href="low-coverage.html#cb282-6" tabindex="-1"></a></span>
+<span id="cb282-7"><a href="low-coverage.html#cb282-7" tabindex="-1"></a>fst_sd_exons <span class="ot">&lt;-</span> </span>
+<span id="cb282-8"><a href="low-coverage.html#cb282-8" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/lowcoverage_fst_sd_outlier_exons_snps.txt&quot;</span>)</span>
+<span id="cb282-9"><a href="low-coverage.html#cb282-9" tabindex="-1"></a></span>
+<span id="cb282-10"><a href="low-coverage.html#cb282-10" tabindex="-1"></a>fst_sd_cds <span class="ot">&lt;-</span> </span>
+<span id="cb282-11"><a href="low-coverage.html#cb282-11" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/lowcoverage_fst_sd_outlier_cds_snps.txt&quot;</span>)</span>
+<span id="cb282-12"><a href="low-coverage.html#cb282-12" tabindex="-1"></a></span>
+<span id="cb282-13"><a href="low-coverage.html#cb282-13" tabindex="-1"></a>fst_10_genes <span class="ot">&lt;-</span> </span>
+<span id="cb282-14"><a href="low-coverage.html#cb282-14" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/lowcoverage_fst_10_outlier_genes_snps.txt&quot;</span>)</span>
+<span id="cb282-15"><a href="low-coverage.html#cb282-15" tabindex="-1"></a></span>
+<span id="cb282-16"><a href="low-coverage.html#cb282-16" tabindex="-1"></a>fst_10_exons <span class="ot">&lt;-</span> </span>
+<span id="cb282-17"><a href="low-coverage.html#cb282-17" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/lowcoverage_fst_10_outlier_exons_snps.txt&quot;</span>)</span>
+<span id="cb282-18"><a href="low-coverage.html#cb282-18" tabindex="-1"></a></span>
+<span id="cb282-19"><a href="low-coverage.html#cb282-19" tabindex="-1"></a>fst_10_cds <span class="ot">&lt;-</span> </span>
+<span id="cb282-20"><a href="low-coverage.html#cb282-20" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/lowcoverage_fst_10_outlier_cds_snps.txt&quot;</span>)</span>
+<span id="cb282-21"><a href="low-coverage.html#cb282-21" tabindex="-1"></a></span>
+<span id="cb282-22"><a href="low-coverage.html#cb282-22" tabindex="-1"></a>pv_genes <span class="ot">&lt;-</span> </span>
+<span id="cb282-23"><a href="low-coverage.html#cb282-23" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/GSC_HSeal_1.0_HiC_genes.gff3&quot;</span>)</span></code></pre></div>
+</div>
+<div id="tidy-harbor-seal-genes-1" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Tidy Harbor seal genes<a href="low-coverage.html#tidy-harbor-seal-genes-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="low-coverage.html#cb283-1" tabindex="-1"></a>pv_genes_tidy <span class="ot">&lt;-</span> </span>
+<span id="cb283-2"><a href="low-coverage.html#cb283-2" tabindex="-1"></a>  pv_genes <span class="sc">%&gt;%</span> </span>
+<span id="cb283-3"><a href="low-coverage.html#cb283-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene =</span> V9,</span>
+<span id="cb283-4"><a href="low-coverage.html#cb283-4" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_split_fixed</span>(gene, <span class="st">&quot;;&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb283-5"><a href="low-coverage.html#cb283-5" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_extract</span>(gene[,<span class="dv">4</span>], <span class="st">&quot;(?&lt;=to ).*(?=:)&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb283-6"><a href="low-coverage.html#cb283-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gene))</span></code></pre></div>
+</div>
+<div id="fst-5-sd-1" class="section level3 hasAnchor" number="6.3.4">
+<h3><span class="header-section-number">6.3.4</span> FST 5 SD<a href="low-coverage.html#fst-5-sd-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="id-genes-2" class="section level4 hasAnchor" number="6.3.4.1">
+<h4><span class="header-section-number">6.3.4.1</span> ID genes<a href="low-coverage.html#id-genes-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="low-coverage.html#cb284-1" tabindex="-1"></a>fst_sd_genes_tidy <span class="ot">&lt;-</span> </span>
+<span id="cb284-2"><a href="low-coverage.html#cb284-2" tabindex="-1"></a>  fst_sd_genes <span class="sc">%&gt;%</span> </span>
+<span id="cb284-3"><a href="low-coverage.html#cb284-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene =</span> V9,</span>
+<span id="cb284-4"><a href="low-coverage.html#cb284-4" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_split_fixed</span>(gene, <span class="st">&quot;;&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb284-5"><a href="low-coverage.html#cb284-5" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_extract</span>(gene[,<span class="dv">4</span>], <span class="st">&quot;(?&lt;=to ).*(?=:)&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-6"><a href="low-coverage.html#cb284-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gene)) <span class="sc">%&gt;%</span> </span>
+<span id="cb284-7"><a href="low-coverage.html#cb284-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">classification =</span> </span>
+<span id="cb284-8"><a href="low-coverage.html#cb284-8" tabindex="-1"></a>           <span class="fu">ifelse</span>(V4 <span class="sc">%in%</span> fst_sd_cds<span class="sc">$</span>V4, <span class="st">&quot;cds&quot;</span>, </span>
+<span id="cb284-9"><a href="low-coverage.html#cb284-9" tabindex="-1"></a>                  <span class="fu">ifelse</span>(V4 <span class="sc">%in%</span> fst_sd_exons, <span class="st">&quot;exon&quot;</span>, <span class="st">&quot;gene&quot;</span>)))</span>
+<span id="cb284-10"><a href="low-coverage.html#cb284-10" tabindex="-1"></a></span>
+<span id="cb284-11"><a href="low-coverage.html#cb284-11" tabindex="-1"></a><span class="fu">write.csv</span>(fst_sd_genes_tidy, <span class="st">&quot;Output Files/lowcoverage_fst_sd_snp_geneid.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="go-terms-2" class="section level4 hasAnchor" number="6.3.4.2">
+<h4><span class="header-section-number">6.3.4.2</span> GO Terms<a href="low-coverage.html#go-terms-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="low-coverage.html#cb285-1" tabindex="-1"></a>go_bp_sd <span class="ot">&lt;-</span> </span>
+<span id="cb285-2"><a href="low-coverage.html#cb285-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb285-3"><a href="low-coverage.html#cb285-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Biological_Process&quot;</span>,</span>
+<span id="cb285-4"><a href="low-coverage.html#cb285-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb285-5"><a href="low-coverage.html#cb285-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb285-6"><a href="low-coverage.html#cb285-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb285-7"><a href="low-coverage.html#cb285-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<pre><code>## Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+## minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="low-coverage.html#cb288-1" tabindex="-1"></a>go_cc_sd <span class="ot">&lt;-</span> </span>
+<span id="cb288-2"><a href="low-coverage.html#cb288-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb288-3"><a href="low-coverage.html#cb288-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Cellular_Component&quot;</span>,</span>
+<span id="cb288-4"><a href="low-coverage.html#cb288-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb288-5"><a href="low-coverage.html#cb288-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb288-6"><a href="low-coverage.html#cb288-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb288-7"><a href="low-coverage.html#cb288-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<pre><code>## Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+## minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="low-coverage.html#cb291-1" tabindex="-1"></a>go_mf_sd <span class="ot">&lt;-</span> </span>
+<span id="cb291-2"><a href="low-coverage.html#cb291-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb291-3"><a href="low-coverage.html#cb291-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Molecular_Function&quot;</span>,</span>
+<span id="cb291-4"><a href="low-coverage.html#cb291-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb291-5"><a href="low-coverage.html#cb291-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb291-6"><a href="low-coverage.html#cb291-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb291-7"><a href="low-coverage.html#cb291-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<pre><code>## Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+## minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+</div>
+<div id="kegg-analysis-2" class="section level4 hasAnchor" number="6.3.4.3">
+<h4><span class="header-section-number">6.3.4.3</span> KEGG Analysis<a href="low-coverage.html#kegg-analysis-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="low-coverage.html#cb294-1" tabindex="-1"></a>kegg_sd <span class="ot">&lt;-</span></span>
+<span id="cb294-2"><a href="low-coverage.html#cb294-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod =</span> <span class="st">&quot;ORA&quot;</span>, <span class="at">organism =</span> <span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb294-3"><a href="low-coverage.html#cb294-3" tabindex="-1"></a>              <span class="at">enrichDatabase =</span> <span class="st">&quot;pathway_KEGG&quot;</span>,</span>
+<span id="cb294-4"><a href="low-coverage.html#cb294-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
+<span id="cb294-5"><a href="low-coverage.html#cb294-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb294-6"><a href="low-coverage.html#cb294-6" tabindex="-1"></a>              <span class="at">minNum =</span> <span class="dv">5</span>, <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">isOutput =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="low-coverage.html#cb296-1" tabindex="-1"></a>kegg_sd <span class="sc">%&gt;%</span> </span>
+<span id="cb296-2"><a href="low-coverage.html#cb296-2" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb296-3"><a href="low-coverage.html#cb296-3" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+geneSet
+</th>
+<th style="text-align:left;">
+description
+</th>
+<th style="text-align:left;">
+link
+</th>
+<th style="text-align:right;">
+size
+</th>
+<th style="text-align:right;">
+overlap
+</th>
+<th style="text-align:right;">
+expect
+</th>
+<th style="text-align:right;">
+enrichmentRatio
+</th>
+<th style="text-align:right;">
+pValue
+</th>
+<th style="text-align:right;">
+FDR
+</th>
+<th style="text-align:left;">
+overlapId
+</th>
+<th style="text-align:left;">
+userId
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+hsa04931
+</td>
+<td style="text-align:left;">
+Insulin resistance
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04931+11001+32+5500+5524+5836" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04931+11001+32+5500+5524+5836</a>
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.4701579
+</td>
+<td style="text-align:right;">
+10.63472
+</td>
+<td style="text-align:right;">
+8.74e-05
+</td>
+<td style="text-align:right;">
+0.0282283
+</td>
+<td style="text-align:left;">
+11001;32;5500;5524;5836
+</td>
+<td style="text-align:left;">
+PPP1CB;PTPA;ACACB;SLC27A2;PYGL
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="fst-10-1" class="section level3 hasAnchor" number="6.3.5">
+<h3><span class="header-section-number">6.3.5</span> FST 10%<a href="low-coverage.html#fst-10-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="id-genes-3" class="section level4 hasAnchor" number="6.3.5.1">
+<h4><span class="header-section-number">6.3.5.1</span> ID genes<a href="low-coverage.html#id-genes-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="low-coverage.html#cb297-1" tabindex="-1"></a>fst_10_genes_tidy <span class="ot">&lt;-</span> </span>
+<span id="cb297-2"><a href="low-coverage.html#cb297-2" tabindex="-1"></a>  fst_10_genes <span class="sc">%&gt;%</span> </span>
+<span id="cb297-3"><a href="low-coverage.html#cb297-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene =</span> V9,</span>
+<span id="cb297-4"><a href="low-coverage.html#cb297-4" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_split_fixed</span>(gene, <span class="st">&quot;;&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb297-5"><a href="low-coverage.html#cb297-5" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_extract</span>(gene[,<span class="dv">4</span>], <span class="st">&quot;(?&lt;=to ).*(?=:)&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-6"><a href="low-coverage.html#cb297-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gene)) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-7"><a href="low-coverage.html#cb297-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">classification =</span> </span>
+<span id="cb297-8"><a href="low-coverage.html#cb297-8" tabindex="-1"></a>           <span class="fu">ifelse</span>(V4 <span class="sc">%in%</span> fst_10_cds<span class="sc">$</span>V4, <span class="st">&quot;cds&quot;</span>, </span>
+<span id="cb297-9"><a href="low-coverage.html#cb297-9" tabindex="-1"></a>                  <span class="fu">ifelse</span>(V4 <span class="sc">%in%</span> fst_10_exons, <span class="st">&quot;exon&quot;</span>, <span class="st">&quot;gene&quot;</span>)))</span>
+<span id="cb297-10"><a href="low-coverage.html#cb297-10" tabindex="-1"></a></span>
+<span id="cb297-11"><a href="low-coverage.html#cb297-11" tabindex="-1"></a><span class="fu">write.csv</span>(fst_10_genes_tidy, <span class="st">&quot;Output Files/lowcoverage_fst_10_snp_geneid.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="go-terms-3" class="section level4 hasAnchor" number="6.3.5.2">
+<h4><span class="header-section-number">6.3.5.2</span> GO Terms<a href="low-coverage.html#go-terms-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="low-coverage.html#cb298-1" tabindex="-1"></a>go_bp_10 <span class="ot">&lt;-</span> </span>
+<span id="cb298-2"><a href="low-coverage.html#cb298-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb298-3"><a href="low-coverage.html#cb298-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Biological_Process&quot;</span>,</span>
+<span id="cb298-4"><a href="low-coverage.html#cb298-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_10_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb298-5"><a href="low-coverage.html#cb298-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb298-6"><a href="low-coverage.html#cb298-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb298-7"><a href="low-coverage.html#cb298-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<pre><code>## Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
+## minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="low-coverage.html#cb301-1" tabindex="-1"></a>go_cc_10 <span class="ot">&lt;-</span> </span>
+<span id="cb301-2"><a href="low-coverage.html#cb301-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb301-3"><a href="low-coverage.html#cb301-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Cellular_Component&quot;</span>,</span>
+<span id="cb301-4"><a href="low-coverage.html#cb301-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_10_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb301-5"><a href="low-coverage.html#cb301-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb301-6"><a href="low-coverage.html#cb301-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb301-7"><a href="low-coverage.html#cb301-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="low-coverage.html#cb303-1" tabindex="-1"></a>go_mf_10 <span class="ot">&lt;-</span> </span>
+<span id="cb303-2"><a href="low-coverage.html#cb303-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb303-3"><a href="low-coverage.html#cb303-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Molecular_Function&quot;</span>,</span>
+<span id="cb303-4"><a href="low-coverage.html#cb303-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_10_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb303-5"><a href="low-coverage.html#cb303-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb303-6"><a href="low-coverage.html#cb303-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb303-7"><a href="low-coverage.html#cb303-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="low-coverage.html#cb305-1" tabindex="-1"></a>go_cc_10 <span class="sc">%&gt;%</span> </span>
+<span id="cb305-2"><a href="low-coverage.html#cb305-2" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb305-3"><a href="low-coverage.html#cb305-3" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+geneSet
+</th>
+<th style="text-align:left;">
+description
+</th>
+<th style="text-align:left;">
+link
+</th>
+<th style="text-align:right;">
+size
+</th>
+<th style="text-align:right;">
+overlap
+</th>
+<th style="text-align:right;">
+expect
+</th>
+<th style="text-align:right;">
+enrichmentRatio
+</th>
+<th style="text-align:right;">
+pValue
+</th>
+<th style="text-align:right;">
+FDR
+</th>
+<th style="text-align:left;">
+overlapId
+</th>
+<th style="text-align:left;">
+userId
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0016528" class="uri">GO:0016528</a>
+</td>
+<td style="text-align:left;">
+sarcoplasm
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0016528" class="uri">http://amigo.geneontology.org/amigo/term/GO:0016528</a>
+</td>
+<td style="text-align:right;">
+68
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+9.350412
+</td>
+<td style="text-align:right;">
+2.459785
+</td>
+<td style="text-align:right;">
+0.0000210
+</td>
+<td style="text-align:right;">
+0.0154725
+</td>
+<td style="text-align:left;">
+178;286;288;444;781;816;818;845;1760;2318;3709;3710;4208;4842;5339;6261;6262;6263;7057;7498;10345;55151;123722
+</td>
+<td style="text-align:left;">
+XDH;TMEM38B;NOS1;RYR1;DMPK;ITPR3;TRDN;MEF2C;AGL;CASQ2;ASPH;PLEC;ITPR2;FLNC;CACNA2D1;CAMK2B;RYR2;ANK3;CAMK2G;ANK1;FSD2;THBS1;RYR3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0030018" class="uri">GO:0030018</a>
+</td>
+<td style="text-align:left;">
+Z disc
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0030018" class="uri">http://amigo.geneontology.org/amigo/term/GO:0030018</a>
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+15.125666
+</td>
+<td style="text-align:right;">
+2.049497
+</td>
+<td style="text-align:right;">
+0.0000532
+</td>
+<td style="text-align:right;">
+0.0169267
+</td>
+<td style="text-align:left;">
+274;286;287;288;493;776;845;1499;2318;4604;4842;5530;6261;6262;6263;6334;6546;7273;8470;8736;9172;9759;11155;23363;26263;29780;84033;84700;114907;127294;100820829
+</td>
+<td style="text-align:left;">
+SLC8A1;NOS1;MYO18B;MYOM1;RYR1;OBSCN;MYOM3;CASQ2;FBXO32;SCN8A;MYBPC1;PARVB;BIN1;TTN;OBSL1;HDAC4;FLNC;ATP2B4;RYR2;ANK3;LDB3;MYOM2;SORBS2;ANK1;ANK2;PPP3CA;FBXO22;MYZAP;RYR3;CTNNB1;CACNA1D
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0016529" class="uri">GO:0016529</a>
+</td>
+<td style="text-align:left;">
+sarcoplasmic reticulum
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0016529" class="uri">http://amigo.geneontology.org/amigo/term/GO:0016529</a>
+</td>
+<td style="text-align:right;">
+59
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+8.112857
+</td>
+<td style="text-align:right;">
+2.465223
+</td>
+<td style="text-align:right;">
+0.0000688
+</td>
+<td style="text-align:right;">
+0.0169267
+</td>
+<td style="text-align:left;">
+178;286;288;444;781;816;818;845;1760;3709;3710;4842;6261;6262;6263;7057;7498;10345;55151;123722
+</td>
+<td style="text-align:left;">
+XDH;TMEM38B;NOS1;RYR1;DMPK;ITPR3;TRDN;AGL;CASQ2;ASPH;ITPR2;CACNA2D1;CAMK2B;RYR2;ANK3;CAMK2G;ANK1;FSD2;THBS1;RYR3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0031674" class="uri">GO:0031674</a>
+</td>
+<td style="text-align:left;">
+I band
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0031674" class="uri">http://amigo.geneontology.org/amigo/term/GO:0031674</a>
+</td>
+<td style="text-align:right;">
+119
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:right;">
+16.363221
+</td>
+<td style="text-align:right;">
+1.955605
+</td>
+<td style="text-align:right;">
+0.0001089
+</td>
+<td style="text-align:right;">
+0.0200961
+</td>
+<td style="text-align:left;">
+274;286;287;288;493;776;779;845;1499;2318;4604;4842;5530;6261;6262;6263;6334;6546;7273;8470;8736;9172;9759;11155;23363;26263;29780;84033;84700;114907;127294;100820829
+</td>
+<td style="text-align:left;">
+SLC8A1;NOS1;MYO18B;MYOM1;RYR1;OBSCN;MYOM3;CASQ2;FBXO32;SCN8A;MYBPC1;PARVB;BIN1;TTN;OBSL1;HDAC4;FLNC;ATP2B4;CACNA1S;RYR2;ANK3;LDB3;MYOM2;SORBS2;ANK1;ANK2;PPP3CA;FBXO22;MYZAP;RYR3;CTNNB1;CACNA1D
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0043194" class="uri">GO:0043194</a>
+</td>
+<td style="text-align:left;">
+axon initial segment
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0043194" class="uri">http://amigo.geneontology.org/amigo/term/GO:0043194</a>
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+2.337603
+</td>
+<td style="text-align:right;">
+3.850098
+</td>
+<td style="text-align:right;">
+0.0001476
+</td>
+<td style="text-align:right;">
+0.0217928
+</td>
+<td style="text-align:left;">
+274;286;287;288;3785;3786;4133;6334;57731
+</td>
+<td style="text-align:left;">
+KCNQ2;SPTBN4;KCNQ3;SCN8A;BIN1;MAP2;ANK3;ANK1;ANK2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0030315" class="uri">GO:0030315</a>
+</td>
+<td style="text-align:left;">
+T-tubule
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0030315" class="uri">http://amigo.geneontology.org/amigo/term/GO:0030315</a>
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+5.912761
+</td>
+<td style="text-align:right;">
+2.536886
+</td>
+<td style="text-align:right;">
+0.0003832
+</td>
+<td style="text-align:right;">
+0.0407171
+</td>
+<td style="text-align:left;">
+274;287;288;493;776;779;781;2806;4842;6261;6326;6546;8291;27092;59285
+</td>
+<td style="text-align:left;">
+SLC8A1;DYSF;NOS1;GOT2;RYR1;CACNG6;CACNG4;BIN1;SCN2A;CACNA2D1;ATP2B4;CACNA1S;ANK3;ANK2;CACNA1D
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0033268" class="uri">GO:0033268</a>
+</td>
+<td style="text-align:left;">
+node of Ranvier
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0033268" class="uri">http://amigo.geneontology.org/amigo/term/GO:0033268</a>
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1.650073
+</td>
+<td style="text-align:right;">
+4.242237
+</td>
+<td style="text-align:right;">
+0.0003862
+</td>
+<td style="text-align:right;">
+0.0407171
+</td>
+<td style="text-align:left;">
+274;288;3785;3786;6326;6334;57731
+</td>
+<td style="text-align:left;">
+KCNQ2;SPTBN4;KCNQ3;SCN8A;BIN1;SCN2A;ANK3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0016459" class="uri">GO:0016459</a>
+</td>
+<td style="text-align:left;">
+myosin complex
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0016459" class="uri">http://amigo.geneontology.org/amigo/term/GO:0016459</a>
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+7.975351
+</td>
+<td style="text-align:right;">
+2.256954
+</td>
+<td style="text-align:right;">
+0.0005388
+</td>
+<td style="text-align:right;">
+0.0497087
+</td>
+<td style="text-align:left;">
+4430;4604;4621;4627;4643;4645;4648;4651;8735;8736;9172;22998;53904;64005;79784;84700;140465;399687
+</td>
+<td style="text-align:left;">
+MYO18B;MYOM1;MYO5B;MYH14;MYO10;MYH13;MYH3;MYO18A;MYO3A;MYL6B;MYBPC1;MYH9;MYO7B;MYO1B;MYO1G;MYOM2;LIMCH1;MYO1E
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="low-coverage.html#cb306-1" tabindex="-1"></a>go_mf_10 <span class="sc">%&gt;%</span> </span>
+<span id="cb306-2"><a href="low-coverage.html#cb306-2" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb306-3"><a href="low-coverage.html#cb306-3" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+geneSet
+</th>
+<th style="text-align:left;">
+description
+</th>
+<th style="text-align:left;">
+link
+</th>
+<th style="text-align:right;">
+size
+</th>
+<th style="text-align:right;">
+overlap
+</th>
+<th style="text-align:right;">
+expect
+</th>
+<th style="text-align:right;">
+enrichmentRatio
+</th>
+<th style="text-align:right;">
+pValue
+</th>
+<th style="text-align:right;">
+FDR
+</th>
+<th style="text-align:left;">
+overlapId
+</th>
+<th style="text-align:left;">
+userId
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0005516" class="uri">GO:0005516</a>
+</td>
+<td style="text-align:left;">
+calmodulin binding
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0005516" class="uri">http://amigo.geneontology.org/amigo/term/GO:0005516</a>
+</td>
+<td style="text-align:right;">
+177
+</td>
+<td style="text-align:right;">
+56
+</td>
+<td style="text-align:right;">
+24.476132
+</td>
+<td style="text-align:right;">
+2.287943
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:right;">
+0.0000009
+</td>
+<td style="text-align:left;">
+355;490;493;779;800;814;816;818;1956;3706;3782;3785;3786;4133;4430;4621;4627;4638;4643;4645;4651;4842;4843;5121;5130;5260;5530;5533;5924;6261;6262;6263;6546;6645;7273;7442;7466;8398;8735;23236;23271;23352;27130;29966;53904;55755;57118;64005;79012;79784;84033;85366;157922;200373;219670;259266
+</td>
+<td style="text-align:left;">
+SLC8A1;PLCB1;MYLK2;KCNQ2;INVS;CDK5RAP2;CAMSAP1;NOS1;MYO5B;SNTB2;RYR1;MYH14;MYO10;CAMK4;RASGRF2;OBSCN;MYH13;MYH3;TRPV1;NOS2;UBR4;KCNQ3;PHKG1;CAMK1D;MYO3A;ENKUR;ATP2B1;MYH9;PLA2G6;CFAP221;TTN;MYO1B;MAP2;CALD1;EGFR;MYO1G;CAMK2B;KCNN3;ATP2B4;CAMSAP2;CACNA1S;ASPM;FAS;RYR2;CAMK2G;PPP3CC;PPP3CA;WFS1;MYO1E;ITPKA;RYR3;STRN3;PCP4;MYLK;PCYT1A;CAMKV
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0005548" class="uri">GO:0005548</a>
+</td>
+<td style="text-align:left;">
+phospholipid transporter activity
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0005548" class="uri">http://amigo.geneontology.org/amigo/term/GO:0005548</a>
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+7.882144
+</td>
+<td style="text-align:right;">
+2.917988
+</td>
+<td style="text-align:right;">
+0.0000007
+</td>
+<td style="text-align:right;">
+0.0003830
+</td>
+<td style="text-align:left;">
+19;950;4363;5205;5244;9619;10079;23120;23200;23250;51761;57088;57198;57605;63982;83394;114879;114884;121601;153768;196527;338440;374868
+</td>
+<td style="text-align:left;">
+ATP9A;ANO9;OSBPL5;ANO3;ABCA1;PITPNM2;ATP8B1;ATP9B;ATP10B;PRELID2;PITPNM3;ABCC1;ANO6;ANO4;ATP11A;ATP8A2;ABCB4;ATP8B2;SCARB2;ABCG1;ATP11B;PLSCR4;OSBPL10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0004674" class="uri">GO:0004674</a>
+</td>
+<td style="text-align:left;">
+protein serine/threonine kinase activity
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0004674" class="uri">http://amigo.geneontology.org/amigo/term/GO:0004674</a>
+</td>
+<td style="text-align:right;">
+387
+</td>
+<td style="text-align:right;">
+86
+</td>
+<td style="text-align:right;">
+53.515610
+</td>
+<td style="text-align:right;">
+1.607008
+</td>
+<td style="text-align:right;">
+0.0000037
+</td>
+<td style="text-align:right;">
+0.0013390
+</td>
+<td style="text-align:left;">
+157;208;472;595;613;814;816;818;1022;1452;1456;1613;1760;1859;1956;2068;2185;2580;3551;3656;3706;4052;4139;4293;4294;4638;5260;5563;5566;5567;5578;5587;5593;5604;5610;6093;6196;6300;6446;6790;7048;7273;8550;9134;9175;9201;9475;9625;9833;9874;10110;10595;10783;11183;23043;23178;23235;28996;29959;51135;51719;53904;54822;55351;55437;55561;55589;56975;57118;57787;65061;65268;65975;79012;79858;83931;84033;85366;91419;92335;120892;130399;140609;140803;375449;440275
+</td>
+<td style="text-align:left;">
+ROCK2;NRBP1;LTBP1;EIF2AK2;MYLK2;SGK2;AURKA;CCND1;CDC42BPG;STK33;SIK2;ATM;WNK2;TRPM6;MELK;NEK6;MAPKAPK5;GRK3;BCR;ROCK1;MAP3K10;AKT2;MARK4;ERCC2;DMPK;SGK1;RPS6KA2;CSNK1A1;CAMK4;CDK7;MAST4;CSNK1G3;OBSCN;PRKCA;STRADA;AATK;STK40;PRKAA2;PRKACB;CCNE2;FAM20C;PHKG1;ERN2;CAMK1D;MYO3A;LRRK2;IRAK4;ATP23;MAPK12;DCLK1;ACVR1C;TLK1;TTN;STRADB;CDK15;CAB39;PASK;HIPK2;EGFR;CAMK2B;MARK1;NEK7;CAMK2G;IKBKB;PTK2B;PRKG2;BMP2K;STK32B;GAK;MAP2K1;TRPM7;ITPKA;EIF2AK4;PRKD1;MAP4K5;MAP3K9;DYRK1A;MYLK;MAP3K13;TNIK;NEK11;TGFBR2;IRAK2;CAMKV;PRKACA;DAPK3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0004012" class="uri">GO:0004012</a>
+</td>
+<td style="text-align:left;">
+phospholipid-translocating ATPase activity
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0004012" class="uri">http://amigo.geneontology.org/amigo/term/GO:0004012</a>
+</td>
+<td style="text-align:right;">
+21
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+2.903948
+</td>
+<td style="text-align:right;">
+3.787947
+</td>
+<td style="text-align:right;">
+0.0000318
+</td>
+<td style="text-align:right;">
+0.0086881
+</td>
+<td style="text-align:left;">
+19;4363;5205;5244;10079;23120;23200;23250;51761;57198;374868
+</td>
+<td style="text-align:left;">
+ATP9A;ABCA1;ATP8B1;ATP9B;ATP10B;ABCC1;ATP11A;ATP8A2;ABCB4;ATP8B2;ATP11B
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<a href="GO:0015085" class="uri">GO:0015085</a>
+</td>
+<td style="text-align:left;">
+calcium ion transmembrane transporter activity
+</td>
+<td style="text-align:left;">
+<a href="http://amigo.geneontology.org/amigo/term/GO:0015085" class="uri">http://amigo.geneontology.org/amigo/term/GO:0015085</a>
+</td>
+<td style="text-align:right;">
+128
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+17.700253
+</td>
+<td style="text-align:right;">
+1.864380
+</td>
+<td style="text-align:right;">
+0.0002271
+</td>
+<td style="text-align:right;">
+0.0496419
+</td>
+<td style="text-align:left;">
+309;490;493;774;776;779;781;1139;3685;3709;3710;6261;6262;6263;6546;7442;8913;9254;9256;9914;26133;27039;27092;54499;54822;57620;59285;79054;80024;80228;93589;140803;168507
+</td>
+<td style="text-align:left;">
+SLC8A1;TRPC4AP;TRPM6;CACNA1B;SLC8B1;ATP2C2;RYR1;CACNG6;ITPR3;ANXA6;PKD2L2;TRPV1;TSPOAP1;CACNA1G;CACNG4;ORAI2;CACNA2D4;ITPR2;ATP2B1;ITGAV;TRPM8;CACNA2D1;PKD1L1;TMCO1;ATP2B4;CACNA1S;RYR2;STIM2;CHRNA7;TRPM7;RYR3;CACNA1D;CACNA2D2
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="kegg-analysis-3" class="section level4 hasAnchor" number="6.3.5.3">
+<h4><span class="header-section-number">6.3.5.3</span> KEGG Analysis<a href="low-coverage.html#kegg-analysis-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="low-coverage.html#cb307-1" tabindex="-1"></a>kegg_10 <span class="ot">&lt;-</span></span>
+<span id="cb307-2"><a href="low-coverage.html#cb307-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod =</span> <span class="st">&quot;ORA&quot;</span>, <span class="at">organism =</span> <span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb307-3"><a href="low-coverage.html#cb307-3" tabindex="-1"></a>              <span class="at">enrichDatabase =</span> <span class="st">&quot;pathway_KEGG&quot;</span>,</span>
+<span id="cb307-4"><a href="low-coverage.html#cb307-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_10_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
+<span id="cb307-5"><a href="low-coverage.html#cb307-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb307-6"><a href="low-coverage.html#cb307-6" tabindex="-1"></a>              <span class="at">minNum =</span> <span class="dv">5</span>, <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">isOutput =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
+<pre><code>## Loading the functional categories...
+## Loading the ID list...
+## Loading the reference list...
+## Performing the enrichment analysis...</code></pre>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="low-coverage.html#cb309-1" tabindex="-1"></a>kegg_10 <span class="sc">%&gt;%</span> </span>
+<span id="cb309-2"><a href="low-coverage.html#cb309-2" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb309-3"><a href="low-coverage.html#cb309-3" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+geneSet
+</th>
+<th style="text-align:left;">
+description
+</th>
+<th style="text-align:left;">
+link
+</th>
+<th style="text-align:right;">
+size
+</th>
+<th style="text-align:right;">
+overlap
+</th>
+<th style="text-align:right;">
+expect
+</th>
+<th style="text-align:right;">
+enrichmentRatio
+</th>
+<th style="text-align:right;">
+pValue
+</th>
+<th style="text-align:right;">
+FDR
+</th>
+<th style="text-align:left;">
+overlapId
+</th>
+<th style="text-align:left;">
+userId
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+hsa04921
+</td>
+<td style="text-align:left;">
+Oxytocin signaling pathway
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04921+123745+140465+146850+1938+1956+23236+23533+27092+283748+3709+3710+4208+4638+4773+4881+4893+5330+5332+5500+5530+5533+5563+5566+5567+5578+5604+57118+59285+595+6093+6261+6262+6263+776+779+781+814+816+818+85366+9254+93589+9475" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04921+123745+140465+146850+1938+1956+23236+23533+27092+283748+3709+3710+4208+4638+4773+4881+4893+5330+5332+5500+5530+5533+5563+5566+5567+5578+5604+57118+59285+595+6093+6261+6262+6263+776+779+781+814+816+818+85366+9254+93589+9475</a>
+</td>
+<td style="text-align:right;">
+131
+</td>
+<td style="text-align:right;">
+43
+</td>
+<td style="text-align:right;">
+19.121862
+</td>
+<td style="text-align:right;">
+2.248735
+</td>
+<td style="text-align:right;">
+0.0000001
+</td>
+<td style="text-align:right;">
+0.0000270
+</td>
+<td style="text-align:left;">
+123745;140465;146850;1938;1956;23236;23533;27092;283748;3709;3710;4208;4638;4773;4881;4893;5330;5332;5500;5530;5533;5563;5566;5567;5578;5604;57118;59285;595;6093;6261;6262;6263;776;779;781;814;816;818;85366;9254;93589;9475
+</td>
+<td style="text-align:left;">
+ROCK2;PPP1CB;PLCB4;PLCB1;MYLK2;NFATC2;CCND1;ROCK1;RYR1;CACNG6;ITPR3;CAMK4;MEF2C;PIK3R6;PIK3R5;PRKCA;CACNG4;PRKAA2;PRKACB;NRAS;CAMK1D;CACNA2D4;ITPR2;MYL6B;CACNA2D1;EGFR;CAMK2B;NPR1;CACNA1S;RYR2;CAMK2G;PPP3CC;PPP3CA;MAP2K1;PLA2G4D;PLA2G4E;PLCB2;RYR3;MYLK;CACNA1D;PRKACA;EEF2;CACNA2D2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04072
+</td>
+<td style="text-align:left;">
+Phospholipase D signaling pathway
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04072+10411+11069+123745+146850+1608+185+1956+208+2185+23236+23533+2534+2549+283748+4893+5156+5159+5291+5295+5330+5332+5336+5338+553+55326+5578+5604+5898+6654+6655+7248+8395+8503+8527+9162+9266" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04072+10411+11069+123745+146850+1608+185+1956+208+2185+23236+23533+2534+2549+283748+4893+5156+5159+5291+5295+5330+5332+5336+5338+553+55326+5578+5604+5898+6654+6655+7248+8395+8503+8527+9162+9266</a>
+</td>
+<td style="text-align:right;">
+127
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+18.537988
+</td>
+<td style="text-align:right;">
+1.941958
+</td>
+<td style="text-align:right;">
+0.0000393
+</td>
+<td style="text-align:right;">
+0.0042958
+</td>
+<td style="text-align:left;">
+10411;11069;123745;146850;1608;185;1956;208;2185;23236;23533;2534;2549;283748;4893;5156;5159;5291;5295;5330;5332;5336;5338;553;55326;5578;5604;5898;6654;6655;7248;8395;8503;8527;9162;9266
+</td>
+<td style="text-align:left;">
+SOS1;PLCB4;PLCB1;PIP5K1B;TSC1;PLCG2;AKT2;CYTH2;FYN;PDGFRB;PIK3R1;PLD2;PIK3R6;PIK3R5;PRKCA;PIK3R3;NRAS;RAPGEF3;RAPGEF4;DGKD;DGKI;RALA;EGFR;AVPR1B;PTK2B;AGPAT5;GAB1;PDGFRA;MAP2K1;PLA2G4D;PLA2G4E;PLCB2;SOS2;DGKG;AGTR1;PIK3CB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04020
+</td>
+<td style="text-align:left;">
+Calcium signaling pathway
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04020+1139+185+1956+2066+2185+23236+2769+3360+3706+3709+3710+4638+4842+4843+490+493+5156+5159+5260+5330+5332+5336+553+5530+5533+5566+5567+5578+57620+6261+6262+6263+6546+7201+774+776+779+80228+814+816+818+84812+85366+8913" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04020+1139+185+1956+2066+2185+23236+2769+3360+3706+3709+3710+4638+4842+4843+490+493+5156+5159+5260+5330+5332+5336+553+5530+5533+5566+5567+5578+57620+6261+6262+6263+6546+7201+774+776+779+80228+814+816+818+84812+85366+8913</a>
+</td>
+<td style="text-align:right;">
+167
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:right;">
+24.376725
+</td>
+<td style="text-align:right;">
+1.805001
+</td>
+<td style="text-align:right;">
+0.0000414
+</td>
+<td style="text-align:right;">
+0.0042958
+</td>
+<td style="text-align:left;">
+1139;185;1956;2066;2185;23236;2769;3360;3706;3709;3710;4638;4842;4843;490;493;5156;5159;5260;5330;5332;5336;553;5530;5533;5566;5567;5578;57620;6261;6262;6263;6546;7201;774;776;779;80228;814;816;818;84812;85366;8913
+</td>
+<td style="text-align:left;">
+SLC8A1;PLCB4;PLCB1;MYLK2;CACNA1B;NOS1;TRHR;PLCG2;RYR1;ITPR3;HTR4;PDGFRB;CAMK4;NOS2;CACNA1G;PRKCA;PRKACB;ORAI2;PHKG1;ITPR2;ATP2B1;ERBB4;PLCD4;EGFR;CAMK2B;AVPR1B;ATP2B4;CACNA1S;RYR2;CAMK2G;PTK2B;PPP3CC;PPP3CA;PDGFRA;STIM2;CHRNA7;ITPKA;PLCB2;RYR3;MYLK;AGTR1;CACNA1D;PRKACA;GNA15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04510
+</td>
+<td style="text-align:left;">
+Focal adhesion
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04510+1284+1286+1292+1293+1499+1729+1956+208+2318+2534+256076+29780+3082+3371+3480+3672+3675+3680+3685+3690+3908+3909+3910+3912+3915+4638+5156+5159+5291+5295+5500+5578+5604+595+6093+6654+6655+7057+7058+7148+7408+7424+8503+85366+9475+9564" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04510+1284+1286+1292+1293+1499+1729+1956+208+2318+2534+256076+29780+3082+3371+3480+3672+3675+3680+3685+3690+3908+3909+3910+3912+3915+4638+5156+5159+5291+5295+5500+5578+5604+595+6093+6654+6655+7057+7058+7148+7408+7424+8503+85366+9475+9564</a>
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:right;">
+46
+</td>
+<td style="text-align:right;">
+26.274314
+</td>
+<td style="text-align:right;">
+1.750759
+</td>
+<td style="text-align:right;">
+0.0000631
+</td>
+<td style="text-align:right;">
+0.0042958
+</td>
+<td style="text-align:left;">
+1284;1286;1292;1293;1499;1729;1956;208;2318;2534;256076;29780;3082;3371;3480;3672;3675;3680;3685;3690;3908;3909;3910;3912;3915;4638;5156;5159;5291;5295;5500;5578;5604;595;6093;6654;6655;7057;7058;7148;7408;7424;8503;85366;9475;9564
+</td>
+<td style="text-align:left;">
+ROCK2;PPP1CB;SOS1;MYLK2;CCND1;TNC;ROCK1;LAMA3;BCAR1;AKT2;VASP;TNXB;FYN;LAMA4;LAMA2;THBS2;ITGA1;PDGFRB;PIK3R1;DIAPH1;ITGA3;ITGB3;PRKCA;PIK3R3;PARVB;COL4A2;ITGAV;COL4A4;COL6A3;FLNC;HGF;LAMB1;EGFR;LAMC1;VEGFC;PDGFRA;IGF1R;MAP2K1;THBS1;SOS2;COL6A2;MYLK;PIK3CB;COL6A5;ITGA9;CTNNB1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa05231
+</td>
+<td style="text-align:left;">
+Choline metabolism in cancer
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa05231+10434+1119+123745+1608+1956+208+23446+283748+4893+5130+5156+5159+5291+5295+5338+5578+5604+56261+6581+6584+6654+6655+7248+8395+8503+8527+9162" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa05231+10434+1119+123745+1608+1956+208+23446+283748+4893+5130+5156+5159+5291+5295+5338+5578+5604+56261+6581+6584+6654+6655+7248+8395+8503+8527+9162</a>
+</td>
+<td style="text-align:right;">
+87
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+12.699252
+</td>
+<td style="text-align:right;">
+2.126110
+</td>
+<td style="text-align:right;">
+0.0000665
+</td>
+<td style="text-align:right;">
+0.0042958
+</td>
+<td style="text-align:left;">
+10434;1119;123745;1608;1956;208;23446;283748;4893;5130;5156;5159;5291;5295;5338;5578;5604;56261;6581;6584;6654;6655;7248;8395;8503;8527;9162
+</td>
+<td style="text-align:left;">
+SOS1;GPCPD1;CHKA;PIP5K1B;SLC44A1;TSC1;AKT2;SLC22A3;PDGFRB;PIK3R1;SLC22A5;PLD2;PRKCA;PIK3R3;NRAS;LYPLA1;DGKD;DGKI;EGFR;PDGFRA;MAP2K1;PLA2G4D;PLA2G4E;SOS2;PCYT1A;DGKG;PIK3CB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04371
+</td>
+<td style="text-align:left;">
+Apelin signaling pathway
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04371+146850+182+185+208+23236+23533+2791+3709+3710+4208+4209+4638+4842+4843+4893+5054+5140+5330+5332+5346+5563+5566+5567+55811+5604+595+6261+6262+6263+6546+814+85366+9759" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04371+146850+182+185+208+23236+23533+2791+3709+3710+4208+4209+4638+4842+4843+4893+5054+5140+5330+5332+5346+5563+5566+5567+55811+5604+595+6261+6262+6263+6546+814+85366+9759</a>
+</td>
+<td style="text-align:right;">
+117
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+17.078304
+</td>
+<td style="text-align:right;">
+1.932276
+</td>
+<td style="text-align:right;">
+0.0000912
+</td>
+<td style="text-align:right;">
+0.0049096
+</td>
+<td style="text-align:left;">
+146850;182;185;208;23236;23533;2791;3709;3710;4208;4209;4638;4842;4843;4893;5054;5140;5330;5332;5346;5563;5566;5567;55811;5604;595;6261;6262;6263;6546;814;85366;9759
+</td>
+<td style="text-align:left;">
+SLC8A1;JAG1;PLCB4;PLCB1;MYLK2;CCND1;PDE3B;NOS1;RYR1;AKT2;ITPR3;CAMK4;MEF2C;PIK3R6;PIK3R5;NOS2;PRKAA2;PRKACB;NRAS;SERPINE1;ITPR2;HDAC4;GNG11;MEF2D;ADCY10;RYR2;PLIN1;MAP2K1;PLCB2;RYR3;MYLK;AGTR1;PRKACA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa05205
+</td>
+<td style="text-align:left;">
+Proteoglycans in cancer
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa05205+10855+1499+1956+1975+2017+2066+208+2318+2549+286+287+288+3082+3339+3480+355+3685+3690+3709+3710+4893+5291+5295+5329+5336+5500+5566+5567+5578+5604+595+6093+6300+6382+6654+6655+7057+7074+7472+7481+816+818+8503+9138+9475" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa05205+10855+1499+1956+1975+2017+2066+208+2318+2549+286+287+288+3082+3339+3480+355+3685+3690+3709+3710+4893+5291+5295+5329+5336+5500+5566+5567+5578+5604+595+6093+6300+6382+6654+6655+7057+7074+7472+7481+816+818+8503+9138+9475</a>
+</td>
+<td style="text-align:right;">
+179
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+26.128346
+</td>
+<td style="text-align:right;">
+1.722268
+</td>
+<td style="text-align:right;">
+0.0001151
+</td>
+<td style="text-align:right;">
+0.0053133
+</td>
+<td style="text-align:left;">
+10855;1499;1956;1975;2017;2066;208;2318;2549;286;287;288;3082;3339;3480;355;3685;3690;3709;3710;4893;5291;5295;5329;5336;5500;5566;5567;5578;5604;595;6093;6300;6382;6654;6655;7057;7074;7472;7481;816;818;8503;9138;9475
+</td>
+<td style="text-align:left;">
+ROCK2;SDC1;PPP1CB;SOS1;CTTN;CCND1;WNT11;ROCK1;PLCG2;AKT2;ARHGEF1;PLAUR;ITPR3;PIK3R1;ITGB3;PRKCA;HSPG2;PIK3R3;PRKACB;NRAS;ITPR2;EIF4B;MAPK12;ITGAV;ERBB4;FLNC;WNT2;HGF;EGFR;CAMK2B;FAS;ANK3;CAMK2G;ANK1;GAB1;ANK2;HPSE;IGF1R;MAP2K1;THBS1;SOS2;TIAM1;PIK3CB;CTNNB1;PRKACA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04512
+</td>
+<td style="text-align:left;">
+ECM-receptor interaction
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04512+1284+1286+1292+1293+256076+3161+3339+3371+3672+3675+3680+3685+3690+3908+3909+3910+3912+3915+51206+6382+7057+7058+7148+9899" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04512+1284+1286+1292+1293+256076+3161+3339+3371+3672+3675+3680+3685+3690+3908+3909+3910+3912+3915+51206+6382+7057+7058+7148+9899</a>
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+11.385536
+</td>
+<td style="text-align:right;">
+2.107938
+</td>
+<td style="text-align:right;">
+0.0001937
+</td>
+<td style="text-align:right;">
+0.0078187
+</td>
+<td style="text-align:left;">
+1284;1286;1292;1293;256076;3161;3339;3371;3672;3675;3680;3685;3690;3908;3909;3910;3912;3915;51206;6382;7057;7058;7148;9899
+</td>
+<td style="text-align:left;">
+SDC1;TNC;LAMA3;GP6;TNXB;LAMA4;LAMA2;THBS2;ITGA1;HMMR;ITGA3;ITGB3;HSPG2;COL4A2;ITGAV;COL4A4;COL6A3;LAMB1;LAMC1;SV2B;THBS1;COL6A2;COL6A5;ITGA9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04912
+</td>
+<td style="text-align:left;">
+GnRH signaling pathway
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04912+1081+123745+1956+2185+23236+283748+3709+3710+4893+5330+5332+5338+5566+5567+5578+5604+6300+6654+6655+776+779+816+818" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04912+1081+123745+1956+2185+23236+283748+3709+3710+4893+5330+5332+5338+5566+5567+5578+5604+6300+6654+6655+776+779+816+818</a>
+</td>
+<td style="text-align:right;">
+78
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+11.385536
+</td>
+<td style="text-align:right;">
+2.020107
+</td>
+<td style="text-align:right;">
+0.0005190
+</td>
+<td style="text-align:right;">
+0.0186276
+</td>
+<td style="text-align:left;">
+1081;123745;1956;2185;23236;283748;3709;3710;4893;5330;5332;5338;5566;5567;5578;5604;6300;6654;6655;776;779;816;818
+</td>
+<td style="text-align:left;">
+SOS1;PLCB4;PLCB1;ITPR3;CGA;PLD2;PRKCA;PRKACB;NRAS;ITPR2;MAPK12;EGFR;CAMK2B;CACNA1S;CAMK2G;PTK2B;MAP2K1;PLA2G4D;PLA2G4E;PLCB2;SOS2;CACNA1D;PRKACA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04611
+</td>
+<td style="text-align:left;">
+Platelet activation
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04611+123745+146850+208+23236+23533+2534+283748+3690+3709+3710+4638+51206+5291+5295+5330+5332+5336+5500+5566+5567+5593+6093+6300+7408+8503+85366+9138+9475" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04611+123745+146850+208+23236+23533+2534+283748+3690+3709+3710+4638+51206+5291+5295+5330+5332+5336+5500+5566+5567+5593+6093+6300+7408+8503+85366+9138+9475</a>
+</td>
+<td style="text-align:right;">
+105
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+15.326683
+</td>
+<td style="text-align:right;">
+1.826879
+</td>
+<td style="text-align:right;">
+0.0008219
+</td>
+<td style="text-align:right;">
+0.0249461
+</td>
+<td style="text-align:left;">
+123745;146850;208;23236;23533;2534;283748;3690;3709;3710;4638;51206;5291;5295;5330;5332;5336;5500;5566;5567;5593;6093;6300;7408;8503;85366;9138;9475
+</td>
+<td style="text-align:left;">
+ROCK2;PPP1CB;PLCB4;PLCB1;MYLK2;ROCK1;PLCG2;AKT2;ARHGEF1;VASP;GP6;ITPR3;FYN;PIK3R1;PIK3R6;PIK3R5;ITGB3;PIK3R3;PRKACB;ITPR2;MAPK12;PRKG2;PLA2G4D;PLA2G4E;PLCB2;MYLK;PIK3CB;PRKACA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04720
+</td>
+<td style="text-align:left;">
+Long-term potentiation
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04720+10411+23236+3709+3710+4893+5330+5332+5500+5530+5533+5566+5567+5578+5604+6196+814+816+818" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04720+10411+23236+3709+3710+4893+5330+5332+5500+5530+5533+5566+5567+5578+5604+6196+814+816+818</a>
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+8.320199
+</td>
+<td style="text-align:right;">
+2.163410
+</td>
+<td style="text-align:right;">
+0.0008496
+</td>
+<td style="text-align:right;">
+0.0249461
+</td>
+<td style="text-align:left;">
+10411;23236;3709;3710;4893;5330;5332;5500;5530;5533;5566;5567;5578;5604;6196;814;816;818
+</td>
+<td style="text-align:left;">
+PPP1CB;PLCB4;PLCB1;ITPR3;RPS6KA2;CAMK4;PRKCA;PRKACB;NRAS;ITPR2;RAPGEF3;CAMK2B;CAMK2G;PPP3CC;PPP3CA;MAP2K1;PLCB2;PRKACA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04270
+</td>
+<td style="text-align:left;">
+Vascular smooth muscle contraction
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04270+10267+123745+140465+185+23236+27345+283748+3709+3710+4638+4881+5330+5332+5500+553+5566+5567+5578+5604+6093+776+779+800+8398+85366+9138+9475+9826" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04270+10267+123745+140465+185+23236+27345+283748+3709+3710+4638+4881+5330+5332+5500+553+5566+5567+5578+5604+6093+776+779+800+8398+85366+9138+9475+9826</a>
+</td>
+<td style="text-align:right;">
+107
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+15.618620
+</td>
+<td style="text-align:right;">
+1.792732
+</td>
+<td style="text-align:right;">
+0.0011305
+</td>
+<td style="text-align:right;">
+0.0263454
+</td>
+<td style="text-align:left;">
+10267;123745;140465;185;23236;27345;283748;3709;3710;4638;4881;5330;5332;5500;553;5566;5567;5578;5604;6093;776;779;800;8398;85366;9138;9475;9826
+</td>
+<td style="text-align:left;">
+ROCK2;PPP1CB;PLCB4;PLCB1;MYLK2;ROCK1;ARHGEF1;ITPR3;PRKCA;PRKACB;ITPR2;MYL6B;KCNMB4;PLA2G6;RAMP1;CALD1;NPR1;ARHGEF11;AVPR1B;CACNA1S;MAP2K1;PLA2G4D;PLA2G4E;PLCB2;MYLK;AGTR1;CACNA1D;PRKACA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04725
+</td>
+<td style="text-align:left;">
+Cholinergic synapse
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04725+1139+146850+208+23236+23533+2534+2791+3709+3710+3785+3786+4893+5291+5295+5330+5332+5566+5567+5578+5604+774+776+779+814+816+818+8503" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04725+1139+146850+208+23236+23533+2534+2791+3709+3710+3785+3786+4893+5291+5295+5330+5332+5566+5567+5578+5604+774+776+779+814+816+818+8503</a>
+</td>
+<td style="text-align:right;">
+102
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+14.888778
+</td>
+<td style="text-align:right;">
+1.813446
+</td>
+<td style="text-align:right;">
+0.0011419
+</td>
+<td style="text-align:right;">
+0.0263454
+</td>
+<td style="text-align:left;">
+1139;146850;208;23236;23533;2534;2791;3709;3710;3785;3786;4893;5291;5295;5330;5332;5566;5567;5578;5604;774;776;779;814;816;818;8503
+</td>
+<td style="text-align:left;">
+PLCB4;PLCB1;KCNQ2;CACNA1B;AKT2;ITPR3;FYN;CAMK4;PIK3R1;PIK3R6;PIK3R5;PRKCA;PIK3R3;PRKACB;NRAS;KCNQ3;ITPR2;GNG11;CAMK2B;CACNA1S;CAMK2G;CHRNA7;MAP2K1;PLCB2;PIK3CB;CACNA1D;PRKACA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04919
+</td>
+<td style="text-align:left;">
+Thyroid hormone signaling pathway
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04919+116931+1499+1733+208+23236+25942+3685+3690+481+4893+5291+5295+5330+5332+5336+5566+5567+5578+5604+595+6258+84812+8503+8648+8841+90390+9440" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04919+116931+1499+1733+208+23236+25942+3685+3690+481+4893+5291+5295+5330+5332+5336+5566+5567+5578+5604+595+6258+84812+8503+8648+8841+90390+9440</a>
+</td>
+<td style="text-align:right;">
+102
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+14.888778
+</td>
+<td style="text-align:right;">
+1.813446
+</td>
+<td style="text-align:right;">
+0.0011419
+</td>
+<td style="text-align:right;">
+0.0263454
+</td>
+<td style="text-align:left;">
+116931;1499;1733;208;23236;25942;3685;3690;481;4893;5291;5295;5330;5332;5336;5566;5567;5578;5604;595;6258;84812;8503;8648;8841;90390;9440
+</td>
+<td style="text-align:left;">
+NCOA1;PLCB4;PLCB1;CCND1;MED17;PLCG2;AKT2;PIK3R1;HDAC3;ITGB3;PRKCA;PIK3R3;DIO1;PRKACB;NRAS;MED30;ITGAV;PLCD4;RXRG;ATP1B1;SIN3A;MAP2K1;PLCB2;MED12L;PIK3CB;CTNNB1;PRKACA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04925
+</td>
+<td style="text-align:left;">
+Aldosterone synthesis and secretion
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04925+185+23236+3709+3710+481+4881+490+493+51305+5330+5332+5443+5566+5567+5578+5587+57118+776+779+814+816+818+8913" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04925+185+23236+3709+3710+481+4881+490+493+51305+5330+5332+5443+5566+5567+5578+5587+57118+776+779+814+816+818+8913</a>
+</td>
+<td style="text-align:right;">
+83
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+12.115378
+</td>
+<td style="text-align:right;">
+1.898414
+</td>
+<td style="text-align:right;">
+0.0013379
+</td>
+<td style="text-align:right;">
+0.0286682
+</td>
+<td style="text-align:left;">
+185;23236;3709;3710;481;4881;490;493;51305;5330;5332;5443;5566;5567;5578;5587;57118;776;779;814;816;818;8913
+</td>
+<td style="text-align:left;">
+POMC;PLCB4;PLCB1;ITPR3;CAMK4;CACNA1G;PRKCA;PRKACB;KCNK9;CAMK1D;ITPR2;ATP2B1;CAMK2B;NPR1;ATP2B4;CACNA1S;ATP1B1;CAMK2G;PLCB2;PRKD1;AGTR1;CACNA1D;PRKACA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa05412
+</td>
+<td style="text-align:left;">
+Arrhythmogenic right ventricular cardiomyopathy (ARVC)
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa05412+1499+1829+1832+27092+3672+3675+3680+3685+3690+3908+59285+6262+6546+776+779+781+89+9254+93589" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa05412+1499+1829+1832+27092+3672+3675+3680+3685+3690+3908+59285+6262+6546+776+779+781+89+9254+93589</a>
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+9.341978
+</td>
+<td style="text-align:right;">
+2.033830
+</td>
+<td style="text-align:right;">
+0.0014201
+</td>
+<td style="text-align:right;">
+0.0286682
+</td>
+<td style="text-align:left;">
+1499;1829;1832;27092;3672;3675;3680;3685;3690;3908;59285;6262;6546;776;779;781;89;9254;93589
+</td>
+<td style="text-align:left;">
+SLC8A1;ACTN3;DSG2;CACNG6;DSP;LAMA2;ITGA1;ITGA3;ITGB3;CACNG4;CACNA2D4;ITGAV;CACNA2D1;CACNA1S;RYR2;ITGA9;CTNNB1;CACNA1D;CACNA2D2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa05214
+</td>
+<td style="text-align:left;">
+Glioma
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa05214+1643+1956+208+3480+4893+5156+5159+5291+5295+5336+5578+5604+595+6654+6655+816+818+8503" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa05214+1643+1956+208+3480+4893+5156+5159+5291+5295+5336+5578+5604+595+6654+6655+816+818+8503</a>
+</td>
+<td style="text-align:right;">
+61
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+8.904073
+</td>
+<td style="text-align:right;">
+2.021547
+</td>
+<td style="text-align:right;">
+0.0020262
+</td>
+<td style="text-align:right;">
+0.0384974
+</td>
+<td style="text-align:left;">
+1643;1956;208;3480;4893;5156;5159;5291;5295;5336;5578;5604;595;6654;6655;816;818;8503
+</td>
+<td style="text-align:left;">
+SOS1;CCND1;DDB2;PLCG2;AKT2;PDGFRB;PIK3R1;PRKCA;PIK3R3;NRAS;EGFR;CAMK2B;CAMK2G;PDGFRA;IGF1R;MAP2K1;SOS2;PIK3CB
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa04922
+</td>
+<td style="text-align:left;">
+Glucagon signaling pathway
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04922+1374+1375+208+23235+23236+2538+32+3709+3710+3939+3948+5140+5260+5330+5332+5530+5533+5563+5566+5567+5836+816+818" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04922+1374+1375+208+23235+23236+2538+32+3709+3710+3939+3948+5140+5260+5330+5332+5530+5533+5563+5566+5567+5836+816+818</a>
+</td>
+<td style="text-align:right;">
+86
+</td>
+<td style="text-align:right;">
+23
+</td>
+<td style="text-align:right;">
+12.553283
+</td>
+<td style="text-align:right;">
+1.832190
+</td>
+<td style="text-align:right;">
+0.0022350
+</td>
+<td style="text-align:right;">
+0.0401067
+</td>
+<td style="text-align:left;">
+1374;1375;208;23235;23236;2538;32;3709;3710;3939;3948;5140;5260;5330;5332;5530;5533;5563;5566;5567;5836;816;818
+</td>
+<td style="text-align:left;">
+PLCB4;PLCB1;CPT1A;LDHC;LDHA;PDE3B;SIK2;ACACB;AKT2;ITPR3;G6PC;PRKAA2;PRKACB;PHKG1;ITPR2;CPT1B;CAMK2B;CAMK2G;PPP3CC;PPP3CA;PLCB2;PYGL;PRKACA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+hsa05223
+</td>
+<td style="text-align:left;">
+Non-small cell lung cancer
+</td>
+<td style="text-align:left;">
+<a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa05223+1643+1956+208+238+3718+4893+5291+5295+5336+5578+5604+595+6258+6654+6655+6777+8503" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa05223+1643+1956+208+238+3718+4893+5291+5295+5336+5578+5604+595+6258+6654+6655+6777+8503</a>
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+8.466168
+</td>
+<td style="text-align:right;">
+2.007992
+</td>
+<td style="text-align:right;">
+0.0028914
+</td>
+<td style="text-align:right;">
+0.0491539
+</td>
+<td style="text-align:left;">
+1643;1956;208;238;3718;4893;5291;5295;5336;5578;5604;595;6258;6654;6655;6777;8503
+</td>
+<td style="text-align:left;">
+ALK;SOS1;CCND1;DDB2;PLCG2;AKT2;PIK3R1;STAT5B;PRKCA;PIK3R3;NRAS;EGFR;RXRG;MAP2K1;SOS2;PIK3CB;JAK3
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="gwas-1" class="section level3 hasAnchor" number="6.3.6">
+<h3><span class="header-section-number">6.3.6</span> GWAS<a href="low-coverage.html#gwas-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="low-coverage.html#cb310-1" tabindex="-1"></a>gwas_snp <span class="ot">&lt;-</span> </span>
+<span id="cb310-2"><a href="low-coverage.html#cb310-2" tabindex="-1"></a>  gwas_snp <span class="sc">%&gt;%</span> </span>
+<span id="cb310-3"><a href="low-coverage.html#cb310-3" tabindex="-1"></a>  <span class="fu">filter</span>(fdr <span class="sc">&lt;</span> <span class="fl">0.05</span>) </span>
+<span id="cb310-4"><a href="low-coverage.html#cb310-4" tabindex="-1"></a></span>
+<span id="cb310-5"><a href="low-coverage.html#cb310-5" tabindex="-1"></a><span class="fu">merge</span>(gwas_snp, fst_10_genes, <span class="at">by.x =</span> <span class="st">&quot;BP&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;V4&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] BP   SNP  CHR  logP P    fdr  bonf V1   V2   V3   V5   V6   V7   V8   V9  
+## [16] V10  V11  V12 
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="low-coverage.html#cb312-1" tabindex="-1"></a><span class="fu">merge</span>(gwas_snp, fst_sd_genes, <span class="at">by.x =</span> <span class="st">&quot;BP&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;V4&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] BP   SNP  CHR  logP P    fdr  bonf V1   V2   V3   V5   V6   V7   V8   V9  
+## [16] V10  V11  V12 
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<p>Gene does not overlap with Fst or SD methods, nor is it annotated to a gene.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="all-samples.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": false
+});
+});
+</script>
+
+</body>
+
+</html>

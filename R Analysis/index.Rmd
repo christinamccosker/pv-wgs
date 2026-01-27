@@ -1,0 +1,14 @@
+--- 
+title: "Pv-WGS-Analysis"
+author: "Christina McCosker"
+date: "Last Updated `r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+suppresss-bibliography: true
+description: |
+  McCosker Dissertation Chapter 3 Analyses
+---
+
+# About
+
+Insert manuscript details here

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Fst-based Approach | Pv-WGS-Analysis</title>
+  <meta name="description" content="McCosker Dissertation Chapter 3 Analyses" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Fst-based Approach | Pv-WGS-Analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Fst-based Approach | Pv-WGS-Analysis" />
+  
+  <meta name="twitter:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+<meta name="author" content="Christina McCosker" />
+
+
+<meta name="date" content="2025-03-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="gwas---rrblup.html"/>
+<link rel="next" href="snp-annotation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Pv-WGS-Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html"><i class="fa fa-check"></i><b>2</b> Tidy Data &amp; Exploratory</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#libraries"><i class="fa fa-check"></i><b>2.1</b> Libraries</a></li>
+<li class="chapter" data-level="2.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#descriptive-statistics"><i class="fa fa-check"></i><b>2.3</b> Descriptive Statistics</a></li>
+<li class="chapter" data-level="2.4" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#exclude-samples"><i class="fa fa-check"></i><b>2.4</b> Exclude samples</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#sample-statistics"><i class="fa fa-check"></i><b>2.4.1</b> Sample statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#map-of-strandings"><i class="fa fa-check"></i><b>2.5</b> Map of Strandings</a></li>
+<li class="chapter" data-level="2.6" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#case-v-control-factors"><i class="fa fa-check"></i><b>2.6</b> Case v Control ~ Factors</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#duringafter-outbreak"><i class="fa fa-check"></i><b>2.6.1</b> During/After Outbreak</a></li>
+<li class="chapter" data-level="2.6.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#sex"><i class="fa fa-check"></i><b>2.6.2</b> Sex</a></li>
+<li class="chapter" data-level="2.6.3" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#age"><i class="fa fa-check"></i><b>2.6.3</b> Age</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html"><i class="fa fa-check"></i><b>3</b> PCA - High Coverage</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#libraries-1"><i class="fa fa-check"></i><b>3.1</b> Libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#data-1"><i class="fa fa-check"></i><b>3.2</b> Data</a></li>
+<li class="chapter" data-level="3.3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#vcf-to-gds"><i class="fa fa-check"></i><b>3.3</b> VCF to GDS</a></li>
+<li class="chapter" data-level="3.4" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#ld-based-snp-pruning"><i class="fa fa-check"></i><b>3.4</b> LD-based SNP Pruning</a></li>
+<li class="chapter" data-level="3.5" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca"><i class="fa fa-check"></i><b>3.5</b> PCA</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-original"><i class="fa fa-check"></i><b>3.5.1</b> PCA Original</a></li>
+<li class="chapter" data-level="3.5.2" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-wo-outliers"><i class="fa fa-check"></i><b>3.5.2</b> PCA w/o Outliers</a></li>
+<li class="chapter" data-level="3.5.3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-by-chromosome"><i class="fa fa-check"></i><b>3.5.3</b> PCA by Chromosome</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#relatedness"><i class="fa fa-check"></i><b>3.6</b> Relatedness</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html"><i class="fa fa-check"></i><b>4</b> Density Plot Filter Metrics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#libraries-2"><i class="fa fa-check"></i><b>4.1</b> Libraries</a></li>
+<li class="chapter" data-level="4.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#data-2"><i class="fa fa-check"></i><b>4.2</b> Data</a></li>
+<li class="chapter" data-level="4.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#density-plots"><i class="fa fa-check"></i><b>4.3</b> Density Plots</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-qd"><i class="fa fa-check"></i><b>4.3.1</b> Metric: QD</a></li>
+<li class="chapter" data-level="4.3.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-fs"><i class="fa fa-check"></i><b>4.3.2</b> Metric: FS</a></li>
+<li class="chapter" data-level="4.3.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-sor"><i class="fa fa-check"></i><b>4.3.3</b> Metric: SOR</a></li>
+<li class="chapter" data-level="4.3.4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mq"><i class="fa fa-check"></i><b>4.3.4</b> Metric: MQ</a></li>
+<li class="chapter" data-level="4.3.5" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mqranksum"><i class="fa fa-check"></i><b>4.3.5</b> Metric: MQRankSum</a></li>
+<li class="chapter" data-level="4.3.6" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-readposranksum"><i class="fa fa-check"></i><b>4.3.6</b> Metric: ReadPosRankSum</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html"><i class="fa fa-check"></i><b>5</b> GWAS - rrBLUP</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#libraries-3"><i class="fa fa-check"></i><b>5.1</b> Libraries</a></li>
+<li class="chapter" data-level="5.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#data-3"><i class="fa fa-check"></i><b>5.2</b> Data</a></li>
+<li class="chapter" data-level="5.3" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#calculating-grm"><i class="fa fa-check"></i><b>5.3</b> Calculating GRM</a></li>
+<li class="chapter" data-level="5.4" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#population-structure"><i class="fa fa-check"></i><b>5.4</b> Population structure</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#heatmap"><i class="fa fa-check"></i><b>5.4.1</b> Heatmap</a></li>
+<li class="chapter" data-level="5.4.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#pca-1"><i class="fa fa-check"></i><b>5.4.2</b> PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-data"><i class="fa fa-check"></i><b>5.5</b> Configure data</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#create-matrix"><i class="fa fa-check"></i><b>5.5.1</b> Create matrix</a></li>
+<li class="chapter" data-level="5.5.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-phenotype-data"><i class="fa fa-check"></i><b>5.5.2</b> Configure phenotype data</a></li>
+<li class="chapter" data-level="5.5.3" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-grm-snp-info"><i class="fa fa-check"></i><b>5.5.3</b> Configure grm &amp; snp info</a></li>
+<li class="chapter" data-level="5.5.4" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#gwas-model-1-genomic-relationship-matrix"><i class="fa fa-check"></i><b>5.5.4</b> GWAS Model 1: genomic relationship matrix</a></li>
+<li class="chapter" data-level="5.5.5" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#extract-results"><i class="fa fa-check"></i><b>5.5.5</b> Extract results</a></li>
+<li class="chapter" data-level="5.5.6" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#manhattan-plot"><i class="fa fa-check"></i><b>5.5.6</b> Manhattan Plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="fst-based-approach.html"><a href="fst-based-approach.html"><i class="fa fa-check"></i><b>6</b> Fst-based Approach</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="fst-based-approach.html"><a href="fst-based-approach.html#libraries-4"><i class="fa fa-check"></i><b>6.1</b> Libraries</a></li>
+<li class="chapter" data-level="6.2" data-path="fst-based-approach.html"><a href="fst-based-approach.html#data-4"><i class="fa fa-check"></i><b>6.2</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="fst-based-approach.html"><a href="fst-based-approach.html#visualize-snp-fst-distribution"><i class="fa fa-check"></i><b>6.3</b> Visualize SNP Fst distribution</a></li>
+<li class="chapter" data-level="6.4" data-path="fst-based-approach.html"><a href="fst-based-approach.html#select-outlier-snps"><i class="fa fa-check"></i><b>6.4</b> Select outlier SNPs</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="fst-based-approach.html"><a href="fst-based-approach.html#top-10"><i class="fa fa-check"></i><b>6.4.1</b> Top 10%</a></li>
+<li class="chapter" data-level="6.4.2" data-path="fst-based-approach.html"><a href="fst-based-approach.html#sd"><i class="fa fa-check"></i><b>6.4.2</b> &gt; 5SD</a></li>
+<li class="chapter" data-level="6.4.3" data-path="fst-based-approach.html"><a href="fst-based-approach.html#extract-snps-600-bp-positions"><i class="fa fa-check"></i><b>6.4.3</b> Extract SNPs &amp; 600 bp positions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="snp-annotation.html"><a href="snp-annotation.html"><i class="fa fa-check"></i><b>7</b> SNP Annotation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="snp-annotation.html"><a href="snp-annotation.html#libraries-5"><i class="fa fa-check"></i><b>7.1</b> Libraries</a></li>
+<li class="chapter" data-level="7.2" data-path="snp-annotation.html"><a href="snp-annotation.html#data-5"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
+<li class="chapter" data-level="7.3" data-path="snp-annotation.html"><a href="snp-annotation.html#tidy-harbor-seal-genes"><i class="fa fa-check"></i><b>7.3</b> Tidy Harbor seal genes</a></li>
+<li class="chapter" data-level="7.4" data-path="snp-annotation.html"><a href="snp-annotation.html#fst-5-sd"><i class="fa fa-check"></i><b>7.4</b> FST 5 SD</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="snp-annotation.html"><a href="snp-annotation.html#id-genes"><i class="fa fa-check"></i><b>7.4.1</b> ID genes</a></li>
+<li class="chapter" data-level="7.4.2" data-path="snp-annotation.html"><a href="snp-annotation.html#go-terms"><i class="fa fa-check"></i><b>7.4.2</b> GO Terms</a></li>
+<li class="chapter" data-level="7.4.3" data-path="snp-annotation.html"><a href="snp-annotation.html#kegg-pathway"><i class="fa fa-check"></i><b>7.4.3</b> KEGG Pathway</a></li>
+<li class="chapter" data-level="7.4.4" data-path="snp-annotation.html"><a href="snp-annotation.html#biomart-annotation"><i class="fa fa-check"></i><b>7.4.4</b> Biomart annotation</a></li>
+<li class="chapter" data-level="7.4.5" data-path="snp-annotation.html"><a href="snp-annotation.html#exonic-cds-genes"><i class="fa fa-check"></i><b>7.4.5</b> Exonic, CDS Genes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="snp-annotation.html"><a href="snp-annotation.html#gwas"><i class="fa fa-check"></i><b>7.5</b> GWAS</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/christinamccosker/pv-wgs.git" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pv-WGS-Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="fst-based-approach" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Fst-based Approach<a href="fst-based-approach.html#fst-based-approach" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>To complement GWAS, conducting Fst test between cases and controls, selecting top 10% of SNPs as likely to be related to disease susceptibility.</p>
+<div id="libraries-4" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Libraries<a href="fst-based-approach.html#libraries-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="fst-based-approach.html#cb193-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+</div>
+<div id="data-4" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Data<a href="fst-based-approach.html#data-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="fst-based-approach.html#cb194-1" tabindex="-1"></a>fst <span class="ot">&lt;-</span> </span>
+<span id="cb194-2"><a href="fst-based-approach.html#cb194-2" tabindex="-1"></a>  <span class="fu">read.table</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples.casevcontrol.weir.fst&quot;</span>,</span>
+<span id="cb194-3"><a href="fst-based-approach.html#cb194-3" tabindex="-1"></a>             <span class="at">header =</span> <span class="dv">1</span>) </span></code></pre></div>
+</div>
+<div id="visualize-snp-fst-distribution" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Visualize SNP Fst distribution<a href="fst-based-approach.html#visualize-snp-fst-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="fst-based-approach.html#cb195-1" tabindex="-1"></a><span class="fu">hist</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+</div>
+<div id="select-outlier-snps" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Select outlier SNPs<a href="fst-based-approach.html#select-outlier-snps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="top-10" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Top 10%<a href="fst-based-approach.html#top-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Outlier = Within top 10% of Fst differentiation</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="fst-based-approach.html#cb196-1" tabindex="-1"></a>ten <span class="ot">&lt;-</span> </span>
+<span id="cb196-2"><a href="fst-based-approach.html#cb196-2" tabindex="-1"></a>  <span class="fu">quantile</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.9</span>))</span>
+<span id="cb196-3"><a href="fst-based-approach.html#cb196-3" tabindex="-1"></a></span>
+<span id="cb196-4"><a href="fst-based-approach.html#cb196-4" tabindex="-1"></a>fst <span class="ot">&lt;-</span> </span>
+<span id="cb196-5"><a href="fst-based-approach.html#cb196-5" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
+<span id="cb196-6"><a href="fst-based-approach.html#cb196-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">outlier.10 =</span> <span class="fu">ifelse</span>(WEIR_AND_COCKERHAM_FST <span class="sc">&gt;</span> ten, <span class="st">&quot;outlier&quot;</span>, <span class="st">&quot;snp&quot;</span>))</span>
+<span id="cb196-7"><a href="fst-based-approach.html#cb196-7" tabindex="-1"></a></span>
+<span id="cb196-8"><a href="fst-based-approach.html#cb196-8" tabindex="-1"></a><span class="fu">nrow</span>(<span class="fu">filter</span>(fst, outlier<span class="fl">.10</span> <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] 14884</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="fst-based-approach.html#cb198-1" tabindex="-1"></a><span class="fu">ggplot</span>(fst, <span class="fu">aes</span>(WEIR_AND_COCKERHAM_FST, <span class="at">fill =</span> outlier<span class="fl">.10</span>)) <span class="sc">+</span></span>
+<span id="cb198-2"><a href="fst-based-approach.html#cb198-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.005</span>) <span class="sc">+</span></span>
+<span id="cb198-3"><a href="fst-based-approach.html#cb198-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;slategray3&quot;</span>, <span class="st">&quot;gray40&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb198-4"><a href="fst-based-approach.html#cb198-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;FST&quot;</span>) <span class="sc">+</span></span>
+<span id="cb198-5"><a href="fst-based-approach.html#cb198-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb198-6"><a href="fst-based-approach.html#cb198-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb198-7"><a href="fst-based-approach.html#cb198-7" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+</div>
+<div id="sd" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> &gt; 5SD<a href="fst-based-approach.html#sd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="fst-based-approach.html#cb199-1" tabindex="-1"></a>sd <span class="ot">&lt;-</span> </span>
+<span id="cb199-2"><a href="fst-based-approach.html#cb199-2" tabindex="-1"></a>  <span class="fu">mean</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST) <span class="sc">+</span></span>
+<span id="cb199-3"><a href="fst-based-approach.html#cb199-3" tabindex="-1"></a>  <span class="dv">5</span><span class="sc">*</span><span class="fu">sd</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST)</span>
+<span id="cb199-4"><a href="fst-based-approach.html#cb199-4" tabindex="-1"></a></span>
+<span id="cb199-5"><a href="fst-based-approach.html#cb199-5" tabindex="-1"></a>fst <span class="ot">&lt;-</span> </span>
+<span id="cb199-6"><a href="fst-based-approach.html#cb199-6" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
+<span id="cb199-7"><a href="fst-based-approach.html#cb199-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">outlier.sd =</span> <span class="fu">ifelse</span>(WEIR_AND_COCKERHAM_FST <span class="sc">&gt;</span> sd, <span class="st">&quot;outlier&quot;</span>, <span class="st">&quot;snp&quot;</span>))</span>
+<span id="cb199-8"><a href="fst-based-approach.html#cb199-8" tabindex="-1"></a></span>
+<span id="cb199-9"><a href="fst-based-approach.html#cb199-9" tabindex="-1"></a><span class="fu">nrow</span>(fst <span class="sc">%&gt;%</span> <span class="fu">filter</span>(outlier.sd <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] 539</code></pre>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="fst-based-approach.html#cb201-1" tabindex="-1"></a><span class="fu">ggplot</span>(fst, <span class="fu">aes</span>(WEIR_AND_COCKERHAM_FST, <span class="at">fill =</span> outlier.sd)) <span class="sc">+</span></span>
+<span id="cb201-2"><a href="fst-based-approach.html#cb201-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.005</span>) <span class="sc">+</span></span>
+<span id="cb201-3"><a href="fst-based-approach.html#cb201-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;slategray3&quot;</span>, <span class="st">&quot;gray40&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb201-4"><a href="fst-based-approach.html#cb201-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;FST&quot;</span>) <span class="sc">+</span></span>
+<span id="cb201-5"><a href="fst-based-approach.html#cb201-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb201-6"><a href="fst-based-approach.html#cb201-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb201-7"><a href="fst-based-approach.html#cb201-7" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+</div>
+<div id="extract-snps-600-bp-positions" class="section level3 hasAnchor" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Extract SNPs &amp; 600 bp positions<a href="fst-based-approach.html#extract-snps-600-bp-positions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="fst-based-approach.html#cb202-1" tabindex="-1"></a>fst<span class="fl">.10</span> <span class="ot">&lt;-</span> </span>
+<span id="cb202-2"><a href="fst-based-approach.html#cb202-2" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
+<span id="cb202-3"><a href="fst-based-approach.html#cb202-3" tabindex="-1"></a>  <span class="fu">filter</span>(outlier<span class="fl">.10</span> <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb202-4"><a href="fst-based-approach.html#cb202-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">minbp =</span> POS <span class="sc">-</span> <span class="dv">600</span>,</span>
+<span id="cb202-5"><a href="fst-based-approach.html#cb202-5" tabindex="-1"></a>         <span class="at">maxbp =</span> POS <span class="sc">+</span> <span class="dv">600</span>,</span>
+<span id="cb202-6"><a href="fst-based-approach.html#cb202-6" tabindex="-1"></a>         <span class="at">flank =</span> <span class="fu">paste0</span>(CHROM, <span class="st">&quot;:&quot;</span>, minbp, <span class="st">&quot;-&quot;</span>, maxbp, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>))</span>
+<span id="cb202-7"><a href="fst-based-approach.html#cb202-7" tabindex="-1"></a></span>
+<span id="cb202-8"><a href="fst-based-approach.html#cb202-8" tabindex="-1"></a><span class="fu">write.csv</span>(fst<span class="fl">.10</span>, <span class="st">&quot;Output Files/allsamples_fst_10_outlierposition.csv&quot;</span>, </span>
+<span id="cb202-9"><a href="fst-based-approach.html#cb202-9" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb202-10"><a href="fst-based-approach.html#cb202-10" tabindex="-1"></a></span>
+<span id="cb202-11"><a href="fst-based-approach.html#cb202-11" tabindex="-1"></a>fst.sd <span class="ot">&lt;-</span> </span>
+<span id="cb202-12"><a href="fst-based-approach.html#cb202-12" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
+<span id="cb202-13"><a href="fst-based-approach.html#cb202-13" tabindex="-1"></a>  <span class="fu">filter</span>(outlier.sd <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb202-14"><a href="fst-based-approach.html#cb202-14" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">minbp =</span> POS <span class="sc">-</span> <span class="dv">600</span>,</span>
+<span id="cb202-15"><a href="fst-based-approach.html#cb202-15" tabindex="-1"></a>         <span class="at">maxbp =</span> POS <span class="sc">+</span> <span class="dv">600</span>,</span>
+<span id="cb202-16"><a href="fst-based-approach.html#cb202-16" tabindex="-1"></a>         <span class="at">flank =</span> <span class="fu">paste0</span>(CHROM, <span class="st">&quot;:&quot;</span>, minbp, <span class="st">&quot;-&quot;</span>, maxbp, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)) </span>
+<span id="cb202-17"><a href="fst-based-approach.html#cb202-17" tabindex="-1"></a></span>
+<span id="cb202-18"><a href="fst-based-approach.html#cb202-18" tabindex="-1"></a><span class="fu">write.csv</span>(fst.sd, <span class="st">&quot;Output Files/allsamples_fst_sd_outlierposition.csv&quot;</span>, </span>
+<span id="cb202-19"><a href="fst-based-approach.html#cb202-19" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="gwas---rrblup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="snp-annotation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  },
+  "info": false
+});
+});
+</script>
+
+</body>
+
+</html>

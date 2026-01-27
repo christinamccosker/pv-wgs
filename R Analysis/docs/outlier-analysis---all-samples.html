@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Outlier Analysis - All samples | Pv-WGS-Analysis</title>
+  <meta name="description" content="McCosker Dissertation Chapter 3 Analyses" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Outlier Analysis - All samples | Pv-WGS-Analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Outlier Analysis - All samples | Pv-WGS-Analysis" />
+  
+  <meta name="twitter:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+<meta name="author" content="Christina McCosker" />
+
+
+<meta name="date" content="2025-01-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="density-plot-filter-metrics.html"/>
+<link rel="next" href="gwas-rrblup.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Pv-WGS-Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="exploratory.html"><a href="exploratory.html"><i class="fa fa-check"></i><b>2</b> Exploratory</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="exploratory.html"><a href="exploratory.html#libraries"><i class="fa fa-check"></i><b>2.1</b> Libraries</a></li>
+<li class="chapter" data-level="2.2" data-path="exploratory.html"><a href="exploratory.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="exploratory.html"><a href="exploratory.html#tidy-add-metadata"><i class="fa fa-check"></i><b>2.3</b> Tidy &amp; add metadata</a></li>
+<li class="chapter" data-level="2.4" data-path="exploratory.html"><a href="exploratory.html#map-of-strandings"><i class="fa fa-check"></i><b>2.4</b> Map of Strandings</a></li>
+<li class="chapter" data-level="2.5" data-path="exploratory.html"><a href="exploratory.html#case-v-control-factors"><i class="fa fa-check"></i><b>2.5</b> Case v Control ~ Factors</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="exploratory.html"><a href="exploratory.html#duringafter-outbreak"><i class="fa fa-check"></i><b>2.5.1</b> During/After Outbreak</a></li>
+<li class="chapter" data-level="2.5.2" data-path="exploratory.html"><a href="exploratory.html#sex"><i class="fa fa-check"></i><b>2.5.2</b> Sex</a></li>
+<li class="chapter" data-level="2.5.3" data-path="exploratory.html"><a href="exploratory.html#age"><i class="fa fa-check"></i><b>2.5.3</b> Age</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="outlier-analysis---high-coverage.html"><a href="outlier-analysis---high-coverage.html"><i class="fa fa-check"></i><b>3</b> Outlier Analysis - High Coverage</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="outlier-analysis---high-coverage.html"><a href="outlier-analysis---high-coverage.html#libraries-1"><i class="fa fa-check"></i><b>3.1</b> Libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="outlier-analysis---high-coverage.html"><a href="outlier-analysis---high-coverage.html#data-1"><i class="fa fa-check"></i><b>3.2</b> Data</a></li>
+<li class="chapter" data-level="3.3" data-path="outlier-analysis---high-coverage.html"><a href="outlier-analysis---high-coverage.html#vcf-to-gds"><i class="fa fa-check"></i><b>3.3</b> VCF to GDS</a></li>
+<li class="chapter" data-level="3.4" data-path="outlier-analysis---high-coverage.html"><a href="outlier-analysis---high-coverage.html#ld-based-snp-pruning"><i class="fa fa-check"></i><b>3.4</b> LD-based SNP Pruning</a></li>
+<li class="chapter" data-level="3.5" data-path="outlier-analysis---high-coverage.html"><a href="outlier-analysis---high-coverage.html#pca"><i class="fa fa-check"></i><b>3.5</b> PCA</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="outlier-analysis---high-coverage.html"><a href="outlier-analysis---high-coverage.html#pca-original"><i class="fa fa-check"></i><b>3.5.1</b> PCA Original</a></li>
+<li class="chapter" data-level="3.5.2" data-path="outlier-analysis---high-coverage.html"><a href="outlier-analysis---high-coverage.html#pca-wo-outliers"><i class="fa fa-check"></i><b>3.5.2</b> PCA w/o Outliers</a></li>
+<li class="chapter" data-level="3.5.3" data-path="outlier-analysis---high-coverage.html"><a href="outlier-analysis---high-coverage.html#pca-by-chromosome"><i class="fa fa-check"></i><b>3.5.3</b> PCA by Chromosome</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="outlier-analysis---high-coverage.html"><a href="outlier-analysis---high-coverage.html#relatedness"><i class="fa fa-check"></i><b>3.6</b> Relatedness</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html"><i class="fa fa-check"></i><b>4</b> Density Plot Filter Metrics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#libraries-2"><i class="fa fa-check"></i><b>4.1</b> Libraries</a></li>
+<li class="chapter" data-level="4.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#data-2"><i class="fa fa-check"></i><b>4.2</b> Data</a></li>
+<li class="chapter" data-level="4.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#density-plots"><i class="fa fa-check"></i><b>4.3</b> Density Plots</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-qd"><i class="fa fa-check"></i><b>4.3.1</b> Metric: QD</a></li>
+<li class="chapter" data-level="4.3.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-fs"><i class="fa fa-check"></i><b>4.3.2</b> Metric: FS</a></li>
+<li class="chapter" data-level="4.3.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-sor"><i class="fa fa-check"></i><b>4.3.3</b> Metric: SOR</a></li>
+<li class="chapter" data-level="4.3.4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mq"><i class="fa fa-check"></i><b>4.3.4</b> Metric: MQ</a></li>
+<li class="chapter" data-level="4.3.5" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mqranksum"><i class="fa fa-check"></i><b>4.3.5</b> Metric: MQRankSum</a></li>
+<li class="chapter" data-level="4.3.6" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-readposranksum"><i class="fa fa-check"></i><b>4.3.6</b> Metric: ReadPosRankSum</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="outlier-analysis---all-samples.html"><a href="outlier-analysis---all-samples.html"><i class="fa fa-check"></i><b>5</b> Outlier Analysis - All samples</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="outlier-analysis---all-samples.html"><a href="outlier-analysis---all-samples.html#libraries-3"><i class="fa fa-check"></i><b>5.1</b> Libraries</a></li>
+<li class="chapter" data-level="5.2" data-path="outlier-analysis---all-samples.html"><a href="outlier-analysis---all-samples.html#data-3"><i class="fa fa-check"></i><b>5.2</b> Data</a></li>
+<li class="chapter" data-level="5.3" data-path="outlier-analysis---all-samples.html"><a href="outlier-analysis---all-samples.html#vcf-to-gds-1"><i class="fa fa-check"></i><b>5.3</b> VCF to GDS</a></li>
+<li class="chapter" data-level="5.4" data-path="outlier-analysis---all-samples.html"><a href="outlier-analysis---all-samples.html#ld-based-snp-pruning-1"><i class="fa fa-check"></i><b>5.4</b> LD-based SNP Pruning</a></li>
+<li class="chapter" data-level="5.5" data-path="outlier-analysis---all-samples.html"><a href="outlier-analysis---all-samples.html#pca-1"><i class="fa fa-check"></i><b>5.5</b> PCA</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="outlier-analysis---all-samples.html"><a href="outlier-analysis---all-samples.html#pca-original-1"><i class="fa fa-check"></i><b>5.5.1</b> PCA Original</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="outlier-analysis---all-samples.html"><a href="outlier-analysis---all-samples.html#relatedness-1"><i class="fa fa-check"></i><b>5.6</b> Relatedness</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html"><i class="fa fa-check"></i><b>6</b> GWAS: rrBLUP</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#libraries-4"><i class="fa fa-check"></i><b>6.1</b> Libraries</a></li>
+<li class="chapter" data-level="6.2" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#data-4"><i class="fa fa-check"></i><b>6.2</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#calculating-grm"><i class="fa fa-check"></i><b>6.3</b> Calculating GRM</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#extract-marker-calls-from-snp-matrix"><i class="fa fa-check"></i><b>6.3.1</b> Extract marker calls from snp matrix</a></li>
+<li class="chapter" data-level="6.3.2" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#calculate-grm"><i class="fa fa-check"></i><b>6.3.2</b> Calculate GRM</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#check-for-population-structure"><i class="fa fa-check"></i><b>6.4</b> Check for population structure</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#heatmap"><i class="fa fa-check"></i><b>6.4.1</b> Heatmap</a></li>
+<li class="chapter" data-level="6.4.2" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#pca-2"><i class="fa fa-check"></i><b>6.4.2</b> PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#prepare-data-for-rrblup"><i class="fa fa-check"></i><b>6.5</b> Prepare data for rrBLUP</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#create-matrix"><i class="fa fa-check"></i><b>6.5.1</b> Create matrix</a></li>
+<li class="chapter" data-level="6.5.2" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#configure-phenotype-data"><i class="fa fa-check"></i><b>6.5.2</b> Configure phenotype data</a></li>
+<li class="chapter" data-level="6.5.3" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#configure-grm-snp_info"><i class="fa fa-check"></i><b>6.5.3</b> Configure grm &amp; snp_info</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#export-data-to-run-on-osc-cluster"><i class="fa fa-check"></i><b>6.6</b> Export data to run on OSC cluster</a></li>
+<li class="chapter" data-level="6.7" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#gwas-model-1-genomic-relationship-matrix"><i class="fa fa-check"></i><b>6.7</b> GWAS Model 1: genomic relationship matrix</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#run-model"><i class="fa fa-check"></i><b>6.7.1</b> Run model</a></li>
+<li class="chapter" data-level="6.7.2" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#extract-results"><i class="fa fa-check"></i><b>6.7.2</b> Extract results</a></li>
+<li class="chapter" data-level="6.7.3" data-path="gwas-rrblup.html"><a href="gwas-rrblup.html#convert--log10pvalues-to-pvalues"><i class="fa fa-check"></i><b>6.7.3</b> Convert -log10(pvalues) to pvalues</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/christinamccosker/pv-wgs.git" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pv-WGS-Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="outlier-analysis---all-samples" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Outlier Analysis - All samples<a href="outlier-analysis---all-samples.html#outlier-analysis---all-samples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="libraries-3" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Libraries<a href="outlier-analysis---all-samples.html#libraries-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="outlier-analysis---all-samples.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(SNPRelate)</span>
+<span id="cb1-2"><a href="outlier-analysis---all-samples.html#cb1-2" tabindex="-1"></a><span class="fu">library</span>(gdsfmt)</span>
+<span id="cb1-3"><a href="outlier-analysis---all-samples.html#cb1-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="outlier-analysis---all-samples.html#cb1-4" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="outlier-analysis---all-samples.html#cb1-5" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb1-6"><a href="outlier-analysis---all-samples.html#cb1-6" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-7"><a href="outlier-analysis---all-samples.html#cb1-7" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb1-8"><a href="outlier-analysis---all-samples.html#cb1-8" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div>
+</div>
+<div id="data-3" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Data<a href="outlier-analysis---all-samples.html#data-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="outlier-analysis---all-samples.html#cb2-1" tabindex="-1"></a>meta <span class="ot">&lt;-</span> </span>
+<span id="cb2-2"><a href="outlier-analysis---all-samples.html#cb2-2" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Input Files/metadata.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="outlier-analysis---all-samples.html#cb2-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seq.id=</span><span class="fu">gsub</span>(<span class="st">&quot;B5GAN&quot;</span>, <span class="st">&quot;&quot;</span>, seq.id),</span>
+<span id="cb2-4"><a href="outlier-analysis---all-samples.html#cb2-4" tabindex="-1"></a>         <span class="at">condition=</span><span class="fu">gsub</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;Alive&quot;</span>, condition),</span>
+<span id="cb2-5"><a href="outlier-analysis---all-samples.html#cb2-5" tabindex="-1"></a>         <span class="at">condition=</span><span class="fu">gsub</span>(<span class="st">&quot;2&quot;</span>, <span class="st">&quot;Fresh Dead&quot;</span>, condition),</span>
+<span id="cb2-6"><a href="outlier-analysis---all-samples.html#cb2-6" tabindex="-1"></a>         <span class="at">condition=</span><span class="fu">gsub</span>(<span class="st">&quot;3&quot;</span>, <span class="st">&quot;Mod Decomp&quot;</span>, condition),</span>
+<span id="cb2-7"><a href="outlier-analysis---all-samples.html#cb2-7" tabindex="-1"></a>         <span class="at">condition=</span><span class="fu">gsub</span>(<span class="st">&quot;Moderate Decomposition&quot;</span>, <span class="st">&quot;Mod Decomp&quot;</span>, condition), </span>
+<span id="cb2-8"><a href="outlier-analysis---all-samples.html#cb2-8" tabindex="-1"></a>         <span class="at">condition=</span><span class="fu">gsub</span>(<span class="st">&quot;Advanced Decomposition&quot;</span>, <span class="st">&quot;Adv Decomp&quot;</span>, condition), </span>
+<span id="cb2-9"><a href="outlier-analysis---all-samples.html#cb2-9" tabindex="-1"></a>         <span class="at">age.class=</span><span class="fu">factor</span>(age.class, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;Pup/Calf&quot;</span>, <span class="st">&quot;Yearling&quot;</span>, </span>
+<span id="cb2-10"><a href="outlier-analysis---all-samples.html#cb2-10" tabindex="-1"></a>                                              <span class="st">&quot;Subadult&quot;</span>, <span class="st">&quot;Adult&quot;</span>, <span class="st">&quot;Unknown&quot;</span>)),</span>
+<span id="cb2-11"><a href="outlier-analysis---all-samples.html#cb2-11" tabindex="-1"></a>         <span class="at">seq.run=</span><span class="fu">factor</span>(seq.run, <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>)))</span></code></pre></div>
+</div>
+<div id="vcf-to-gds-1" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> VCF to GDS<a href="outlier-analysis---all-samples.html#vcf-to-gds-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Import VCF file with SNPs after filtering for MAF, missing genotypes, and LD-based pruning.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="outlier-analysis---all-samples.html#cb3-1" tabindex="-1"></a><span class="co"># Load VCF file and create GDS file</span></span>
+<span id="cb3-2"><a href="outlier-analysis---all-samples.html#cb3-2" tabindex="-1"></a><span class="co"># snpgdsVCF2GDS(&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_filter.vcf&quot;,</span></span>
+<span id="cb3-3"><a href="outlier-analysis---all-samples.html#cb3-3" tabindex="-1"></a><span class="co">#               &quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_filter.gds&quot;,</span></span>
+<span id="cb3-4"><a href="outlier-analysis---all-samples.html#cb3-4" tabindex="-1"></a><span class="co">#               method=&quot;biallelic.only&quot;)</span></span>
+<span id="cb3-5"><a href="outlier-analysis---all-samples.html#cb3-5" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="outlier-analysis---all-samples.html#cb3-6" tabindex="-1"></a><span class="fu">snpgdsSummary</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_filter.gds&quot;</span>)</span></code></pre></div>
+<pre><code>## The file name: C:\Users\Christina\OneDrive - University of Maine System\pv-wgs\allsamples_filter.gds 
+## The total number of samples: 102 
+## The total number of SNPs: 402482 
+## SNP genotypes are stored in SNP-major mode (Sample X SNP).</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="outlier-analysis---all-samples.html#cb5-1" tabindex="-1"></a>geno <span class="ot">&lt;-</span> </span>
+<span id="cb5-2"><a href="outlier-analysis---all-samples.html#cb5-2" tabindex="-1"></a>  <span class="fu">snpgdsOpen</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_filter.gds&quot;</span>)</span></code></pre></div>
+</div>
+<div id="ld-based-snp-pruning-1" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> LD-based SNP Pruning<a href="outlier-analysis---all-samples.html#ld-based-snp-pruning-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="outlier-analysis---all-samples.html#cb6-1" tabindex="-1"></a><span class="co"># set.seed(1000)</span></span>
+<span id="cb6-2"><a href="outlier-analysis---all-samples.html#cb6-2" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-3"><a href="outlier-analysis---all-samples.html#cb6-3" tabindex="-1"></a><span class="co"># snpset &lt;- snpgdsLDpruning(geno, ld.threshold=0.2, autosome.only=FALSE)</span></span>
+<span id="cb6-4"><a href="outlier-analysis---all-samples.html#cb6-4" tabindex="-1"></a><span class="co"># snpset.id &lt;- unlist(unname(snpset))</span></span>
+<span id="cb6-5"><a href="outlier-analysis---all-samples.html#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="outlier-analysis---all-samples.html#cb6-6" tabindex="-1"></a><span class="co"># snpset2 &lt;- snpgdsLDpruning(geno, ld.threshold=0.1, autosome.only=FALSE)</span></span>
+<span id="cb6-7"><a href="outlier-analysis---all-samples.html#cb6-7" tabindex="-1"></a><span class="co"># snpset.id2 &lt;- unlist(unname(snpset2))</span></span>
+<span id="cb6-8"><a href="outlier-analysis---all-samples.html#cb6-8" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb6-9"><a href="outlier-analysis---all-samples.html#cb6-9" tabindex="-1"></a><span class="co"># snpset3 &lt;- snpgdsLDpruning(geno, ld.threshold=0.5, autosome.only=FALSE)</span></span>
+<span id="cb6-10"><a href="outlier-analysis---all-samples.html#cb6-10" tabindex="-1"></a><span class="co"># snpset.id3 &lt;- unlist(unname(snpset3))</span></span></code></pre></div>
+</div>
+<div id="pca-1" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> PCA<a href="outlier-analysis---all-samples.html#pca-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pca-original-1" class="section level3 hasAnchor" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> PCA Original<a href="outlier-analysis---all-samples.html#pca-original-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="run-pca-2" class="section level4 hasAnchor" number="5.5.1.1">
+<h4><span class="header-section-number">5.5.1.1</span> Run PCA<a href="outlier-analysis---all-samples.html#run-pca-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="outlier-analysis---all-samples.html#cb7-1" tabindex="-1"></a>pca <span class="ot">&lt;-</span> </span>
+<span id="cb7-2"><a href="outlier-analysis---all-samples.html#cb7-2" tabindex="-1"></a>  <span class="fu">snpgdsPCA</span>(geno, </span>
+<span id="cb7-3"><a href="outlier-analysis---all-samples.html#cb7-3" tabindex="-1"></a>            <span class="at">num.thread=</span><span class="dv">2</span>, <span class="at">autosome.only=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## Principal Component Analysis (PCA) on genotypes:
+## Excluding 0 SNP (monomorphic: TRUE, MAF: NaN, missing rate: NaN)
+##     # of samples: 102
+##     # of SNPs: 402,482
+##     using 2 threads
+##     # of principal components: 32
+## PCA:    the sum of all selected genotypes (0,1,2) = 65572671
+## CPU capabilities: Double-Precision SSE2
+## Thu Jan 30 20:05:43 2025    (internal increment: 12808)
+## [..................................................]  0%, ETC: ---        [==================================================] 100%, completed, 1s
+## Thu Jan 30 20:05:44 2025    Begin (eigenvalues and eigenvectors)
+## Thu Jan 30 20:05:44 2025    Done.</code></pre>
+</div>
+<div id="calculate-pc-percent-variation-2" class="section level4 hasAnchor" number="5.5.1.2">
+<h4><span class="header-section-number">5.5.1.2</span> Calculate PC Percent Variation<a href="outlier-analysis---all-samples.html#calculate-pc-percent-variation-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="outlier-analysis---all-samples.html#cb9-1" tabindex="-1"></a>pc.percent <span class="ot">&lt;-</span> </span>
+<span id="cb9-2"><a href="outlier-analysis---all-samples.html#cb9-2" tabindex="-1"></a>  <span class="fu">round</span>(pca<span class="sc">$</span>varprop<span class="sc">*</span><span class="dv">100</span>, <span class="at">digits=</span><span class="dv">2</span>)</span>
+<span id="cb9-3"><a href="outlier-analysis---all-samples.html#cb9-3" tabindex="-1"></a><span class="fu">head</span>(pc.percent)</span></code></pre></div>
+<pre><code>## [1] 1.67 1.22 1.19 1.16 1.15 1.15</code></pre>
+</div>
+<div id="configure-plot-data-2" class="section level4 hasAnchor" number="5.5.1.3">
+<h4><span class="header-section-number">5.5.1.3</span> Configure plot data<a href="outlier-analysis---all-samples.html#configure-plot-data-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="outlier-analysis---all-samples.html#cb11-1" tabindex="-1"></a>pca_data <span class="ot">&lt;-</span> </span>
+<span id="cb11-2"><a href="outlier-analysis---all-samples.html#cb11-2" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">sample.id =</span> pca<span class="sc">$</span>sample.id,</span>
+<span id="cb11-3"><a href="outlier-analysis---all-samples.html#cb11-3" tabindex="-1"></a>             <span class="at">EV1 =</span> pca<span class="sc">$</span>eigenvect[,<span class="dv">1</span>],   </span>
+<span id="cb11-4"><a href="outlier-analysis---all-samples.html#cb11-4" tabindex="-1"></a>             <span class="at">EV2 =</span> pca<span class="sc">$</span>eigenvect[,<span class="dv">2</span>],    </span>
+<span id="cb11-5"><a href="outlier-analysis---all-samples.html#cb11-5" tabindex="-1"></a>             <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-6"><a href="outlier-analysis---all-samples.html#cb11-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sample.id =</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">_[^_]*$&quot;</span>, <span class="st">&quot;&quot;</span>, sample.id)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-7"><a href="outlier-analysis---all-samples.html#cb11-7" tabindex="-1"></a>  <span class="fu">merge</span>(., meta, <span class="at">by.x=</span><span class="st">&quot;sample.id&quot;</span>, <span class="at">by.y=</span><span class="st">&quot;seq.id&quot;</span>)</span>
+<span id="cb11-8"><a href="outlier-analysis---all-samples.html#cb11-8" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="outlier-analysis---all-samples.html#cb11-9" tabindex="-1"></a>labelx <span class="ot">&lt;-</span> </span>
+<span id="cb11-10"><a href="outlier-analysis---all-samples.html#cb11-10" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;EV1 (&quot;</span>, pc.percent[<span class="dv">1</span>], <span class="st">&quot;%)&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb11-11"><a href="outlier-analysis---all-samples.html#cb11-11" tabindex="-1"></a>labely <span class="ot">&lt;-</span> </span>
+<span id="cb11-12"><a href="outlier-analysis---all-samples.html#cb11-12" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;EV1 (&quot;</span>, pc.percent[<span class="dv">2</span>], <span class="st">&quot;%)&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+</div>
+<div id="plot-2" class="section level4 hasAnchor" number="5.5.1.4">
+<h4><span class="header-section-number">5.5.1.4</span> Plot<a href="outlier-analysis---all-samples.html#plot-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Seemingly no structure</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="outlier-analysis---all-samples.html#cb12-1" tabindex="-1"></a>plot <span class="ot">&lt;-</span></span>
+<span id="cb12-2"><a href="outlier-analysis---all-samples.html#cb12-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(pca_data, <span class="fu">aes</span>(<span class="at">x=</span>EV1, <span class="at">y=</span>EV2)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="outlier-analysis---all-samples.html#cb12-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">colour=</span><span class="st">&quot;slategray&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="outlier-analysis---all-samples.html#cb12-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb12-5"><a href="outlier-analysis---all-samples.html#cb12-5" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="outlier-analysis---all-samples.html#cb12-6" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="at">label=</span>pca_data<span class="sc">$</span>sample.no,</span>
+<span id="cb12-7"><a href="outlier-analysis---all-samples.html#cb12-7" tabindex="-1"></a>                  <span class="at">max.overlaps =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="outlier-analysis---all-samples.html#cb12-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-9"><a href="outlier-analysis---all-samples.html#cb12-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span>
+<span id="cb12-10"><a href="outlier-analysis---all-samples.html#cb12-10" tabindex="-1"></a>plot</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="plot-pca-factors-2" class="section level4 hasAnchor" number="5.5.1.5">
+<h4><span class="header-section-number">5.5.1.5</span> Plot PCA ~ Factors<a href="outlier-analysis---all-samples.html#plot-pca-factors-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="outlier-analysis---all-samples.html#cb13-1" tabindex="-1"></a>classification <span class="ot">&lt;-</span> </span>
+<span id="cb13-2"><a href="outlier-analysis---all-samples.html#cb13-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(pca_data, <span class="fu">aes</span>(<span class="at">x=</span>EV1, <span class="at">y=</span>EV2, <span class="at">color=</span>classification)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="outlier-analysis---all-samples.html#cb13-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="outlier-analysis---all-samples.html#cb13-4" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a href="outlier-analysis---all-samples.html#cb13-5" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="outlier-analysis---all-samples.html#cb13-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb13-7"><a href="outlier-analysis---all-samples.html#cb13-7" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="outlier-analysis---all-samples.html#cb13-8" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-9"><a href="outlier-analysis---all-samples.html#cb13-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span>
+<span id="cb13-10"><a href="outlier-analysis---all-samples.html#cb13-10" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="outlier-analysis---all-samples.html#cb13-11" tabindex="-1"></a>pdv <span class="ot">&lt;-</span> </span>
+<span id="cb13-12"><a href="outlier-analysis---all-samples.html#cb13-12" tabindex="-1"></a>  <span class="fu">ggplot</span>(pca_data, <span class="fu">aes</span>(<span class="at">x=</span>EV1, <span class="at">y=</span>EV2, <span class="at">color=</span>pdv)) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="outlier-analysis---all-samples.html#cb13-13" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="outlier-analysis---all-samples.html#cb13-14" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb13-15"><a href="outlier-analysis---all-samples.html#cb13-15" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-16"><a href="outlier-analysis---all-samples.html#cb13-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb13-17"><a href="outlier-analysis---all-samples.html#cb13-17" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb13-18"><a href="outlier-analysis---all-samples.html#cb13-18" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-19"><a href="outlier-analysis---all-samples.html#cb13-19" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span>
+<span id="cb13-20"><a href="outlier-analysis---all-samples.html#cb13-20" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="outlier-analysis---all-samples.html#cb13-21" tabindex="-1"></a>sex <span class="ot">&lt;-</span> </span>
+<span id="cb13-22"><a href="outlier-analysis---all-samples.html#cb13-22" tabindex="-1"></a>  <span class="fu">ggplot</span>(pca_data, <span class="fu">aes</span>(<span class="at">x=</span>EV1, <span class="at">y=</span>EV2, <span class="at">color=</span>sex)) <span class="sc">+</span></span>
+<span id="cb13-23"><a href="outlier-analysis---all-samples.html#cb13-23" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-24"><a href="outlier-analysis---all-samples.html#cb13-24" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb13-25"><a href="outlier-analysis---all-samples.html#cb13-25" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-26"><a href="outlier-analysis---all-samples.html#cb13-26" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb13-27"><a href="outlier-analysis---all-samples.html#cb13-27" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb13-28"><a href="outlier-analysis---all-samples.html#cb13-28" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-29"><a href="outlier-analysis---all-samples.html#cb13-29" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span>
+<span id="cb13-30"><a href="outlier-analysis---all-samples.html#cb13-30" tabindex="-1"></a></span>
+<span id="cb13-31"><a href="outlier-analysis---all-samples.html#cb13-31" tabindex="-1"></a>age <span class="ot">&lt;-</span></span>
+<span id="cb13-32"><a href="outlier-analysis---all-samples.html#cb13-32" tabindex="-1"></a>  <span class="fu">ggplot</span>(pca_data, <span class="fu">aes</span>(<span class="at">x=</span>EV1, <span class="at">y=</span>EV2, <span class="at">color=</span>age.class)) <span class="sc">+</span></span>
+<span id="cb13-33"><a href="outlier-analysis---all-samples.html#cb13-33" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-34"><a href="outlier-analysis---all-samples.html#cb13-34" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb13-35"><a href="outlier-analysis---all-samples.html#cb13-35" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;magenta&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-36"><a href="outlier-analysis---all-samples.html#cb13-36" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb13-37"><a href="outlier-analysis---all-samples.html#cb13-37" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb13-38"><a href="outlier-analysis---all-samples.html#cb13-38" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-39"><a href="outlier-analysis---all-samples.html#cb13-39" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span>
+<span id="cb13-40"><a href="outlier-analysis---all-samples.html#cb13-40" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="outlier-analysis---all-samples.html#cb13-41" tabindex="-1"></a>condition <span class="ot">&lt;-</span> </span>
+<span id="cb13-42"><a href="outlier-analysis---all-samples.html#cb13-42" tabindex="-1"></a>  <span class="fu">ggplot</span>(pca_data, <span class="fu">aes</span>(<span class="at">x=</span>EV1, <span class="at">y=</span>EV2, <span class="at">color=</span>condition)) <span class="sc">+</span></span>
+<span id="cb13-43"><a href="outlier-analysis---all-samples.html#cb13-43" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-44"><a href="outlier-analysis---all-samples.html#cb13-44" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb13-45"><a href="outlier-analysis---all-samples.html#cb13-45" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;magenta&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-46"><a href="outlier-analysis---all-samples.html#cb13-46" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb13-47"><a href="outlier-analysis---all-samples.html#cb13-47" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb13-48"><a href="outlier-analysis---all-samples.html#cb13-48" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-49"><a href="outlier-analysis---all-samples.html#cb13-49" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span>
+<span id="cb13-50"><a href="outlier-analysis---all-samples.html#cb13-50" tabindex="-1"></a></span>
+<span id="cb13-51"><a href="outlier-analysis---all-samples.html#cb13-51" tabindex="-1"></a>seqrun <span class="ot">&lt;-</span> </span>
+<span id="cb13-52"><a href="outlier-analysis---all-samples.html#cb13-52" tabindex="-1"></a>  <span class="fu">ggplot</span>(pca_data, <span class="fu">aes</span>(<span class="at">x=</span>EV1, <span class="at">y=</span>EV2, <span class="at">color=</span>seq.run)) <span class="sc">+</span></span>
+<span id="cb13-53"><a href="outlier-analysis---all-samples.html#cb13-53" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-54"><a href="outlier-analysis---all-samples.html#cb13-54" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb13-55"><a href="outlier-analysis---all-samples.html#cb13-55" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-56"><a href="outlier-analysis---all-samples.html#cb13-56" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb13-57"><a href="outlier-analysis---all-samples.html#cb13-57" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb13-58"><a href="outlier-analysis---all-samples.html#cb13-58" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-59"><a href="outlier-analysis---all-samples.html#cb13-59" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span>
+<span id="cb13-60"><a href="outlier-analysis---all-samples.html#cb13-60" tabindex="-1"></a></span>
+<span id="cb13-61"><a href="outlier-analysis---all-samples.html#cb13-61" tabindex="-1"></a>seqdepth <span class="ot">&lt;-</span></span>
+<span id="cb13-62"><a href="outlier-analysis---all-samples.html#cb13-62" tabindex="-1"></a>  <span class="fu">ggplot</span>(pca_data, <span class="fu">aes</span>(<span class="at">x=</span>EV1, <span class="at">y=</span>EV2, <span class="at">color=</span>seq.depth)) <span class="sc">+</span></span>
+<span id="cb13-63"><a href="outlier-analysis---all-samples.html#cb13-63" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb13-64"><a href="outlier-analysis---all-samples.html#cb13-64" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb13-65"><a href="outlier-analysis---all-samples.html#cb13-65" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-66"><a href="outlier-analysis---all-samples.html#cb13-66" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb13-67"><a href="outlier-analysis---all-samples.html#cb13-67" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb13-68"><a href="outlier-analysis---all-samples.html#cb13-68" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb13-69"><a href="outlier-analysis---all-samples.html#cb13-69" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span>
+<span id="cb13-70"><a href="outlier-analysis---all-samples.html#cb13-70" tabindex="-1"></a></span>
+<span id="cb13-71"><a href="outlier-analysis---all-samples.html#cb13-71" tabindex="-1"></a>sex</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="outlier-analysis---all-samples.html#cb14-1" tabindex="-1"></a>age</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="outlier-analysis---all-samples.html#cb15-1" tabindex="-1"></a>condition</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="outlier-analysis---all-samples.html#cb16-1" tabindex="-1"></a>pdv</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-4.png" width="672" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="outlier-analysis---all-samples.html#cb17-1" tabindex="-1"></a>classification</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-5.png" width="672" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="outlier-analysis---all-samples.html#cb18-1" tabindex="-1"></a>seqrun</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-6.png" width="672" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="outlier-analysis---all-samples.html#cb19-1" tabindex="-1"></a>seqdepth</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-7.png" width="672" /></p>
+<!-- ##### Outlier groups -->
+<!-- ```{r, warning=FALSE} -->
+<!-- outlier_id <- -->
+<!--   data.frame( -->
+<!--   sample.no = c("67", "70", "65", "64", "97", "55", -->
+<!--          "2", "9", "1", "3", "4", "8", "10", "5", "6", "7", -->
+<!--          "53", "104", "56", "72", "51", "54", "58", "59", "52", "63"), -->
+<!--   pcaloc = c(rep("top left", 6), rep("bottom left", 10), rep("bottom middle", 10))) -->
+<!-- outliers <- -->
+<!--   meta %>% -->
+<!--   filter(sample.no %in% outlier_id$sample.no) %>% -->
+<!--   merge(., outlier_id, by="sample.no") %>% -->
+<!--   mutate(lat=round(lat, digits=1), -->
+<!--          long=round(long, digits=1), -->
+<!--          seqdepth=round(seqdepth, digits=1)) -->
+<!-- outliers %>% -->
+<!--   arrange(pcaloc) %>% -->
+<!--   kable() %>% -->
+<!--   kable_styling("basic", font_size=12, -->
+<!--                 position="center") %>% -->
+<!--   scroll_box(width = "100%", height = "700px") -->
+<!-- ``` -->
+<!-- ## Pup PCA by Location -->
+<!-- 70-71 = southern Maine -->
+<!-- 69-70 = midcoast -->
+<!-- 68-69 = Penobscot -->
+<!-- <68 = Downeast -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pups <- -->
+<!--   meta %>% -->
+<!--   filter(age.class=="Pup/Calf") %>% -->
+<!--   mutate(longloc = ifelse(long < -70 & long > -71, "southME", -->
+<!--                      ifelse(long < -69 & long > -70, "midcoast", -->
+<!--                        ifelse(long < -68 & long > -69, "Penobscot", "NA")))) %>% -->
+<!--   select(seq.id, longloc) %>% -->
+<!--   merge(., pca_data, by.x = "seq.id", by.y = "sample.id") -->
+<!-- puploc <- -->
+<!--   ggplot(pups, aes(x=EV1, y=EV2, color=longloc)) + -->
+<!--   geom_point(size=2) + -->
+<!--   stat_ellipse() + -->
+<!--   scale_color_manual(values=c("slategray", "#58baba", "coral")) + -->
+<!--   labs(x=labelx, -->
+<!--        y=labely) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank()) -->
+<!-- puploc -->
+<!-- puploc + -->
+<!--   geom_text_repel(label=pups$sample.no) -->
+<!-- ``` -->
+<!-- ### PCA by Chromosome -->
+<!-- ```{r, warning=FALSE} -->
+<!-- chromosomes <- -->
+<!--   read.gdsn(index.gdsn(geno, "snp.chromosome")) -->
+<!-- ``` -->
+<!-- #### Chromosome 1 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom1 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_1") -->
+<!-- chrom1 <- -->
+<!--   data.frame(sample.id = pca_chrom1$sample.id, -->
+<!--              EV1 = pca_chrom1$eigenvect[,1], -->
+<!--              EV2 = pca_chrom1$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom1 <- -->
+<!--   round(pca_chrom1$varprop*100, digits=2) -->
+<!-- labelx_chrom1 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom1[1], "%)", sep="") -->
+<!-- labely_chrom1 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom1[2], "%)", sep="") -->
+<!-- chrom1_plot <- -->
+<!--   ggplot(chrom1, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 1", -->
+<!--        x=labelx_chrom1, -->
+<!--        y=labely_chrom1) + -->
+<!--   geom_text_repel(label=chrom1$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 2 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom2 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_2") -->
+<!-- chrom2 <- -->
+<!--   data.frame(sample.id = pca_chrom2$sample.id, -->
+<!--              EV1 = pca_chrom2$eigenvect[,1], -->
+<!--              EV2 = pca_chrom2$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom2 <- -->
+<!--   round(pca_chrom2$varprop*100, digits=2) -->
+<!-- labelx_chrom2 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom2[1], "%)", sep="") -->
+<!-- labely_chrom2 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom2[2], "%)", sep="") -->
+<!-- chrom2_plot <- -->
+<!--   ggplot(chrom2, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 2", -->
+<!--        x=labelx_chrom2, -->
+<!--        y=labely_chrom2) + -->
+<!--   geom_text_repel(label=chrom2$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 3 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom3 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_3") -->
+<!-- chrom3 <- -->
+<!--   data.frame(sample.id = pca_chrom3$sample.id, -->
+<!--              EV1 = pca_chrom3$eigenvect[,1], -->
+<!--              EV2 = pca_chrom3$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom3 <- -->
+<!--   round(pca_chrom3$varprop*100, digits=2) -->
+<!-- labelx_chrom3 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom3[1], "%)", sep="") -->
+<!-- labely_chrom3 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom3[2], "%)", sep="") -->
+<!-- chrom3_plot <- -->
+<!--   ggplot(chrom3, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 3", -->
+<!--        x=labelx_chrom3, -->
+<!--        y=labely_chrom3) + -->
+<!--   geom_text_repel(label=chrom3$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 4 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom4 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_4") -->
+<!-- chrom4 <- -->
+<!--   data.frame(sample.id = pca_chrom4$sample.id, -->
+<!--              EV1 = pca_chrom4$eigenvect[,1], -->
+<!--              EV2 = pca_chrom4$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom4 <- -->
+<!--   round(pca_chrom4$varprop*100, digits=2) -->
+<!-- labelx_chrom4 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom4[1], "%)", sep="") -->
+<!-- labely_chrom4 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom4[2], "%)", sep="") -->
+<!-- chrom4_plot <- -->
+<!--   ggplot(chrom4, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 4", -->
+<!--        x=labelx_chrom4, -->
+<!--        y=labely_chrom4) + -->
+<!--   geom_text_repel(label=chrom4$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 5 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom5 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_5") -->
+<!-- chrom5 <- -->
+<!--   data.frame(sample.id = pca_chrom5$sample.id, -->
+<!--              EV1 = pca_chrom5$eigenvect[,1], -->
+<!--              EV2 = pca_chrom5$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom5 <- -->
+<!--   round(pca_chrom5$varprop*100, digits=2) -->
+<!-- labelx_chrom5 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom5[1], "%)", sep="") -->
+<!-- labely_chrom5 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom5[2], "%)", sep="") -->
+<!-- chrom5_plot <- -->
+<!--   ggplot(chrom5, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 5", -->
+<!--        x=labelx_chrom5, -->
+<!--        y=labely_chrom5) + -->
+<!--   geom_text_repel(label=chrom5$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 6 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom6 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_6") -->
+<!-- chrom6 <- -->
+<!--   data.frame(sample.id = pca_chrom6$sample.id, -->
+<!--              EV1 = pca_chrom6$eigenvect[,1], -->
+<!--              EV2 = pca_chrom6$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom6 <- -->
+<!--   round(pca_chrom6$varprop*100, digits=2) -->
+<!-- labelx_chrom6 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom6[1], "%)", sep="") -->
+<!-- labely_chrom6 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom6[2], "%)", sep="") -->
+<!-- chrom6_plot <- -->
+<!--   ggplot(chrom6, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 6", -->
+<!--        x=labelx_chrom6, -->
+<!--        y=labely_chrom6) + -->
+<!--   geom_text_repel(label=chrom6$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 7 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom7 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_7") -->
+<!-- chrom7 <- -->
+<!--   data.frame(sample.id = pca_chrom7$sample.id, -->
+<!--              EV1 = pca_chrom7$eigenvect[,1], -->
+<!--              EV2 = pca_chrom7$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom7 <- -->
+<!--   round(pca_chrom7$varprop*100, digits=2) -->
+<!-- labelx_chrom7 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom7[1], "%)", sep="") -->
+<!-- labely_chrom7 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom7[2], "%)", sep="") -->
+<!-- chrom7_plot <- -->
+<!--   ggplot(chrom7, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 7", -->
+<!--        x=labelx_chrom7, -->
+<!--        y=labely_chrom7) + -->
+<!--   geom_text_repel(label=chrom7$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 8 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom8 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_8") -->
+<!-- chrom8 <- -->
+<!--   data.frame(sample.id = pca_chrom8$sample.id, -->
+<!--              EV1 = pca_chrom8$eigenvect[,1], -->
+<!--              EV2 = pca_chrom8$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom8 <- -->
+<!--   round(pca_chrom8$varprop*100, digits=2) -->
+<!-- labelx_chrom8 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom8[1], "%)", sep="") -->
+<!-- labely_chrom8 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom8[2], "%)", sep="") -->
+<!-- chrom8_plot <- -->
+<!--   ggplot(chrom8, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 8", -->
+<!--        x=labelx_chrom8, -->
+<!--        y=labely_chrom8) + -->
+<!--   geom_text_repel(label=chrom8$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 9 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom9 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_9") -->
+<!-- chrom9 <- -->
+<!--   data.frame(sample.id = pca_chrom9$sample.id, -->
+<!--              EV1 = pca_chrom9$eigenvect[,1], -->
+<!--              EV2 = pca_chrom9$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom9 <- -->
+<!--   round(pca_chrom9$varprop*100, digits=2) -->
+<!-- labelx_chrom9 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom9[1], "%)", sep="") -->
+<!-- labely_chrom9 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom9[2], "%)", sep="") -->
+<!-- chrom9_plot <- -->
+<!--   ggplot(chrom9, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 9", -->
+<!--        x=labelx_chrom9, -->
+<!--        y=labely_chrom9) + -->
+<!--   geom_text_repel(label=chrom9$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 10 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom10 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_10") -->
+<!-- chrom10 <- -->
+<!--   data.frame(sample.id = pca_chrom10$sample.id, -->
+<!--              EV1 = pca_chrom10$eigenvect[,1], -->
+<!--              EV2 = pca_chrom10$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom10 <- -->
+<!--   round(pca_chrom10$varprop*100, digits=2) -->
+<!-- labelx_chrom10 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom10[1], "%)", sep="") -->
+<!-- labely_chrom10 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom10[2], "%)", sep="") -->
+<!-- chrom10_plot <- -->
+<!--   ggplot(chrom10, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 10", -->
+<!--        x=labelx_chrom10, -->
+<!--        y=labely_chrom10) + -->
+<!--   geom_text_repel(label=chrom10$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 11 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom11 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_11") -->
+<!-- chrom11 <- -->
+<!--   data.frame(sample.id = pca_chrom11$sample.id, -->
+<!--              EV1 = pca_chrom11$eigenvect[,1], -->
+<!--              EV2 = pca_chrom11$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom11 <- -->
+<!--   round(pca_chrom11$varprop*100, digits=2) -->
+<!-- labelx_chrom11 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom11[1], "%)", sep="") -->
+<!-- labely_chrom11 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom11[2], "%)", sep="") -->
+<!-- chrom11_plot <- -->
+<!--   ggplot(chrom11, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 11", -->
+<!--        x=labelx_chrom11, -->
+<!--        y=labely_chrom11) + -->
+<!--   geom_text_repel(label=chrom11$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 12 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom12 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_12") -->
+<!-- chrom12 <- -->
+<!--   data.frame(sample.id = pca_chrom12$sample.id, -->
+<!--              EV1 = pca_chrom12$eigenvect[,1], -->
+<!--              EV2 = pca_chrom12$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom12 <- -->
+<!--   round(pca_chrom12$varprop*100, digits=2) -->
+<!-- labelx_chrom12 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom12[1], "%)", sep="") -->
+<!-- labely_chrom12 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom12[2], "%)", sep="") -->
+<!-- chrom12_plot <- -->
+<!--   ggplot(chrom12, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 12", -->
+<!--        x=labelx_chrom12, -->
+<!--        y=labely_chrom12) + -->
+<!--   geom_text_repel(label=chrom12$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 13 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom13 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_13") -->
+<!-- chrom13 <- -->
+<!--   data.frame(sample.id = pca_chrom13$sample.id, -->
+<!--              EV1 = pca_chrom13$eigenvect[,1], -->
+<!--              EV2 = pca_chrom13$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom13 <- -->
+<!--   round(pca_chrom13$varprop*100, digits=2) -->
+<!-- labelx_chrom13 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom13[1], "%)", sep="") -->
+<!-- labely_chrom13 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom13[2], "%)", sep="") -->
+<!-- chrom13_plot <- -->
+<!--   ggplot(chrom13, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 13", -->
+<!--        x=labelx_chrom13, -->
+<!--        y=labely_chrom13) + -->
+<!--   geom_text_repel(label=chrom13$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 14 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom14 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_14") -->
+<!-- chrom14 <- -->
+<!--   data.frame(sample.id = pca_chrom14$sample.id, -->
+<!--              EV1 = pca_chrom14$eigenvect[,1], -->
+<!--              EV2 = pca_chrom14$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom14 <- -->
+<!--   round(pca_chrom14$varprop*100, digits=2) -->
+<!-- labelx_chrom14 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom14[1], "%)", sep="") -->
+<!-- labely_chrom14 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom14[2], "%)", sep="") -->
+<!-- chrom14_plot <- -->
+<!--   ggplot(chrom14, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 14", -->
+<!--        x=labelx_chrom14, -->
+<!--        y=labely_chrom14) + -->
+<!--   geom_text_repel(label=chrom14$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- ``` -->
+<!-- #### Chromosome 16 -->
+<!-- ```{r, warning=FALSE} -->
+<!-- pca_chrom16 <- -->
+<!--   snpgdsPCA(geno, -->
+<!--             snp.id = snpset.id, -->
+<!--             num.thread = 2, -->
+<!--             autosome.only = "HiC_scaffold_16") -->
+<!-- chrom16 <- -->
+<!--   data.frame(sample.id = pca_chrom16$sample.id, -->
+<!--              EV1 = pca_chrom16$eigenvect[,1], -->
+<!--              EV2 = pca_chrom16$eigenvect[,2], -->
+<!--              stringsAsFactors = FALSE) %>% -->
+<!--   mutate(sample.id = gsub("\\_[^_]*$", "", sample.id)) %>% -->
+<!--   merge(., meta, by.x="sample.id", by.y="seq.id") -->
+<!-- pc.percent_chrom16 <- -->
+<!--   round(pca_chrom16$varprop*100, digits=2) -->
+<!-- labelx_chrom16 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom16[1], "%)", sep="") -->
+<!-- labely_chrom16 <- -->
+<!--   paste0("EV1 (", pc.percent_chrom16[2], "%)", sep="") -->
+<!-- chrom16_plot <- -->
+<!--   ggplot(chrom16, aes(x=EV1, y=EV2)) + -->
+<!--   geom_point() + -->
+<!--   labs(title="Chromosome 15", -->
+<!--        x=labelx_chrom16, -->
+<!--        y=labely_chrom16) + -->
+<!--   geom_text_repel(label=chrom16$sample.no, -->
+<!--                   max.overlaps=50) + -->
+<!--   theme_bw() + -->
+<!--   theme(panel.grid=element_blank(), -->
+<!--         plot.title = element_text(hjust = 0.5)) -->
+<!-- chrom16_plot -->
+<!-- ``` -->
+<!-- #### View -->
+<!-- ```{r, warning=FALSE} -->
+<!-- chrom1_plot -->
+<!-- chrom2_plot -->
+<!-- chrom3_plot -->
+<!-- chrom4_plot -->
+<!-- chrom5_plot -->
+<!-- chrom6_plot -->
+<!-- chrom7_plot -->
+<!-- chrom8_plot -->
+<!-- chrom9_plot -->
+<!-- chrom10_plot -->
+<!-- chrom11_plot -->
+<!-- chrom12_plot -->
+<!-- chrom13_plot -->
+<!-- chrom14_plot -->
+<!-- chrom16_plot -->
+<!-- ``` -->
+</div>
+</div>
+</div>
+<div id="relatedness-1" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Relatedness<a href="outlier-analysis---all-samples.html#relatedness-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Drop SNPs with missing info in &gt;5% individuals.<br />
+Exclude rare SNPs, &lt;5% MAF.
+k0 is high for all individuals - no relatedness</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="outlier-analysis---all-samples.html#cb20-1" tabindex="-1"></a><span class="co"># sample.id &lt;- </span></span>
+<span id="cb20-2"><a href="outlier-analysis---all-samples.html#cb20-2" tabindex="-1"></a><span class="co">#   read.gdsn(index.gdsn(geno, &quot;sample.id&quot;))</span></span>
+<span id="cb20-3"><a href="outlier-analysis---all-samples.html#cb20-3" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb20-4"><a href="outlier-analysis---all-samples.html#cb20-4" tabindex="-1"></a><span class="co"># ibd &lt;- </span></span>
+<span id="cb20-5"><a href="outlier-analysis---all-samples.html#cb20-5" tabindex="-1"></a><span class="co">#   snpgdsIBDMoM(geno, </span></span>
+<span id="cb20-6"><a href="outlier-analysis---all-samples.html#cb20-6" tabindex="-1"></a><span class="co">#                sample.id=sample.id, snp.id=snpset.id,</span></span>
+<span id="cb20-7"><a href="outlier-analysis---all-samples.html#cb20-7" tabindex="-1"></a><span class="co">#                maf=0.05, missing.rate=0.05, </span></span>
+<span id="cb20-8"><a href="outlier-analysis---all-samples.html#cb20-8" tabindex="-1"></a><span class="co">#                num.thread=2, autosome.only=FALSE)</span></span>
+<span id="cb20-9"><a href="outlier-analysis---all-samples.html#cb20-9" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb20-10"><a href="outlier-analysis---all-samples.html#cb20-10" tabindex="-1"></a><span class="co"># ibd.coeff &lt;- snpgdsIBDSelection(ibd)</span></span>
+<span id="cb20-11"><a href="outlier-analysis---all-samples.html#cb20-11" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb20-12"><a href="outlier-analysis---all-samples.html#cb20-12" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb20-13"><a href="outlier-analysis---all-samples.html#cb20-13" tabindex="-1"></a><span class="co"># plot(ibd.coeff$k0, ibd.coeff$k1, xlim=c(0,1), ylim=c(0,1),</span></span>
+<span id="cb20-14"><a href="outlier-analysis---all-samples.html#cb20-14" tabindex="-1"></a><span class="co">#      xlab=&quot;k0&quot;, ylab=&quot;k1&quot;, main=&quot;YRI samples (MoM)&quot;)</span></span>
+<span id="cb20-15"><a href="outlier-analysis---all-samples.html#cb20-15" tabindex="-1"></a><span class="co"># lines(c(0,1), c(1,0), col=&quot;red&quot;, lty=2)</span></span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="density-plot-filter-metrics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gwas-rrblup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"info": false
+});
+});
+</script>
+
+</body>
+
+</html>

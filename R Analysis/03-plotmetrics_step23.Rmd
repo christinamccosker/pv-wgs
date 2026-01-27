@@ -1,0 +1,142 @@
+---
+author: "Christina McCosker"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Density Plot Filter Metrics
+Step 23 of Chromosome Level Workflow
+Density plots for SNPs based on: QD, FS, SOR, MQ, MQRankSum, ReadPosRankSum
+
+## Libraries
+```{r, warning=FALSE, message=FALSE}
+library(ggplot2)
+```
+
+## Data
+```{r}
+filter <- 
+  read.table("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/30xSamples_nosex_hardfilter.table", header=TRUE)
+```
+
+## Density Plots
+
+### Metric: QD
+Filtered out <2
+```{r}
+filter$failQD <- grepl("QD2", filter$FILTER)
+  
+# Original Plot
+qdplot <- 
+  ggplot(filter, aes(x=QD)) + 
+  geom_density()
+qdplot  
+  
+# Pass/Fail QD
+qdplot2 <- 
+  ggplot(filter, aes(x=QD, fill=failQD)) + 
+  geom_density() 
+qdplot2
+```
+
+### Metric: FS 
+Filtered out >60
+```{r}
+filter$failFS <- grepl("FS60", filter$FILTER)
+
+# Original Plot
+fsplot <- 
+  ggplot(filter, aes(x=(FS))) +
+  scale_x_continuous(trans="log10") +
+  geom_density()
+fsplot
+  
+# Pass/Fail FS
+fsplot2 <- 
+  ggplot(filter, aes(x=(FS), fill=failFS)) +
+  scale_x_continuous(trans="log10") +
+  geom_density()
+fsplot2
+```
+
+### Metric: SOR
+Filtered out >3
+```{r}
+filter$failSOR <- grepl("SOR3", filter$FILTER)
+
+# Original Plot
+sorplot <- 
+  ggplot(filter, aes(x=SOR)) +
+  geom_density()
+sorplot
+      
+# Pass/Fail SOR
+sorplot2 <- 
+  ggplot(filter, aes(x=SOR, fill=failSOR)) +
+  geom_density()
+sorplot2
+```
+
+### Metric: MQ
+Filtered out <40
+```{r}
+filter$failMQ <- grepl("MQ40", filter$FILTER)
+      
+# Original Plot
+mqplot <- 
+  ggplot(filter, aes(x=MQ)) +
+  geom_density()
+mqplot
+
+# Pass/Fail MQ
+mqplot2 <- 
+  ggplot(filter, aes(x=MQ, fill=failMQ)) +
+  geom_density()
+mqplot2    
+```
+
+### Metric: MQRankSum
+Filtered out < -12.5
+
+```{r}
+filter$failMQRankSum <- grepl("MQRankSum-12.5", filter$FILTER)
+  
+sum(filter$MQRankSum > 12.5, na.rm = TRUE)    # 43
+sum(filter$MQRankSum < -12.5, na.rm = TRUE)   # 330
+
+# Original Plot
+mqrsplot <- 
+  ggplot(filter, aes(x=MQRankSum)) +
+  geom_density()
+mqrsplot
+        
+# Pass/Fail MQRankSum
+mqrsplot2 <- 
+  ggplot(filter, aes(x=MQRankSum, fill=failMQRankSum)) +
+  geom_density()
+mqrsplot2   
+```
+
+### Metric: ReadPosRankSum
+Filtered out < -8  
+As large values on either end are not good, will filter out variants with RPRS >8 too
+```{r}
+filter$failReadPosRankSum <- grepl("ReadPosRankSum-8", filter$FILTER)
+    
+sum(filter$ReadPosRankSum < -8, na.rm = TRUE)   #130
+sum(filter$ReadPosRankSum > 8, na.rm = TRUE)    # 96
+    
+# Original Plot
+rprsplot <- 
+  ggplot(filter, aes(x=ReadPosRankSum)) +
+  geom_density()
+rprsplot
+    
+# Pass/Fail ReadPosRankSum
+rprsplot2 <- 
+  ggplot(filter, aes(x=ReadPosRankSum, fill=failReadPosRankSum)) +
+  geom_density()
+rprsplot2   
+```

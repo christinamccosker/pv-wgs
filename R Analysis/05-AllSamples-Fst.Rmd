@@ -1,0 +1,119 @@
+---
+author: "Christina McCosker"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Fst-based Approach
+To complement GWAS, conducting Fst test between cases and controls, selecting top 10% of SNPs as likely to be related to disease susceptibility.
+
+## Libraries
+```{r}
+library(tidyverse)
+library(qqman)
+```
+
+## Data
+```{r}
+fst <- 
+  read.table("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples.casevcontrol.weir.fst",
+             header = 1) 
+```
+
+## Visualize SNP Fst distribution
+```{r}
+hist(fst$WEIR_AND_COCKERHAM_FST)
+```
+
+## Select outlier SNPs
+
+### > 5SD
+```{r}
+sd <- 
+  mean(fst$WEIR_AND_COCKERHAM_FST) +
+  5*sd(fst$WEIR_AND_COCKERHAM_FST)
+
+fst <- 
+  fst %>% 
+  mutate(outlier.sd = ifelse(WEIR_AND_COCKERHAM_FST > sd, "outlier", "snp"))
+
+nrow(fst %>% filter(outlier.sd == "outlier"))
+
+ggplot(fst, aes(WEIR_AND_COCKERHAM_FST, fill = outlier.sd)) +
+  geom_histogram(binwidth = 0.005) +
+  scale_fill_manual(values = c("slategray3", "gray40")) +
+  labs(x = "FST") +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        legend.position = "none")
+```
+
+#### Plot FST SD Results
+```{r}
+fst_manhattan <- 
+  fst %>% 
+  mutate(SNP = paste0(CHROM, "_", POS, sep = ""),
+         CHROM = gsub("HiC_scaffold_", "", CHROM),
+         CHROM = as.numeric(CHROM))
+
+manhattan(fst_manhattan, 
+          chr = "CHROM", 
+          bp = "POS",
+          p = "WEIR_AND_COCKERHAM_FST",
+          SNP = "SNP",
+          suggestiveline=FALSE, 
+          col=c("black", "grey"),
+          genomewideline = sd, 
+          logp = FALSE,
+          ylab = "Fst", 
+          ylim = c(0, 0.25))
+
+jpeg("Figures/manhattan_fst.jpeg", width = 10, height = 8, units = "in", res = 300)
+manhattan(fst_manhattan, 
+          chr = "CHROM", 
+          bp = "POS",
+          p = "WEIR_AND_COCKERHAM_FST",
+          SNP = "SNP",
+          suggestiveline=FALSE, 
+          col=c("#008080", "#58baba"),
+          genomewideline = sd, 
+          logp = FALSE,
+          ylab = "Fst", 
+          ylim = c(0, 0.25))
+dev.off()
+```
+
+#### Plot Fst SD - Presentation
+```{r}
+jpeg("Figures/manhattan_fst_pres.jpeg", width = 10, height = 8, units = "in", res = 300)
+manhattan(fst_manhattan, 
+          chr = "CHROM", 
+          bp = "POS",
+          p = "WEIR_AND_COCKERHAM_FST",
+          SNP = "SNP",
+          suggestiveline=FALSE, 
+          col=c("#9BD3D9", "#7FC1DB"),
+          genomewideline = sd, 
+          logp = FALSE,
+          ylab = "FST", 
+          ylim = c(0, 0.25),
+          cex.axis = 1.3,
+          cex.lab = 1.3)
+dev.off()
+```
+
+
+### Extract SNPs & 600 bp positions
+```{r}
+fst.sd <- 
+  fst %>% 
+  filter(outlier.sd == "outlier") %>% 
+  mutate(minbp = POS - 600,
+         maxbp = POS + 600,
+         flank = paste0(CHROM, ":", minbp, "-", maxbp, sep = "")) 
+
+write.csv(fst.sd, "Output Files/allsamples_fst_sd_outlierposition.csv", 
+            row.names = FALSE)
+```

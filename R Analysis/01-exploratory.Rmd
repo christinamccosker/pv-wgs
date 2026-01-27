@@ -1,0 +1,261 @@
+---
+author: "Christina McCosker"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Tidy Data & Exploratory
+
+## Libraries
+```{r, warning=FALSE, message=FALSE}
+library(sf)
+library(tidyverse)
+library(ggplot2)
+library(gridExtra)
+library(ggpubr)
+library(maps)
+library(ggmosaic)
+library(janitor)
+```
+
+## Data
+```{r}
+meta <- 
+  read.csv("Input Files/metadata.csv") %>% 
+  mutate(classification=factor(classification, levels=c("Non-survivor",
+                                                        "Survivor")),
+         condition=gsub("1", "Alive", condition),
+         condition=gsub("2", "Fresh Dead", condition),
+         condition=gsub("3", "Mod Decomp", condition),
+         condition=gsub("Moderate Decomposition", "Mod Decomp", condition), 
+         condition=gsub("Advanced Decomposition", "Adv Decomp", condition),
+         condition=factor(condition, levels=c("Alive", "Fresh Dead", "Mod Decomp", 
+                                              "Adv Decomp")),
+         age.class=factor(age.class, levels=c("Pup/Calf", "Yearling", 
+                                              "Subadult", "Adult", "Unknown")),
+         seq.run=factor(seq.run, levels=c("1", "2")))
+
+write.csv(meta, "Output Files/metadata_tidy.csv",
+          row.names = FALSE)
+```
+
+## Descriptive Statistics
+```{r}
+table(meta$coverage)
+
+meta %>% 
+  group_by(coverage) %>% 
+  summarize(mean = mean(seqdepth))
+```
+
+
+## Exclude samples 
+Low read mapping: 43, 74, 77, 106
+Low confidence in classification: 79
+```{r}
+meta <- 
+  meta %>% 
+  filter(!sample.no == "43" & 
+         !sample.no == "74" &
+         !sample.no == "77" & 
+         !sample.no == "79" & 
+         !sample.no == "106")
+```
+
+### During/After Outbreak - Tufts Only
+```{r, warning=FALSE}
+tufts_outbreak <-
+  meta %>% 
+  select(classification, pdv.tufts) %>% 
+  filter(!pdv.tufts == "N/A") %>% 
+  mutate(pdv.tufts=factor(pdv.tufts, levels=c("Positive", "Negative", "N/A")),
+         classification = ifelse(classification == "Non-survivor", 
+                                 "Non-survivor (Case)", "Survivor (Control)")) %>% 
+  ggplot(data=.) +
+  geom_mosaic(aes(x=product(pdv.tufts,classification), fill=pdv.tufts)) +
+  scale_fill_manual(values=c("Negative" = "#58baba",
+                             "Positive" = "#008080"),
+                    name="PDV Results") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(y="Proportion of Samples") +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position="bottom",
+        text = element_text(size=10),
+        plot.title = element_text(hjust = 0.5))
+tufts_outbreak
+
+ggsave("Figures/pdv-classification_tuftsresults.jpeg", tufts_outbreak,
+       width = 6, height = 5, units = "in")
+```
+
+#### Tufts Figure - Presentation
+```{r}
+tufts_pres <- 
+  meta %>% 
+  select(classification, pdv.tufts) %>%
+  filter(!pdv.tufts == "N/A") %>% 
+  mutate(pdv.tufts=factor(pdv.tufts, levels=c("Positive", "Negative", "N/A")),
+         classification = ifelse(classification == "Non-survivor", 
+                                 "Non-survivor (Case)", "Survivor (Control)")) %>% 
+  ggplot(data=.) +
+  geom_mosaic(aes(x=product(pdv.tufts,classification), fill=pdv.tufts)) +
+  scale_fill_manual(values=c("Negative" = "#B5CDD3",
+                             "Positive" = "#7F7B9A"),
+                    name="PDV Results") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(y="Proportion of Samples") +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position="bottom",
+        text = element_text(size=16),
+        plot.title = element_text(hjust = 0.5))
+tufts_pres
+
+ggsave("Figures/pdv-classification_tuftsresults_pres.jpeg", tufts_pres,
+       width = 6, height = 5, units = "in")
+```
+
+
+### Sample statistics
+```{r}
+table(meta$seq.run)
+table(meta$condition, meta$classification) %>% 
+  data.frame() %>% 
+  mutate(total = as.numeric(ifelse(Var2 == "Non-survivor", "47", "55"))) %>%
+  mutate(Prop = (Freq/total)*100)
+
+table(meta$sex, meta$classification) %>% 
+  data.frame() %>% 
+  mutate(total = as.numeric(ifelse(Var2 == "Non-survivor", "47", "55"))) %>%
+  mutate(Prop = (Freq/total)*100)
+
+table(meta$age.class, meta$classification) %>% 
+  data.frame() %>% 
+  mutate(total = as.numeric(ifelse(Var2 == "Non-survivor", "47", "55"))) %>%
+  mutate(Prop = (Freq/total)*100)
+
+prop.table(table(meta$classification))
+prop.table(table(meta$pdv))
+prop.table(table(meta$pdv.tufts))
+```
+
+## Map of Strandings
+```{r}
+US <- 
+  read_sf("Input Files/cb_2022_us_state_500k")
+NE <- 
+  subset(US, NAME=="Maine" | NAME=="New Hampshire" | NAME=="Massachusetts" | NAME=="Vermont")
+
+map <-
+  ggplot()+
+  geom_sf(data=US, fill="gray80", color="gray80", size = 0.001) +
+  geom_sf(data=NE, fill="gray80", color="gray20", size=.01) +
+  coord_sf(xlim=c(-67.3,-71.8), ylim=c(41,44.8)) +
+  geom_point(data=meta, aes(x=long, y=lat, 
+                            color=classification, 
+                            shape=classification), 
+              size=3) + 
+  # geom_label_repel(aes(x = long, y = lat, label = field.id, fill = NA), data = meta,
+  #                  max.overlaps = 40, 
+  #                  label.size = NA) +
+  scale_color_manual(values=c("#58baba", "black"), name="Classification") +
+  scale_shape_manual(values=c(16, 18),  name="Classification") +
+  labs(x=NULL, y=NULL) +
+  theme_bw() + 
+  theme(panel.grid = element_blank(),
+        text = element_text(size=20),
+        legend.position = "inside",
+        legend.position.inside = c(0.83,0.09)) 
+map
+
+ggsave("Figures/strandings-classification_map.jpeg", map,
+       width = 8, height = 7, units = "in")
+```
+
+## Case v Control ~ Factors
+
+### During/After Outbreak - All Data
+```{r, warning=FALSE}
+table(meta$pdv.tufts, meta$classification)
+table(meta$classification)
+
+outbreak <-
+  meta %>% 
+  select(classification, pdv) %>% 
+  mutate(pdv=factor(pdv, levels=c("Positive", "Negative", "N/A"))) %>% 
+  ggplot(data=.) +
+  geom_mosaic(aes(x=product(pdv,classification), fill=pdv)) +
+  scale_fill_manual(values=c("N/A" = "grey",
+                             "Negative" = "#58baba",
+                             "Positive" = "#008080"),
+                    name="PDV") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(y="Proportion of Samples") +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position="bottom",
+        text = element_text(size=10),
+        plot.title = element_text(hjust = 0.5))
+outbreak
+```
+
+
+### Sex
+```{r}
+sex <-
+  meta %>% 
+  select(sex, pdv) %>% 
+  mutate(pdv=factor(pdv, levels=c("Positive", "Negative", "N/A"))) %>% 
+  ggplot(data=.) +
+  geom_mosaic(aes(x=product(pdv,sex), fill=pdv)) +
+  scale_fill_manual(values=c("N/A" = "grey",
+                             "Negative" = "#008080",
+                             "Positive" = "#58baba"),
+                    name="PDV") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(y="Proportion of Samples") +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position="bottom",
+        text = element_text(size=10),
+        plot.title = element_text(hjust = 0.5))
+sex
+```
+
+### Age
+```{r}
+age <-
+  meta %>% 
+  select(age.class, pdv) %>%
+  mutate(pdv=factor(pdv, levels=c("Positive", "Negative", "N/A")),
+         age.class=factor(age.class, levels=c("Pup/Calf", "Yearling", 
+                                              "Subadult", "Adult", "Unknown"))) %>% 
+  ggplot(data=.) +
+  geom_mosaic(aes(x=product(pdv,age.class), fill=pdv)) +
+  scale_fill_manual(values=c("N/A" = "grey",
+                             "Negative" = "#008080",
+                             "Positive" = "#58baba"),
+                    name="PDV") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(y="Proportion of Samples") +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position="bottom",
+        text = element_text(size=10),
+        plot.title = element_text(hjust = 0.5))
+age
+```
+

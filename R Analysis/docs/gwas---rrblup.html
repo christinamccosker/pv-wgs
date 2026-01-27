@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 GWAS - rrBLUP | Pv-WGS-Analysis</title>
+  <meta name="description" content="McCosker Dissertation Chapter 3 Analyses" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 GWAS - rrBLUP | Pv-WGS-Analysis" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 GWAS - rrBLUP | Pv-WGS-Analysis" />
+  
+  <meta name="twitter:description" content="McCosker Dissertation Chapter 3 Analyses" />
+  
+
+<meta name="author" content="Christina McCosker" />
+
+
+<meta name="date" content="2025-03-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="density-plot-filter-metrics.html"/>
+<link rel="next" href="fst-based-approach.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Pv-WGS-Analysis</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html"><i class="fa fa-check"></i><b>2</b> Tidy Data &amp; Exploratory</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#libraries"><i class="fa fa-check"></i><b>2.1</b> Libraries</a></li>
+<li class="chapter" data-level="2.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#descriptive-statistics"><i class="fa fa-check"></i><b>2.3</b> Descriptive Statistics</a></li>
+<li class="chapter" data-level="2.4" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#exclude-samples"><i class="fa fa-check"></i><b>2.4</b> Exclude samples</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#sample-statistics"><i class="fa fa-check"></i><b>2.4.1</b> Sample statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#map-of-strandings"><i class="fa fa-check"></i><b>2.5</b> Map of Strandings</a></li>
+<li class="chapter" data-level="2.6" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#case-v-control-factors"><i class="fa fa-check"></i><b>2.6</b> Case v Control ~ Factors</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#duringafter-outbreak"><i class="fa fa-check"></i><b>2.6.1</b> During/After Outbreak</a></li>
+<li class="chapter" data-level="2.6.2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#sex"><i class="fa fa-check"></i><b>2.6.2</b> Sex</a></li>
+<li class="chapter" data-level="2.6.3" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#age"><i class="fa fa-check"></i><b>2.6.3</b> Age</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html"><i class="fa fa-check"></i><b>3</b> PCA - High Coverage</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#libraries-1"><i class="fa fa-check"></i><b>3.1</b> Libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#data-1"><i class="fa fa-check"></i><b>3.2</b> Data</a></li>
+<li class="chapter" data-level="3.3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#vcf-to-gds"><i class="fa fa-check"></i><b>3.3</b> VCF to GDS</a></li>
+<li class="chapter" data-level="3.4" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#ld-based-snp-pruning"><i class="fa fa-check"></i><b>3.4</b> LD-based SNP Pruning</a></li>
+<li class="chapter" data-level="3.5" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca"><i class="fa fa-check"></i><b>3.5</b> PCA</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-original"><i class="fa fa-check"></i><b>3.5.1</b> PCA Original</a></li>
+<li class="chapter" data-level="3.5.2" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-wo-outliers"><i class="fa fa-check"></i><b>3.5.2</b> PCA w/o Outliers</a></li>
+<li class="chapter" data-level="3.5.3" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#pca-by-chromosome"><i class="fa fa-check"></i><b>3.5.3</b> PCA by Chromosome</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="pca---high-coverage.html"><a href="pca---high-coverage.html#relatedness"><i class="fa fa-check"></i><b>3.6</b> Relatedness</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html"><i class="fa fa-check"></i><b>4</b> Density Plot Filter Metrics</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#libraries-2"><i class="fa fa-check"></i><b>4.1</b> Libraries</a></li>
+<li class="chapter" data-level="4.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#data-2"><i class="fa fa-check"></i><b>4.2</b> Data</a></li>
+<li class="chapter" data-level="4.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#density-plots"><i class="fa fa-check"></i><b>4.3</b> Density Plots</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-qd"><i class="fa fa-check"></i><b>4.3.1</b> Metric: QD</a></li>
+<li class="chapter" data-level="4.3.2" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-fs"><i class="fa fa-check"></i><b>4.3.2</b> Metric: FS</a></li>
+<li class="chapter" data-level="4.3.3" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-sor"><i class="fa fa-check"></i><b>4.3.3</b> Metric: SOR</a></li>
+<li class="chapter" data-level="4.3.4" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mq"><i class="fa fa-check"></i><b>4.3.4</b> Metric: MQ</a></li>
+<li class="chapter" data-level="4.3.5" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-mqranksum"><i class="fa fa-check"></i><b>4.3.5</b> Metric: MQRankSum</a></li>
+<li class="chapter" data-level="4.3.6" data-path="density-plot-filter-metrics.html"><a href="density-plot-filter-metrics.html#metric-readposranksum"><i class="fa fa-check"></i><b>4.3.6</b> Metric: ReadPosRankSum</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html"><i class="fa fa-check"></i><b>5</b> GWAS - rrBLUP</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#libraries-3"><i class="fa fa-check"></i><b>5.1</b> Libraries</a></li>
+<li class="chapter" data-level="5.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#data-3"><i class="fa fa-check"></i><b>5.2</b> Data</a></li>
+<li class="chapter" data-level="5.3" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#calculating-grm"><i class="fa fa-check"></i><b>5.3</b> Calculating GRM</a></li>
+<li class="chapter" data-level="5.4" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#population-structure"><i class="fa fa-check"></i><b>5.4</b> Population structure</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#heatmap"><i class="fa fa-check"></i><b>5.4.1</b> Heatmap</a></li>
+<li class="chapter" data-level="5.4.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#pca-1"><i class="fa fa-check"></i><b>5.4.2</b> PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-data"><i class="fa fa-check"></i><b>5.5</b> Configure data</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#create-matrix"><i class="fa fa-check"></i><b>5.5.1</b> Create matrix</a></li>
+<li class="chapter" data-level="5.5.2" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-phenotype-data"><i class="fa fa-check"></i><b>5.5.2</b> Configure phenotype data</a></li>
+<li class="chapter" data-level="5.5.3" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#configure-grm-snp-info"><i class="fa fa-check"></i><b>5.5.3</b> Configure grm &amp; snp info</a></li>
+<li class="chapter" data-level="5.5.4" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#gwas-model-1-genomic-relationship-matrix"><i class="fa fa-check"></i><b>5.5.4</b> GWAS Model 1: genomic relationship matrix</a></li>
+<li class="chapter" data-level="5.5.5" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#extract-results"><i class="fa fa-check"></i><b>5.5.5</b> Extract results</a></li>
+<li class="chapter" data-level="5.5.6" data-path="gwas---rrblup.html"><a href="gwas---rrblup.html#manhattan-plot"><i class="fa fa-check"></i><b>5.5.6</b> Manhattan Plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="fst-based-approach.html"><a href="fst-based-approach.html"><i class="fa fa-check"></i><b>6</b> Fst-based Approach</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="fst-based-approach.html"><a href="fst-based-approach.html#libraries-4"><i class="fa fa-check"></i><b>6.1</b> Libraries</a></li>
+<li class="chapter" data-level="6.2" data-path="fst-based-approach.html"><a href="fst-based-approach.html#data-4"><i class="fa fa-check"></i><b>6.2</b> Data</a></li>
+<li class="chapter" data-level="6.3" data-path="fst-based-approach.html"><a href="fst-based-approach.html#visualize-snp-fst-distribution"><i class="fa fa-check"></i><b>6.3</b> Visualize SNP Fst distribution</a></li>
+<li class="chapter" data-level="6.4" data-path="fst-based-approach.html"><a href="fst-based-approach.html#select-outlier-snps"><i class="fa fa-check"></i><b>6.4</b> Select outlier SNPs</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="fst-based-approach.html"><a href="fst-based-approach.html#top-10"><i class="fa fa-check"></i><b>6.4.1</b> Top 10%</a></li>
+<li class="chapter" data-level="6.4.2" data-path="fst-based-approach.html"><a href="fst-based-approach.html#sd"><i class="fa fa-check"></i><b>6.4.2</b> &gt; 5SD</a></li>
+<li class="chapter" data-level="6.4.3" data-path="fst-based-approach.html"><a href="fst-based-approach.html#extract-snps-600-bp-positions"><i class="fa fa-check"></i><b>6.4.3</b> Extract SNPs &amp; 600 bp positions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="snp-annotation.html"><a href="snp-annotation.html"><i class="fa fa-check"></i><b>7</b> SNP Annotation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="snp-annotation.html"><a href="snp-annotation.html#libraries-5"><i class="fa fa-check"></i><b>7.1</b> Libraries</a></li>
+<li class="chapter" data-level="7.2" data-path="snp-annotation.html"><a href="snp-annotation.html#data-5"><i class="fa fa-check"></i><b>7.2</b> Data</a></li>
+<li class="chapter" data-level="7.3" data-path="snp-annotation.html"><a href="snp-annotation.html#tidy-harbor-seal-genes"><i class="fa fa-check"></i><b>7.3</b> Tidy Harbor seal genes</a></li>
+<li class="chapter" data-level="7.4" data-path="snp-annotation.html"><a href="snp-annotation.html#fst-5-sd"><i class="fa fa-check"></i><b>7.4</b> FST 5 SD</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="snp-annotation.html"><a href="snp-annotation.html#id-genes"><i class="fa fa-check"></i><b>7.4.1</b> ID genes</a></li>
+<li class="chapter" data-level="7.4.2" data-path="snp-annotation.html"><a href="snp-annotation.html#go-terms"><i class="fa fa-check"></i><b>7.4.2</b> GO Terms</a></li>
+<li class="chapter" data-level="7.4.3" data-path="snp-annotation.html"><a href="snp-annotation.html#kegg-pathway"><i class="fa fa-check"></i><b>7.4.3</b> KEGG Pathway</a></li>
+<li class="chapter" data-level="7.4.4" data-path="snp-annotation.html"><a href="snp-annotation.html#biomart-annotation"><i class="fa fa-check"></i><b>7.4.4</b> Biomart annotation</a></li>
+<li class="chapter" data-level="7.4.5" data-path="snp-annotation.html"><a href="snp-annotation.html#exonic-cds-genes"><i class="fa fa-check"></i><b>7.4.5</b> Exonic, CDS Genes</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="snp-annotation.html"><a href="snp-annotation.html#gwas"><i class="fa fa-check"></i><b>7.5</b> GWAS</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/christinamccosker/pv-wgs.git" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pv-WGS-Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="gwas---rrblup" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> GWAS - rrBLUP<a href="gwas---rrblup.html#gwas---rrblup" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="libraries-3" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Libraries<a href="gwas---rrblup.html#libraries-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="gwas---rrblup.html#cb160-1" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb160-2"><a href="gwas---rrblup.html#cb160-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb160-3"><a href="gwas---rrblup.html#cb160-3" tabindex="-1"></a><span class="fu">library</span>(rrBLUP)</span>
+<span id="cb160-4"><a href="gwas---rrblup.html#cb160-4" tabindex="-1"></a><span class="fu">library</span>(qqman)</span>
+<span id="cb160-5"><a href="gwas---rrblup.html#cb160-5" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb160-6"><a href="gwas---rrblup.html#cb160-6" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span></code></pre></div>
+</div>
+<div id="data-3" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Data<a href="gwas---rrblup.html#data-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="gwas---rrblup.html#cb161-1" tabindex="-1"></a>snp.matrix <span class="ot">&lt;-</span></span>
+<span id="cb161-2"><a href="gwas---rrblup.html#cb161-2" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf_prune.raw&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb161-3"><a href="gwas---rrblup.html#cb161-3" tabindex="-1"></a>  <span class="fu">rename_with</span>(gsub, </span>
+<span id="cb161-4"><a href="gwas---rrblup.html#cb161-4" tabindex="-1"></a>              <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">_[A-Z]{1}$&quot;</span>, </span>
+<span id="cb161-5"><a href="gwas---rrblup.html#cb161-5" tabindex="-1"></a>              <span class="at">replacement =</span> <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(.))</span>
+<span id="cb161-6"><a href="gwas---rrblup.html#cb161-6" tabindex="-1"></a></span>
+<span id="cb161-7"><a href="gwas---rrblup.html#cb161-7" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> </span>
+<span id="cb161-8"><a href="gwas---rrblup.html#cb161-8" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf_prune.map&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb161-9"><a href="gwas---rrblup.html#cb161-9" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;chr&quot;</span>, <span class="st">&quot;snp&quot;</span>, <span class="st">&quot;cM&quot;</span>, <span class="st">&quot;pos&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb161-10"><a href="gwas---rrblup.html#cb161-10" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span>cM) <span class="sc">%&gt;%</span> </span>
+<span id="cb161-11"><a href="gwas---rrblup.html#cb161-11" tabindex="-1"></a>  <span class="fu">filter</span>(snp <span class="sc">%in%</span> <span class="fu">colnames</span>(snp.matrix))</span>
+<span id="cb161-12"><a href="gwas---rrblup.html#cb161-12" tabindex="-1"></a>  </span>
+<span id="cb161-13"><a href="gwas---rrblup.html#cb161-13" tabindex="-1"></a>meta <span class="ot">&lt;-</span> </span>
+<span id="cb161-14"><a href="gwas---rrblup.html#cb161-14" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Output Files/metadata_tidy.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb161-15"><a href="gwas---rrblup.html#cb161-15" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">seq.id =</span> <span class="fu">gsub</span>(<span class="st">&quot;B5GAN&quot;</span>, <span class="st">&quot;&quot;</span>, seq.id)) <span class="sc">%&gt;%</span> </span>
+<span id="cb161-16"><a href="gwas---rrblup.html#cb161-16" tabindex="-1"></a>  <span class="fu">filter</span>(seq.id <span class="sc">%in%</span> snp.matrix<span class="sc">$</span>IID)</span></code></pre></div>
+</div>
+<div id="calculating-grm" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Calculating GRM<a href="gwas---rrblup.html#calculating-grm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>SNP calls need to be changed from 0, 1, 2 to -1, 0, 1 (for rrBLUP)</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="gwas---rrblup.html#cb162-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> </span>
+<span id="cb162-2"><a href="gwas---rrblup.html#cb162-2" tabindex="-1"></a>  snp.matrix[, <span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)] <span class="sc">%&gt;%</span> </span>
+<span id="cb162-3"><a href="gwas---rrblup.html#cb162-3" tabindex="-1"></a>  <span class="fu">as.matrix</span>()</span>
+<span id="cb162-4"><a href="gwas---rrblup.html#cb162-4" tabindex="-1"></a></span>
+<span id="cb162-5"><a href="gwas---rrblup.html#cb162-5" tabindex="-1"></a><span class="co"># Change from 0,1,2 to -1,0,1 for rrBLUP</span></span>
+<span id="cb162-6"><a href="gwas---rrblup.html#cb162-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> x<span class="dv">-1</span></span>
+<span id="cb162-7"><a href="gwas---rrblup.html#cb162-7" tabindex="-1"></a></span>
+<span id="cb162-8"><a href="gwas---rrblup.html#cb162-8" tabindex="-1"></a><span class="co"># Row names = sample ID</span></span>
+<span id="cb162-9"><a href="gwas---rrblup.html#cb162-9" tabindex="-1"></a><span class="fu">rownames</span>(x) <span class="ot">&lt;-</span> snp.matrix<span class="sc">$</span>IID</span>
+<span id="cb162-10"><a href="gwas---rrblup.html#cb162-10" tabindex="-1"></a></span>
+<span id="cb162-11"><a href="gwas---rrblup.html#cb162-11" tabindex="-1"></a>grm <span class="ot">&lt;-</span> <span class="fu">A.mat</span>(x)</span></code></pre></div>
+</div>
+<div id="population-structure" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Population structure<a href="gwas---rrblup.html#population-structure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="heatmap" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Heatmap<a href="gwas---rrblup.html#heatmap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No obvious clustering of samples</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="gwas---rrblup.html#cb163-1" tabindex="-1"></a><span class="fu">heatmap</span>(grm, <span class="at">col=</span><span class="fu">rev</span>(<span class="fu">heat.colors</span>(<span class="dv">75</span>)))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+</div>
+<div id="pca-1" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> PCA<a href="gwas---rrblup.html#pca-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Again, seemingly no sample clustering</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="gwas---rrblup.html#cb164-1" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(grm, <span class="at">scale=</span><span class="cn">TRUE</span>, <span class="at">center=</span><span class="cn">TRUE</span>)</span>
+<span id="cb164-2"><a href="gwas---rrblup.html#cb164-2" tabindex="-1"></a></span>
+<span id="cb164-3"><a href="gwas---rrblup.html#cb164-3" tabindex="-1"></a><span class="co"># Variance explained by first 8 PCs</span></span>
+<span id="cb164-4"><a href="gwas---rrblup.html#cb164-4" tabindex="-1"></a>eigenvalues <span class="ot">&lt;-</span> pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb164-5"><a href="gwas---rrblup.html#cb164-5" tabindex="-1"></a>prop <span class="ot">&lt;-</span> <span class="fu">round</span>((eigenvalues<span class="sc">/</span><span class="fu">sum</span>(eigenvalues)<span class="sc">*</span><span class="dv">100</span>), <span class="dv">2</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>] </span>
+<span id="cb164-6"><a href="gwas---rrblup.html#cb164-6" tabindex="-1"></a>prop</span></code></pre></div>
+<pre><code>## [1] 2.72 2.10 1.37 1.27 1.24 1.23 1.21 1.20</code></pre>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="gwas---rrblup.html#cb166-1" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca, <span class="at">ncp =</span> <span class="dv">8</span>) </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="gwas---rrblup.html#cb167-1" tabindex="-1"></a>pca.data <span class="ot">&lt;-</span></span>
+<span id="cb167-2"><a href="gwas---rrblup.html#cb167-2" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb167-3"><a href="gwas---rrblup.html#cb167-3" tabindex="-1"></a>    <span class="at">sample =</span> <span class="fu">rownames</span>(pca<span class="sc">$</span>x),</span>
+<span id="cb167-4"><a href="gwas---rrblup.html#cb167-4" tabindex="-1"></a>    <span class="at">x =</span> pca<span class="sc">$</span>x[,<span class="dv">1</span>],</span>
+<span id="cb167-5"><a href="gwas---rrblup.html#cb167-5" tabindex="-1"></a>    <span class="at">y =</span> pca<span class="sc">$</span>x[,<span class="dv">2</span>]) <span class="sc">%&gt;%</span> </span>
+<span id="cb167-6"><a href="gwas---rrblup.html#cb167-6" tabindex="-1"></a>  <span class="fu">merge</span>(., meta, <span class="at">by.x=</span><span class="st">&quot;sample&quot;</span>, <span class="at">by.y=</span><span class="st">&quot;seq.id&quot;</span>)</span>
+<span id="cb167-7"><a href="gwas---rrblup.html#cb167-7" tabindex="-1"></a></span>
+<span id="cb167-8"><a href="gwas---rrblup.html#cb167-8" tabindex="-1"></a>labelx <span class="ot">&lt;-</span> </span>
+<span id="cb167-9"><a href="gwas---rrblup.html#cb167-9" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;PC1 (&quot;</span>, prop[<span class="dv">1</span>], <span class="st">&quot;%)&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb167-10"><a href="gwas---rrblup.html#cb167-10" tabindex="-1"></a>labely <span class="ot">&lt;-</span> </span>
+<span id="cb167-11"><a href="gwas---rrblup.html#cb167-11" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;PC2 (&quot;</span>, prop[<span class="dv">2</span>], <span class="st">&quot;%)&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb167-12"><a href="gwas---rrblup.html#cb167-12" tabindex="-1"></a></span>
+<span id="cb167-13"><a href="gwas---rrblup.html#cb167-13" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>classification)) <span class="sc">+</span></span>
+<span id="cb167-14"><a href="gwas---rrblup.html#cb167-14" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb167-15"><a href="gwas---rrblup.html#cb167-15" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb167-16"><a href="gwas---rrblup.html#cb167-16" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb167-17"><a href="gwas---rrblup.html#cb167-17" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb167-18"><a href="gwas---rrblup.html#cb167-18" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb167-19"><a href="gwas---rrblup.html#cb167-19" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb167-20"><a href="gwas---rrblup.html#cb167-20" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-2.png" width="672" /></p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="gwas---rrblup.html#cb168-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>pdv)) <span class="sc">+</span></span>
+<span id="cb168-2"><a href="gwas---rrblup.html#cb168-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb168-3"><a href="gwas---rrblup.html#cb168-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb168-4"><a href="gwas---rrblup.html#cb168-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb168-5"><a href="gwas---rrblup.html#cb168-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb168-6"><a href="gwas---rrblup.html#cb168-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb168-7"><a href="gwas---rrblup.html#cb168-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb168-8"><a href="gwas---rrblup.html#cb168-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-3.png" width="672" /></p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="gwas---rrblup.html#cb169-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>sex)) <span class="sc">+</span></span>
+<span id="cb169-2"><a href="gwas---rrblup.html#cb169-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb169-3"><a href="gwas---rrblup.html#cb169-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb169-4"><a href="gwas---rrblup.html#cb169-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb169-5"><a href="gwas---rrblup.html#cb169-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb169-6"><a href="gwas---rrblup.html#cb169-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb169-7"><a href="gwas---rrblup.html#cb169-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb169-8"><a href="gwas---rrblup.html#cb169-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<pre><code>## Too few points to calculate an ellipse</code></pre>
+<pre><code>## Warning: Removed 1 row containing missing values or values outside the
+## scale range (`geom_path()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-4.png" width="672" /></p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="gwas---rrblup.html#cb172-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>age.class)) <span class="sc">+</span></span>
+<span id="cb172-2"><a href="gwas---rrblup.html#cb172-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb172-3"><a href="gwas---rrblup.html#cb172-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb172-4"><a href="gwas---rrblup.html#cb172-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;magenta&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb172-5"><a href="gwas---rrblup.html#cb172-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb172-6"><a href="gwas---rrblup.html#cb172-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb172-7"><a href="gwas---rrblup.html#cb172-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb172-8"><a href="gwas---rrblup.html#cb172-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<pre><code>## Too few points to calculate an ellipse</code></pre>
+<pre><code>## Warning in MASS::cov.trob(data[, vars]): Probable convergence failure
+## Warning in MASS::cov.trob(data[, vars]): Removed 1 row containing missing values or values outside the
+## scale range (`geom_path()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-5.png" width="672" /></p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="gwas---rrblup.html#cb175-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>condition)) <span class="sc">+</span></span>
+<span id="cb175-2"><a href="gwas---rrblup.html#cb175-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb175-3"><a href="gwas---rrblup.html#cb175-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb175-4"><a href="gwas---rrblup.html#cb175-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;magenta&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb175-5"><a href="gwas---rrblup.html#cb175-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb175-6"><a href="gwas---rrblup.html#cb175-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb175-7"><a href="gwas---rrblup.html#cb175-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb175-8"><a href="gwas---rrblup.html#cb175-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<pre><code>## Too few points to calculate an ellipse</code></pre>
+<pre><code>## Warning: Removed 1 row containing missing values or values outside the
+## scale range (`geom_path()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-6.png" width="672" /></p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="gwas---rrblup.html#cb178-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span><span class="fu">factor</span>(seq.run))) <span class="sc">+</span></span>
+<span id="cb178-2"><a href="gwas---rrblup.html#cb178-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb178-3"><a href="gwas---rrblup.html#cb178-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb178-4"><a href="gwas---rrblup.html#cb178-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb178-5"><a href="gwas---rrblup.html#cb178-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb178-6"><a href="gwas---rrblup.html#cb178-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb178-7"><a href="gwas---rrblup.html#cb178-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb178-8"><a href="gwas---rrblup.html#cb178-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-7.png" width="672" /></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="gwas---rrblup.html#cb179-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>coverage)) <span class="sc">+</span></span>
+<span id="cb179-2"><a href="gwas---rrblup.html#cb179-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb179-3"><a href="gwas---rrblup.html#cb179-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb179-4"><a href="gwas---rrblup.html#cb179-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb179-5"><a href="gwas---rrblup.html#cb179-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb179-6"><a href="gwas---rrblup.html#cb179-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb179-7"><a href="gwas---rrblup.html#cb179-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb179-8"><a href="gwas---rrblup.html#cb179-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-8.png" width="672" /></p>
+</div>
+</div>
+<div id="configure-data" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Configure data<a href="gwas---rrblup.html#configure-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="create-matrix" class="section level3 hasAnchor" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Create matrix<a href="gwas---rrblup.html#create-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Add marker location and marker dosage</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="gwas---rrblup.html#cb180-1" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> </span>
+<span id="cb180-2"><a href="gwas---rrblup.html#cb180-2" tabindex="-1"></a>  <span class="fu">bind_cols</span>(snp.info, <span class="fu">as.data.frame</span>(<span class="fu">t</span>(x)))</span></code></pre></div>
+</div>
+<div id="configure-phenotype-data" class="section level3 hasAnchor" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Configure phenotype data<a href="gwas---rrblup.html#configure-phenotype-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Non-survivor = 0, Survivor = 1</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="gwas---rrblup.html#cb181-1" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> </span>
+<span id="cb181-2"><a href="gwas---rrblup.html#cb181-2" tabindex="-1"></a>  meta <span class="sc">%&gt;%</span> </span>
+<span id="cb181-3"><a href="gwas---rrblup.html#cb181-3" tabindex="-1"></a>  <span class="fu">select</span>(seq.id, classification) <span class="sc">%&gt;%</span> </span>
+<span id="cb181-4"><a href="gwas---rrblup.html#cb181-4" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;phenotype&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb181-5"><a href="gwas---rrblup.html#cb181-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">phenotype =</span> <span class="fu">ifelse</span>(phenotype<span class="sc">==</span><span class="st">&quot;Non-survivor&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb181-6"><a href="gwas---rrblup.html#cb181-6" tabindex="-1"></a></span>
+<span id="cb181-7"><a href="gwas---rrblup.html#cb181-7" tabindex="-1"></a><span class="co"># Make sure sample ID order matches</span></span>
+<span id="cb181-8"><a href="gwas---rrblup.html#cb181-8" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(x)) <span class="co"># no</span></span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE</code></pre>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="gwas---rrblup.html#cb183-1" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> </span>
+<span id="cb183-2"><a href="gwas---rrblup.html#cb183-2" tabindex="-1"></a>  phenotypes[<span class="fu">order</span>(<span class="fu">match</span>(phenotypes<span class="sc">$</span>id, <span class="fu">rownames</span>(x))), ]</span>
+<span id="cb183-3"><a href="gwas---rrblup.html#cb183-3" tabindex="-1"></a></span>
+<span id="cb183-4"><a href="gwas---rrblup.html#cb183-4" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(grm)) <span class="co"># yes</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="gwas---rrblup.html#cb185-1" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(x)) <span class="co"># yes</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="configure-grm-snp-info" class="section level3 hasAnchor" number="5.5.3">
+<h3><span class="header-section-number">5.5.3</span> Configure grm &amp; snp info<a href="gwas---rrblup.html#configure-grm-snp-info" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="gwas---rrblup.html#cb187-1" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">colnames</span>(grm) <span class="sc">%in%</span> phenotypes<span class="sc">$</span>id</span>
+<span id="cb187-2"><a href="gwas---rrblup.html#cb187-2" tabindex="-1"></a>grm <span class="ot">&lt;-</span> grm[vec,vec]</span>
+<span id="cb187-3"><a href="gwas---rrblup.html#cb187-3" tabindex="-1"></a></span>
+<span id="cb187-4"><a href="gwas---rrblup.html#cb187-4" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(snp.info)</span>
+<span id="cb187-5"><a href="gwas---rrblup.html#cb187-5" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> snp.info[,<span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">TRUE</span>,vec)]</span></code></pre></div>
+</div>
+<div id="gwas-model-1-genomic-relationship-matrix" class="section level3 hasAnchor" number="5.5.4">
+<h3><span class="header-section-number">5.5.4</span> GWAS Model 1: genomic relationship matrix<a href="gwas---rrblup.html#gwas-model-1-genomic-relationship-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="gwas---rrblup.html#cb188-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> </span>
+<span id="cb188-2"><a href="gwas---rrblup.html#cb188-2" tabindex="-1"></a>  <span class="fu">GWAS</span>(<span class="at">pheno =</span> phenotypes, </span>
+<span id="cb188-3"><a href="gwas---rrblup.html#cb188-3" tabindex="-1"></a>       <span class="at">geno =</span> snp.info, </span>
+<span id="cb188-4"><a href="gwas---rrblup.html#cb188-4" tabindex="-1"></a>       <span class="at">K =</span> grm, </span>
+<span id="cb188-5"><a href="gwas---rrblup.html#cb188-5" tabindex="-1"></a>       <span class="at">fixed =</span> <span class="cn">NULL</span>, </span>
+<span id="cb188-6"><a href="gwas---rrblup.html#cb188-6" tabindex="-1"></a>       <span class="at">plot =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;GWAS for trait: phenotype&quot;
+## [1] &quot;Variance components estimated. Testing markers.&quot;</code></pre>
+</div>
+<div id="extract-results" class="section level3 hasAnchor" number="5.5.5">
+<h3><span class="header-section-number">5.5.5</span> Extract results<a href="gwas---rrblup.html#extract-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Set names to defaults for manhattan plot.<br />
+GWAS outputs -log10(pvalues), convert to pvalues.<br />
+Try FDR and Bonferroni p-adjustment methods.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="gwas---rrblup.html#cb190-1" tabindex="-1"></a>gwasResults <span class="ot">&lt;-</span></span>
+<span id="cb190-2"><a href="gwas---rrblup.html#cb190-2" tabindex="-1"></a>  model <span class="sc">%&gt;%</span> </span>
+<span id="cb190-3"><a href="gwas---rrblup.html#cb190-3" tabindex="-1"></a>  <span class="fu">select</span>(snp, chr, pos, phenotype) <span class="sc">%&gt;%</span> </span>
+<span id="cb190-4"><a href="gwas---rrblup.html#cb190-4" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;logP&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb190-5"><a href="gwas---rrblup.html#cb190-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CHR =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&quot;HiC_scaffold_&quot;</span>, <span class="st">&quot;&quot;</span>, CHR))) <span class="sc">%&gt;%</span> </span>
+<span id="cb190-6"><a href="gwas---rrblup.html#cb190-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">10</span><span class="sc">^</span>(<span class="sc">-</span>(logP)),</span>
+<span id="cb190-7"><a href="gwas---rrblup.html#cb190-7" tabindex="-1"></a>         <span class="at">fdr =</span> <span class="fu">p.adjust</span>(P, <span class="at">method =</span> <span class="st">&quot;fdr&quot;</span>),</span>
+<span id="cb190-8"><a href="gwas---rrblup.html#cb190-8" tabindex="-1"></a>         <span class="at">bonf =</span> <span class="fu">p.adjust</span>(P, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>))</span>
+<span id="cb190-9"><a href="gwas---rrblup.html#cb190-9" tabindex="-1"></a></span>
+<span id="cb190-10"><a href="gwas---rrblup.html#cb190-10" tabindex="-1"></a><span class="fu">write.csv</span>(gwasResults, <span class="st">&quot;Output Files/allsamples_gwas.csv&quot;</span>,</span>
+<span id="cb190-11"><a href="gwas---rrblup.html#cb190-11" tabindex="-1"></a>          <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="manhattan-plot" class="section level3 hasAnchor" number="5.5.6">
+<h3><span class="header-section-number">5.5.6</span> Manhattan Plot<a href="gwas---rrblup.html#manhattan-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="gwas---rrblup.html#cb191-1" tabindex="-1"></a><span class="co"># Threshold for significance</span></span>
+<span id="cb191-2"><a href="gwas---rrblup.html#cb191-2" tabindex="-1"></a>bf <span class="ot">&lt;-</span> (<span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span> <span class="sc">/</span> <span class="fu">nrow</span>(snp.info)))</span>
+<span id="cb191-3"><a href="gwas---rrblup.html#cb191-3" tabindex="-1"></a>fdr <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>)</span>
+<span id="cb191-4"><a href="gwas---rrblup.html#cb191-4" tabindex="-1"></a></span>
+<span id="cb191-5"><a href="gwas---rrblup.html#cb191-5" tabindex="-1"></a><span class="co"># Bonferroni</span></span>
+<span id="cb191-6"><a href="gwas---rrblup.html#cb191-6" tabindex="-1"></a><span class="fu">manhattan</span>(gwasResults, </span>
+<span id="cb191-7"><a href="gwas---rrblup.html#cb191-7" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
+<span id="cb191-8"><a href="gwas---rrblup.html#cb191-8" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
+<span id="cb191-9"><a href="gwas---rrblup.html#cb191-9" tabindex="-1"></a>          <span class="at">genomewideline =</span> bf, </span>
+<span id="cb191-10"><a href="gwas---rrblup.html#cb191-10" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;P&quot;</span>, <span class="at">logp =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="gwas---rrblup.html#cb192-1" tabindex="-1"></a><span class="co"># FDR</span></span>
+<span id="cb192-2"><a href="gwas---rrblup.html#cb192-2" tabindex="-1"></a><span class="fu">manhattan</span>(gwasResults, </span>
+<span id="cb192-3"><a href="gwas---rrblup.html#cb192-3" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
+<span id="cb192-4"><a href="gwas---rrblup.html#cb192-4" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
+<span id="cb192-5"><a href="gwas---rrblup.html#cb192-5" tabindex="-1"></a>          <span class="at">genomewideline =</span> fdr, </span>
+<span id="cb192-6"><a href="gwas---rrblup.html#cb192-6" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">logp =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-61-2.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="density-plot-filter-metrics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fst-based-approach.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  },
+  "info": false
+});
+});
+</script>
+
+</body>
+
+</html>

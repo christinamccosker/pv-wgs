@@ -1,0 +1,2 @@
+HiC_scaffold_6	maker	CDS	125833585	125833585	.	+	0	ID=Phoca_024830-RA:cds;Parent=Phoca_024830-RA;	HiC_scaffold_6	125833584	125833585
+HiC_scaffold_3	maker	CDS	75149504	75149504	.	+	0	ID=Phoca_012249-RA:cds;Parent=Phoca_012249-RA;	HiC_scaffold_3	75149503	75149504

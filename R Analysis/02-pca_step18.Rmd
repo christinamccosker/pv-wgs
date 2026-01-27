@@ -1,0 +1,904 @@
+---
+author: "Christina McCosker"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# PCA - High Coverage
+
+## Libraries
+```{r, warning=FALSE, message=FALSE}
+library(data.table)
+library(SNPRelate)
+library(gdsfmt)
+library(dplyr)
+library(ggplot2)
+library(gridExtra)
+library(ggrepel)
+library(kableExtra)
+library(knitr)
+```
+
+## Data
+```{r}
+meta <- 
+  fread("Output Files/metadata_tidy.csv") %>% 
+  mutate(seq.id = gsub("B5GAN", "", seq.id))
+```
+
+## VCF to GDS
+```{r}
+# Load VCF file and create GDS file
+# snpgdsVCF2GDS("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/30xSamples_Genotype_nosex_edit.vcf", 
+#               "C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/30xsamples_Genotype.gds", 
+#               method="biallelic.only")
+
+snpgdsSummary("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/30xSamples_Genotype_nosex.gds")
+
+geno <- snpgdsOpen("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/30xSamples_Genotype_nosex.gds")
+```
+
+## LD-based SNP Pruning
+Recursively removes SNPs within a sliding window based on pairwise genotypic correlation - remove SNPs in linkage disequilibrium with each other. Conducted chromosome by chromosome (SNPs in a chromosome are independent of SNPs on other chromosomes).Generates set of SNPs that are independent of each other.  
+Many SNPs are going to be in LD to each other based on ancestry. Researchers will LD prune to reduce the chance of false-negatives and look for ways to prioritize SNPs within significant GWAS hits to increase the chance of finding something casual.
+```{r}
+set.seed(1000)
+
+snpset <- snpgdsLDpruning(geno, ld.threshold=0.2, autosome.only=FALSE)
+snpset.id <- unlist(unname(snpset))
+
+snpset2 <- snpgdsLDpruning(geno, ld.threshold=0.1, autosome.only=FALSE)
+snpset.id2 <- unlist(unname(snpset2))
+
+snpset3 <- snpgdsLDpruning(geno, ld.threshold=0.5, autosome.only=FALSE)
+snpset.id3 <- unlist(unname(snpset3))
+```
+
+## PCA
+
+### PCA Original
+
+#### Run PCA
+```{r}
+pca <- 
+  snpgdsPCA(geno, 
+            snp.id=snpset.id, 
+            num.thread=2, autosome.only=FALSE)
+```
+
+#### Calculate PC Percent Variation
+```{r}
+pc.percent <- 
+  round(pca$varprop*100, digits=2)
+head(pc.percent)
+```
+
+#### Configure plot data
+```{r}
+pca_data <- 
+  data.frame(sample.id = pca$sample.id,
+             EV1 = pca$eigenvect[,1],   
+             EV2 = pca$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>% 
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+labelx <- 
+  paste0("PC1 (", pc.percent[1], "%)", sep="")
+labely <- 
+  paste0("PC2 (", pc.percent[2], "%)", sep="")
+```
+
+#### Plot
+Seemingly no structure, but maybe outliers (5, 51, 58)
+```{r, warning=FALSE}
+plot <-
+  ggplot(pca_data, aes(x=EV1, y=EV2)) +
+  geom_point(size=2, colour="slategray") +
+  labs(x=labelx,
+       y=labely) +
+  # geom_text_repel(label=pca_data$sample.no) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+plot
+
+ggsave("Figures/highcov_popstructure_pca.jpeg", plot,
+       width = 5, height = 5, units = "in")
+```
+
+
+#### Plot PCA ~ Factors
+```{r}
+classification <- 
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=classification)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+classification
+
+pdv <- 
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=pdv)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+pdv
+
+sex <- 
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=sex)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+sex
+
+age <-
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=age.class)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral", "magenta")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+age
+
+condition <- 
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=condition)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+condition
+
+seqrun <- 
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=factor(seq.run))) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+seqrun
+```
+
+
+### PCA w/o Outliers
+After two iterations. First removed 51, 58, then removed 5, 72.
+
+#### Possible outliers
+```{r}
+outlier_meta <- 
+  meta %>% 
+  filter(sample.no=="51" |
+         sample.no=="58" |
+         sample.no=="5" |
+         sample.no=="72") %>% 
+  select(!seq.id & !coverage) %>% 
+  setNames(., nm=c("#", "sample", "run", "category", "strand date", "lat", "long", 
+             "condition", "sex", "age", "pdv", "pdvtufts", "totaldna", "seqdepth"))
+
+outlier_meta %>% 
+  kable() %>% 
+  kable_styling("basic", font_size=12,
+                position="center")
+```
+
+#### Run PCA
+```{r}
+samples_outlier <-
+  meta %>% 
+  filter(coverage=="high") %>% 
+  filter(!sample.no=="51" & 
+         !sample.no=="58" &
+         !sample.no=="5" &
+         !sample.no=="72")
+
+pca_outlier <- 
+  snpgdsPCA(geno, 
+            snp.id=snpset.id, 
+            sample.id=samples_outlier$seq.id,
+            num.thread=2,
+            autosome.only=FALSE)
+```
+
+#### Calculate PC Percent Variation
+```{r}
+pc.percent_outlier <- 
+  round(pca_outlier$varprop*100, digits=2)
+head(pc.percent_outlier)
+```
+
+#### Configure plot data
+```{r}
+pca_data_outlier <- 
+  data.frame(sample.id = pca_outlier$sample.id,
+             EV1 = pca_outlier$eigenvect[,1],   
+             EV2 = pca_outlier$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>% 
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+labelx <- 
+  paste0("EV1 (", pc.percent_outlier[1], "%)", sep="")
+labely <- 
+  paste0("EV1 (", pc.percent_outlier[2], "%)", sep="")
+```
+
+#### Plot
+Seemingly no structure, but maybe outliers (5, 51, 58)
+```{r, warning=FALSE}
+plot_outlier <-
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2)) +
+  geom_point(size=2, colour="slategray") +
+  labs(x=labelx,
+       y=labely) +
+  geom_text_repel(label=pca_data_outlier$sample.no) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+plot_outlier
+```
+
+#### Plot PCA ~ Factors
+```{r}
+classification_outlier <- 
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=classification)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+classification_outlier
+
+pdv_outlier <- 
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=pdv)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+pdv_outlier
+
+sex_outlier <- 
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=sex)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+sex_outlier
+
+age_outlier <-
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=age.class)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral", "magenta")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+age_outlier
+
+condition_outlier <- 
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=condition)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+condition_outlier
+
+seqrun_outlier <- 
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=factor(seq.run))) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+seqrun_outlier
+```
+
+#### Combine
+```{r, warning=FALSE}
+plot_outlier
+grid.arrange(classification_outlier, pdv_outlier, sex_outlier, 
+             age_outlier, condition_outlier, seqrun_outlier, ncol=3)
+```
+
+
+### PCA by Chromosome
+
+#### Chromosome 1
+```{r}
+pca_chrom1 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "1")
+
+chrom1 <- 
+  data.frame(sample.id = pca_chrom1$sample.id,
+             EV1 = pca_chrom1$eigenvect[,1],    
+             EV2 = pca_chrom1$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom1 <- 
+  round(pca_chrom1$varprop*100, digits=2)
+
+labelx_chrom1 <- 
+  paste0("EV1 (", pc.percent_chrom1[1], "%)", sep="")
+labely_chrom1 <- 
+  paste0("EV1 (", pc.percent_chrom1[2], "%)", sep="")
+
+chrom1_plot <-
+  ggplot(chrom1, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 1",
+       x=labelx_chrom1,
+       y=labely_chrom1) +
+  geom_text_repel(label=chrom1$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 2
+```{r}
+pca_chrom2 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "2")
+
+chrom2 <- 
+  data.frame(sample.id = pca_chrom2$sample.id,
+             EV1 = pca_chrom2$eigenvect[,1],    
+             EV2 = pca_chrom2$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom2 <- 
+  round(pca_chrom2$varprop*100, digits=2)
+
+labelx_chrom2 <- 
+  paste0("EV1 (", pc.percent_chrom2[1], "%)", sep="")
+labely_chrom2 <- 
+  paste0("EV1 (", pc.percent_chrom2[2], "%)", sep="")
+
+chrom2_plot <-
+  ggplot(chrom2, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 2",
+       x=labelx_chrom2,
+       y=labely_chrom2) +
+  geom_text_repel(label=chrom2$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 3
+```{r}
+pca_chrom3 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "3")
+
+chrom3 <- 
+  data.frame(sample.id = pca_chrom3$sample.id,
+             EV1 = pca_chrom3$eigenvect[,1],    
+             EV2 = pca_chrom3$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom3 <- 
+  round(pca_chrom3$varprop*100, digits=2)
+
+labelx_chrom3 <- 
+  paste0("EV1 (", pc.percent_chrom3[1], "%)", sep="")
+labely_chrom3 <- 
+  paste0("EV1 (", pc.percent_chrom3[2], "%)", sep="")
+
+chrom3_plot <-
+  ggplot(chrom3, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 3",
+       x=labelx_chrom3,
+       y=labely_chrom3) +
+  geom_text_repel(label=chrom3$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 4
+```{r}
+pca_chrom4 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "4")
+
+chrom4 <- 
+  data.frame(sample.id = pca_chrom4$sample.id,
+             EV1 = pca_chrom4$eigenvect[,1],    
+             EV2 = pca_chrom4$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom4 <- 
+  round(pca_chrom4$varprop*100, digits=2)
+
+labelx_chrom4 <- 
+  paste0("EV1 (", pc.percent_chrom4[1], "%)", sep="")
+labely_chrom4 <- 
+  paste0("EV1 (", pc.percent_chrom4[2], "%)", sep="")
+
+chrom4_plot <-
+  ggplot(chrom4, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 4",
+       x=labelx_chrom4,
+       y=labely_chrom4) +
+  geom_text_repel(label=chrom4$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 5
+```{r}
+pca_chrom5 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "5")
+
+chrom5 <- 
+  data.frame(sample.id = pca_chrom5$sample.id,
+             EV1 = pca_chrom5$eigenvect[,1],    
+             EV2 = pca_chrom5$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom5 <- 
+  round(pca_chrom5$varprop*100, digits=2)
+
+labelx_chrom5 <- 
+  paste0("EV1 (", pc.percent_chrom5[1], "%)", sep="")
+labely_chrom5 <- 
+  paste0("EV1 (", pc.percent_chrom5[2], "%)", sep="")
+
+chrom5_plot <-
+  ggplot(chrom5, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 5",
+       x=labelx_chrom5,
+       y=labely_chrom5) +
+  geom_text_repel(label=chrom5$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 6
+```{r}
+pca_chrom6 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "6")
+
+chrom6 <- 
+  data.frame(sample.id = pca_chrom6$sample.id,
+             EV1 = pca_chrom6$eigenvect[,1],    
+             EV2 = pca_chrom6$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom6 <- 
+  round(pca_chrom6$varprop*100, digits=2)
+
+labelx_chrom6 <- 
+  paste0("EV1 (", pc.percent_chrom6[1], "%)", sep="")
+labely_chrom6 <- 
+  paste0("EV1 (", pc.percent_chrom6[2], "%)", sep="")
+
+chrom6_plot <-
+  ggplot(chrom6, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 6",
+       x=labelx_chrom6,
+       y=labely_chrom6) +
+  geom_text_repel(label=chrom6$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 7
+```{r}
+pca_chrom7 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "7")
+
+chrom7 <- 
+  data.frame(sample.id = pca_chrom7$sample.id,
+             EV1 = pca_chrom7$eigenvect[,1],    
+             EV2 = pca_chrom7$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom7 <- 
+  round(pca_chrom7$varprop*100, digits=2)
+
+labelx_chrom7 <- 
+  paste0("EV1 (", pc.percent_chrom7[1], "%)", sep="")
+labely_chrom7 <- 
+  paste0("EV1 (", pc.percent_chrom7[2], "%)", sep="")
+
+chrom7_plot <-
+  ggplot(chrom7, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 7",
+       x=labelx_chrom7,
+       y=labely_chrom7) +
+  geom_text_repel(label=chrom7$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 8
+```{r}
+pca_chrom8 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "8")
+
+chrom8 <- 
+  data.frame(sample.id = pca_chrom8$sample.id,
+             EV1 = pca_chrom8$eigenvect[,1],    
+             EV2 = pca_chrom8$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom8 <- 
+  round(pca_chrom8$varprop*100, digits=2)
+
+labelx_chrom8 <- 
+  paste0("EV1 (", pc.percent_chrom8[1], "%)", sep="")
+labely_chrom8 <- 
+  paste0("EV1 (", pc.percent_chrom8[2], "%)", sep="")
+
+chrom8_plot <-
+  ggplot(chrom8, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 8",
+       x=labelx_chrom8,
+       y=labely_chrom8) +
+  geom_text_repel(label=chrom8$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 9
+```{r}
+pca_chrom9 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "9")
+
+chrom9 <- 
+  data.frame(sample.id = pca_chrom9$sample.id,
+             EV1 = pca_chrom9$eigenvect[,1],    
+             EV2 = pca_chrom9$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom9 <- 
+  round(pca_chrom9$varprop*100, digits=2)
+
+labelx_chrom9 <- 
+  paste0("EV1 (", pc.percent_chrom9[1], "%)", sep="")
+labely_chrom9 <- 
+  paste0("EV1 (", pc.percent_chrom9[2], "%)", sep="")
+
+chrom9_plot <-
+  ggplot(chrom9, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 9",
+       x=labelx_chrom9,
+       y=labely_chrom9) +
+  geom_text_repel(label=chrom9$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 10
+```{r}
+pca_chrom10 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "10")
+
+chrom10 <- 
+  data.frame(sample.id = pca_chrom10$sample.id,
+             EV1 = pca_chrom10$eigenvect[,1],    
+             EV2 = pca_chrom10$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom10 <- 
+  round(pca_chrom10$varprop*100, digits=2)
+
+labelx_chrom10 <- 
+  paste0("EV1 (", pc.percent_chrom10[1], "%)", sep="")
+labely_chrom10 <- 
+  paste0("EV1 (", pc.percent_chrom10[2], "%)", sep="")
+
+chrom10_plot <-
+  ggplot(chrom10, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 10",
+       x=labelx_chrom10,
+       y=labely_chrom10) +
+  geom_text_repel(label=chrom10$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 11
+```{r}
+pca_chrom11 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "11")
+
+chrom11 <- 
+  data.frame(sample.id = pca_chrom11$sample.id,
+             EV1 = pca_chrom11$eigenvect[,1],    
+             EV2 = pca_chrom11$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom11 <- 
+  round(pca_chrom11$varprop*100, digits=2)
+
+labelx_chrom11 <- 
+  paste0("EV1 (", pc.percent_chrom11[1], "%)", sep="")
+labely_chrom11 <- 
+  paste0("EV1 (", pc.percent_chrom11[2], "%)", sep="")
+
+chrom11_plot <-
+  ggplot(chrom11, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 11",
+       x=labelx_chrom11,
+       y=labely_chrom11) +
+  geom_text_repel(label=chrom11$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+
+#### Chromosome 12
+```{r}
+pca_chrom12 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "12")
+
+chrom12 <- 
+  data.frame(sample.id = pca_chrom12$sample.id,
+             EV1 = pca_chrom12$eigenvect[,1],    
+             EV2 = pca_chrom12$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom12 <- 
+  round(pca_chrom12$varprop*100, digits=2)
+
+labelx_chrom12 <- 
+  paste0("EV1 (", pc.percent_chrom12[1], "%)", sep="")
+labely_chrom12 <- 
+  paste0("EV1 (", pc.percent_chrom12[2], "%)", sep="")
+
+chrom12_plot <-
+  ggplot(chrom12, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 12",
+       x=labelx_chrom12,
+       y=labely_chrom12) +
+  geom_text_repel(label=chrom12$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 13
+```{r}
+pca_chrom13 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "13")
+
+chrom13 <- 
+  data.frame(sample.id = pca_chrom13$sample.id,
+             EV1 = pca_chrom13$eigenvect[,1],    
+             EV2 = pca_chrom13$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom13 <- 
+  round(pca_chrom13$varprop*100, digits=2)
+
+labelx_chrom13 <- 
+  paste0("EV1 (", pc.percent_chrom13[1], "%)", sep="")
+labely_chrom13 <- 
+  paste0("EV1 (", pc.percent_chrom13[2], "%)", sep="")
+
+chrom13_plot <-
+  ggplot(chrom13, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 13",
+       x=labelx_chrom13,
+       y=labely_chrom13) +
+  geom_text_repel(label=chrom13$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 14
+```{r}
+pca_chrom14 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "14")
+
+chrom14 <- 
+  data.frame(sample.id = pca_chrom14$sample.id,
+             EV1 = pca_chrom14$eigenvect[,1],    
+             EV2 = pca_chrom14$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom14 <- 
+  round(pca_chrom14$varprop*100, digits=2)
+
+labelx_chrom14 <- 
+  paste0("EV1 (", pc.percent_chrom14[1], "%)", sep="")
+labely_chrom14 <- 
+  paste0("EV1 (", pc.percent_chrom14[2], "%)", sep="")
+
+chrom14_plot <-
+  ggplot(chrom14, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 14",
+       x=labelx_chrom14,
+       y=labely_chrom14) +
+  geom_text_repel(label=chrom14$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 16
+```{r}
+pca_chrom16 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "16")
+
+chrom16 <- 
+  data.frame(sample.id = pca_chrom16$sample.id,
+             EV1 = pca_chrom16$eigenvect[,1],    
+             EV2 = pca_chrom16$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom16 <- 
+  round(pca_chrom16$varprop*100, digits=2)
+
+labelx_chrom16 <- 
+  paste0("EV1 (", pc.percent_chrom16[1], "%)", sep="")
+labely_chrom16 <- 
+  paste0("EV1 (", pc.percent_chrom16[2], "%)", sep="")
+
+chrom16_plot <-
+  ggplot(chrom16, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 15",
+       x=labelx_chrom16,
+       y=labely_chrom16) +
+  geom_text_repel(label=chrom16$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+chrom16_plot
+```
+
+#### View
+```{r}
+chrom1_plot
+chrom2_plot
+chrom3_plot
+chrom4_plot
+chrom5_plot
+chrom6_plot
+chrom7_plot
+chrom8_plot
+chrom9_plot
+chrom10_plot
+chrom11_plot
+chrom12_plot
+chrom13_plot
+chrom14_plot
+chrom16_plot
+```
+
+## Relatedness
+Drop SNPs with missing info in >5% individuals.  
+Exclude rare SNPs, <5% MAF. 
+k0 is high for all individuals - no relatedness
+```{r}
+sample.id <- 
+  read.gdsn(index.gdsn(geno, "sample.id"))
+
+ibd <- 
+  snpgdsIBDMoM(geno, 
+               sample.id=sample.id, snp.id=snpset.id,
+               maf=0.05, missing.rate=0.05, 
+               num.thread=2, autosome.only=FALSE)
+
+ibd.coeff <- snpgdsIBDSelection(ibd)
+
+plot(ibd.coeff$k0, ibd.coeff$k1, xlim=c(0,1), ylim=c(0,1),
+     xlab="k0", ylab="k1", main="YRI samples (MoM)")
+lines(c(0,1), c(1,0), col="red", lty=2)
+```
+

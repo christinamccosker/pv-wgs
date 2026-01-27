@@ -1,0 +1,293 @@
+---
+author: "Christina McCosker"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# GWAS - rrBLUP
+
+## Libraries
+```{r, warning=FALSE, message=FALSE}
+library(VariantAnnotation)
+library(data.table)
+library(tidyverse)
+library(rrBLUP)
+library(qqman)
+library(factoextra)
+library(ggfortify)
+library(snpStats)
+```
+
+## Data
+```{r}
+snp.matrix <-
+  fread("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf_prune.raw") %>% 
+  rename_with(gsub, 
+              pattern = "\\_[A-Z]{1}$", 
+              replacement = "", colnames(.))
+
+snp.info <- 
+  fread("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf_prune.map") %>% 
+  setNames(c("chr", "snp", "cM", "pos")) %>% 
+  select(!cM) %>% 
+  filter(snp %in% colnames(snp.matrix))
+  
+meta <- 
+  fread("Output Files/metadata_tidy.csv") %>% 
+  mutate(seq.id = gsub("B5GAN", "", seq.id)) %>% 
+  filter(seq.id %in% snp.matrix$IID)
+```
+
+## Calculating  GRM
+SNP calls need to be changed from 0, 1, 2 to -1, 0, 1 (for rrBLUP)
+```{r}
+x <- 
+  snp.matrix[, -c(1:6)] %>% 
+  as.matrix()
+
+# Change from 0,1,2 to -1,0,1 for rrBLUP
+x <- x-1
+
+# Row names = sample ID
+rownames(x) <- snp.matrix$IID
+
+grm <- A.mat(x)
+```
+
+## Population structure
+
+### Heatmap
+No obvious clustering of samples
+```{r}
+heatmap(grm, col=rev(heat.colors(75)))
+
+jpeg("Figures/grm_heatmap.jpeg", height = 8, width = 8, units = "in", res = 400)
+heatmap(grm, col=rev(heat.colors(75)), cexRow = 0.4, cexCol = 0.4)
+dev.off()
+```
+
+### PCA
+Again, seemingly no sample clustering
+```{r}
+pca <- prcomp(grm, scale=FALSE, center=FALSE)
+
+# Variance explained by first 8 PCs
+eigenvalues <- pca$sdev^2
+prop <- round((eigenvalues/sum(eigenvalues)*100), 2)[1:8] 
+prop
+
+fviz_eig(pca, ncp = 8) 
+
+pca.data <-
+  data.frame(
+    sample = rownames(pca$x),
+    x = pca$x[,1],
+    y = pca$x[,2]) %>% 
+  merge(., meta, by.x="sample", by.y="seq.id")
+
+labelx <- 
+  paste0("PC1 (", prop[1], "%)", sep="")
+labely <- 
+  paste0("PC2 (", prop[2], "%)", sep="")
+
+pca <- 
+  ggplot(pca.data, aes(x=x, y=y)) +
+  geom_point() +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+  
+ggsave("Figures/allsamples_popstruct_pca.jpeg", pca, width = 5, height = 5, units = "in")
+
+
+ggplot(pca.data, aes(x=x, y=y, col=classification)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely,
+       color = "Classification") +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+
+ggplot(pca.data, aes(x=x, y=y, col=pdv)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+ggplot(pca.data, aes(x=x, y=y, col=sex)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+ggplot(pca.data, aes(x=x, y=y, col=age.class)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba", "coral", "magenta", "black")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+ggplot(pca.data, aes(x=x, y=y, col=condition)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba", "coral", "magenta")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+ggplot(pca.data, aes(x=x, y=y, col=factor(seq.run))) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+ggplot(pca.data, aes(x=x, y=y, col=coverage)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+```
+
+
+## Configure data
+
+### Create matrix
+Add marker location and marker dosage
+```{r}
+snp.info <- 
+  bind_cols(snp.info, as.data.frame(t(x)))
+```
+
+### Configure phenotype data
+Non-survivor = 0, Survivor = 1
+```{r}
+phenotypes <- 
+  meta %>% 
+  select(seq.id, classification) %>% 
+  setNames(c("id", "phenotype")) %>% 
+  mutate(phenotype = ifelse(phenotype=="Non-survivor", 0, 1))
+
+# Make sure sample ID order matches
+unique(phenotypes$id == rownames(x)) # no
+
+phenotypes <- 
+  phenotypes[order(match(phenotypes$id, rownames(x))), ]
+
+unique(phenotypes$id == rownames(grm)) # yes
+unique(phenotypes$id == rownames(x)) # yes
+```
+
+### Configure grm & snp info
+```{r}
+vec <- colnames(grm) %in% phenotypes$id
+grm <- grm[vec,vec]
+
+snp.info <- as.data.frame(snp.info)
+snp.info <- snp.info[,c(TRUE,TRUE,TRUE,vec)]
+```
+
+## GWAS Model 1: genomic relationship matrix
+Note: P3D TRUE and FALSE give same results, but TRUE runs much quicker
+```{r}
+model <- 
+  GWAS(pheno = phenotypes, 
+       geno = snp.info, 
+       K = grm, 
+       fixed = NULL, 
+       plot = FALSE,
+       P3D = TRUE)
+```
+
+### Extract results
+Set names to defaults for manhattan plot.  
+GWAS outputs -log10(pvalues), convert to pvalues.  
+Try FDR and Bonferroni p-adjustment methods.
+```{r}
+gwasResults <-
+  model %>% 
+  select(snp, chr, pos, phenotype) %>% 
+  setNames(c("SNP", "CHR", "BP", "logP")) %>% 
+  mutate(CHR = as.numeric(gsub("HiC_scaffold_", "", CHR))) %>% 
+  mutate(P = 10^(-(logP)),
+         fdr = p.adjust(P, method = "fdr"),
+         bonf = p.adjust(P, method = "bonferroni"))
+
+write.csv(gwasResults, "Output Files/allsamples_gwas.csv",
+          row.names = FALSE)
+```
+
+
+### Manhattan Plot
+```{r}
+# Threshold for significance
+bf <- (-log10(0.05 / nrow(snp.info)))
+fdr <- -log10(0.05)
+
+# Bonferroni
+manhattan(gwasResults, 
+          suggestiveline=FALSE, 
+          col=c("black", "grey"),
+          genomewideline = bf, 
+          p = "P", logp = TRUE)
+
+# FDR
+manhattan(gwasResults, 
+          suggestiveline=FALSE, 
+          col=c("black", "grey"),
+          genomewideline = fdr, 
+          p = "fdr", logp = TRUE)
+```
+
+## ID SNPs in LD with GWAS SNP
+
+### Configure data
+```{r}
+# Read in VCF for all SNPs
+vcf <- 
+  readVcf("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf.vcf")
+
+# Extract genotypes
+#genotypes <- geno(vcf)$GT
+genotypes <- 
+  genotypeToSnpMatrix(vcf)$genotypes
+```
+
+### Calcualte LD
+```{r}
+gwas_snp <- 
+  gwasResults %>% 
+  filter(fdr < 0.05)
+
+snp <- gwas_snp$SNP
+
+ld_results <- 
+  ld(genotypes, genotypes[,snp], stats = c( "R.squared")) %>% 
+  data.frame()
+
+high_ld_snps <- 
+  ld_results %>% 
+  filter(HiC_scaffold_2_89017915 > 0.6)
+```
+

@@ -1,0 +1,2499 @@
+--- 
+title: "Pv-WGS-Analysis"
+author: "Christina McCosker"
+date: "Last Updated `r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+suppresss-bibliography: true
+description: |
+  McCosker Dissertation Chapter 3 Analyses
+---
+
+# About
+
+Insert manuscript details here
+
+<!--chapter:end:index.Rmd-->
+
+---
+author: "Christina McCosker"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Tidy Data & Exploratory
+
+## Libraries
+```{r, warning=FALSE, message=FALSE}
+library(sf)
+library(tidyverse)
+library(ggplot2)
+library(gridExtra)
+library(ggpubr)
+library(maps)
+library(ggmosaic)
+library(janitor)
+```
+
+## Data
+```{r}
+meta <- 
+  read.csv("Input Files/metadata.csv") %>% 
+  mutate(classification=factor(classification, levels=c("Non-survivor",
+                                                        "Survivor")),
+         condition=gsub("1", "Alive", condition),
+         condition=gsub("2", "Fresh Dead", condition),
+         condition=gsub("3", "Mod Decomp", condition),
+         condition=gsub("Moderate Decomposition", "Mod Decomp", condition), 
+         condition=gsub("Advanced Decomposition", "Adv Decomp", condition),
+         condition=factor(condition, levels=c("Alive", "Fresh Dead", "Mod Decomp", 
+                                              "Adv Decomp")),
+         age.class=factor(age.class, levels=c("Pup/Calf", "Yearling", 
+                                              "Subadult", "Adult", "Unknown")),
+         seq.run=factor(seq.run, levels=c("1", "2")))
+
+write.csv(meta, "Output Files/metadata_tidy.csv",
+          row.names = FALSE)
+```
+
+## Descriptive Statistics
+```{r}
+table(meta$coverage)
+
+meta %>% 
+  group_by(coverage) %>% 
+  summarize(mean = mean(seqdepth))
+```
+
+
+## Exclude samples 
+Low read mapping: 43, 74, 77, 106
+Low confidence in classification: 79
+```{r}
+meta <- 
+  meta %>% 
+  filter(!sample.no == "43" & 
+         !sample.no == "74" &
+         !sample.no == "77" & 
+         !sample.no == "79" & 
+         !sample.no == "106")
+```
+
+### During/After Outbreak - Tufts Only
+```{r, warning=FALSE}
+tufts_outbreak <-
+  meta %>% 
+  select(classification, pdv.tufts) %>% 
+  filter(!pdv.tufts == "N/A") %>% 
+  mutate(pdv.tufts=factor(pdv.tufts, levels=c("Positive", "Negative", "N/A")),
+         classification = ifelse(classification == "Non-survivor", 
+                                 "Non-survivor (Case)", "Survivor (Control)")) %>% 
+  ggplot(data=.) +
+  geom_mosaic(aes(x=product(pdv.tufts,classification), fill=pdv.tufts)) +
+  scale_fill_manual(values=c("Negative" = "#58baba",
+                             "Positive" = "#008080"),
+                    name="PDV Results") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(y="Proportion of Samples") +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position="bottom",
+        text = element_text(size=10),
+        plot.title = element_text(hjust = 0.5))
+tufts_outbreak
+
+ggsave("Figures/pdv-classification_tuftsresults.jpeg", tufts_outbreak,
+       width = 6, height = 5, units = "in")
+```
+
+#### Tufts Figure - Presentation
+```{r}
+tufts_pres <- 
+  meta %>% 
+  select(classification, pdv.tufts) %>%
+  filter(!pdv.tufts == "N/A") %>% 
+  mutate(pdv.tufts=factor(pdv.tufts, levels=c("Positive", "Negative", "N/A")),
+         classification = ifelse(classification == "Non-survivor", 
+                                 "Non-survivor (Case)", "Survivor (Control)")) %>% 
+  ggplot(data=.) +
+  geom_mosaic(aes(x=product(pdv.tufts,classification), fill=pdv.tufts)) +
+  scale_fill_manual(values=c("Negative" = "#B5CDD3",
+                             "Positive" = "#7F7B9A"),
+                    name="PDV Results") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(y="Proportion of Samples") +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position="bottom",
+        text = element_text(size=16),
+        plot.title = element_text(hjust = 0.5))
+tufts_pres
+
+ggsave("Figures/pdv-classification_tuftsresults_pres.jpeg", tufts_pres,
+       width = 6, height = 5, units = "in")
+```
+
+
+### Sample statistics
+```{r}
+table(meta$seq.run)
+table(meta$condition, meta$classification) %>% 
+  data.frame() %>% 
+  mutate(total = as.numeric(ifelse(Var2 == "Non-survivor", "47", "55"))) %>%
+  mutate(Prop = (Freq/total)*100)
+
+table(meta$sex, meta$classification) %>% 
+  data.frame() %>% 
+  mutate(total = as.numeric(ifelse(Var2 == "Non-survivor", "47", "55"))) %>%
+  mutate(Prop = (Freq/total)*100)
+
+table(meta$age.class, meta$classification) %>% 
+  data.frame() %>% 
+  mutate(total = as.numeric(ifelse(Var2 == "Non-survivor", "47", "55"))) %>%
+  mutate(Prop = (Freq/total)*100)
+
+prop.table(table(meta$classification))
+prop.table(table(meta$pdv))
+prop.table(table(meta$pdv.tufts))
+```
+
+## Map of Strandings
+```{r}
+US <- 
+  read_sf("Input Files/cb_2022_us_state_500k")
+NE <- 
+  subset(US, NAME=="Maine" | NAME=="New Hampshire" | NAME=="Massachusetts" | NAME=="Vermont")
+
+map <-
+  ggplot()+
+  geom_sf(data=US, fill="gray80", color="gray80", size = 0.001) +
+  geom_sf(data=NE, fill="gray80", color="gray20", size=.01) +
+  coord_sf(xlim=c(-67.3,-71.8), ylim=c(41,44.8)) +
+  geom_point(data=meta, aes(x=long, y=lat, 
+                            color=classification, 
+                            shape=classification), 
+              size=3) + 
+  # geom_label_repel(aes(x = long, y = lat, label = field.id, fill = NA), data = meta,
+  #                  max.overlaps = 40, 
+  #                  label.size = NA) +
+  scale_color_manual(values=c("#58baba", "black"), name="Classification") +
+  scale_shape_manual(values=c(16, 18),  name="Classification") +
+  labs(x=NULL, y=NULL) +
+  theme_bw() + 
+  theme(panel.grid = element_blank(),
+        text = element_text(size=20),
+        legend.position = "inside",
+        legend.position.inside = c(0.83,0.09)) 
+map
+
+ggsave("Figures/strandings-classification_map.jpeg", map,
+       width = 8, height = 7, units = "in")
+```
+
+## Case v Control ~ Factors
+
+### During/After Outbreak - All Data
+```{r, warning=FALSE}
+table(meta$pdv.tufts, meta$classification)
+table(meta$classification)
+
+outbreak <-
+  meta %>% 
+  select(classification, pdv) %>% 
+  mutate(pdv=factor(pdv, levels=c("Positive", "Negative", "N/A"))) %>% 
+  ggplot(data=.) +
+  geom_mosaic(aes(x=product(pdv,classification), fill=pdv)) +
+  scale_fill_manual(values=c("N/A" = "grey",
+                             "Negative" = "#58baba",
+                             "Positive" = "#008080"),
+                    name="PDV") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(y="Proportion of Samples") +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position="bottom",
+        text = element_text(size=10),
+        plot.title = element_text(hjust = 0.5))
+outbreak
+```
+
+
+### Sex
+```{r}
+sex <-
+  meta %>% 
+  select(sex, pdv) %>% 
+  mutate(pdv=factor(pdv, levels=c("Positive", "Negative", "N/A"))) %>% 
+  ggplot(data=.) +
+  geom_mosaic(aes(x=product(pdv,sex), fill=pdv)) +
+  scale_fill_manual(values=c("N/A" = "grey",
+                             "Negative" = "#008080",
+                             "Positive" = "#58baba"),
+                    name="PDV") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(y="Proportion of Samples") +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position="bottom",
+        text = element_text(size=10),
+        plot.title = element_text(hjust = 0.5))
+sex
+```
+
+### Age
+```{r}
+age <-
+  meta %>% 
+  select(age.class, pdv) %>%
+  mutate(pdv=factor(pdv, levels=c("Positive", "Negative", "N/A")),
+         age.class=factor(age.class, levels=c("Pup/Calf", "Yearling", 
+                                              "Subadult", "Adult", "Unknown"))) %>% 
+  ggplot(data=.) +
+  geom_mosaic(aes(x=product(pdv,age.class), fill=pdv)) +
+  scale_fill_manual(values=c("N/A" = "grey",
+                             "Negative" = "#008080",
+                             "Positive" = "#58baba"),
+                    name="PDV") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(y="Proportion of Samples") +
+  theme_bw() +
+  theme(panel.grid.major = element_blank(), 
+        panel.grid.minor = element_blank(),
+        axis.title.x = element_blank(),
+        legend.position="bottom",
+        text = element_text(size=10),
+        plot.title = element_text(hjust = 0.5))
+age
+```
+
+
+<!--chapter:end:01-exploratory.Rmd-->
+
+---
+author: "Christina McCosker"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# PCA - High Coverage
+
+## Libraries
+```{r, warning=FALSE, message=FALSE}
+library(data.table)
+library(SNPRelate)
+library(gdsfmt)
+library(dplyr)
+library(ggplot2)
+library(gridExtra)
+library(ggrepel)
+library(kableExtra)
+library(knitr)
+```
+
+## Data
+```{r}
+meta <- 
+  fread("Output Files/metadata_tidy.csv") %>% 
+  mutate(seq.id = gsub("B5GAN", "", seq.id))
+```
+
+## VCF to GDS
+```{r}
+# Load VCF file and create GDS file
+# snpgdsVCF2GDS("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/30xSamples_Genotype_nosex_edit.vcf", 
+#               "C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/30xsamples_Genotype.gds", 
+#               method="biallelic.only")
+
+snpgdsSummary("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/30xSamples_Genotype_nosex.gds")
+
+geno <- snpgdsOpen("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/30xSamples_Genotype_nosex.gds")
+```
+
+## LD-based SNP Pruning
+Recursively removes SNPs within a sliding window based on pairwise genotypic correlation - remove SNPs in linkage disequilibrium with each other. Conducted chromosome by chromosome (SNPs in a chromosome are independent of SNPs on other chromosomes).Generates set of SNPs that are independent of each other.  
+Many SNPs are going to be in LD to each other based on ancestry. Researchers will LD prune to reduce the chance of false-negatives and look for ways to prioritize SNPs within significant GWAS hits to increase the chance of finding something casual.
+```{r}
+set.seed(1000)
+
+snpset <- snpgdsLDpruning(geno, ld.threshold=0.2, autosome.only=FALSE)
+snpset.id <- unlist(unname(snpset))
+
+snpset2 <- snpgdsLDpruning(geno, ld.threshold=0.1, autosome.only=FALSE)
+snpset.id2 <- unlist(unname(snpset2))
+
+snpset3 <- snpgdsLDpruning(geno, ld.threshold=0.5, autosome.only=FALSE)
+snpset.id3 <- unlist(unname(snpset3))
+```
+
+## PCA
+
+### PCA Original
+
+#### Run PCA
+```{r}
+pca <- 
+  snpgdsPCA(geno, 
+            snp.id=snpset.id, 
+            num.thread=2, autosome.only=FALSE)
+```
+
+#### Calculate PC Percent Variation
+```{r}
+pc.percent <- 
+  round(pca$varprop*100, digits=2)
+head(pc.percent)
+```
+
+#### Configure plot data
+```{r}
+pca_data <- 
+  data.frame(sample.id = pca$sample.id,
+             EV1 = pca$eigenvect[,1],   
+             EV2 = pca$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>% 
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+labelx <- 
+  paste0("PC1 (", pc.percent[1], "%)", sep="")
+labely <- 
+  paste0("PC2 (", pc.percent[2], "%)", sep="")
+```
+
+#### Plot
+Seemingly no structure, but maybe outliers (5, 51, 58)
+```{r, warning=FALSE}
+plot <-
+  ggplot(pca_data, aes(x=EV1, y=EV2)) +
+  geom_point(size=2, colour="slategray") +
+  labs(x=labelx,
+       y=labely) +
+  # geom_text_repel(label=pca_data$sample.no) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+plot
+
+ggsave("Figures/highcov_popstructure_pca.jpeg", plot,
+       width = 5, height = 5, units = "in")
+```
+
+
+#### Plot PCA ~ Factors
+```{r}
+classification <- 
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=classification)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+classification
+
+pdv <- 
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=pdv)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+pdv
+
+sex <- 
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=sex)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+sex
+
+age <-
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=age.class)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral", "magenta")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+age
+
+condition <- 
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=condition)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+condition
+
+seqrun <- 
+  ggplot(pca_data, aes(x=EV1, y=EV2, color=factor(seq.run))) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+seqrun
+```
+
+
+### PCA w/o Outliers
+After two iterations. First removed 51, 58, then removed 5, 72.
+
+#### Possible outliers
+```{r}
+outlier_meta <- 
+  meta %>% 
+  filter(sample.no=="51" |
+         sample.no=="58" |
+         sample.no=="5" |
+         sample.no=="72") %>% 
+  select(!seq.id & !coverage) %>% 
+  setNames(., nm=c("#", "sample", "run", "category", "strand date", "lat", "long", 
+             "condition", "sex", "age", "pdv", "totaldna", "seqdepth"))
+
+outlier_meta %>% 
+  kable() %>% 
+  kable_styling("basic", font_size=12,
+                position="center")
+```
+
+#### Run PCA
+```{r}
+samples_outlier <-
+  meta %>% 
+  filter(coverage=="high") %>% 
+  filter(!sample.no=="51" & 
+         !sample.no=="58" &
+         !sample.no=="5" &
+         !sample.no=="72")
+
+pca_outlier <- 
+  snpgdsPCA(geno, 
+            snp.id=snpset.id, 
+            sample.id=samples_outlier$seq.id,
+            num.thread=2,
+            autosome.only=FALSE)
+```
+
+#### Calculate PC Percent Variation
+```{r}
+pc.percent_outlier <- 
+  round(pca_outlier$varprop*100, digits=2)
+head(pc.percent_outlier)
+```
+
+#### Configure plot data
+```{r}
+pca_data_outlier <- 
+  data.frame(sample.id = pca_outlier$sample.id,
+             EV1 = pca_outlier$eigenvect[,1],   
+             EV2 = pca_outlier$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>% 
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+labelx <- 
+  paste0("EV1 (", pc.percent_outlier[1], "%)", sep="")
+labely <- 
+  paste0("EV1 (", pc.percent_outlier[2], "%)", sep="")
+```
+
+#### Plot
+Seemingly no structure, but maybe outliers (5, 51, 58)
+```{r, warning=FALSE}
+plot_outlier <-
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2)) +
+  geom_point(size=2, colour="slategray") +
+  labs(x=labelx,
+       y=labely) +
+  geom_text_repel(label=pca_data_outlier$sample.no) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+plot_outlier
+```
+
+#### Plot PCA ~ Factors
+```{r}
+classification_outlier <- 
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=classification)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+classification_outlier
+
+pdv_outlier <- 
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=pdv)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+pdv_outlier
+
+sex_outlier <- 
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=sex)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+sex_outlier
+
+age_outlier <-
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=age.class)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral", "magenta")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+age_outlier
+
+condition_outlier <- 
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=condition)) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+condition_outlier
+
+seqrun_outlier <- 
+  ggplot(pca_data_outlier, aes(x=EV1, y=EV2, color=factor(seq.run))) +
+  geom_point(size=2) +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+seqrun_outlier
+```
+
+#### Combine
+```{r, warning=FALSE}
+plot_outlier
+grid.arrange(classification_outlier, pdv_outlier, sex_outlier, 
+             age_outlier, condition_outlier, seqrun_outlier, ncol=3)
+```
+
+
+### PCA by Chromosome
+
+#### Chromosome 1
+```{r}
+pca_chrom1 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "1")
+
+chrom1 <- 
+  data.frame(sample.id = pca_chrom1$sample.id,
+             EV1 = pca_chrom1$eigenvect[,1],    
+             EV2 = pca_chrom1$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom1 <- 
+  round(pca_chrom1$varprop*100, digits=2)
+
+labelx_chrom1 <- 
+  paste0("EV1 (", pc.percent_chrom1[1], "%)", sep="")
+labely_chrom1 <- 
+  paste0("EV1 (", pc.percent_chrom1[2], "%)", sep="")
+
+chrom1_plot <-
+  ggplot(chrom1, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 1",
+       x=labelx_chrom1,
+       y=labely_chrom1) +
+  geom_text_repel(label=chrom1$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 2
+```{r}
+pca_chrom2 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "2")
+
+chrom2 <- 
+  data.frame(sample.id = pca_chrom2$sample.id,
+             EV1 = pca_chrom2$eigenvect[,1],    
+             EV2 = pca_chrom2$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom2 <- 
+  round(pca_chrom2$varprop*100, digits=2)
+
+labelx_chrom2 <- 
+  paste0("EV1 (", pc.percent_chrom2[1], "%)", sep="")
+labely_chrom2 <- 
+  paste0("EV1 (", pc.percent_chrom2[2], "%)", sep="")
+
+chrom2_plot <-
+  ggplot(chrom2, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 2",
+       x=labelx_chrom2,
+       y=labely_chrom2) +
+  geom_text_repel(label=chrom2$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 3
+```{r}
+pca_chrom3 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "3")
+
+chrom3 <- 
+  data.frame(sample.id = pca_chrom3$sample.id,
+             EV1 = pca_chrom3$eigenvect[,1],    
+             EV2 = pca_chrom3$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom3 <- 
+  round(pca_chrom3$varprop*100, digits=2)
+
+labelx_chrom3 <- 
+  paste0("EV1 (", pc.percent_chrom3[1], "%)", sep="")
+labely_chrom3 <- 
+  paste0("EV1 (", pc.percent_chrom3[2], "%)", sep="")
+
+chrom3_plot <-
+  ggplot(chrom3, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 3",
+       x=labelx_chrom3,
+       y=labely_chrom3) +
+  geom_text_repel(label=chrom3$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 4
+```{r}
+pca_chrom4 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "4")
+
+chrom4 <- 
+  data.frame(sample.id = pca_chrom4$sample.id,
+             EV1 = pca_chrom4$eigenvect[,1],    
+             EV2 = pca_chrom4$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom4 <- 
+  round(pca_chrom4$varprop*100, digits=2)
+
+labelx_chrom4 <- 
+  paste0("EV1 (", pc.percent_chrom4[1], "%)", sep="")
+labely_chrom4 <- 
+  paste0("EV1 (", pc.percent_chrom4[2], "%)", sep="")
+
+chrom4_plot <-
+  ggplot(chrom4, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 4",
+       x=labelx_chrom4,
+       y=labely_chrom4) +
+  geom_text_repel(label=chrom4$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 5
+```{r}
+pca_chrom5 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "5")
+
+chrom5 <- 
+  data.frame(sample.id = pca_chrom5$sample.id,
+             EV1 = pca_chrom5$eigenvect[,1],    
+             EV2 = pca_chrom5$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom5 <- 
+  round(pca_chrom5$varprop*100, digits=2)
+
+labelx_chrom5 <- 
+  paste0("EV1 (", pc.percent_chrom5[1], "%)", sep="")
+labely_chrom5 <- 
+  paste0("EV1 (", pc.percent_chrom5[2], "%)", sep="")
+
+chrom5_plot <-
+  ggplot(chrom5, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 5",
+       x=labelx_chrom5,
+       y=labely_chrom5) +
+  geom_text_repel(label=chrom5$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 6
+```{r}
+pca_chrom6 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "6")
+
+chrom6 <- 
+  data.frame(sample.id = pca_chrom6$sample.id,
+             EV1 = pca_chrom6$eigenvect[,1],    
+             EV2 = pca_chrom6$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom6 <- 
+  round(pca_chrom6$varprop*100, digits=2)
+
+labelx_chrom6 <- 
+  paste0("EV1 (", pc.percent_chrom6[1], "%)", sep="")
+labely_chrom6 <- 
+  paste0("EV1 (", pc.percent_chrom6[2], "%)", sep="")
+
+chrom6_plot <-
+  ggplot(chrom6, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 6",
+       x=labelx_chrom6,
+       y=labely_chrom6) +
+  geom_text_repel(label=chrom6$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 7
+```{r}
+pca_chrom7 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "7")
+
+chrom7 <- 
+  data.frame(sample.id = pca_chrom7$sample.id,
+             EV1 = pca_chrom7$eigenvect[,1],    
+             EV2 = pca_chrom7$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom7 <- 
+  round(pca_chrom7$varprop*100, digits=2)
+
+labelx_chrom7 <- 
+  paste0("EV1 (", pc.percent_chrom7[1], "%)", sep="")
+labely_chrom7 <- 
+  paste0("EV1 (", pc.percent_chrom7[2], "%)", sep="")
+
+chrom7_plot <-
+  ggplot(chrom7, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 7",
+       x=labelx_chrom7,
+       y=labely_chrom7) +
+  geom_text_repel(label=chrom7$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 8
+```{r}
+pca_chrom8 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "8")
+
+chrom8 <- 
+  data.frame(sample.id = pca_chrom8$sample.id,
+             EV1 = pca_chrom8$eigenvect[,1],    
+             EV2 = pca_chrom8$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom8 <- 
+  round(pca_chrom8$varprop*100, digits=2)
+
+labelx_chrom8 <- 
+  paste0("EV1 (", pc.percent_chrom8[1], "%)", sep="")
+labely_chrom8 <- 
+  paste0("EV1 (", pc.percent_chrom8[2], "%)", sep="")
+
+chrom8_plot <-
+  ggplot(chrom8, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 8",
+       x=labelx_chrom8,
+       y=labely_chrom8) +
+  geom_text_repel(label=chrom8$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 9
+```{r}
+pca_chrom9 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "9")
+
+chrom9 <- 
+  data.frame(sample.id = pca_chrom9$sample.id,
+             EV1 = pca_chrom9$eigenvect[,1],    
+             EV2 = pca_chrom9$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom9 <- 
+  round(pca_chrom9$varprop*100, digits=2)
+
+labelx_chrom9 <- 
+  paste0("EV1 (", pc.percent_chrom9[1], "%)", sep="")
+labely_chrom9 <- 
+  paste0("EV1 (", pc.percent_chrom9[2], "%)", sep="")
+
+chrom9_plot <-
+  ggplot(chrom9, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 9",
+       x=labelx_chrom9,
+       y=labely_chrom9) +
+  geom_text_repel(label=chrom9$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 10
+```{r}
+pca_chrom10 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "10")
+
+chrom10 <- 
+  data.frame(sample.id = pca_chrom10$sample.id,
+             EV1 = pca_chrom10$eigenvect[,1],    
+             EV2 = pca_chrom10$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom10 <- 
+  round(pca_chrom10$varprop*100, digits=2)
+
+labelx_chrom10 <- 
+  paste0("EV1 (", pc.percent_chrom10[1], "%)", sep="")
+labely_chrom10 <- 
+  paste0("EV1 (", pc.percent_chrom10[2], "%)", sep="")
+
+chrom10_plot <-
+  ggplot(chrom10, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 10",
+       x=labelx_chrom10,
+       y=labely_chrom10) +
+  geom_text_repel(label=chrom10$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 11
+```{r}
+pca_chrom11 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "11")
+
+chrom11 <- 
+  data.frame(sample.id = pca_chrom11$sample.id,
+             EV1 = pca_chrom11$eigenvect[,1],    
+             EV2 = pca_chrom11$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom11 <- 
+  round(pca_chrom11$varprop*100, digits=2)
+
+labelx_chrom11 <- 
+  paste0("EV1 (", pc.percent_chrom11[1], "%)", sep="")
+labely_chrom11 <- 
+  paste0("EV1 (", pc.percent_chrom11[2], "%)", sep="")
+
+chrom11_plot <-
+  ggplot(chrom11, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 11",
+       x=labelx_chrom11,
+       y=labely_chrom11) +
+  geom_text_repel(label=chrom11$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+
+#### Chromosome 12
+```{r}
+pca_chrom12 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "12")
+
+chrom12 <- 
+  data.frame(sample.id = pca_chrom12$sample.id,
+             EV1 = pca_chrom12$eigenvect[,1],    
+             EV2 = pca_chrom12$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom12 <- 
+  round(pca_chrom12$varprop*100, digits=2)
+
+labelx_chrom12 <- 
+  paste0("EV1 (", pc.percent_chrom12[1], "%)", sep="")
+labely_chrom12 <- 
+  paste0("EV1 (", pc.percent_chrom12[2], "%)", sep="")
+
+chrom12_plot <-
+  ggplot(chrom12, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 12",
+       x=labelx_chrom12,
+       y=labely_chrom12) +
+  geom_text_repel(label=chrom12$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 13
+```{r}
+pca_chrom13 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "13")
+
+chrom13 <- 
+  data.frame(sample.id = pca_chrom13$sample.id,
+             EV1 = pca_chrom13$eigenvect[,1],    
+             EV2 = pca_chrom13$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom13 <- 
+  round(pca_chrom13$varprop*100, digits=2)
+
+labelx_chrom13 <- 
+  paste0("EV1 (", pc.percent_chrom13[1], "%)", sep="")
+labely_chrom13 <- 
+  paste0("EV1 (", pc.percent_chrom13[2], "%)", sep="")
+
+chrom13_plot <-
+  ggplot(chrom13, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 13",
+       x=labelx_chrom13,
+       y=labely_chrom13) +
+  geom_text_repel(label=chrom13$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 14
+```{r}
+pca_chrom14 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "14")
+
+chrom14 <- 
+  data.frame(sample.id = pca_chrom14$sample.id,
+             EV1 = pca_chrom14$eigenvect[,1],    
+             EV2 = pca_chrom14$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom14 <- 
+  round(pca_chrom14$varprop*100, digits=2)
+
+labelx_chrom14 <- 
+  paste0("EV1 (", pc.percent_chrom14[1], "%)", sep="")
+labely_chrom14 <- 
+  paste0("EV1 (", pc.percent_chrom14[2], "%)", sep="")
+
+chrom14_plot <-
+  ggplot(chrom14, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 14",
+       x=labelx_chrom14,
+       y=labely_chrom14) +
+  geom_text_repel(label=chrom14$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+```
+
+#### Chromosome 16
+```{r}
+pca_chrom16 <- 
+  snpgdsPCA(geno, 
+            snp.id = snpset.id, 
+            num.thread = 2, 
+            autosome.only = "16")
+
+chrom16 <- 
+  data.frame(sample.id = pca_chrom16$sample.id,
+             EV1 = pca_chrom16$eigenvect[,1],    
+             EV2 = pca_chrom16$eigenvect[,2],    
+             stringsAsFactors = FALSE) %>%
+  merge(., meta, by.x="sample.id", by.y="seq.id")
+
+pc.percent_chrom16 <- 
+  round(pca_chrom16$varprop*100, digits=2)
+
+labelx_chrom16 <- 
+  paste0("EV1 (", pc.percent_chrom16[1], "%)", sep="")
+labely_chrom16 <- 
+  paste0("EV1 (", pc.percent_chrom16[2], "%)", sep="")
+
+chrom16_plot <-
+  ggplot(chrom16, aes(x=EV1, y=EV2)) +
+  geom_point() +
+  labs(title="Chromosome 15",
+       x=labelx_chrom16,
+       y=labely_chrom16) +
+  geom_text_repel(label=chrom16$sample.no,   
+                  max.overlaps=50) +
+  theme_bw() +
+  theme(panel.grid=element_blank(),
+        plot.title = element_text(hjust = 0.5))
+chrom16_plot
+```
+
+#### View
+```{r}
+chrom1_plot
+chrom2_plot
+chrom3_plot
+chrom4_plot
+chrom5_plot
+chrom6_plot
+chrom7_plot
+chrom8_plot
+chrom9_plot
+chrom10_plot
+chrom11_plot
+chrom12_plot
+chrom13_plot
+chrom14_plot
+chrom16_plot
+```
+
+## Relatedness
+Drop SNPs with missing info in >5% individuals.  
+Exclude rare SNPs, <5% MAF. 
+k0 is high for all individuals - no relatedness
+```{r}
+sample.id <- 
+  read.gdsn(index.gdsn(geno, "sample.id"))
+
+ibd <- 
+  snpgdsIBDMoM(geno, 
+               sample.id=sample.id, snp.id=snpset.id,
+               maf=0.05, missing.rate=0.05, 
+               num.thread=2, autosome.only=FALSE)
+
+ibd.coeff <- snpgdsIBDSelection(ibd)
+
+plot(ibd.coeff$k0, ibd.coeff$k1, xlim=c(0,1), ylim=c(0,1),
+     xlab="k0", ylab="k1", main="YRI samples (MoM)")
+lines(c(0,1), c(1,0), col="red", lty=2)
+```
+
+
+<!--chapter:end:02-pca_step18.Rmd-->
+
+---
+author: "Christina McCosker"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Density Plot Filter Metrics
+Step 23 of Chromosome Level Workflow
+Density plots for SNPs based on: QD, FS, SOR, MQ, MQRankSum, ReadPosRankSum
+
+## Libraries
+```{r, warning=FALSE, message=FALSE}
+library(ggplot2)
+```
+
+## Data
+```{r}
+filter <- 
+  read.table("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/30xSamples_nosex_hardfilter.table", header=TRUE)
+```
+
+## Density Plots
+
+### Metric: QD
+Filtered out <2
+```{r}
+filter$failQD <- grepl("QD2", filter$FILTER)
+  
+# Original Plot
+qdplot <- 
+  ggplot(filter, aes(x=QD)) + 
+  geom_density()
+qdplot  
+  
+# Pass/Fail QD
+qdplot2 <- 
+  ggplot(filter, aes(x=QD, fill=failQD)) + 
+  geom_density() 
+qdplot2
+```
+
+### Metric: FS 
+Filtered out >60
+```{r}
+filter$failFS <- grepl("FS60", filter$FILTER)
+
+# Original Plot
+fsplot <- 
+  ggplot(filter, aes(x=(FS))) +
+  scale_x_continuous(trans="log10") +
+  geom_density()
+fsplot
+  
+# Pass/Fail FS
+fsplot2 <- 
+  ggplot(filter, aes(x=(FS), fill=failFS)) +
+  scale_x_continuous(trans="log10") +
+  geom_density()
+fsplot2
+```
+
+### Metric: SOR
+Filtered out >3
+```{r}
+filter$failSOR <- grepl("SOR3", filter$FILTER)
+
+# Original Plot
+sorplot <- 
+  ggplot(filter, aes(x=SOR)) +
+  geom_density()
+sorplot
+      
+# Pass/Fail SOR
+sorplot2 <- 
+  ggplot(filter, aes(x=SOR, fill=failSOR)) +
+  geom_density()
+sorplot2
+```
+
+### Metric: MQ
+Filtered out <40
+```{r}
+filter$failMQ <- grepl("MQ40", filter$FILTER)
+      
+# Original Plot
+mqplot <- 
+  ggplot(filter, aes(x=MQ)) +
+  geom_density()
+mqplot
+
+# Pass/Fail MQ
+mqplot2 <- 
+  ggplot(filter, aes(x=MQ, fill=failMQ)) +
+  geom_density()
+mqplot2    
+```
+
+### Metric: MQRankSum
+Filtered out < -12.5
+
+```{r}
+filter$failMQRankSum <- grepl("MQRankSum-12.5", filter$FILTER)
+  
+sum(filter$MQRankSum > 12.5, na.rm = TRUE)    # 43
+sum(filter$MQRankSum < -12.5, na.rm = TRUE)   # 330
+
+# Original Plot
+mqrsplot <- 
+  ggplot(filter, aes(x=MQRankSum)) +
+  geom_density()
+mqrsplot
+        
+# Pass/Fail MQRankSum
+mqrsplot2 <- 
+  ggplot(filter, aes(x=MQRankSum, fill=failMQRankSum)) +
+  geom_density()
+mqrsplot2   
+```
+
+### Metric: ReadPosRankSum
+Filtered out < -8  
+As large values on either end are not good, will filter out variants with RPRS >8 too
+```{r}
+filter$failReadPosRankSum <- grepl("ReadPosRankSum-8", filter$FILTER)
+    
+sum(filter$ReadPosRankSum < -8, na.rm = TRUE)   #130
+sum(filter$ReadPosRankSum > 8, na.rm = TRUE)    # 96
+    
+# Original Plot
+rprsplot <- 
+  ggplot(filter, aes(x=ReadPosRankSum)) +
+  geom_density()
+rprsplot
+    
+# Pass/Fail ReadPosRankSum
+rprsplot2 <- 
+  ggplot(filter, aes(x=ReadPosRankSum, fill=failReadPosRankSum)) +
+  geom_density()
+rprsplot2   
+```
+
+<!--chapter:end:03-plotmetrics_step23.Rmd-->
+
+---
+author: "Christina McCosker"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# GWAS - rrBLUP
+
+## Libraries
+```{r, warning=FALSE, message=FALSE}
+library(VariantAnnotation)
+library(data.table)
+library(tidyverse)
+library(rrBLUP)
+library(qqman)
+library(factoextra)
+library(ggfortify)
+library(snpStats)
+```
+
+## Data
+```{r}
+snp.matrix <-
+  fread("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf_prune.raw") %>% 
+  rename_with(gsub, 
+              pattern = "\\_[A-Z]{1}$", 
+              replacement = "", colnames(.))
+
+snp.info <- 
+  fread("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf_prune.map") %>% 
+  setNames(c("chr", "snp", "cM", "pos")) %>% 
+  select(!cM) %>% 
+  filter(snp %in% colnames(snp.matrix))
+  
+meta <- 
+  fread("Output Files/metadata_tidy.csv") %>% 
+  mutate(seq.id = gsub("B5GAN", "", seq.id)) %>% 
+  filter(seq.id %in% snp.matrix$IID)
+```
+
+## Calculating  GRM
+SNP calls need to be changed from 0, 1, 2 to -1, 0, 1 (for rrBLUP)
+```{r}
+x <- 
+  snp.matrix[, -c(1:6)] %>% 
+  as.matrix()
+
+# Change from 0,1,2 to -1,0,1 for rrBLUP
+x <- x-1
+
+# Row names = sample ID
+rownames(x) <- snp.matrix$IID
+
+grm <- A.mat(x)
+```
+
+## Population structure
+
+### Heatmap
+No obvious clustering of samples
+```{r}
+heatmap(grm, col=rev(heat.colors(75)))
+
+jpeg("Figures/grm_heatmap.jpeg", height = 8, width = 8, units = "in", res = 400)
+heatmap(grm, col=rev(heat.colors(75)), cexRow = 0.4, cexCol = 0.4)
+dev.off()
+```
+
+### PCA
+Again, seemingly no sample clustering
+```{r}
+pca <- prcomp(grm, scale=FALSE, center=FALSE)
+
+# Variance explained by first 8 PCs
+eigenvalues <- pca$sdev^2
+prop <- round((eigenvalues/sum(eigenvalues)*100), 2)[1:8] 
+prop
+
+fviz_eig(pca, ncp = 8) 
+
+pca.data <-
+  data.frame(
+    sample = rownames(pca$x),
+    x = pca$x[,1],
+    y = pca$x[,2]) %>% 
+  merge(., meta, by.x="sample", by.y="seq.id")
+
+labelx <- 
+  paste0("PC1 (", prop[1], "%)", sep="")
+labely <- 
+  paste0("PC2 (", prop[2], "%)", sep="")
+
+pca <- 
+  ggplot(pca.data, aes(x=x, y=y)) +
+  geom_point() +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+  
+ggsave("Figures/allsamples_popstruct_pca.jpeg", pca, width = 5, height = 5, units = "in")
+
+
+ggplot(pca.data, aes(x=x, y=y, col=classification)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely,
+       color = "Classification") +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+
+ggplot(pca.data, aes(x=x, y=y, col=pdv)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+ggplot(pca.data, aes(x=x, y=y, col=sex)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba", "coral")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+ggplot(pca.data, aes(x=x, y=y, col=age.class)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba", "coral", "magenta", "black")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+ggplot(pca.data, aes(x=x, y=y, col=condition)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba", "coral", "magenta")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+ggplot(pca.data, aes(x=x, y=y, col=factor(seq.run))) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+
+ggplot(pca.data, aes(x=x, y=y, col=coverage)) +
+  geom_point() +
+  stat_ellipse() +
+  scale_color_manual(values=c("slategray", "#58baba")) +
+  labs(x=labelx,
+       y=labely) +
+  theme_bw() +
+  theme(panel.grid=element_blank())
+```
+
+
+## Configure data
+
+### Create matrix
+Add marker location and marker dosage
+```{r}
+snp.info <- 
+  bind_cols(snp.info, as.data.frame(t(x)))
+```
+
+### Configure phenotype data
+Non-survivor = 0, Survivor = 1
+```{r}
+phenotypes <- 
+  meta %>% 
+  select(seq.id, classification) %>% 
+  setNames(c("id", "phenotype")) %>% 
+  mutate(phenotype = ifelse(phenotype=="Non-survivor", 0, 1))
+
+# Make sure sample ID order matches
+unique(phenotypes$id == rownames(x)) # no
+
+phenotypes <- 
+  phenotypes[order(match(phenotypes$id, rownames(x))), ]
+
+unique(phenotypes$id == rownames(grm)) # yes
+unique(phenotypes$id == rownames(x)) # yes
+```
+
+### Configure grm & snp info
+```{r}
+vec <- colnames(grm) %in% phenotypes$id
+grm <- grm[vec,vec]
+
+snp.info <- as.data.frame(snp.info)
+snp.info <- snp.info[,c(TRUE,TRUE,TRUE,vec)]
+```
+
+## GWAS Model 1: genomic relationship matrix
+Note: P3D TRUE and FALSE give same results, but TRUE runs much quicker
+```{r}
+model <- 
+  GWAS(pheno = phenotypes, 
+       geno = snp.info, 
+       K = grm, 
+       fixed = NULL, 
+       plot = FALSE,
+       P3D = TRUE)
+```
+
+### Extract results
+Set names to defaults for manhattan plot.  
+GWAS outputs -log10(pvalues), convert to pvalues.  
+Try FDR and Bonferroni p-adjustment methods.
+```{r}
+gwasResults <-
+  model %>% 
+  select(snp, chr, pos, phenotype) %>% 
+  setNames(c("SNP", "CHR", "BP", "logP")) %>% 
+  mutate(CHR = as.numeric(gsub("HiC_scaffold_", "", CHR))) %>% 
+  mutate(P = 10^(-(logP)),
+         fdr = p.adjust(P, method = "fdr"),
+         bonf = p.adjust(P, method = "bonferroni"))
+
+write.csv(gwasResults, "Output Files/allsamples_gwas.csv",
+          row.names = FALSE)
+```
+
+
+### Manhattan Plot
+```{r}
+# Threshold for significance
+bf <- (-log10(0.05 / nrow(snp.info)))
+fdr <- -log10(0.05)
+
+# Bonferroni
+manhattan(gwasResults, 
+          suggestiveline=FALSE, 
+          col=c("black", "grey"),
+          genomewideline = bf, 
+          p = "P", logp = TRUE)
+
+# FDR
+manhattan(gwasResults, 
+          suggestiveline=FALSE, 
+          col=c("black", "grey"),
+          genomewideline = fdr, 
+          p = "fdr", logp = TRUE)
+```
+
+## ID SNPs in LD with GWAS SNP
+
+### Configure data
+```{r}
+# Read in VCF for all SNPs
+vcf <- 
+  readVcf("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf.vcf")
+
+# Extract genotypes
+#genotypes <- geno(vcf)$GT
+genotypes <- 
+  genotypeToSnpMatrix(vcf)$genotypes
+```
+
+### Calcualte LD
+```{r}
+gwas_snp <- 
+  gwasResults %>% 
+  filter(fdr < 0.05)
+
+snp <- gwas_snp$SNP
+
+ld_results <- 
+  ld(genotypes, genotypes[,snp], stats = c( "R.squared")) %>% 
+  data.frame()
+
+high_ld_snps <- 
+  ld_results %>% 
+  filter(HiC_scaffold_2_89017915 > 0.6)
+```
+
+
+<!--chapter:end:04-AllSamples-GWAS.Rmd-->
+
+---
+author: "Christina McCosker"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Fst-based Approach
+To complement GWAS, conducting Fst test between cases and controls, selecting top 10% of SNPs as likely to be related to disease susceptibility.
+
+## Libraries
+```{r}
+library(tidyverse)
+library(qqman)
+```
+
+## Data
+```{r}
+fst <- 
+  read.table("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples.casevcontrol.weir.fst",
+             header = 1) 
+```
+
+## Visualize SNP Fst distribution
+```{r}
+hist(fst$WEIR_AND_COCKERHAM_FST)
+```
+
+## Select outlier SNPs
+
+### > 5SD
+```{r}
+sd <- 
+  mean(fst$WEIR_AND_COCKERHAM_FST) +
+  5*sd(fst$WEIR_AND_COCKERHAM_FST)
+
+fst <- 
+  fst %>% 
+  mutate(outlier.sd = ifelse(WEIR_AND_COCKERHAM_FST > sd, "outlier", "snp"))
+
+nrow(fst %>% filter(outlier.sd == "outlier"))
+
+ggplot(fst, aes(WEIR_AND_COCKERHAM_FST, fill = outlier.sd)) +
+  geom_histogram(binwidth = 0.005) +
+  scale_fill_manual(values = c("slategray3", "gray40")) +
+  labs(x = "FST") +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        legend.position = "none")
+```
+
+#### Plot FST SD Results
+```{r}
+fst_manhattan <- 
+  fst %>% 
+  mutate(SNP = paste0(CHROM, "_", POS, sep = ""),
+         CHROM = gsub("HiC_scaffold_", "", CHROM),
+         CHROM = as.numeric(CHROM))
+
+manhattan(fst_manhattan, 
+          chr = "CHROM", 
+          bp = "POS",
+          p = "WEIR_AND_COCKERHAM_FST",
+          SNP = "SNP",
+          suggestiveline=FALSE, 
+          col=c("black", "grey"),
+          genomewideline = sd, 
+          logp = FALSE,
+          ylab = "Fst", 
+          ylim = c(0, 0.25))
+
+jpeg("Figures/manhattan_fst.jpeg", width = 10, height = 8, units = "in", res = 300)
+manhattan(fst_manhattan, 
+          chr = "CHROM", 
+          bp = "POS",
+          p = "WEIR_AND_COCKERHAM_FST",
+          SNP = "SNP",
+          suggestiveline=FALSE, 
+          col=c("#008080", "#58baba"),
+          genomewideline = sd, 
+          logp = FALSE,
+          ylab = "Fst", 
+          ylim = c(0, 0.25))
+dev.off()
+```
+
+#### Plot Fst SD - Presentation
+```{r}
+jpeg("Figures/manhattan_fst_pres.jpeg", width = 10, height = 8, units = "in", res = 300)
+manhattan(fst_manhattan, 
+          chr = "CHROM", 
+          bp = "POS",
+          p = "WEIR_AND_COCKERHAM_FST",
+          SNP = "SNP",
+          suggestiveline=FALSE, 
+          col=c("#9BD3D9", "#7FC1DB"),
+          genomewideline = sd, 
+          logp = FALSE,
+          ylab = "FST", 
+          ylim = c(0, 0.25),
+          cex.axis = 1.3,
+          cex.lab = 1.3)
+dev.off()
+```
+
+
+### Extract SNPs & 600 bp positions
+```{r}
+fst.sd <- 
+  fst %>% 
+  filter(outlier.sd == "outlier") %>% 
+  mutate(minbp = POS - 600,
+         maxbp = POS + 600,
+         flank = paste0(CHROM, ":", minbp, "-", maxbp, sep = "")) 
+
+write.csv(fst.sd, "Output Files/allsamples_fst_sd_outlierposition.csv", 
+            row.names = FALSE)
+```
+
+<!--chapter:end:05-AllSamples-Fst.Rmd-->
+
+---
+author: "Christina McCosker"
+date: "`r Sys.Date()`"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# SNP Annotation
+
+## Libraries
+```{r}
+library(reactome.db)
+library(tidyverse)
+library(data.table)
+library(WebGestaltR)
+library(kableExtra)
+library(biomaRt)
+library(ReactomePA)
+library(gridExtra)
+```
+
+## Data
+Read in: SNP gene/exon/cds information
+```{r}
+gwas_snp <- 
+  read.csv("Output Files/allsamples_gwas.csv")
+
+fst_sd_genes <- 
+  fread("Input Files/allsamples_fst_sd_outlier_genes_snps.txt")
+
+fst_sd_exons <- 
+  fread("Input Files/allsamples_fst_sd_outlier_exons_snps.txt")
+
+fst_sd_cds <- 
+  fread("Input Files/allsamples_fst_sd_outlier_cds_snps.txt")
+
+fst_sd_fst <- 
+  read.csv("Output Files/allsamples_fst_sd_outlierposition.csv")
+
+pv_genes <- 
+  fread("Input Files/GSC_HSeal_1.0_HiC_genes.gff3")
+```
+
+
+## Tidy Harbor seal genes
+```{r}
+pv_genes_tidy <- 
+  pv_genes %>% 
+  mutate(gene = V9,
+         gene = str_split_fixed(gene, ";", 5),
+         gene = str_extract(gene[,4], "(?<=to ).*(?=:)")) %>% 
+  filter(!is.na(gene))
+```
+
+
+## FST 5 SD
+
+### ID genes
+```{r}
+fst_sd_genes_tidy <- 
+  fst_sd_genes %>% 
+  mutate(gene = V9,
+         gene = str_split_fixed(gene, ";", 5),
+         gene = str_extract(gene[,4], "(?<=to ).*(?=:)")) %>% 
+  filter(!is.na(gene)) %>% 
+  mutate(classification = 
+           ifelse(V4 %in% fst_sd_cds$V4, "cds", 
+                  ifelse(V4 %in% fst_sd_exons$V4, "exon", "gene")))
+
+write.csv(fst_sd_genes_tidy, "Output Files/allsamples_fst_sd_snp_geneid.csv")
+```
+
+### Over-representation
+#### GO Terms
+```{r}
+go_bp_sd <- 
+  WebGestaltR(enrichMethod="ORA", organism="hsapiens", 
+              enrichDatabase="geneontology_Biological_Process",
+              interestGene = fst_sd_genes_tidy$gene, interestGeneType = "genesymbol", 
+              referenceGene = pv_genes_tidy$gene, referenceGeneType = "genesymbol",
+              sigMethod = "fdr", fdrThr = 0.05, 
+              isOutput = FALSE)
+
+go_cc_sd <- 
+  WebGestaltR(enrichMethod="ORA", organism="hsapiens", 
+              enrichDatabase="geneontology_Cellular_Component",
+              interestGene = fst_sd_genes_tidy$gene, interestGeneType = "genesymbol", 
+              referenceGene = pv_genes_tidy$gene, referenceGeneType = "genesymbol",
+              sigMethod = "fdr", fdrThr = 0.05, 
+              isOutput = FALSE)
+go_mf_sd <- 
+  WebGestaltR(enrichMethod="ORA", organism="hsapiens", 
+              enrichDatabase="geneontology_Molecular_Function",
+              interestGene = fst_sd_genes_tidy$gene, interestGeneType = "genesymbol", 
+              referenceGene = pv_genes_tidy$gene, referenceGeneType = "genesymbol",
+              sigMethod = "fdr", fdrThr = 0.05, 
+              isOutput = FALSE)
+```
+
+#### KEGG Pathway
+```{r}
+kegg_sd <-
+  WebGestaltR(enrichMethod = "ORA", organism = "hsapiens", 
+              enrichDatabase = "pathway_KEGG",
+              interestGene = fst_sd_genes_tidy$gene, interestGeneType = "genesymbol", 
+              referenceGene = pv_genes_tidy$gene, referenceGeneType = "genesymbol",
+              minNum = 5, sigMethod = "fdr", isOutput = FALSE) 
+kegg_sd %>%
+  kable() %>% 
+  kable_styling("basic")
+```
+
+
+### Biomart annotation
+Each gene was manually annotated with Ensembl identifier to query Ensembl's Biomart
+```{r}
+snp_ensembl <-
+  read.csv("Input Files/allsamples_fst_sd_snp_ensemblid.csv") 
+
+ensembl <- 
+  useEnsembl(biomart = "ensembl", 
+             dataset = "hsapiens_gene_ensembl")
+
+filters <- 
+  listFilters(ensembl)
+
+attributes <- 
+  listAttributes(ensembl)
+```
+
+
+#### Entrez description 
+```{r}
+snp_entrez_description <- 
+  getBM(attributes = c("ensembl_gene_id",
+                       "entrezgene_description"),
+        filter = "ensembl_gene_id",
+        values = snp_ensembl$Ensembl.ID,
+        mart = ensembl,
+        uniqueRows = TRUE)
+
+snp_entrez_description %>% 
+  kable() %>% 
+  kable_styling("basic")
+```
+
+#### GO terms
+```{r}
+snp_go <- 
+  getBM(attributes = c("ensembl_gene_id",
+                       "go_id", "name_1006", "definition_1006", "namespace_1003"),
+        filter = "ensembl_gene_id",
+        values = snp_ensembl$Ensembl.ID,
+        mart = ensembl,
+        uniqueRows = TRUE)
+
+snp_go_tidy <-
+  snp_go %>% 
+  group_by(name_1006) %>% 
+  summarize(freq = n())
+
+snp_go %>% 
+  filter(namespace_1003 == "biological_process") %>% 
+  group_by(name_1006) %>% 
+  summarize(freq = n()) %>% 
+  filter(freq > 3) %>% 
+  ggplot(., aes(x = fct_reorder(name_1006, freq, .desc=TRUE), 
+                y = freq)) +
+  geom_col() +
+  theme_bw() +
+  labs(x = "Biological Process", y = "Frequency") +
+  theme(panel.grid = element_blank()) +
+  coord_flip() 
+
+snp_go %>% 
+  filter(namespace_1003 == "molecular_function") %>% 
+  group_by(name_1006) %>% 
+  summarize(freq = n()) %>% 
+  filter(freq > 3) %>% 
+  ggplot(., aes(x = fct_reorder(name_1006, freq, .desc=TRUE), 
+                y = freq)) +
+  geom_col() +
+  theme_bw() +
+  labs(x = "Molecular Function", y = "Frequency") +
+  theme(panel.grid = element_blank()) +
+  coord_flip() 
+
+snp_go %>% 
+  filter(namespace_1003 == "cellular_component") %>% 
+  group_by(name_1006) %>% 
+  summarize(freq = n()) %>% 
+  filter(freq > 3) %>% 
+  ggplot(., aes(x = fct_reorder(name_1006, freq, .desc=TRUE), 
+                y = freq)) +
+  geom_col() +
+  theme_bw() +
+  labs(x = "Cellular Component", y = "Frequency") +
+  theme(panel.grid = element_blank()) +
+  coord_flip() 
+
+snp_go_output <- 
+  snp_go %>% 
+  group_by(name_1006) %>% 
+  summarize(freq = n()) %>% 
+  filter(freq > 3) %>% 
+  filter(!name_1006 == "") %>% 
+  merge(., snp_go, by = "name_1006", all.x = TRUE, all.y = FALSE) %>% 
+  filter(!duplicated(go_id))
+
+write.csv(snp_go_output, 
+          "Output Files/allsamples_fst_sd_snp_goterm.csv", 
+          row.names = FALSE)
+```
+
+#### Reactome pathways
+```{r}
+all_reactome <- 
+  as.data.frame(reactomePATHID2NAME)
+
+snp_reactome <- 
+  getBM(attributes = c("ensembl_gene_id",
+                       "reactome"),
+        filter = "ensembl_gene_id",
+        values = snp_ensembl$Ensembl.ID,
+        mart = ensembl,
+        uniqueRows = TRUE) %>% 
+  filter(!reactome == "") %>% 
+  merge(., all_reactome, by.x = "reactome", by.y = "DB_ID") %>% 
+  mutate(path_name = gsub("Homo sapiens: ", "", path_name))
+
+snp_reactome %>% 
+  group_by(path_name) %>% 
+  summarize(freq = n()) %>% 
+  filter(freq > 3) %>% 
+  ggplot(., aes(x = fct_reorder(path_name, freq, .desc=TRUE), 
+                y = freq)) +
+  geom_col() +
+  theme_bw() +
+  labs(x = "Reactome Pathway", y = "Frequeny") +
+  theme(panel.grid = element_blank()) +
+  coord_flip()
+```
+
+#### Reactome Pathway Over-representation
+```{r}
+# Convert to entrez gene ID
+snp_entrez_id <- 
+  getBM(attributes = c("ensembl_gene_id", "entrezgene_id"),
+        filter = "ensembl_gene_id",
+        values = snp_ensembl$Ensembl.ID,
+        mart = ensembl,
+        uniqueRows = TRUE)
+
+snp_overrep_reactome <- 
+  enrichPathway(gene = snp_entrez_id$entrezgene_id,
+                organism = "human",
+                pvalueCutoff = 0.05,
+                pAdjustMethod = "fdr",
+                readable = TRUE,
+                universe = pv_genes_tidy$gene,
+                minGSSize = 2)$result
+```
+
+### Exonic, CDS Genes
+
+#### Identify genes
+```{r}
+fst_sd_cds_tidy <- 
+  fst_sd_cds %>%
+  merge(., fst_sd_genes_tidy[,c(12:14)], by = "V12") %>% 
+  merge(., snp_ensembl, by.x = "gene", by.y = "Gene")
+
+fst_sd_exons_tidy <- 
+  fst_sd_exons %>%
+  merge(., fst_sd_genes_tidy[,c(12:14)], by = "V12") %>% 
+  merge(., snp_ensembl, by.x = "gene", by.y = "Gene")
+```
+
+#### GO terms
+```{r}
+fst_sd_cds_tidy %>% 
+  merge(., snp_go, by.x = "Ensembl.ID", by.y = "ensembl_gene_id") %>% 
+  dplyr::select(name_1006, namespace_1003) %>% 
+  arrange(namespace_1003) %>% 
+  kable() %>% 
+  kable_styling("basic")
+
+fst_sd_exons_tidy %>% 
+  filter(!classification == "cds") %>% 
+  merge(., snp_go, by.x = "Ensembl.ID", by.y = "ensembl_gene_id") %>% 
+  dplyr::select(name_1006, namespace_1003) %>% 
+  filter(!name_1006 == "") %>% 
+  group_by(name_1006, namespace_1003) %>% 
+  summarize(freq = n()) %>% 
+  arrange(namespace_1003) %>% 
+  kable() %>% 
+  kable_styling("basic")
+```
+
+#### Reactome Pathways
+```{r}
+fst_sd_cds_tidy %>% 
+  merge(., snp_reactome, by.x = "Ensembl.ID", by.y = "ensembl_gene_id") %>% 
+  dplyr::select(reactome, path_name) %>% 
+  arrange(path_name) %>% 
+  kable() %>% 
+  kable_styling("basic")
+
+fst_sd_exons_tidy %>% 
+  filter(!classification == "cds") %>% 
+  merge(., snp_reactome, by.x = "Ensembl.ID", by.y = "ensembl_gene_id") %>%
+  arrange(path_name) %>% 
+  dplyr::select(reactome, path_name) %>% 
+  kable() %>% 
+  kable_styling("basic")
+```
+
+
+## GWAS
+```{r}
+gwas_snp <- 
+  gwas_snp %>% 
+  filter(fdr < 0.05) %>% 
+  merge(., fst_sd_genes_tidy, by.x = "BP", by.y = "V4") 
+
+snp_ensembl %>% 
+  filter(Gene == "HAPLN1") %>% 
+  merge(., snp_go, by.x = "Ensembl.ID", by.y = "ensembl_gene_id") %>% 
+  filter(!name_1006 == "") %>% 
+  arrange(namespace_1003) %>% 
+  dplyr::select(name_1006, namespace_1003) %>% 
+  kable() %>% 
+  kable_styling("basic")
+
+snp_ensembl %>% 
+  filter(Gene == "HAPLN1") %>% 
+  merge(., snp_reactome, by.x = "Ensembl.ID", by.y = "ensembl_gene_id") %>% 
+  kable() %>% 
+  kable_styling("basic")
+```
+
+HAPLN1:  
+Predicted to enable hyaluronic acid binding activity. Predicted to be an extracellular matrix structural constituent conferring compression resistance. Predicted to be involved in nervous system development; positive regulation of neuroblast proliferation; and skeletal system development.
+
+## Follow up for Discussion
+
+### Innate Immune System
+```{r}
+innate_go <- 
+  snp_go %>% 
+  filter(grepl("innate immune|cytokine|pattern recognition receptor", name_1006, 
+               ignore.case = TRUE)) %>% 
+  merge(., snp_ensembl, by.x = "ensembl_gene_id", by.y = "Ensembl.ID") %>% 
+  merge(., snp_entrez_description, by = "ensembl_gene_id") 
+
+innate_reactome <-
+  snp_reactome %>% 
+  filter(grepl("innate|cytokine|interleukin", path_name, ignore.case = TRUE)) %>% 
+  merge(., snp_ensembl, by.x = "ensembl_gene_id", by.y = "Ensembl.ID")
+
+innate_gene <- 
+  c(innate_go$Gene, innate_reactome$Gene) %>% 
+  data.frame() %>% 
+  distinct()
+```
+
+### Signal Transduction
+```{r}
+signal_go <- 
+  snp_go %>% 
+  filter(grepl("signal", name_1006, ignore.case = TRUE)) %>% 
+  merge(., snp_ensembl, by.x = "ensembl_gene_id", by.y = "Ensembl.ID") %>% 
+  merge(., snp_entrez_description, by = "ensembl_gene_id") 
+
+signal_reactome <- 
+  snp_reactome %>% 
+  filter(grepl("signal", path_name, ignore.case = TRUE)) %>% 
+  merge(., snp_ensembl, by.x = "ensembl_gene_id", by.y = "Ensembl.ID")
+
+signal_gene <- 
+  c(signal_go$Gene, signal_reactome$Gene) %>% 
+  data.frame() %>% 
+  distinct()
+```
+
+### Cytokines
+```{r}
+cytokine_go <- 
+  snp_go %>% 
+  filter(grepl("cytokine ", name_1006, ignore.case = TRUE)) %>% 
+  merge(., snp_ensembl, by.x = "ensembl_gene_id", by.y = "Ensembl.ID") %>% 
+  merge(., snp_entrez_description, by = "ensembl_gene_id") 
+
+cytokine_reactome <- 
+  snp_reactome %>% 
+  filter(grepl("cytokine ", path_name, ignore.case = TRUE)) %>% 
+  merge(., snp_ensembl, by.x = "ensembl_gene_id", by.y = "Ensembl.ID")
+
+cytokine_gene <- 
+  c(cytokine_go$Gene, cytokine_reactome$Gene) %>% 
+  data.frame() %>% 
+  distinct()
+```
+
+### Adaptive Immune System
+```{r}
+adaptive_go <- 
+  snp_go %>% 
+  filter(grepl("adaptive|antigen |MHC", name_1006, ignore.case = TRUE)) %>% 
+  merge(., snp_ensembl, by.x = "ensembl_gene_id", by.y = "Ensembl.ID") 
+
+adaptive_reactome <- 
+  snp_reactome %>% 
+  filter(grepl("adaptive|antigen |MHC|complement", path_name, ignore.case = TRUE)) %>% 
+  merge(., snp_ensembl, by.x = "ensembl_gene_id", by.y = "Ensembl.ID")
+
+adaptive_gene <-
+  c(adaptive_go$Gene, adaptive_reactome$Gene) %>% 
+  data.frame() %>% 
+  distinct()
+```
+
+### Nervous System
+```{r}
+nervous_go <- 
+  snp_go %>% 
+  filter(grepl("nervous|neur|axon|synap|dendrit|brain|dopamine|norepinephrine|sensory", 
+               name_1006, ignore.case = TRUE)) %>% 
+  merge(., snp_ensembl, by.x = "ensembl_gene_id", by.y = "Ensembl.ID")
+
+nervous_reactome <- 
+  snp_reactome %>% 
+  filter(grepl("nervous|neur|synap|axon", path_name, ignore.case = TRUE)) %>% 
+  merge(., snp_ensembl, by.x = "ensembl_gene_id", by.y = "Ensembl.ID")
+
+nervous_gene <- 
+  c(nervous_go$Gene, nervous_reactome$Gene) %>% 
+  data.frame() %>% 
+  distinct()
+```
+
+## Manuscript Figure
+```{r}
+bp_freq <- 
+  snp_go %>% 
+  filter(namespace_1003 == "biological_process") %>% 
+  group_by(name_1006) %>% 
+  summarize(freq = n()) %>% 
+  filter(freq > 3) %>% 
+  mutate(category = "GO Biological Process") %>% 
+  setNames(c("title", "freq", "category"))
+
+reactome_freq <- 
+  snp_reactome %>% 
+  group_by(path_name) %>% 
+  summarize(freq = n()) %>% 
+  filter(freq > 3) %>% 
+  mutate(category = "Reactome Pathway") %>% 
+  setNames(c("title", "freq", "category"))
+
+ggplot(bp_freq, aes(x = fct_reorder(title, freq), y = freq)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x=NULL, y="Number of Genes", title = "GO Biological Process") +
+  scale_x_discrete(labels = function(description) str_wrap(description, width = 60)) +
+  coord_flip() +
+  theme_bw() +
+  theme(panel.grid=element_blank(), text=element_text(size=20))
+
+ggplot(reactome_freq, aes(x = fct_reorder(title, freq), y = freq)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(x=NULL, y="Number of Genes", title = "Reactome Pathway") +
+  scale_x_discrete(labels = function(description) str_wrap(description, width = 35)) +
+  coord_flip() +
+  theme_bw() +
+  theme(panel.grid=element_blank(), text=element_text(size=20))
+
+
+bp_reactome_freq <- 
+  rbind(bp_freq, reactome_freq) %>% 
+  ggplot(., aes(x=fct_reorder(title, freq), y = freq)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_x_discrete(labels = function(title) str_wrap(title, width = 35))+
+  labs(x = NULL, y = "Number of Genes") +
+  facet_wrap(~category, scale = "free") +
+  coord_flip() +
+  theme_bw() + 
+  theme(panel.grid = element_blank())
+bp_reactome_freq
+
+ggsave("Figures/snp_bp_reactome.jpg", bp_reactome_freq,
+       width = 9, height = 7, units = "in")
+```
+
+## Presentation Figure
+```{r}
+adaptive_gene <- 
+  adaptive_gene %>% 
+  mutate(role = "Adaptive Immunity") 
+
+innate_gene <- 
+  innate_gene %>% 
+  mutate(role = "Innate Immunity") 
+
+nervous_gene <- 
+  nervous_gene %>% 
+  mutate(role = "Nervous System")
+
+genes_all <-
+  rbind(adaptive_gene, innate_gene, nervous_gene) %>% 
+  group_by(role) %>% 
+  summarize(sum = n()) %>% 
+  mutate(role = factor(role, 
+                       levels = c("Innate Immunity", 
+                                  "Adaptive Immunity", 
+                                  "Nervous System")))
+
+snp_genes_plot <- 
+  genes_all %>% 
+  ggplot(., aes(x = role, y = sum, fill = role)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("Innate Immunity" = "#B5CDD3", 
+                               "Adaptive Immunity" = "#AFBABB",
+                               "Nervous System" = "#7F7B9A")) +
+  labs(x = NULL, y = "Number of Genes") +
+  scale_x_discrete(labels = function(role) str_wrap(role, width = 8)) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  theme(legend.position = "none",
+        text = element_text(size = 20))
+
+ggsave("Figures/snp_annotation_num.jpeg", snp_genes_plot,
+       width = 5, height = 5, units = "in")
+```
+
+## Link genes to SNPs for figure
+```{r}
+snp_immune_genes <-
+  c(adaptive_gene$., innate_gene$.) %>% 
+  data.frame() %>% 
+  distinct() %>% 
+  mutate(role = "Immune System") 
+
+snp_immunenervous_genes <-
+  intersect(snp_immune_genes$., nervous_gene$.) %>% 
+  data.frame() %>% 
+  mutate(role = "Immune & Nervous System")
+
+snp_immune_genes <- 
+  snp_immune_genes %>% 
+  filter(!. %in% snp_immunenervous_genes$.)
+
+snp_nervous_genes <- 
+  nervous_gene %>% 
+  filter(!. %in% snp_immunenervous_genes$.)
+
+snp_genes <- 
+  rbind(snp_immunenervous_genes, snp_immune_genes, snp_nervous_genes) %>% 
+  setNames(c("gene", "role")) %>% 
+  merge(., fst_sd_genes_tidy, by = "gene", all.x = TRUE, all.y = FALSE) %>% 
+  mutate(snp = paste(V1, "_", V4, sep = "")) %>% 
+  dplyr::select(c(gene, role, snp))
+
+write.csv(snp_genes, "Output Files/snp_gene_roles.csv")
+```
+
+<!--chapter:end:06-AllSamples-SNPannotation.Rmd-->
+
+---
+output: html_document
+date: "2025-07-14"
+---
+
+# SNP visualization
+
+## Libraries
+```{r}
+library(tidyverse)
+library(data.table)
+library(ggh4x)
+library(gridExtra)
+library(ggpubr)
+```
+
+## Data
+SNP Matrix coded as AD (additive dominant): 0 = Homozygous dominant, 1 = heterozygous, 2 = Homozygous minor
+```{r}
+snp.genes.role <- 
+  read.csv("Output Files/snp_gene_roles.csv", 
+           row.names = 1)
+
+meta <- 
+  fread("Output Files/metadata_tidy.csv") %>% 
+  mutate(seq.id = gsub("B5GAN", "", seq.id))
+
+snp.matrix <-
+  fread("C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf_prune_dom.raw") %>% 
+  select(!ends_with("HET")) %>% 
+  rename_with(gsub, 
+              pattern = "\\_[A-Z]{1}$", 
+              replacement = "", colnames(.)) %>% 
+  merge(., meta, by.x = "FID", by.y = "seq.id") 
+
+snp.fst.genes <- 
+  read.csv("Output Files/allsamples_fst_sd_snp_geneid.csv") %>% 
+  mutate(snp = paste(V1, "_", V4, sep = "")) %>% 
+  select(gene, snp)
+```
+
+## Plot Immune & Nervous System Genes
+Genotype AA = homozygous dominant
+Genotype AB = heterozygous
+Genotype BB = homozygous recessive
+```{r}
+snp.frequency.role <- 
+  snp.matrix %>% 
+  select(FID, snp.genes.role$snp, classification) %>% 
+  pivot_longer(!c(FID, classification), names_to = "snp", values_to = "genotype") %>% 
+  group_by(classification, snp, genotype) %>% 
+  summarize(sum = n()) %>% 
+  merge(., snp.genes.role, by = "snp") %>% 
+  mutate(genotype = ifelse(genotype == "0", "AA", 
+                           ifelse(genotype == "1", "AB", "BB")))
+
+snp.frequency.immune.plot <- 
+  snp.frequency.role %>% 
+  filter(role == "Immune System") %>% 
+  mutate(genotype = as.factor(genotype)) %>% 
+  ggplot(., aes(x = gene, y = sum, fill = genotype)) +
+  geom_col(position = "fill") +
+  scale_fill_manual(values = c("#8AD0D0","#40A0A0", "#296666"),
+                    name = "Genotype") +
+  scale_y_continuous(labels = scales::percent) +
+  coord_flip() +
+  facet_nested_wrap(vars(role, classification), dir="h",,
+                    strip.position="top", ncol=4, drop=TRUE) +
+  labs(x = NULL, y = NULL) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        legend.position = "bottom") 
+snp.frequency.immune.plot
+
+genotype.legend <- get_legend(snp.frequency.immune.plot)
+
+snp.frequency.immune.plot <- 
+  snp.frequency.immune.plot +
+  theme(legend.position = "none")
+
+snp.frequency.nervous.plot <- 
+  snp.frequency.role %>% 
+  filter(role == "Nervous System") %>% 
+  mutate(genotype = as.factor(genotype)) %>% 
+  ggplot(., aes(x = gene, y = sum, fill = genotype)) +
+  geom_col(position = "fill") +
+  scale_fill_manual(values = c("#8AD0D0","#40A0A0", "#296666"),
+                    name = "Genotype") +
+  scale_y_continuous(labels = scales::percent) +
+  coord_flip() +
+  facet_nested_wrap(vars(role, classification), dir="h",,
+                    strip.position="top", ncol=4, drop=TRUE) +
+  labs(x = NULL, y = NULL) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        legend.position = "none") 
+snp.frequency.nervous.plot
+
+snp.frequency.immunenervous.plot <- 
+  snp.frequency.role %>% 
+  filter(role == "Immune & Nervous System") %>% 
+  mutate(genotype = as.factor(genotype)) %>% 
+  ggplot(., aes(x = gene, y = sum, fill = genotype)) +
+  geom_col(position = "fill") +
+  scale_fill_manual(values = c("#8AD0D0","#40A0A0", "#296666"),
+                    name = "Genotype") +
+  scale_y_continuous(labels = scales::percent) +
+  coord_flip() +
+  facet_nested_wrap(vars(role, classification), dir="h",,
+                    strip.position="top", ncol=4, drop=TRUE) +
+  labs(x = NULL, y = NULL) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        legend.position = "none") 
+snp.frequency.immunenervous.plot
+
+plot1 <- grid.arrange(arrangeGrob(snp.frequency.immune.plot,
+                         snp.frequency.immunenervous.plot, 
+                         ncol = 1, heights = c(5.6, 4)))
+plot2 <- grid.arrange(arrangeGrob(plot1, snp.frequency.nervous.plot,
+                                  ncol = 2),
+                      bottom = "Frequency", left = "Gene")
+plot3 <- grid.arrange(plot2, genotype.legend, ncol = 1, heights = c(8, 0.5))
+
+
+ggsave("Figures/snp_frequency_immunenervous.jpg", plot3, 
+       width = 10, height = 8, units = "in", dpi = 600)
+```
+
+## Plot all Genes associated with SNPs
+```{r}
+snp.fst.frequency <- 
+  snp.matrix %>% 
+  select(FID, snp.fst.genes$snp, classification) %>% 
+  pivot_longer(!c(FID, classification), names_to = "snp", values_to = "genotype") %>% 
+  group_by(classification, snp, genotype) %>% 
+  summarize(sum = n()) %>% 
+  merge(., snp.fst.genes, by = "snp") %>% 
+  mutate(genotype = ifelse(genotype == "0", "AA", 
+                           ifelse(genotype == "1", "AB", "BB")))
+
+snp.frequency.fst.plot <-
+  snp.fst.frequency %>% 
+  mutate(genotype = as.factor(genotype)) %>% 
+  ggplot(., aes(x = gene, y = sum, fill = genotype)) +
+  geom_col(position = "fill") +
+  labs(x = "Gene", y = "Frequency") +
+  scale_fill_manual(values = c("#8AD0D0","#40A0A0", "#296666"),
+                    name = "Genotype") +
+  coord_flip() +
+  facet_wrap(~classification) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        legend.position = "bottom") 
+snp.frequency.fst.plot
+
+ggsave("Figures/snp_frequency_fst.jpg", snp.frequency.fst.plot, 
+       width = 10, height = 15, units = "in", dpi = 600)
+
+snp.fst.frequency.overall <-
+  snp.fst.frequency %>% 
+  group_by(classification, genotype) %>% 
+  summarize(n = sum(sum)) %>% 
+  mutate(prop = ifelse(classification == "Non-survivor", n/4841, n/5665)) %>% 
+  data.frame() %>% 
+  ggplot(., aes(x = classification, y = n, fill = genotype)) +
+  geom_col(position = "fill") +
+  labs(x = NULL, y = "Frequency") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_manual(values = c("#8AD0D0","#40A0A0", "#296666"),
+                    name = "Genotype") +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        legend.position = "bottom")
+snp.fst.frequency.overall
+```
+
+
+<!--chapter:end:07-snpvisualization.Rmd-->
+
