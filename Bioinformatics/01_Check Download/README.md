@@ -1,2 +1,4 @@
 # Check Download
-Run md5 checksum to make sure all sequencing files are complete. 
+Ensure all sequence data files are complete.
+
+'01_md5.sh': run md5sum to check all files. 
