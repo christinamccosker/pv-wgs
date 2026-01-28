@@ -15,4 +15,4 @@ Filter SNPs in reference haplotype panel to create set of high-quality bi-alleli
    - Used 10% following Fuller et al. (https://www.science.org/doi/10.1126/science.aba4674) and Almeida et al. 2021 (https://academic.oup.com/mbe/article/38/2/619/5918473?login=true#226582298).  
 - `27_bcftools_stats.sh`: Calculate # of SNPs present at each stage of filtering process.  
 - `28_GATK_VariantsToTable_filtered.sh`: Check that vcf files have information for samples.  
-   - Use -GF (genotype filed) to get FORMAT/sample-level fields.  
+   - Use -GF (genotype field) to get FORMAT/sample-level fields.  
