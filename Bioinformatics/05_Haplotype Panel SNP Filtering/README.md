@@ -1,7 +1,7 @@
 # Haplotype Panel SNP Filtering
 Filter SNPs in reference haplotype panel to create set of high-quality bi-allelic SNPs.
 
-Scripts:  
+**Scripts:**  
 `18_pca_outliers.md`: Instructions for using R to check for sample outliers.   
 `19_bcftools_filter.sh`: Mask variant calls ± 5bp around indels.  
 `20_bcftools_view_filterbiallelic.sh`: Remove multi-nucleotide polymorphisms to create set of high quality bi-allelic SNPs.  

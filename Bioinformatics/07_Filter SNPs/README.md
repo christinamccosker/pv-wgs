@@ -1,7 +1,7 @@
 # Filter SNPs
 Filter SNPs for downstream analyses.   
 
-Scripts:  
+**Scripts:**  
 `42_bcftools_index.sh`: Index files for bcftools merge.  
 `43_bcftools_merge_casevcontrol.sh`: Merge vcf files for cases and controls separately.  
 `44_plink_hwe_casevcontrol.sh`: Filter out SNPs that deviate from Hardy-Weinberg Equilibrium.  
@@ -24,9 +24,9 @@ Scripts:
 `53_relatedness.sh`: Check for identity-by-descent.  
   - No samples came back as related, no samples excluded    
 
-Additional Files:  
+**Additional Files:**  
 `all_samples.txt`: Text file with list of all sample numbers that were retained for analyses.  
-  
-Software downloads:  
+
+**Software downloads:**  
 plink: https://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20230116.zip  
 PopLDdecay: https://github.com/hewm2008/PopLDdecay.git  

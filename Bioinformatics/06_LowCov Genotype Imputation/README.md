@@ -1,7 +1,7 @@
 # LowCov Genotype Imputation
 Impute genotypes in low coverage samples using haplotype panel generated from high coverage samples.  
 
-Scripts:  
+**Scripts:**  
 `30_whatshap_30x.sh`: Extract phase-informative reads using set of filtered, high coverage biallelic SNPs.  
 `31_bgzip-index.sh`: bgzip and index phaseinfo vcf file.  
 `32_shapeit.sh`: Estimate haplotypes (aka phasing).  
@@ -18,7 +18,7 @@ Scripts:
 `41_GATK_GatherVcfs.sh`: Concatenate all vcf files per sample.  
     - Excluding: Sample_43, Sample_77, Sample_106 (low mapping rates), Sample_74 (low sequence coverage), and Sample_79 (lack of confidence in sample grouping).  
 
-Additional Files:  
+**Additional Files:**  
 `chromosome_names.txt`: Text file with names of each chromosome.  
 `LowCovSamples.txt`: Text file with the sample number associated with each low coverage sample.  
 `HighCovSamples.txt`: Text file with sample number associated with each high coverage sample.  

@@ -1,7 +1,7 @@
 # Generate Haplotype Panel
 Create reference haplotype panel using high-coverage samples for genotype imputation of low coverage samples.
 
-Scripts:  
+**Scripts:**  
 `10_prepare_reference.sh`: Prepare reference fasta index file for GATK.  
 `11_samtools_index_mergedmarkdup.sh`:Index sample files.  
 `12_GATK_haplotypecaller.sh`: Call variants within high coverage samples.  
@@ -18,7 +18,7 @@ Scripts:
   - Harbor seal DNA Zoo reference genome sex chromosome = HiC_scaffold_15.  
 
 
-Additional Files:  
+**Additional Files:**  
 `chromosomes_[1-5].list`: Lists of chromosome/scaffold names in reference genome for variant calling.  
 `HighCovSamples.txt`: Sample #s for high coverage samples.  
 `chromosome_length.txt`: Tab-delimited text file with each chromosome and its length.  
