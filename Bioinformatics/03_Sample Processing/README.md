@@ -1,7 +1,7 @@
 # Sample Processing
 Process bam files for variant calling.  
 
-**Scripts:**  
+## Scripts:  
 `05_samtools_sort-index.sh`: Sort and index binary alignments.  
 `06_picard_add_readgroup.sh`: Add read group information in accordance with GATK's best practices (https://gatk.broadinstitute.org/hc/en-us/articles/360035890671-Read-groups).  
     ID = Lane #  
