@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+module load bcftools
+
+bcftools view -r HiC_scaffold_1,HiC_scaffold_2,HiC_scaffold_3,HiC_scaffold_4,HiC_scaffold_5,HiC_scaffold_6,HiC_scaffold_7,HiC_scaffold_8,HiC_scaffold_9,HiC_scaffold_10,HiC_scaffold_11,HiC_scaffold_12,HiC_scaffold_13,HiC_scaffold_14,HiC_scaffold_16 -o /fs/ess/PUOM0007/GenotypeGVCFs/30xSamples_Genotype_nosex.vcf /fs/ess/PUOM0007/GenotypeGVCFs/30xSamples_Genotype.vcf.gz
