@@ -63,20 +63,20 @@ meta <-
          !sample.no == "74" &
          !sample.no == "77" & 
          !sample.no == "79" & 
-         !sample.no == "106")
+         !sample.no == "106") %>% 
+  mutate(classification2 = ifelse(classification == "Non-survivor", "Case", "Control"))
+
 ```
 
 ### During/After Outbreak - Tufts Only
 ```{r, warning=FALSE}
 tufts_outbreak <-
   meta %>% 
-  select(classification, pdv.tufts) %>% 
+  select(classification2, pdv.tufts) %>% 
   filter(!pdv.tufts == "N/A") %>% 
-  mutate(pdv.tufts=factor(pdv.tufts, levels=c("Positive", "Negative", "N/A")),
-         classification = ifelse(classification == "Non-survivor", 
-                                 "Non-survivor (Case)", "Survivor (Control)")) %>% 
+  mutate(pdv.tufts=factor(pdv.tufts, levels=c("Positive", "Negative", "N/A"))) %>% 
   ggplot(data=.) +
-  geom_mosaic(aes(x=product(pdv.tufts,classification), fill=pdv.tufts)) +
+  geom_mosaic(aes(x=product(pdv.tufts,classification2), fill=pdv.tufts)) +
   scale_fill_manual(values=c("Negative" = "#58baba",
                              "Positive" = "#008080"),
                     name="PDV Results") +
@@ -87,12 +87,12 @@ tufts_outbreak <-
         panel.grid.minor = element_blank(),
         axis.title.x = element_blank(),
         legend.position="bottom",
-        text = element_text(size=10),
+        text = element_text(size=9),
         plot.title = element_text(hjust = 0.5))
 tufts_outbreak
 
 ggsave("Figures/pdv-classification_tuftsresults.jpeg", tufts_outbreak,
-       width = 6, height = 5, units = "in")
+       width = 4, height = 3, units = "in")
 ```
 
 #### Tufts Figure - Presentation
@@ -161,24 +161,32 @@ map <-
   geom_sf(data=NE, fill="gray80", color="gray20", size=.01) +
   coord_sf(xlim=c(-67.3,-71.8), ylim=c(41,44.8)) +
   geom_point(data=meta, aes(x=long, y=lat, 
-                            color=classification, 
-                            shape=classification), 
-              size=3) + 
+                            color=classification2, 
+                            shape=classification2), 
+              size=2.5) + 
   # geom_label_repel(aes(x = long, y = lat, label = field.id, fill = NA), data = meta,
   #                  max.overlaps = 40, 
   #                  label.size = NA) +
   scale_color_manual(values=c("#58baba", "black"), name="Classification") +
   scale_shape_manual(values=c(16, 18),  name="Classification") +
   labs(x=NULL, y=NULL) +
+  annotate(geom = "text", x = -68.5, y = 42.5, label = "Atlantic Ocean", 
+           fontface = "italic", color = "black", size = 3.5) +
+  annotate(geom = "text", x = -70, y = 44.5, label = "Maine", 
+           fontface = "italic", color = "black", size = 3.5) +
+  annotate(geom = "text", x = -71.5, y = 43.5, label = "New \nHampshire", 
+           fontface = "italic", color = "black", size = 3.5) +
+  annotate(geom = "text", x = -71.5, y = 42.3, label = "Massachusetts", 
+           fontface = "italic", color = "black", size = 3.5) +
   theme_bw() + 
   theme(panel.grid = element_blank(),
-        text = element_text(size=20),
+        text = element_text(size=12),
         legend.position = "inside",
-        legend.position.inside = c(0.83,0.09)) 
+        legend.position.inside = c(0.83,0.095)) 
 map
 
 ggsave("Figures/strandings-classification_map.jpeg", map,
-       width = 8, height = 7, units = "in")
+       width = 6, height = 6, units = "in")
 ```
 
 ## Case v Control ~ Factors

@@ -19,6 +19,7 @@ library(qqman)
 library(factoextra)
 library(ggfortify)
 library(snpStats)
+library(pheatmap)
 library(conflicted)
 
 conflict_prefer("select", "dplyr")
@@ -66,10 +67,16 @@ grm <- A.mat(x)
 ### Heatmap
 No obvious clustering of samples
 ```{r}
-heatmap(grm, col=rev(heat.colors(75)))
+pheatmap(grm, 
+         color = rev(heat.colors(75)),
+         border_color = NA,
+         fontsize = 5)
 
 jpeg("Figures/grm_heatmap.jpeg", height = 8, width = 8, units = "in", res = 400)
-heatmap(grm, col=rev(heat.colors(75)), cexRow = 0.4, cexCol = 0.4)
+pheatmap(grm, 
+         color = rev(heat.colors(75)),
+         border_color = NA,
+         fontsize = 5)
 dev.off()
 ```
 
@@ -90,7 +97,8 @@ pca.data <-
     sample = rownames(pca$x),
     x = pca$x[,1],
     y = pca$x[,2]) %>% 
-  merge(., meta, by.x="sample", by.y="seq.id")
+  merge(., meta, by.x="sample", by.y="seq.id") %>% 
+  mutate(coverage = ifelse(coverage == "high", "High", "Low"))
 
 labelx <- 
   paste0("PC1 (", prop[1], "%)", sep="")
@@ -98,14 +106,18 @@ labely <-
   paste0("PC2 (", prop[2], "%)", sep="")
 
 pca <- 
-  ggplot(pca.data, aes(x=x, y=y)) +
+  ggplot(pca.data, aes(x=x, y=y, shape = coverage)) +
   geom_point() +
+  scale_shape_manual(values = c(16, 17)) +
   labs(x=labelx,
-       y=labely) +
+       y=labely,
+       shape = "Coverage") +
   theme_bw() +
   theme(panel.grid=element_blank())
+pca
   
-ggsave("Figures/allsamples_popstruct_pca.jpeg", pca, width = 5, height = 5, units = "in")
+ggsave("Figures/allsamples_popstruct_pca.jpeg", pca, 
+       width = 5, height = 4, units = "in")
 
 
 ggplot(pca.data, aes(x=x, y=y, col=classification)) +
