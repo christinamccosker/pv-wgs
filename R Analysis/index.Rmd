@@ -1,5 +1,5 @@
 --- 
-title: "Pv-WGS-Analysis"
+title: "Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus"
 author: "Christina McCosker"
 date: "Last Updated `r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -9,6 +9,16 @@ description: |
   McCosker Dissertation Chapter 3 Analyses
 ---
 
-# About
+# Publication Information
+McCosker, C. M., Doughty, L., Hunter, N., Stokes, A., Puryear, W. B., Runstadler, J. A., Cammen, K. M. (2026). Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus. Journal of Heredity. 
 
-Insert manuscript details here
+## Authors
+Christina McCosker^1^, Lynda Doughty^2^, Nicole Hunter^3^, Ashley Stokes^4^, Wendy Puryear^5^, Jonathan Runstadler^5^, Kristina M. Cammen^1^  
+*^1^School of Marine Sciences, University of Maine, Orono, ME, USA*  
+*^2^Marine Mammals of Maine, Brunswick, ME, USA*  
+*^3^International Fund for Animal Welfare, Yarmouth Port, MA, USA*
+*^4^Seacoast Science Center, Rye, NH, USA*
+*^5^Cummings School of Veterinary Medicine, Tufts University, North Grafton, MA, USA*  
+
+## Abstract
+Anthropogenic pressures have increased the emergence and spread of infectious disease in wildlife in recent decades, with cascading impacts on ecosystem dynamics and elevated risk to public health. Understanding factors that contribute to disease severity, and population- and community-level impacts, is critical to predict and mitigate infectious disease outbreaks. We aimed to investigate how host genetic factors contribute to harbor seal susceptibility to phocine distemper virus (PDV), a virus that has caused variable levels of mortality among pinniped populations across the North Atlantic. We conducted whole-genome sequencing of harbor seals that were stranded during and following a PDV outbreak that occurred in the Northeast United States in 2018 and used genome-wide association and FST-based approaches to identify genetic variants putatively associated with survival. A subset of harbor seals (10 cases, 10 controls) was sequenced at high coverage (~58x) to generate a reference haplotype panel and impute genotypes in remaining samples (37 cases, 45 controls) that were sequenced at a lower coverage (~4x). Upon investigation of 148,644 filtered single nucleotide polymorphisms (SNPs), we identified 33 candidate genes related to innate and adaptive immunity and 37 genes related to the nervous system that were associated with harbor seal survival. These results provide further evidence for the importance of immunogenetic variation and highlight additional key pathways and biological processes that may confer resistance to PDV. Genome-wide approaches, which can reveal the complexity of genetic variation underpinning disease-associated traits, are critical tools to help us understand and potentially predict the impact of future disease outbreaks. 

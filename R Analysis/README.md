@@ -1,5 +1,5 @@
 # R Analysis   
-Code for analyses in R.  
+Code for analyses in R associated with the publication "Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus", published in Journal of Heredity in 2026.  
 
 ## Bookdown site  
 https://christinamccosker.github.io/pv-wgs/  
