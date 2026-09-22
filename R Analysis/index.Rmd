@@ -10,7 +10,7 @@ description: |
 ---
 
 # Publication Information
-McCosker, C. M., Doughty, L., Hunter, N., Stokes, A., Puryear, W. B., Runstadler, J. A., Cammen, K. M. (2026). Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus. Journal of Heredity. 
+McCosker, C. M., Doughty, L., Hunter, N., Stokes, A., Puryear, W. B., Runstadler, J. A., Cammen, K. M. (2026). Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus. Journal of Heredity. 117(4). doi: 10.1093/jhered/esag017
 
 ## Authors
 Christina McCosker^1^, Lynda Doughty^2^, Nicole Hunter^3^, Ashley Stokes^4^, Wendy Puryear^5^, Jonathan Runstadler^5^, Kristina M. Cammen^1^  

@@ -1,5 +1,5 @@
 # Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus
-McCosker, C. M., Doughty, L., Hunter, N., Stokes, A., Puryear, W.B., Runstadler, J.A., Cammen, K.M. (2026). Journal of Heredity. Volume(Issue).
+McCosker, C. M., Doughty, L., Hunter, N., Stokes, A., Puryear, W.B., Runstadler, J.A., Cammen, K.M. (2026). Journal of Heredity. 117(4). doi: 10.1093/jhered/esag017
 
 ## Details  
 This repository contains all scripts and R code for the analyses of harbor seal whole genome sequence data presented in the above manuscript. Associated raw sequence data is deposited in NCBI SRA, BioProject PRJNA1432881.
