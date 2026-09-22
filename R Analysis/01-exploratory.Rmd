@@ -1,4 +1,3 @@
----
 author: "Christina McCosker"
 date: "`r Sys.Date()`"
 output: html_document
@@ -25,7 +24,7 @@ library(janitor)
 ## Data
 ```{r}
 meta <- 
-  read.csv("Input Files/metadata.csv") #%>% 
+  read.csv("Input Files/metadata.csv") %>% 
   mutate(classification=factor(classification, levels=c("Non-survivor",
                                                         "Survivor")),
          condition=gsub("1", "Alive", condition),

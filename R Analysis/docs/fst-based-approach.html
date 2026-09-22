@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Fst-based Approach | Pv-WGS-Analysis</title>
+  <title>6 Fst-based Approach | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus</title>
   <meta name="description" content="McCosker Dissertation Chapter 3 Analyses" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Fst-based Approach | Pv-WGS-Analysis" />
+  <meta property="og:title" content="6 Fst-based Approach | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="McCosker Dissertation Chapter 3 Analyses" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Fst-based Approach | Pv-WGS-Analysis" />
+  <meta name="twitter:title" content="6 Fst-based Approach | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus" />
   
   <meta name="twitter:description" content="McCosker Dissertation Chapter 3 Analyses" />
   
@@ -143,7 +143,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Pv-WGS-Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Publication Information</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i><b>1.1</b> Authors</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#abstract"><i class="fa fa-check"></i><b>1.2</b> Abstract</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html"><i class="fa fa-check"></i><b>2</b> Tidy Data &amp; Exploratory</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#libraries"><i class="fa fa-check"></i><b>2.1</b> Libraries</a></li>
@@ -272,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pv-WGS-Analysis</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus</a>
           </h1>
         </div>
 
@@ -285,61 +289,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To complement GWAS, conducting Fst test between cases and controls, selecting top 10% of SNPs as likely to be related to disease susceptibility.</p>
 <div id="libraries-4" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Libraries<a href="fst-based-approach.html#libraries-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="fst-based-approach.html#cb209-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb209-2"><a href="fst-based-approach.html#cb209-2" tabindex="-1"></a><span class="fu">library</span>(qqman)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="fst-based-approach.html#cb210-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb210-2"><a href="fst-based-approach.html#cb210-2" tabindex="-1"></a><span class="fu">library</span>(qqman)</span></code></pre></div>
 </div>
 <div id="data-4" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Data<a href="fst-based-approach.html#data-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="fst-based-approach.html#cb210-1" tabindex="-1"></a>fst <span class="ot">&lt;-</span> </span>
-<span id="cb210-2"><a href="fst-based-approach.html#cb210-2" tabindex="-1"></a>  <span class="fu">read.table</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples.casevcontrol.weir.fst&quot;</span>,</span>
-<span id="cb210-3"><a href="fst-based-approach.html#cb210-3" tabindex="-1"></a>             <span class="at">header =</span> <span class="dv">1</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="fst-based-approach.html#cb211-1" tabindex="-1"></a>fst <span class="ot">&lt;-</span> </span>
+<span id="cb211-2"><a href="fst-based-approach.html#cb211-2" tabindex="-1"></a>  <span class="fu">read.table</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples.casevcontrol.weir.fst&quot;</span>,</span>
+<span id="cb211-3"><a href="fst-based-approach.html#cb211-3" tabindex="-1"></a>             <span class="at">header =</span> <span class="dv">1</span>) </span></code></pre></div>
 </div>
 <div id="visualize-snp-fst-distribution" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Visualize SNP Fst distribution<a href="fst-based-approach.html#visualize-snp-fst-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="fst-based-approach.html#cb211-1" tabindex="-1"></a><span class="fu">hist</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="fst-based-approach.html#cb212-1" tabindex="-1"></a><span class="fu">hist</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" alt="" width="672" /></p>
 </div>
 <div id="select-outlier-snps" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Select outlier SNPs<a href="fst-based-approach.html#select-outlier-snps" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="sd" class="section level3 hasAnchor" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> &gt; 5SD<a href="fst-based-approach.html#sd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="fst-based-approach.html#cb212-1" tabindex="-1"></a>sd <span class="ot">&lt;-</span> </span>
-<span id="cb212-2"><a href="fst-based-approach.html#cb212-2" tabindex="-1"></a>  <span class="fu">mean</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST) <span class="sc">+</span></span>
-<span id="cb212-3"><a href="fst-based-approach.html#cb212-3" tabindex="-1"></a>  <span class="dv">5</span><span class="sc">*</span><span class="fu">sd</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST)</span>
-<span id="cb212-4"><a href="fst-based-approach.html#cb212-4" tabindex="-1"></a></span>
-<span id="cb212-5"><a href="fst-based-approach.html#cb212-5" tabindex="-1"></a>fst <span class="ot">&lt;-</span> </span>
-<span id="cb212-6"><a href="fst-based-approach.html#cb212-6" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
-<span id="cb212-7"><a href="fst-based-approach.html#cb212-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">outlier.sd =</span> <span class="fu">ifelse</span>(WEIR_AND_COCKERHAM_FST <span class="sc">&gt;</span> sd, <span class="st">&quot;outlier&quot;</span>, <span class="st">&quot;snp&quot;</span>))</span>
-<span id="cb212-8"><a href="fst-based-approach.html#cb212-8" tabindex="-1"></a></span>
-<span id="cb212-9"><a href="fst-based-approach.html#cb212-9" tabindex="-1"></a><span class="fu">nrow</span>(fst <span class="sc">%&gt;%</span> <span class="fu">filter</span>(outlier.sd <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="fst-based-approach.html#cb213-1" tabindex="-1"></a>sd <span class="ot">&lt;-</span> </span>
+<span id="cb213-2"><a href="fst-based-approach.html#cb213-2" tabindex="-1"></a>  <span class="fu">mean</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST) <span class="sc">+</span></span>
+<span id="cb213-3"><a href="fst-based-approach.html#cb213-3" tabindex="-1"></a>  <span class="dv">5</span><span class="sc">*</span><span class="fu">sd</span>(fst<span class="sc">$</span>WEIR_AND_COCKERHAM_FST)</span>
+<span id="cb213-4"><a href="fst-based-approach.html#cb213-4" tabindex="-1"></a></span>
+<span id="cb213-5"><a href="fst-based-approach.html#cb213-5" tabindex="-1"></a>fst <span class="ot">&lt;-</span> </span>
+<span id="cb213-6"><a href="fst-based-approach.html#cb213-6" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
+<span id="cb213-7"><a href="fst-based-approach.html#cb213-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">outlier.sd =</span> <span class="fu">ifelse</span>(WEIR_AND_COCKERHAM_FST <span class="sc">&gt;</span> sd, <span class="st">&quot;outlier&quot;</span>, <span class="st">&quot;snp&quot;</span>))</span>
+<span id="cb213-8"><a href="fst-based-approach.html#cb213-8" tabindex="-1"></a></span>
+<span id="cb213-9"><a href="fst-based-approach.html#cb213-9" tabindex="-1"></a><span class="fu">nrow</span>(fst <span class="sc">%&gt;%</span> <span class="fu">filter</span>(outlier.sd <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 559</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="fst-based-approach.html#cb214-1" tabindex="-1"></a><span class="fu">ggplot</span>(fst, <span class="fu">aes</span>(WEIR_AND_COCKERHAM_FST, <span class="at">fill =</span> outlier.sd)) <span class="sc">+</span></span>
-<span id="cb214-2"><a href="fst-based-approach.html#cb214-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.005</span>) <span class="sc">+</span></span>
-<span id="cb214-3"><a href="fst-based-approach.html#cb214-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;slategray3&quot;</span>, <span class="st">&quot;gray40&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb214-4"><a href="fst-based-approach.html#cb214-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;FST&quot;</span>) <span class="sc">+</span></span>
-<span id="cb214-5"><a href="fst-based-approach.html#cb214-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb214-6"><a href="fst-based-approach.html#cb214-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb214-7"><a href="fst-based-approach.html#cb214-7" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="fst-based-approach.html#cb215-1" tabindex="-1"></a><span class="fu">ggplot</span>(fst, <span class="fu">aes</span>(WEIR_AND_COCKERHAM_FST, <span class="at">fill =</span> outlier.sd)) <span class="sc">+</span></span>
+<span id="cb215-2"><a href="fst-based-approach.html#cb215-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.005</span>) <span class="sc">+</span></span>
+<span id="cb215-3"><a href="fst-based-approach.html#cb215-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;slategray3&quot;</span>, <span class="st">&quot;gray40&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb215-4"><a href="fst-based-approach.html#cb215-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;FST&quot;</span>) <span class="sc">+</span></span>
+<span id="cb215-5"><a href="fst-based-approach.html#cb215-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb215-6"><a href="fst-based-approach.html#cb215-6" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb215-7"><a href="fst-based-approach.html#cb215-7" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" alt="" width="672" /></p>
 <div id="plot-fst-sd-results" class="section level4 hasAnchor" number="6.4.1.1">
 <h4><span class="header-section-number">6.4.1.1</span> Plot FST SD Results<a href="fst-based-approach.html#plot-fst-sd-results" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="fst-based-approach.html#cb215-1" tabindex="-1"></a>fst_manhattan <span class="ot">&lt;-</span> </span>
-<span id="cb215-2"><a href="fst-based-approach.html#cb215-2" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
-<span id="cb215-3"><a href="fst-based-approach.html#cb215-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SNP =</span> <span class="fu">paste0</span>(CHROM, <span class="st">&quot;_&quot;</span>, POS, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>),</span>
-<span id="cb215-4"><a href="fst-based-approach.html#cb215-4" tabindex="-1"></a>         <span class="at">CHROM =</span> <span class="fu">gsub</span>(<span class="st">&quot;HiC_scaffold_&quot;</span>, <span class="st">&quot;&quot;</span>, CHROM),</span>
-<span id="cb215-5"><a href="fst-based-approach.html#cb215-5" tabindex="-1"></a>         <span class="at">CHROM =</span> <span class="fu">as.numeric</span>(CHROM))</span>
-<span id="cb215-6"><a href="fst-based-approach.html#cb215-6" tabindex="-1"></a></span>
-<span id="cb215-7"><a href="fst-based-approach.html#cb215-7" tabindex="-1"></a><span class="fu">manhattan</span>(fst_manhattan, </span>
-<span id="cb215-8"><a href="fst-based-approach.html#cb215-8" tabindex="-1"></a>          <span class="at">chr =</span> <span class="st">&quot;CHROM&quot;</span>, </span>
-<span id="cb215-9"><a href="fst-based-approach.html#cb215-9" tabindex="-1"></a>          <span class="at">bp =</span> <span class="st">&quot;POS&quot;</span>,</span>
-<span id="cb215-10"><a href="fst-based-approach.html#cb215-10" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;WEIR_AND_COCKERHAM_FST&quot;</span>,</span>
-<span id="cb215-11"><a href="fst-based-approach.html#cb215-11" tabindex="-1"></a>          <span class="at">SNP =</span> <span class="st">&quot;SNP&quot;</span>,</span>
-<span id="cb215-12"><a href="fst-based-approach.html#cb215-12" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
-<span id="cb215-13"><a href="fst-based-approach.html#cb215-13" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
-<span id="cb215-14"><a href="fst-based-approach.html#cb215-14" tabindex="-1"></a>          <span class="at">genomewideline =</span> sd, </span>
-<span id="cb215-15"><a href="fst-based-approach.html#cb215-15" tabindex="-1"></a>          <span class="at">logp =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb215-16"><a href="fst-based-approach.html#cb215-16" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Fst&quot;</span>, </span>
-<span id="cb215-17"><a href="fst-based-approach.html#cb215-17" tabindex="-1"></a>          <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="fst-based-approach.html#cb216-1" tabindex="-1"></a>fst_manhattan <span class="ot">&lt;-</span> </span>
+<span id="cb216-2"><a href="fst-based-approach.html#cb216-2" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
+<span id="cb216-3"><a href="fst-based-approach.html#cb216-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SNP =</span> <span class="fu">paste0</span>(CHROM, <span class="st">&quot;_&quot;</span>, POS, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>),</span>
+<span id="cb216-4"><a href="fst-based-approach.html#cb216-4" tabindex="-1"></a>         <span class="at">CHROM =</span> <span class="fu">gsub</span>(<span class="st">&quot;HiC_scaffold_&quot;</span>, <span class="st">&quot;&quot;</span>, CHROM),</span>
+<span id="cb216-5"><a href="fst-based-approach.html#cb216-5" tabindex="-1"></a>         <span class="at">CHROM =</span> <span class="fu">as.numeric</span>(CHROM))</span>
+<span id="cb216-6"><a href="fst-based-approach.html#cb216-6" tabindex="-1"></a></span>
+<span id="cb216-7"><a href="fst-based-approach.html#cb216-7" tabindex="-1"></a><span class="fu">manhattan</span>(fst_manhattan, </span>
+<span id="cb216-8"><a href="fst-based-approach.html#cb216-8" tabindex="-1"></a>          <span class="at">chr =</span> <span class="st">&quot;CHROM&quot;</span>, </span>
+<span id="cb216-9"><a href="fst-based-approach.html#cb216-9" tabindex="-1"></a>          <span class="at">bp =</span> <span class="st">&quot;POS&quot;</span>,</span>
+<span id="cb216-10"><a href="fst-based-approach.html#cb216-10" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;WEIR_AND_COCKERHAM_FST&quot;</span>,</span>
+<span id="cb216-11"><a href="fst-based-approach.html#cb216-11" tabindex="-1"></a>          <span class="at">SNP =</span> <span class="st">&quot;SNP&quot;</span>,</span>
+<span id="cb216-12"><a href="fst-based-approach.html#cb216-12" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
+<span id="cb216-13"><a href="fst-based-approach.html#cb216-13" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
+<span id="cb216-14"><a href="fst-based-approach.html#cb216-14" tabindex="-1"></a>          <span class="at">genomewideline =</span> sd, </span>
+<span id="cb216-15"><a href="fst-based-approach.html#cb216-15" tabindex="-1"></a>          <span class="at">logp =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb216-16"><a href="fst-based-approach.html#cb216-16" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Fst&quot;</span>, </span>
+<span id="cb216-17"><a href="fst-based-approach.html#cb216-17" tabindex="-1"></a>          <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>))</span></code></pre></div>
 <pre><code>## Warning in plot.window(...): &quot;SNP&quot; is not a graphical parameter</code></pre>
 <pre><code>## Warning in plot.xy(xy, type, ...): &quot;SNP&quot; is not a graphical parameter</code></pre>
 <pre><code>## Warning in axis(side = side, at = at, labels = labels, ...): &quot;SNP&quot; is not a
@@ -381,18 +385,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Warning in plot.xy(xy.coords(x, y), type = type, ...): &quot;SNP&quot; is not a graphical
 ## parameter</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-70-1.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="fst-based-approach.html#cb223-1" tabindex="-1"></a><span class="fu">jpeg</span>(<span class="st">&quot;Figures/manhattan_fst.jpeg&quot;</span>, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
-<span id="cb223-2"><a href="fst-based-approach.html#cb223-2" tabindex="-1"></a><span class="fu">manhattan</span>(fst_manhattan, </span>
-<span id="cb223-3"><a href="fst-based-approach.html#cb223-3" tabindex="-1"></a>          <span class="at">chr =</span> <span class="st">&quot;CHROM&quot;</span>, </span>
-<span id="cb223-4"><a href="fst-based-approach.html#cb223-4" tabindex="-1"></a>          <span class="at">bp =</span> <span class="st">&quot;POS&quot;</span>,</span>
-<span id="cb223-5"><a href="fst-based-approach.html#cb223-5" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;WEIR_AND_COCKERHAM_FST&quot;</span>,</span>
-<span id="cb223-6"><a href="fst-based-approach.html#cb223-6" tabindex="-1"></a>          <span class="at">SNP =</span> <span class="st">&quot;SNP&quot;</span>,</span>
-<span id="cb223-7"><a href="fst-based-approach.html#cb223-7" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
-<span id="cb223-8"><a href="fst-based-approach.html#cb223-8" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;#008080&quot;</span>, <span class="st">&quot;#58baba&quot;</span>),</span>
-<span id="cb223-9"><a href="fst-based-approach.html#cb223-9" tabindex="-1"></a>          <span class="at">genomewideline =</span> sd, </span>
-<span id="cb223-10"><a href="fst-based-approach.html#cb223-10" tabindex="-1"></a>          <span class="at">logp =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb223-11"><a href="fst-based-approach.html#cb223-11" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Fst&quot;</span>, </span>
-<span id="cb223-12"><a href="fst-based-approach.html#cb223-12" tabindex="-1"></a>          <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="fst-based-approach.html#cb224-1" tabindex="-1"></a><span class="fu">jpeg</span>(<span class="st">&quot;Figures/manhattan_fst.jpeg&quot;</span>, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
+<span id="cb224-2"><a href="fst-based-approach.html#cb224-2" tabindex="-1"></a><span class="fu">manhattan</span>(fst_manhattan, </span>
+<span id="cb224-3"><a href="fst-based-approach.html#cb224-3" tabindex="-1"></a>          <span class="at">chr =</span> <span class="st">&quot;CHROM&quot;</span>, </span>
+<span id="cb224-4"><a href="fst-based-approach.html#cb224-4" tabindex="-1"></a>          <span class="at">bp =</span> <span class="st">&quot;POS&quot;</span>,</span>
+<span id="cb224-5"><a href="fst-based-approach.html#cb224-5" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;WEIR_AND_COCKERHAM_FST&quot;</span>,</span>
+<span id="cb224-6"><a href="fst-based-approach.html#cb224-6" tabindex="-1"></a>          <span class="at">SNP =</span> <span class="st">&quot;SNP&quot;</span>,</span>
+<span id="cb224-7"><a href="fst-based-approach.html#cb224-7" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
+<span id="cb224-8"><a href="fst-based-approach.html#cb224-8" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;#008080&quot;</span>, <span class="st">&quot;#58baba&quot;</span>),</span>
+<span id="cb224-9"><a href="fst-based-approach.html#cb224-9" tabindex="-1"></a>          <span class="at">genomewideline =</span> sd, </span>
+<span id="cb224-10"><a href="fst-based-approach.html#cb224-10" tabindex="-1"></a>          <span class="at">logp =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb224-11"><a href="fst-based-approach.html#cb224-11" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;Fst&quot;</span>, </span>
+<span id="cb224-12"><a href="fst-based-approach.html#cb224-12" tabindex="-1"></a>          <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb224-13"><a href="fst-based-approach.html#cb224-13" tabindex="-1"></a>          <span class="at">cex.lab =</span> <span class="fl">1.2</span>,</span>
+<span id="cb224-14"><a href="fst-based-approach.html#cb224-14" tabindex="-1"></a>          <span class="at">cex.axis =</span> <span class="fl">1.2</span>)</span></code></pre></div>
 <pre><code>## Warning in plot.window(...): &quot;SNP&quot; is not a graphical parameter</code></pre>
 <pre><code>## Warning in plot.xy(xy, type, ...): &quot;SNP&quot; is not a graphical parameter</code></pre>
 <pre><code>## Warning in axis(side = side, at = at, labels = labels, ...): &quot;SNP&quot; is not a
@@ -433,26 +439,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## parameter
 ## Warning in plot.xy(xy.coords(x, y), type = type, ...): &quot;SNP&quot; is not a graphical
 ## parameter</code></pre>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="fst-based-approach.html#cb231-1" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="fst-based-approach.html#cb232-1" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## png 
 ##   2</code></pre>
 </div>
 <div id="plot-fst-sd---presentation" class="section level4 hasAnchor" number="6.4.1.2">
 <h4><span class="header-section-number">6.4.1.2</span> Plot Fst SD - Presentation<a href="fst-based-approach.html#plot-fst-sd---presentation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="fst-based-approach.html#cb233-1" tabindex="-1"></a><span class="fu">jpeg</span>(<span class="st">&quot;Figures/manhattan_fst_pres.jpeg&quot;</span>, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
-<span id="cb233-2"><a href="fst-based-approach.html#cb233-2" tabindex="-1"></a><span class="fu">manhattan</span>(fst_manhattan, </span>
-<span id="cb233-3"><a href="fst-based-approach.html#cb233-3" tabindex="-1"></a>          <span class="at">chr =</span> <span class="st">&quot;CHROM&quot;</span>, </span>
-<span id="cb233-4"><a href="fst-based-approach.html#cb233-4" tabindex="-1"></a>          <span class="at">bp =</span> <span class="st">&quot;POS&quot;</span>,</span>
-<span id="cb233-5"><a href="fst-based-approach.html#cb233-5" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;WEIR_AND_COCKERHAM_FST&quot;</span>,</span>
-<span id="cb233-6"><a href="fst-based-approach.html#cb233-6" tabindex="-1"></a>          <span class="at">SNP =</span> <span class="st">&quot;SNP&quot;</span>,</span>
-<span id="cb233-7"><a href="fst-based-approach.html#cb233-7" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
-<span id="cb233-8"><a href="fst-based-approach.html#cb233-8" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;#9BD3D9&quot;</span>, <span class="st">&quot;#7FC1DB&quot;</span>),</span>
-<span id="cb233-9"><a href="fst-based-approach.html#cb233-9" tabindex="-1"></a>          <span class="at">genomewideline =</span> sd, </span>
-<span id="cb233-10"><a href="fst-based-approach.html#cb233-10" tabindex="-1"></a>          <span class="at">logp =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb233-11"><a href="fst-based-approach.html#cb233-11" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;FST&quot;</span>, </span>
-<span id="cb233-12"><a href="fst-based-approach.html#cb233-12" tabindex="-1"></a>          <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>),</span>
-<span id="cb233-13"><a href="fst-based-approach.html#cb233-13" tabindex="-1"></a>          <span class="at">cex.axis =</span> <span class="fl">1.3</span>,</span>
-<span id="cb233-14"><a href="fst-based-approach.html#cb233-14" tabindex="-1"></a>          <span class="at">cex.lab =</span> <span class="fl">1.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="fst-based-approach.html#cb234-1" tabindex="-1"></a><span class="fu">jpeg</span>(<span class="st">&quot;Figures/manhattan_fst_pres.jpeg&quot;</span>, <span class="at">width =</span> <span class="dv">10</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">res =</span> <span class="dv">300</span>)</span>
+<span id="cb234-2"><a href="fst-based-approach.html#cb234-2" tabindex="-1"></a><span class="fu">manhattan</span>(fst_manhattan, </span>
+<span id="cb234-3"><a href="fst-based-approach.html#cb234-3" tabindex="-1"></a>          <span class="at">chr =</span> <span class="st">&quot;CHROM&quot;</span>, </span>
+<span id="cb234-4"><a href="fst-based-approach.html#cb234-4" tabindex="-1"></a>          <span class="at">bp =</span> <span class="st">&quot;POS&quot;</span>,</span>
+<span id="cb234-5"><a href="fst-based-approach.html#cb234-5" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;WEIR_AND_COCKERHAM_FST&quot;</span>,</span>
+<span id="cb234-6"><a href="fst-based-approach.html#cb234-6" tabindex="-1"></a>          <span class="at">SNP =</span> <span class="st">&quot;SNP&quot;</span>,</span>
+<span id="cb234-7"><a href="fst-based-approach.html#cb234-7" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
+<span id="cb234-8"><a href="fst-based-approach.html#cb234-8" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;#9BD3D9&quot;</span>, <span class="st">&quot;#7FC1DB&quot;</span>),</span>
+<span id="cb234-9"><a href="fst-based-approach.html#cb234-9" tabindex="-1"></a>          <span class="at">genomewideline =</span> sd, </span>
+<span id="cb234-10"><a href="fst-based-approach.html#cb234-10" tabindex="-1"></a>          <span class="at">logp =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb234-11"><a href="fst-based-approach.html#cb234-11" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;FST&quot;</span>, </span>
+<span id="cb234-12"><a href="fst-based-approach.html#cb234-12" tabindex="-1"></a>          <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb234-13"><a href="fst-based-approach.html#cb234-13" tabindex="-1"></a>          <span class="at">cex.axis =</span> <span class="fl">1.3</span>,</span>
+<span id="cb234-14"><a href="fst-based-approach.html#cb234-14" tabindex="-1"></a>          <span class="at">cex.lab =</span> <span class="fl">1.3</span>)</span></code></pre></div>
 <pre><code>## Warning in plot.window(...): &quot;SNP&quot; is not a graphical parameter</code></pre>
 <pre><code>## Warning in plot.xy(xy, type, ...): &quot;SNP&quot; is not a graphical parameter</code></pre>
 <pre><code>## Warning in axis(side = side, at = at, labels = labels, ...): &quot;SNP&quot; is not a
@@ -493,22 +499,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## parameter
 ## Warning in plot.xy(xy.coords(x, y), type = type, ...): &quot;SNP&quot; is not a graphical
 ## parameter</code></pre>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="fst-based-approach.html#cb241-1" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="fst-based-approach.html#cb242-1" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <pre><code>## png 
 ##   2</code></pre>
 </div>
 </div>
 <div id="extract-snps-600-bp-positions" class="section level3 hasAnchor" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Extract SNPs &amp; 600 bp positions<a href="fst-based-approach.html#extract-snps-600-bp-positions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="fst-based-approach.html#cb243-1" tabindex="-1"></a>fst.sd <span class="ot">&lt;-</span> </span>
-<span id="cb243-2"><a href="fst-based-approach.html#cb243-2" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
-<span id="cb243-3"><a href="fst-based-approach.html#cb243-3" tabindex="-1"></a>  <span class="fu">filter</span>(outlier.sd <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb243-4"><a href="fst-based-approach.html#cb243-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">minbp =</span> POS <span class="sc">-</span> <span class="dv">600</span>,</span>
-<span id="cb243-5"><a href="fst-based-approach.html#cb243-5" tabindex="-1"></a>         <span class="at">maxbp =</span> POS <span class="sc">+</span> <span class="dv">600</span>,</span>
-<span id="cb243-6"><a href="fst-based-approach.html#cb243-6" tabindex="-1"></a>         <span class="at">flank =</span> <span class="fu">paste0</span>(CHROM, <span class="st">&quot;:&quot;</span>, minbp, <span class="st">&quot;-&quot;</span>, maxbp, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)) </span>
-<span id="cb243-7"><a href="fst-based-approach.html#cb243-7" tabindex="-1"></a></span>
-<span id="cb243-8"><a href="fst-based-approach.html#cb243-8" tabindex="-1"></a><span class="fu">write.csv</span>(fst.sd, <span class="st">&quot;Output Files/allsamples_fst_sd_outlierposition.csv&quot;</span>, </span>
-<span id="cb243-9"><a href="fst-based-approach.html#cb243-9" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="fst-based-approach.html#cb244-1" tabindex="-1"></a>fst.sd <span class="ot">&lt;-</span> </span>
+<span id="cb244-2"><a href="fst-based-approach.html#cb244-2" tabindex="-1"></a>  fst <span class="sc">%&gt;%</span> </span>
+<span id="cb244-3"><a href="fst-based-approach.html#cb244-3" tabindex="-1"></a>  <span class="fu">filter</span>(outlier.sd <span class="sc">==</span> <span class="st">&quot;outlier&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb244-4"><a href="fst-based-approach.html#cb244-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">minbp =</span> POS <span class="sc">-</span> <span class="dv">600</span>,</span>
+<span id="cb244-5"><a href="fst-based-approach.html#cb244-5" tabindex="-1"></a>         <span class="at">maxbp =</span> POS <span class="sc">+</span> <span class="dv">600</span>,</span>
+<span id="cb244-6"><a href="fst-based-approach.html#cb244-6" tabindex="-1"></a>         <span class="at">flank =</span> <span class="fu">paste0</span>(CHROM, <span class="st">&quot;:&quot;</span>, minbp, <span class="st">&quot;-&quot;</span>, maxbp, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)) </span>
+<span id="cb244-7"><a href="fst-based-approach.html#cb244-7" tabindex="-1"></a></span>
+<span id="cb244-8"><a href="fst-based-approach.html#cb244-8" tabindex="-1"></a><span class="fu">write.csv</span>(fst.sd, <span class="st">&quot;Output Files/allsamples_fst_sd_outlierposition.csv&quot;</span>, </span>
+<span id="cb244-9"><a href="fst-based-approach.html#cb244-9" tabindex="-1"></a>            <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 
 </div>
 </div>

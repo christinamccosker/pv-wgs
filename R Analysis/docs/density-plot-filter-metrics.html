@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Density Plot Filter Metrics | Pv-WGS-Analysis</title>
+  <title>4 Density Plot Filter Metrics | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus</title>
   <meta name="description" content="McCosker Dissertation Chapter 3 Analyses" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4 Density Plot Filter Metrics | Pv-WGS-Analysis" />
+  <meta property="og:title" content="4 Density Plot Filter Metrics | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="McCosker Dissertation Chapter 3 Analyses" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Density Plot Filter Metrics | Pv-WGS-Analysis" />
+  <meta name="twitter:title" content="4 Density Plot Filter Metrics | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus" />
   
   <meta name="twitter:description" content="McCosker Dissertation Chapter 3 Analyses" />
   
@@ -143,7 +143,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Pv-WGS-Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Publication Information</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i><b>1.1</b> Authors</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#abstract"><i class="fa fa-check"></i><b>1.2</b> Abstract</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html"><i class="fa fa-check"></i><b>2</b> Tidy Data &amp; Exploratory</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#libraries"><i class="fa fa-check"></i><b>2.1</b> Libraries</a></li>
@@ -272,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pv-WGS-Analysis</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus</a>
           </h1>
         </div>
 
@@ -330,8 +334,8 @@ Density plots for SNPs based on: QD, FS, SOR, MQ, MQRankSum, ReadPosRankSum</p>
 <span id="cb144-8"><a href="density-plot-filter-metrics.html#cb144-8" tabindex="-1"></a>fsplot</span></code></pre></div>
 <pre><code>## Warning in scale_x_continuous(trans = &quot;log10&quot;): log-10 transformation
 ## introduced infinite values.</code></pre>
-<pre><code>## Warning: Removed 1584982 rows containing non-finite outside the scale
-## range (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 1584982 rows containing non-finite outside the scale range
+## (`stat_density()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="density-plot-filter-metrics.html#cb147-1" tabindex="-1"></a><span class="co"># Pass/Fail FS</span></span>
 <span id="cb147-2"><a href="density-plot-filter-metrics.html#cb147-2" tabindex="-1"></a>fsplot2 <span class="ot">&lt;-</span> </span>
@@ -340,8 +344,8 @@ Density plots for SNPs based on: QD, FS, SOR, MQ, MQRankSum, ReadPosRankSum</p>
 <span id="cb147-5"><a href="density-plot-filter-metrics.html#cb147-5" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span>
 <span id="cb147-6"><a href="density-plot-filter-metrics.html#cb147-6" tabindex="-1"></a>fsplot2</span></code></pre></div>
 <pre><code>## Warning in scale_x_continuous(trans = &quot;log10&quot;): log-10 transformation introduced infinite values.
-## Removed 1584982 rows containing non-finite outside the scale
-## range (`stat_density()`).</code></pre>
+## Removed 1584982 rows containing non-finite outside the scale range
+## (`stat_density()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-48-2.png" alt="" width="672" /></p>
 </div>
 <div id="metric-sor" class="section level3 hasAnchor" number="4.3.3">
@@ -398,16 +402,16 @@ Density plots for SNPs based on: QD, FS, SOR, MQ, MQRankSum, ReadPosRankSum</p>
 <span id="cb159-3"><a href="density-plot-filter-metrics.html#cb159-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(filter, <span class="fu">aes</span>(<span class="at">x=</span>MQRankSum)) <span class="sc">+</span></span>
 <span id="cb159-4"><a href="density-plot-filter-metrics.html#cb159-4" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span>
 <span id="cb159-5"><a href="density-plot-filter-metrics.html#cb159-5" tabindex="-1"></a>mqrsplot</span></code></pre></div>
-<pre><code>## Warning: Removed 534414 rows containing non-finite outside the scale
-## range (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 534414 rows containing non-finite outside the scale range
+## (`stat_density()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="density-plot-filter-metrics.html#cb161-1" tabindex="-1"></a><span class="co"># Pass/Fail MQRankSum</span></span>
 <span id="cb161-2"><a href="density-plot-filter-metrics.html#cb161-2" tabindex="-1"></a>mqrsplot2 <span class="ot">&lt;-</span> </span>
 <span id="cb161-3"><a href="density-plot-filter-metrics.html#cb161-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(filter, <span class="fu">aes</span>(<span class="at">x=</span>MQRankSum, <span class="at">fill=</span>failMQRankSum)) <span class="sc">+</span></span>
 <span id="cb161-4"><a href="density-plot-filter-metrics.html#cb161-4" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span>
 <span id="cb161-5"><a href="density-plot-filter-metrics.html#cb161-5" tabindex="-1"></a>mqrsplot2   </span></code></pre></div>
-<pre><code>## Warning: Removed 534414 rows containing non-finite outside the scale
-## range (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 534414 rows containing non-finite outside the scale range
+## (`stat_density()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-51-2.png" alt="" width="672" /></p>
 </div>
 <div id="metric-readposranksum" class="section level3 hasAnchor" number="4.3.6">
@@ -425,16 +429,16 @@ As large values on either end are not good, will filter out variants with RPRS &
 <span id="cb167-3"><a href="density-plot-filter-metrics.html#cb167-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(filter, <span class="fu">aes</span>(<span class="at">x=</span>ReadPosRankSum)) <span class="sc">+</span></span>
 <span id="cb167-4"><a href="density-plot-filter-metrics.html#cb167-4" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span>
 <span id="cb167-5"><a href="density-plot-filter-metrics.html#cb167-5" tabindex="-1"></a>rprsplot</span></code></pre></div>
-<pre><code>## Warning: Removed 536637 rows containing non-finite outside the scale
-## range (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 536637 rows containing non-finite outside the scale range
+## (`stat_density()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="density-plot-filter-metrics.html#cb169-1" tabindex="-1"></a><span class="co"># Pass/Fail ReadPosRankSum</span></span>
 <span id="cb169-2"><a href="density-plot-filter-metrics.html#cb169-2" tabindex="-1"></a>rprsplot2 <span class="ot">&lt;-</span> </span>
 <span id="cb169-3"><a href="density-plot-filter-metrics.html#cb169-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(filter, <span class="fu">aes</span>(<span class="at">x=</span>ReadPosRankSum, <span class="at">fill=</span>failReadPosRankSum)) <span class="sc">+</span></span>
 <span id="cb169-4"><a href="density-plot-filter-metrics.html#cb169-4" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span>
 <span id="cb169-5"><a href="density-plot-filter-metrics.html#cb169-5" tabindex="-1"></a>rprsplot2   </span></code></pre></div>
-<pre><code>## Warning: Removed 536637 rows containing non-finite outside the scale
-## range (`stat_density()`).</code></pre>
+<pre><code>## Warning: Removed 536637 rows containing non-finite outside the scale range
+## (`stat_density()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-52-2.png" alt="" width="672" /></p>
 
 </div>

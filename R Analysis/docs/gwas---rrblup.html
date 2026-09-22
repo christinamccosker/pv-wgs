@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 GWAS - rrBLUP | Pv-WGS-Analysis</title>
+  <title>5 GWAS - rrBLUP | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus</title>
   <meta name="description" content="McCosker Dissertation Chapter 3 Analyses" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 GWAS - rrBLUP | Pv-WGS-Analysis" />
+  <meta property="og:title" content="5 GWAS - rrBLUP | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="McCosker Dissertation Chapter 3 Analyses" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 GWAS - rrBLUP | Pv-WGS-Analysis" />
+  <meta name="twitter:title" content="5 GWAS - rrBLUP | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus" />
   
   <meta name="twitter:description" content="McCosker Dissertation Chapter 3 Analyses" />
   
@@ -143,7 +143,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Pv-WGS-Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Publication Information</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i><b>1.1</b> Authors</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#abstract"><i class="fa fa-check"></i><b>1.2</b> Abstract</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html"><i class="fa fa-check"></i><b>2</b> Tidy Data &amp; Exploratory</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#libraries"><i class="fa fa-check"></i><b>2.1</b> Libraries</a></li>
@@ -272,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pv-WGS-Analysis</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus</a>
           </h1>
         </div>
 
@@ -292,10 +296,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb171-6"><a href="gwas---rrblup.html#cb171-6" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
 <span id="cb171-7"><a href="gwas---rrblup.html#cb171-7" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
 <span id="cb171-8"><a href="gwas---rrblup.html#cb171-8" tabindex="-1"></a><span class="fu">library</span>(snpStats)</span>
-<span id="cb171-9"><a href="gwas---rrblup.html#cb171-9" tabindex="-1"></a><span class="fu">library</span>(conflicted)</span>
-<span id="cb171-10"><a href="gwas---rrblup.html#cb171-10" tabindex="-1"></a></span>
-<span id="cb171-11"><a href="gwas---rrblup.html#cb171-11" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span>
-<span id="cb171-12"><a href="gwas---rrblup.html#cb171-12" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<span id="cb171-9"><a href="gwas---rrblup.html#cb171-9" tabindex="-1"></a><span class="fu">library</span>(pheatmap)</span>
+<span id="cb171-10"><a href="gwas---rrblup.html#cb171-10" tabindex="-1"></a><span class="fu">library</span>(conflicted)</span>
+<span id="cb171-11"><a href="gwas---rrblup.html#cb171-11" tabindex="-1"></a></span>
+<span id="cb171-12"><a href="gwas---rrblup.html#cb171-12" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;select&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb171-13"><a href="gwas---rrblup.html#cb171-13" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
 </div>
 <div id="data-3" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Data<a href="gwas---rrblup.html#data-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -336,71 +341,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="heatmap" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Heatmap<a href="gwas---rrblup.html#heatmap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>No obvious clustering of samples</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="gwas---rrblup.html#cb174-1" tabindex="-1"></a><span class="fu">heatmap</span>(grm, <span class="at">col=</span><span class="fu">rev</span>(<span class="fu">heat.colors</span>(<span class="dv">75</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="gwas---rrblup.html#cb174-1" tabindex="-1"></a><span class="fu">pheatmap</span>(grm, </span>
+<span id="cb174-2"><a href="gwas---rrblup.html#cb174-2" tabindex="-1"></a>         <span class="at">color =</span> <span class="fu">rev</span>(<span class="fu">heat.colors</span>(<span class="dv">75</span>)),</span>
+<span id="cb174-3"><a href="gwas---rrblup.html#cb174-3" tabindex="-1"></a>         <span class="at">border_color =</span> <span class="cn">NA</span>,</span>
+<span id="cb174-4"><a href="gwas---rrblup.html#cb174-4" tabindex="-1"></a>         <span class="at">fontsize =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="gwas---rrblup.html#cb175-1" tabindex="-1"></a><span class="fu">jpeg</span>(<span class="st">&quot;Figures/grm_heatmap.jpeg&quot;</span>, <span class="at">height =</span> <span class="dv">8</span>, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">res =</span> <span class="dv">400</span>)</span>
-<span id="cb175-2"><a href="gwas---rrblup.html#cb175-2" tabindex="-1"></a><span class="fu">heatmap</span>(grm, <span class="at">col=</span><span class="fu">rev</span>(<span class="fu">heat.colors</span>(<span class="dv">75</span>)), <span class="at">cexRow =</span> <span class="fl">0.4</span>, <span class="at">cexCol =</span> <span class="fl">0.4</span>)</span>
-<span id="cb175-3"><a href="gwas---rrblup.html#cb175-3" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
-<pre><code>## png 
-##   2</code></pre>
+<span id="cb175-2"><a href="gwas---rrblup.html#cb175-2" tabindex="-1"></a><span class="fu">pheatmap</span>(grm, </span>
+<span id="cb175-3"><a href="gwas---rrblup.html#cb175-3" tabindex="-1"></a>         <span class="at">color =</span> <span class="fu">rev</span>(<span class="fu">heat.colors</span>(<span class="dv">75</span>)),</span>
+<span id="cb175-4"><a href="gwas---rrblup.html#cb175-4" tabindex="-1"></a>         <span class="at">border_color =</span> <span class="cn">NA</span>,</span>
+<span id="cb175-5"><a href="gwas---rrblup.html#cb175-5" tabindex="-1"></a>         <span class="at">fontsize =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-2.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="gwas---rrblup.html#cb176-1" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>## jpeg 
+##    3</code></pre>
 </div>
 <div id="pca-1" class="section level3 hasAnchor" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> PCA<a href="gwas---rrblup.html#pca-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Again, seemingly no sample clustering</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="gwas---rrblup.html#cb177-1" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(grm, <span class="at">scale=</span><span class="cn">FALSE</span>, <span class="at">center=</span><span class="cn">FALSE</span>)</span>
-<span id="cb177-2"><a href="gwas---rrblup.html#cb177-2" tabindex="-1"></a></span>
-<span id="cb177-3"><a href="gwas---rrblup.html#cb177-3" tabindex="-1"></a><span class="co"># Variance explained by first 8 PCs</span></span>
-<span id="cb177-4"><a href="gwas---rrblup.html#cb177-4" tabindex="-1"></a>eigenvalues <span class="ot">&lt;-</span> pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb177-5"><a href="gwas---rrblup.html#cb177-5" tabindex="-1"></a>prop <span class="ot">&lt;-</span> <span class="fu">round</span>((eigenvalues<span class="sc">/</span><span class="fu">sum</span>(eigenvalues)<span class="sc">*</span><span class="dv">100</span>), <span class="dv">2</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>] </span>
-<span id="cb177-6"><a href="gwas---rrblup.html#cb177-6" tabindex="-1"></a>prop</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="gwas---rrblup.html#cb178-1" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(grm, <span class="at">scale=</span><span class="cn">FALSE</span>, <span class="at">center=</span><span class="cn">FALSE</span>)</span>
+<span id="cb178-2"><a href="gwas---rrblup.html#cb178-2" tabindex="-1"></a></span>
+<span id="cb178-3"><a href="gwas---rrblup.html#cb178-3" tabindex="-1"></a><span class="co"># Variance explained by first 8 PCs</span></span>
+<span id="cb178-4"><a href="gwas---rrblup.html#cb178-4" tabindex="-1"></a>eigenvalues <span class="ot">&lt;-</span> pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb178-5"><a href="gwas---rrblup.html#cb178-5" tabindex="-1"></a>prop <span class="ot">&lt;-</span> <span class="fu">round</span>((eigenvalues<span class="sc">/</span><span class="fu">sum</span>(eigenvalues)<span class="sc">*</span><span class="dv">100</span>), <span class="dv">2</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>] </span>
+<span id="cb178-6"><a href="gwas---rrblup.html#cb178-6" tabindex="-1"></a>prop</span></code></pre></div>
 <pre><code>## [1] 2.65 1.66 1.44 1.38 1.34 1.33 1.31 1.28</code></pre>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="gwas---rrblup.html#cb179-1" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca, <span class="at">ncp =</span> <span class="dv">8</span>) </span></code></pre></div>
-<pre><code>## Warning in geom_bar(stat = &quot;identity&quot;, fill = barfill, color = barcolor, :
-## Ignoring empty aesthetic: `width`.</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="gwas---rrblup.html#cb180-1" tabindex="-1"></a><span class="fu">fviz_eig</span>(pca, <span class="at">ncp =</span> <span class="dv">8</span>) </span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" alt="" width="672" /></p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="gwas---rrblup.html#cb181-1" tabindex="-1"></a>pca.data <span class="ot">&lt;-</span></span>
 <span id="cb181-2"><a href="gwas---rrblup.html#cb181-2" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
 <span id="cb181-3"><a href="gwas---rrblup.html#cb181-3" tabindex="-1"></a>    <span class="at">sample =</span> <span class="fu">rownames</span>(pca<span class="sc">$</span>x),</span>
 <span id="cb181-4"><a href="gwas---rrblup.html#cb181-4" tabindex="-1"></a>    <span class="at">x =</span> pca<span class="sc">$</span>x[,<span class="dv">1</span>],</span>
 <span id="cb181-5"><a href="gwas---rrblup.html#cb181-5" tabindex="-1"></a>    <span class="at">y =</span> pca<span class="sc">$</span>x[,<span class="dv">2</span>]) <span class="sc">%&gt;%</span> </span>
-<span id="cb181-6"><a href="gwas---rrblup.html#cb181-6" tabindex="-1"></a>  <span class="fu">merge</span>(., meta, <span class="at">by.x=</span><span class="st">&quot;sample&quot;</span>, <span class="at">by.y=</span><span class="st">&quot;seq.id&quot;</span>)</span>
-<span id="cb181-7"><a href="gwas---rrblup.html#cb181-7" tabindex="-1"></a></span>
-<span id="cb181-8"><a href="gwas---rrblup.html#cb181-8" tabindex="-1"></a>labelx <span class="ot">&lt;-</span> </span>
-<span id="cb181-9"><a href="gwas---rrblup.html#cb181-9" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;PC1 (&quot;</span>, prop[<span class="dv">1</span>], <span class="st">&quot;%)&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb181-10"><a href="gwas---rrblup.html#cb181-10" tabindex="-1"></a>labely <span class="ot">&lt;-</span> </span>
-<span id="cb181-11"><a href="gwas---rrblup.html#cb181-11" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;PC2 (&quot;</span>, prop[<span class="dv">2</span>], <span class="st">&quot;%)&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb181-12"><a href="gwas---rrblup.html#cb181-12" tabindex="-1"></a></span>
-<span id="cb181-13"><a href="gwas---rrblup.html#cb181-13" tabindex="-1"></a>pca <span class="ot">&lt;-</span> </span>
-<span id="cb181-14"><a href="gwas---rrblup.html#cb181-14" tabindex="-1"></a>  <span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y)) <span class="sc">+</span></span>
-<span id="cb181-15"><a href="gwas---rrblup.html#cb181-15" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb181-16"><a href="gwas---rrblup.html#cb181-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
-<span id="cb181-17"><a href="gwas---rrblup.html#cb181-17" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
-<span id="cb181-18"><a href="gwas---rrblup.html#cb181-18" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb181-19"><a href="gwas---rrblup.html#cb181-19" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span>
-<span id="cb181-20"><a href="gwas---rrblup.html#cb181-20" tabindex="-1"></a>  </span>
-<span id="cb181-21"><a href="gwas---rrblup.html#cb181-21" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Figures/allsamples_popstruct_pca.jpeg&quot;</span>, pca, <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span>
-<span id="cb181-22"><a href="gwas---rrblup.html#cb181-22" tabindex="-1"></a></span>
-<span id="cb181-23"><a href="gwas---rrblup.html#cb181-23" tabindex="-1"></a></span>
-<span id="cb181-24"><a href="gwas---rrblup.html#cb181-24" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>classification)) <span class="sc">+</span></span>
-<span id="cb181-25"><a href="gwas---rrblup.html#cb181-25" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb181-26"><a href="gwas---rrblup.html#cb181-26" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
-<span id="cb181-27"><a href="gwas---rrblup.html#cb181-27" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb181-28"><a href="gwas---rrblup.html#cb181-28" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
-<span id="cb181-29"><a href="gwas---rrblup.html#cb181-29" tabindex="-1"></a>       <span class="at">y=</span>labely,</span>
-<span id="cb181-30"><a href="gwas---rrblup.html#cb181-30" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Classification&quot;</span>) <span class="sc">+</span></span>
-<span id="cb181-31"><a href="gwas---rrblup.html#cb181-31" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb181-32"><a href="gwas---rrblup.html#cb181-32" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<span id="cb181-6"><a href="gwas---rrblup.html#cb181-6" tabindex="-1"></a>  <span class="fu">merge</span>(., meta, <span class="at">by.x=</span><span class="st">&quot;sample&quot;</span>, <span class="at">by.y=</span><span class="st">&quot;seq.id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb181-7"><a href="gwas---rrblup.html#cb181-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">coverage =</span> <span class="fu">ifelse</span>(coverage <span class="sc">==</span> <span class="st">&quot;high&quot;</span>, <span class="st">&quot;High&quot;</span>, <span class="st">&quot;Low&quot;</span>))</span>
+<span id="cb181-8"><a href="gwas---rrblup.html#cb181-8" tabindex="-1"></a></span>
+<span id="cb181-9"><a href="gwas---rrblup.html#cb181-9" tabindex="-1"></a>labelx <span class="ot">&lt;-</span> </span>
+<span id="cb181-10"><a href="gwas---rrblup.html#cb181-10" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;PC1 (&quot;</span>, prop[<span class="dv">1</span>], <span class="st">&quot;%)&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb181-11"><a href="gwas---rrblup.html#cb181-11" tabindex="-1"></a>labely <span class="ot">&lt;-</span> </span>
+<span id="cb181-12"><a href="gwas---rrblup.html#cb181-12" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">&quot;PC2 (&quot;</span>, prop[<span class="dv">2</span>], <span class="st">&quot;%)&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb181-13"><a href="gwas---rrblup.html#cb181-13" tabindex="-1"></a></span>
+<span id="cb181-14"><a href="gwas---rrblup.html#cb181-14" tabindex="-1"></a>pca <span class="ot">&lt;-</span> </span>
+<span id="cb181-15"><a href="gwas---rrblup.html#cb181-15" tabindex="-1"></a>  <span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">shape =</span> coverage)) <span class="sc">+</span></span>
+<span id="cb181-16"><a href="gwas---rrblup.html#cb181-16" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb181-17"><a href="gwas---rrblup.html#cb181-17" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb181-18"><a href="gwas---rrblup.html#cb181-18" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb181-19"><a href="gwas---rrblup.html#cb181-19" tabindex="-1"></a>       <span class="at">y=</span>labely,</span>
+<span id="cb181-20"><a href="gwas---rrblup.html#cb181-20" tabindex="-1"></a>       <span class="at">shape =</span> <span class="st">&quot;Coverage&quot;</span>) <span class="sc">+</span></span>
+<span id="cb181-21"><a href="gwas---rrblup.html#cb181-21" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb181-22"><a href="gwas---rrblup.html#cb181-22" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span>
+<span id="cb181-23"><a href="gwas---rrblup.html#cb181-23" tabindex="-1"></a>pca</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-57-2.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="gwas---rrblup.html#cb182-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>pdv)) <span class="sc">+</span></span>
-<span id="cb182-2"><a href="gwas---rrblup.html#cb182-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb182-3"><a href="gwas---rrblup.html#cb182-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
-<span id="cb182-4"><a href="gwas---rrblup.html#cb182-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb182-5"><a href="gwas---rrblup.html#cb182-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
-<span id="cb182-6"><a href="gwas---rrblup.html#cb182-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
-<span id="cb182-7"><a href="gwas---rrblup.html#cb182-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb182-8"><a href="gwas---rrblup.html#cb182-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="gwas---rrblup.html#cb182-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Figures/allsamples_popstruct_pca.jpeg&quot;</span>, pca, </span>
+<span id="cb182-2"><a href="gwas---rrblup.html#cb182-2" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span>
+<span id="cb182-3"><a href="gwas---rrblup.html#cb182-3" tabindex="-1"></a></span>
+<span id="cb182-4"><a href="gwas---rrblup.html#cb182-4" tabindex="-1"></a></span>
+<span id="cb182-5"><a href="gwas---rrblup.html#cb182-5" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>classification)) <span class="sc">+</span></span>
+<span id="cb182-6"><a href="gwas---rrblup.html#cb182-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb182-7"><a href="gwas---rrblup.html#cb182-7" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb182-8"><a href="gwas---rrblup.html#cb182-8" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb182-9"><a href="gwas---rrblup.html#cb182-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb182-10"><a href="gwas---rrblup.html#cb182-10" tabindex="-1"></a>       <span class="at">y=</span>labely,</span>
+<span id="cb182-11"><a href="gwas---rrblup.html#cb182-11" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">&quot;Classification&quot;</span>) <span class="sc">+</span></span>
+<span id="cb182-12"><a href="gwas---rrblup.html#cb182-12" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb182-13"><a href="gwas---rrblup.html#cb182-13" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-57-3.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="gwas---rrblup.html#cb183-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>sex)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="gwas---rrblup.html#cb183-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>pdv)) <span class="sc">+</span></span>
 <span id="cb183-2"><a href="gwas---rrblup.html#cb183-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb183-3"><a href="gwas---rrblup.html#cb183-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
 <span id="cb183-4"><a href="gwas---rrblup.html#cb183-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>)) <span class="sc">+</span></span>
@@ -408,44 +414,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb183-6"><a href="gwas---rrblup.html#cb183-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
 <span id="cb183-7"><a href="gwas---rrblup.html#cb183-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb183-8"><a href="gwas---rrblup.html#cb183-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
-<pre><code>## Too few points to calculate an ellipse</code></pre>
-<pre><code>## Warning: Removed 1 row containing missing values or values outside the
-## scale range (`geom_path()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-57-4.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="gwas---rrblup.html#cb186-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>age.class)) <span class="sc">+</span></span>
-<span id="cb186-2"><a href="gwas---rrblup.html#cb186-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb186-3"><a href="gwas---rrblup.html#cb186-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
-<span id="cb186-4"><a href="gwas---rrblup.html#cb186-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;magenta&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb186-5"><a href="gwas---rrblup.html#cb186-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
-<span id="cb186-6"><a href="gwas---rrblup.html#cb186-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
-<span id="cb186-7"><a href="gwas---rrblup.html#cb186-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb186-8"><a href="gwas---rrblup.html#cb186-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="gwas---rrblup.html#cb184-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>sex)) <span class="sc">+</span></span>
+<span id="cb184-2"><a href="gwas---rrblup.html#cb184-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb184-3"><a href="gwas---rrblup.html#cb184-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb184-4"><a href="gwas---rrblup.html#cb184-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb184-5"><a href="gwas---rrblup.html#cb184-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb184-6"><a href="gwas---rrblup.html#cb184-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb184-7"><a href="gwas---rrblup.html#cb184-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb184-8"><a href="gwas---rrblup.html#cb184-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
 <pre><code>## Too few points to calculate an ellipse</code></pre>
-<pre><code>## Warning: Removed 1 row containing missing values or values outside the
-## scale range (`geom_path()`).</code></pre>
+<pre><code>## Warning: Removed 1 row containing missing values or values outside the scale
+## range (`geom_path()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-57-5.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="gwas---rrblup.html#cb189-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>condition)) <span class="sc">+</span></span>
-<span id="cb189-2"><a href="gwas---rrblup.html#cb189-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb189-3"><a href="gwas---rrblup.html#cb189-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
-<span id="cb189-4"><a href="gwas---rrblup.html#cb189-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;magenta&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb189-5"><a href="gwas---rrblup.html#cb189-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
-<span id="cb189-6"><a href="gwas---rrblup.html#cb189-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
-<span id="cb189-7"><a href="gwas---rrblup.html#cb189-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb189-8"><a href="gwas---rrblup.html#cb189-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="gwas---rrblup.html#cb187-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>age.class)) <span class="sc">+</span></span>
+<span id="cb187-2"><a href="gwas---rrblup.html#cb187-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb187-3"><a href="gwas---rrblup.html#cb187-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb187-4"><a href="gwas---rrblup.html#cb187-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;magenta&quot;</span>, <span class="st">&quot;black&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb187-5"><a href="gwas---rrblup.html#cb187-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb187-6"><a href="gwas---rrblup.html#cb187-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb187-7"><a href="gwas---rrblup.html#cb187-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb187-8"><a href="gwas---rrblup.html#cb187-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
 <pre><code>## Too few points to calculate an ellipse</code></pre>
-<pre><code>## Warning: Removed 1 row containing missing values or values outside the
-## scale range (`geom_path()`).</code></pre>
+<pre><code>## Warning: Removed 1 row containing missing values or values outside the scale
+## range (`geom_path()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-57-6.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="gwas---rrblup.html#cb192-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span><span class="fu">factor</span>(seq.run))) <span class="sc">+</span></span>
-<span id="cb192-2"><a href="gwas---rrblup.html#cb192-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb192-3"><a href="gwas---rrblup.html#cb192-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
-<span id="cb192-4"><a href="gwas---rrblup.html#cb192-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb192-5"><a href="gwas---rrblup.html#cb192-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
-<span id="cb192-6"><a href="gwas---rrblup.html#cb192-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
-<span id="cb192-7"><a href="gwas---rrblup.html#cb192-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb192-8"><a href="gwas---rrblup.html#cb192-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="gwas---rrblup.html#cb190-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>condition)) <span class="sc">+</span></span>
+<span id="cb190-2"><a href="gwas---rrblup.html#cb190-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb190-3"><a href="gwas---rrblup.html#cb190-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb190-4"><a href="gwas---rrblup.html#cb190-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>, <span class="st">&quot;coral&quot;</span>, <span class="st">&quot;magenta&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb190-5"><a href="gwas---rrblup.html#cb190-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb190-6"><a href="gwas---rrblup.html#cb190-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb190-7"><a href="gwas---rrblup.html#cb190-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb190-8"><a href="gwas---rrblup.html#cb190-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<pre><code>## Too few points to calculate an ellipse</code></pre>
+<pre><code>## Warning: Removed 1 row containing missing values or values outside the scale
+## range (`geom_path()`).</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-57-7.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="gwas---rrblup.html#cb193-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>coverage)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="gwas---rrblup.html#cb193-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span><span class="fu">factor</span>(seq.run))) <span class="sc">+</span></span>
 <span id="cb193-2"><a href="gwas---rrblup.html#cb193-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb193-3"><a href="gwas---rrblup.html#cb193-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
 <span id="cb193-4"><a href="gwas---rrblup.html#cb193-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
@@ -454,6 +460,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb193-7"><a href="gwas---rrblup.html#cb193-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb193-8"><a href="gwas---rrblup.html#cb193-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-57-8.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="gwas---rrblup.html#cb194-1" tabindex="-1"></a><span class="fu">ggplot</span>(pca.data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">col=</span>coverage)) <span class="sc">+</span></span>
+<span id="cb194-2"><a href="gwas---rrblup.html#cb194-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb194-3"><a href="gwas---rrblup.html#cb194-3" tabindex="-1"></a>  <span class="fu">stat_ellipse</span>() <span class="sc">+</span></span>
+<span id="cb194-4"><a href="gwas---rrblup.html#cb194-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;slategray&quot;</span>, <span class="st">&quot;#58baba&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb194-5"><a href="gwas---rrblup.html#cb194-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span>labelx,</span>
+<span id="cb194-6"><a href="gwas---rrblup.html#cb194-6" tabindex="-1"></a>       <span class="at">y=</span>labely) <span class="sc">+</span></span>
+<span id="cb194-7"><a href="gwas---rrblup.html#cb194-7" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb194-8"><a href="gwas---rrblup.html#cb194-8" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-9.png" alt="" width="672" /></p>
 </div>
 </div>
 <div id="configure-data" class="section level2 hasAnchor" number="5.5">
@@ -461,48 +476,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="create-matrix" class="section level3 hasAnchor" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> Create matrix<a href="gwas---rrblup.html#create-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Add marker location and marker dosage</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="gwas---rrblup.html#cb194-1" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> </span>
-<span id="cb194-2"><a href="gwas---rrblup.html#cb194-2" tabindex="-1"></a>  <span class="fu">bind_cols</span>(snp.info, <span class="fu">as.data.frame</span>(<span class="fu">t</span>(x)))</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="gwas---rrblup.html#cb195-1" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> </span>
+<span id="cb195-2"><a href="gwas---rrblup.html#cb195-2" tabindex="-1"></a>  <span class="fu">bind_cols</span>(snp.info, <span class="fu">as.data.frame</span>(<span class="fu">t</span>(x)))</span></code></pre></div>
 </div>
 <div id="configure-phenotype-data" class="section level3 hasAnchor" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Configure phenotype data<a href="gwas---rrblup.html#configure-phenotype-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Non-survivor = 0, Survivor = 1</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="gwas---rrblup.html#cb195-1" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> </span>
-<span id="cb195-2"><a href="gwas---rrblup.html#cb195-2" tabindex="-1"></a>  meta <span class="sc">%&gt;%</span> </span>
-<span id="cb195-3"><a href="gwas---rrblup.html#cb195-3" tabindex="-1"></a>  <span class="fu">select</span>(seq.id, classification) <span class="sc">%&gt;%</span> </span>
-<span id="cb195-4"><a href="gwas---rrblup.html#cb195-4" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;phenotype&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb195-5"><a href="gwas---rrblup.html#cb195-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">phenotype =</span> <span class="fu">ifelse</span>(phenotype<span class="sc">==</span><span class="st">&quot;Non-survivor&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb195-6"><a href="gwas---rrblup.html#cb195-6" tabindex="-1"></a></span>
-<span id="cb195-7"><a href="gwas---rrblup.html#cb195-7" tabindex="-1"></a><span class="co"># Make sure sample ID order matches</span></span>
-<span id="cb195-8"><a href="gwas---rrblup.html#cb195-8" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(x)) <span class="co"># no</span></span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="gwas---rrblup.html#cb196-1" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> </span>
+<span id="cb196-2"><a href="gwas---rrblup.html#cb196-2" tabindex="-1"></a>  meta <span class="sc">%&gt;%</span> </span>
+<span id="cb196-3"><a href="gwas---rrblup.html#cb196-3" tabindex="-1"></a>  <span class="fu">select</span>(seq.id, classification) <span class="sc">%&gt;%</span> </span>
+<span id="cb196-4"><a href="gwas---rrblup.html#cb196-4" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;phenotype&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb196-5"><a href="gwas---rrblup.html#cb196-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">phenotype =</span> <span class="fu">ifelse</span>(phenotype<span class="sc">==</span><span class="st">&quot;Non-survivor&quot;</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb196-6"><a href="gwas---rrblup.html#cb196-6" tabindex="-1"></a></span>
+<span id="cb196-7"><a href="gwas---rrblup.html#cb196-7" tabindex="-1"></a><span class="co"># Make sure sample ID order matches</span></span>
+<span id="cb196-8"><a href="gwas---rrblup.html#cb196-8" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(x)) <span class="co"># no</span></span></code></pre></div>
 <pre><code>## [1]  TRUE FALSE</code></pre>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="gwas---rrblup.html#cb197-1" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> </span>
-<span id="cb197-2"><a href="gwas---rrblup.html#cb197-2" tabindex="-1"></a>  phenotypes[<span class="fu">order</span>(<span class="fu">match</span>(phenotypes<span class="sc">$</span>id, <span class="fu">rownames</span>(x))), ]</span>
-<span id="cb197-3"><a href="gwas---rrblup.html#cb197-3" tabindex="-1"></a></span>
-<span id="cb197-4"><a href="gwas---rrblup.html#cb197-4" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(grm)) <span class="co"># yes</span></span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="gwas---rrblup.html#cb198-1" tabindex="-1"></a>phenotypes <span class="ot">&lt;-</span> </span>
+<span id="cb198-2"><a href="gwas---rrblup.html#cb198-2" tabindex="-1"></a>  phenotypes[<span class="fu">order</span>(<span class="fu">match</span>(phenotypes<span class="sc">$</span>id, <span class="fu">rownames</span>(x))), ]</span>
+<span id="cb198-3"><a href="gwas---rrblup.html#cb198-3" tabindex="-1"></a></span>
+<span id="cb198-4"><a href="gwas---rrblup.html#cb198-4" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(grm)) <span class="co"># yes</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="gwas---rrblup.html#cb199-1" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(x)) <span class="co"># yes</span></span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="gwas---rrblup.html#cb200-1" tabindex="-1"></a><span class="fu">unique</span>(phenotypes<span class="sc">$</span>id <span class="sc">==</span> <span class="fu">rownames</span>(x)) <span class="co"># yes</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 </div>
 <div id="configure-grm-snp-info" class="section level3 hasAnchor" number="5.5.3">
 <h3><span class="header-section-number">5.5.3</span> Configure grm &amp; snp info<a href="gwas---rrblup.html#configure-grm-snp-info" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="gwas---rrblup.html#cb201-1" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">colnames</span>(grm) <span class="sc">%in%</span> phenotypes<span class="sc">$</span>id</span>
-<span id="cb201-2"><a href="gwas---rrblup.html#cb201-2" tabindex="-1"></a>grm <span class="ot">&lt;-</span> grm[vec,vec]</span>
-<span id="cb201-3"><a href="gwas---rrblup.html#cb201-3" tabindex="-1"></a></span>
-<span id="cb201-4"><a href="gwas---rrblup.html#cb201-4" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(snp.info)</span>
-<span id="cb201-5"><a href="gwas---rrblup.html#cb201-5" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> snp.info[,<span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">TRUE</span>,vec)]</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="gwas---rrblup.html#cb202-1" tabindex="-1"></a>vec <span class="ot">&lt;-</span> <span class="fu">colnames</span>(grm) <span class="sc">%in%</span> phenotypes<span class="sc">$</span>id</span>
+<span id="cb202-2"><a href="gwas---rrblup.html#cb202-2" tabindex="-1"></a>grm <span class="ot">&lt;-</span> grm[vec,vec]</span>
+<span id="cb202-3"><a href="gwas---rrblup.html#cb202-3" tabindex="-1"></a></span>
+<span id="cb202-4"><a href="gwas---rrblup.html#cb202-4" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(snp.info)</span>
+<span id="cb202-5"><a href="gwas---rrblup.html#cb202-5" tabindex="-1"></a>snp.info <span class="ot">&lt;-</span> snp.info[,<span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">TRUE</span>,<span class="cn">TRUE</span>,vec)]</span></code></pre></div>
 </div>
 </div>
 <div id="gwas-model-1-genomic-relationship-matrix" class="section level2 hasAnchor" number="5.6">
 <h2><span class="header-section-number">5.6</span> GWAS Model 1: genomic relationship matrix<a href="gwas---rrblup.html#gwas-model-1-genomic-relationship-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Note: P3D TRUE and FALSE give same results, but TRUE runs much quicker</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="gwas---rrblup.html#cb202-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> </span>
-<span id="cb202-2"><a href="gwas---rrblup.html#cb202-2" tabindex="-1"></a>  <span class="fu">GWAS</span>(<span class="at">pheno =</span> phenotypes, </span>
-<span id="cb202-3"><a href="gwas---rrblup.html#cb202-3" tabindex="-1"></a>       <span class="at">geno =</span> snp.info, </span>
-<span id="cb202-4"><a href="gwas---rrblup.html#cb202-4" tabindex="-1"></a>       <span class="at">K =</span> grm, </span>
-<span id="cb202-5"><a href="gwas---rrblup.html#cb202-5" tabindex="-1"></a>       <span class="at">fixed =</span> <span class="cn">NULL</span>, </span>
-<span id="cb202-6"><a href="gwas---rrblup.html#cb202-6" tabindex="-1"></a>       <span class="at">plot =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb202-7"><a href="gwas---rrblup.html#cb202-7" tabindex="-1"></a>       <span class="at">P3D =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="gwas---rrblup.html#cb203-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> </span>
+<span id="cb203-2"><a href="gwas---rrblup.html#cb203-2" tabindex="-1"></a>  <span class="fu">GWAS</span>(<span class="at">pheno =</span> phenotypes, </span>
+<span id="cb203-3"><a href="gwas---rrblup.html#cb203-3" tabindex="-1"></a>       <span class="at">geno =</span> snp.info, </span>
+<span id="cb203-4"><a href="gwas---rrblup.html#cb203-4" tabindex="-1"></a>       <span class="at">K =</span> grm, </span>
+<span id="cb203-5"><a href="gwas---rrblup.html#cb203-5" tabindex="-1"></a>       <span class="at">fixed =</span> <span class="cn">NULL</span>, </span>
+<span id="cb203-6"><a href="gwas---rrblup.html#cb203-6" tabindex="-1"></a>       <span class="at">plot =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb203-7"><a href="gwas---rrblup.html#cb203-7" tabindex="-1"></a>       <span class="at">P3D =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;GWAS for trait: phenotype&quot;
 ## [1] &quot;Variance components estimated. Testing markers.&quot;</code></pre>
 <div id="extract-results" class="section level3 hasAnchor" number="5.6.1">
@@ -510,37 +525,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Set names to defaults for manhattan plot.<br />
 GWAS outputs -log10(pvalues), convert to pvalues.<br />
 Try FDR and Bonferroni p-adjustment methods.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="gwas---rrblup.html#cb204-1" tabindex="-1"></a>gwasResults <span class="ot">&lt;-</span></span>
-<span id="cb204-2"><a href="gwas---rrblup.html#cb204-2" tabindex="-1"></a>  model <span class="sc">%&gt;%</span> </span>
-<span id="cb204-3"><a href="gwas---rrblup.html#cb204-3" tabindex="-1"></a>  <span class="fu">select</span>(snp, chr, pos, phenotype) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-4"><a href="gwas---rrblup.html#cb204-4" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;logP&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-5"><a href="gwas---rrblup.html#cb204-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CHR =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&quot;HiC_scaffold_&quot;</span>, <span class="st">&quot;&quot;</span>, CHR))) <span class="sc">%&gt;%</span> </span>
-<span id="cb204-6"><a href="gwas---rrblup.html#cb204-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">10</span><span class="sc">^</span>(<span class="sc">-</span>(logP)),</span>
-<span id="cb204-7"><a href="gwas---rrblup.html#cb204-7" tabindex="-1"></a>         <span class="at">fdr =</span> <span class="fu">p.adjust</span>(P, <span class="at">method =</span> <span class="st">&quot;fdr&quot;</span>),</span>
-<span id="cb204-8"><a href="gwas---rrblup.html#cb204-8" tabindex="-1"></a>         <span class="at">bonf =</span> <span class="fu">p.adjust</span>(P, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>))</span>
-<span id="cb204-9"><a href="gwas---rrblup.html#cb204-9" tabindex="-1"></a></span>
-<span id="cb204-10"><a href="gwas---rrblup.html#cb204-10" tabindex="-1"></a><span class="fu">write.csv</span>(gwasResults, <span class="st">&quot;Output Files/allsamples_gwas.csv&quot;</span>,</span>
-<span id="cb204-11"><a href="gwas---rrblup.html#cb204-11" tabindex="-1"></a>          <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="gwas---rrblup.html#cb205-1" tabindex="-1"></a>gwasResults <span class="ot">&lt;-</span></span>
+<span id="cb205-2"><a href="gwas---rrblup.html#cb205-2" tabindex="-1"></a>  model <span class="sc">%&gt;%</span> </span>
+<span id="cb205-3"><a href="gwas---rrblup.html#cb205-3" tabindex="-1"></a>  <span class="fu">select</span>(snp, chr, pos, phenotype) <span class="sc">%&gt;%</span> </span>
+<span id="cb205-4"><a href="gwas---rrblup.html#cb205-4" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;SNP&quot;</span>, <span class="st">&quot;CHR&quot;</span>, <span class="st">&quot;BP&quot;</span>, <span class="st">&quot;logP&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb205-5"><a href="gwas---rrblup.html#cb205-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CHR =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&quot;HiC_scaffold_&quot;</span>, <span class="st">&quot;&quot;</span>, CHR))) <span class="sc">%&gt;%</span> </span>
+<span id="cb205-6"><a href="gwas---rrblup.html#cb205-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">P =</span> <span class="dv">10</span><span class="sc">^</span>(<span class="sc">-</span>(logP)),</span>
+<span id="cb205-7"><a href="gwas---rrblup.html#cb205-7" tabindex="-1"></a>         <span class="at">fdr =</span> <span class="fu">p.adjust</span>(P, <span class="at">method =</span> <span class="st">&quot;fdr&quot;</span>),</span>
+<span id="cb205-8"><a href="gwas---rrblup.html#cb205-8" tabindex="-1"></a>         <span class="at">bonf =</span> <span class="fu">p.adjust</span>(P, <span class="at">method =</span> <span class="st">&quot;bonferroni&quot;</span>))</span>
+<span id="cb205-9"><a href="gwas---rrblup.html#cb205-9" tabindex="-1"></a></span>
+<span id="cb205-10"><a href="gwas---rrblup.html#cb205-10" tabindex="-1"></a><span class="fu">write.csv</span>(gwasResults, <span class="st">&quot;Output Files/allsamples_gwas.csv&quot;</span>,</span>
+<span id="cb205-11"><a href="gwas---rrblup.html#cb205-11" tabindex="-1"></a>          <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="manhattan-plot" class="section level3 hasAnchor" number="5.6.2">
 <h3><span class="header-section-number">5.6.2</span> Manhattan Plot<a href="gwas---rrblup.html#manhattan-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="gwas---rrblup.html#cb205-1" tabindex="-1"></a><span class="co"># Threshold for significance</span></span>
-<span id="cb205-2"><a href="gwas---rrblup.html#cb205-2" tabindex="-1"></a>bf <span class="ot">&lt;-</span> (<span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span> <span class="sc">/</span> <span class="fu">nrow</span>(snp.info)))</span>
-<span id="cb205-3"><a href="gwas---rrblup.html#cb205-3" tabindex="-1"></a>fdr <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>)</span>
-<span id="cb205-4"><a href="gwas---rrblup.html#cb205-4" tabindex="-1"></a></span>
-<span id="cb205-5"><a href="gwas---rrblup.html#cb205-5" tabindex="-1"></a><span class="co"># Bonferroni</span></span>
-<span id="cb205-6"><a href="gwas---rrblup.html#cb205-6" tabindex="-1"></a><span class="fu">manhattan</span>(gwasResults, </span>
-<span id="cb205-7"><a href="gwas---rrblup.html#cb205-7" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
-<span id="cb205-8"><a href="gwas---rrblup.html#cb205-8" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
-<span id="cb205-9"><a href="gwas---rrblup.html#cb205-9" tabindex="-1"></a>          <span class="at">genomewideline =</span> bf, </span>
-<span id="cb205-10"><a href="gwas---rrblup.html#cb205-10" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;P&quot;</span>, <span class="at">logp =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="gwas---rrblup.html#cb206-1" tabindex="-1"></a><span class="co"># Threshold for significance</span></span>
+<span id="cb206-2"><a href="gwas---rrblup.html#cb206-2" tabindex="-1"></a>bf <span class="ot">&lt;-</span> (<span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span> <span class="sc">/</span> <span class="fu">nrow</span>(snp.info)))</span>
+<span id="cb206-3"><a href="gwas---rrblup.html#cb206-3" tabindex="-1"></a>fdr <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>)</span>
+<span id="cb206-4"><a href="gwas---rrblup.html#cb206-4" tabindex="-1"></a></span>
+<span id="cb206-5"><a href="gwas---rrblup.html#cb206-5" tabindex="-1"></a><span class="co"># Bonferroni</span></span>
+<span id="cb206-6"><a href="gwas---rrblup.html#cb206-6" tabindex="-1"></a><span class="fu">manhattan</span>(gwasResults, </span>
+<span id="cb206-7"><a href="gwas---rrblup.html#cb206-7" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
+<span id="cb206-8"><a href="gwas---rrblup.html#cb206-8" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
+<span id="cb206-9"><a href="gwas---rrblup.html#cb206-9" tabindex="-1"></a>          <span class="at">genomewideline =</span> bf, </span>
+<span id="cb206-10"><a href="gwas---rrblup.html#cb206-10" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;P&quot;</span>, <span class="at">logp =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="gwas---rrblup.html#cb206-1" tabindex="-1"></a><span class="co"># FDR</span></span>
-<span id="cb206-2"><a href="gwas---rrblup.html#cb206-2" tabindex="-1"></a><span class="fu">manhattan</span>(gwasResults, </span>
-<span id="cb206-3"><a href="gwas---rrblup.html#cb206-3" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
-<span id="cb206-4"><a href="gwas---rrblup.html#cb206-4" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
-<span id="cb206-5"><a href="gwas---rrblup.html#cb206-5" tabindex="-1"></a>          <span class="at">genomewideline =</span> fdr, </span>
-<span id="cb206-6"><a href="gwas---rrblup.html#cb206-6" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">logp =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="gwas---rrblup.html#cb207-1" tabindex="-1"></a><span class="co"># FDR</span></span>
+<span id="cb207-2"><a href="gwas---rrblup.html#cb207-2" tabindex="-1"></a><span class="fu">manhattan</span>(gwasResults, </span>
+<span id="cb207-3"><a href="gwas---rrblup.html#cb207-3" tabindex="-1"></a>          <span class="at">suggestiveline=</span><span class="cn">FALSE</span>, </span>
+<span id="cb207-4"><a href="gwas---rrblup.html#cb207-4" tabindex="-1"></a>          <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;grey&quot;</span>),</span>
+<span id="cb207-5"><a href="gwas---rrblup.html#cb207-5" tabindex="-1"></a>          <span class="at">genomewideline =</span> fdr, </span>
+<span id="cb207-6"><a href="gwas---rrblup.html#cb207-6" tabindex="-1"></a>          <span class="at">p =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">logp =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-63-2.png" alt="" width="672" /></p>
 </div>
 </div>
@@ -548,30 +563,30 @@ Try FDR and Bonferroni p-adjustment methods.</p>
 <h2><span class="header-section-number">5.7</span> ID SNPs in LD with GWAS SNP<a href="gwas---rrblup.html#id-snps-in-ld-with-gwas-snp" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="configure-data-1" class="section level3 hasAnchor" number="5.7.1">
 <h3><span class="header-section-number">5.7.1</span> Configure data<a href="gwas---rrblup.html#configure-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="gwas---rrblup.html#cb207-1" tabindex="-1"></a><span class="co"># Read in VCF for all SNPs</span></span>
-<span id="cb207-2"><a href="gwas---rrblup.html#cb207-2" tabindex="-1"></a>vcf <span class="ot">&lt;-</span> </span>
-<span id="cb207-3"><a href="gwas---rrblup.html#cb207-3" tabindex="-1"></a>  <span class="fu">readVcf</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf.vcf&quot;</span>)</span>
-<span id="cb207-4"><a href="gwas---rrblup.html#cb207-4" tabindex="-1"></a></span>
-<span id="cb207-5"><a href="gwas---rrblup.html#cb207-5" tabindex="-1"></a><span class="co"># Extract genotypes</span></span>
-<span id="cb207-6"><a href="gwas---rrblup.html#cb207-6" tabindex="-1"></a><span class="co">#genotypes &lt;- geno(vcf)$GT</span></span>
-<span id="cb207-7"><a href="gwas---rrblup.html#cb207-7" tabindex="-1"></a>genotypes <span class="ot">&lt;-</span> </span>
-<span id="cb207-8"><a href="gwas---rrblup.html#cb207-8" tabindex="-1"></a>  <span class="fu">genotypeToSnpMatrix</span>(vcf)<span class="sc">$</span>genotypes</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="gwas---rrblup.html#cb208-1" tabindex="-1"></a><span class="co"># Read in VCF for all SNPs</span></span>
+<span id="cb208-2"><a href="gwas---rrblup.html#cb208-2" tabindex="-1"></a>vcf <span class="ot">&lt;-</span> </span>
+<span id="cb208-3"><a href="gwas---rrblup.html#cb208-3" tabindex="-1"></a>  <span class="fu">readVcf</span>(<span class="st">&quot;C:/Users/Christina/OneDrive - University of Maine System/pv-wgs/allsamples_maf.vcf&quot;</span>)</span>
+<span id="cb208-4"><a href="gwas---rrblup.html#cb208-4" tabindex="-1"></a></span>
+<span id="cb208-5"><a href="gwas---rrblup.html#cb208-5" tabindex="-1"></a><span class="co"># Extract genotypes</span></span>
+<span id="cb208-6"><a href="gwas---rrblup.html#cb208-6" tabindex="-1"></a><span class="co">#genotypes &lt;- geno(vcf)$GT</span></span>
+<span id="cb208-7"><a href="gwas---rrblup.html#cb208-7" tabindex="-1"></a>genotypes <span class="ot">&lt;-</span> </span>
+<span id="cb208-8"><a href="gwas---rrblup.html#cb208-8" tabindex="-1"></a>  <span class="fu">genotypeToSnpMatrix</span>(vcf)<span class="sc">$</span>genotypes</span></code></pre></div>
 </div>
 <div id="calcualte-ld" class="section level3 hasAnchor" number="5.7.2">
 <h3><span class="header-section-number">5.7.2</span> Calcualte LD<a href="gwas---rrblup.html#calcualte-ld" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="gwas---rrblup.html#cb208-1" tabindex="-1"></a>gwas_snp <span class="ot">&lt;-</span> </span>
-<span id="cb208-2"><a href="gwas---rrblup.html#cb208-2" tabindex="-1"></a>  gwasResults <span class="sc">%&gt;%</span> </span>
-<span id="cb208-3"><a href="gwas---rrblup.html#cb208-3" tabindex="-1"></a>  <span class="fu">filter</span>(fdr <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
-<span id="cb208-4"><a href="gwas---rrblup.html#cb208-4" tabindex="-1"></a></span>
-<span id="cb208-5"><a href="gwas---rrblup.html#cb208-5" tabindex="-1"></a>snp <span class="ot">&lt;-</span> gwas_snp<span class="sc">$</span>SNP</span>
-<span id="cb208-6"><a href="gwas---rrblup.html#cb208-6" tabindex="-1"></a></span>
-<span id="cb208-7"><a href="gwas---rrblup.html#cb208-7" tabindex="-1"></a>ld_results <span class="ot">&lt;-</span> </span>
-<span id="cb208-8"><a href="gwas---rrblup.html#cb208-8" tabindex="-1"></a>  <span class="fu">ld</span>(genotypes, genotypes[,snp], <span class="at">stats =</span> <span class="fu">c</span>( <span class="st">&quot;R.squared&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb208-9"><a href="gwas---rrblup.html#cb208-9" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
-<span id="cb208-10"><a href="gwas---rrblup.html#cb208-10" tabindex="-1"></a></span>
-<span id="cb208-11"><a href="gwas---rrblup.html#cb208-11" tabindex="-1"></a>high_ld_snps <span class="ot">&lt;-</span> </span>
-<span id="cb208-12"><a href="gwas---rrblup.html#cb208-12" tabindex="-1"></a>  ld_results <span class="sc">%&gt;%</span> </span>
-<span id="cb208-13"><a href="gwas---rrblup.html#cb208-13" tabindex="-1"></a>  <span class="fu">filter</span>(HiC_scaffold_2_89017915 <span class="sc">&gt;</span> <span class="fl">0.6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="gwas---rrblup.html#cb209-1" tabindex="-1"></a>gwas_snp <span class="ot">&lt;-</span> </span>
+<span id="cb209-2"><a href="gwas---rrblup.html#cb209-2" tabindex="-1"></a>  gwasResults <span class="sc">%&gt;%</span> </span>
+<span id="cb209-3"><a href="gwas---rrblup.html#cb209-3" tabindex="-1"></a>  <span class="fu">filter</span>(fdr <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span>
+<span id="cb209-4"><a href="gwas---rrblup.html#cb209-4" tabindex="-1"></a></span>
+<span id="cb209-5"><a href="gwas---rrblup.html#cb209-5" tabindex="-1"></a>snp <span class="ot">&lt;-</span> gwas_snp<span class="sc">$</span>SNP</span>
+<span id="cb209-6"><a href="gwas---rrblup.html#cb209-6" tabindex="-1"></a></span>
+<span id="cb209-7"><a href="gwas---rrblup.html#cb209-7" tabindex="-1"></a>ld_results <span class="ot">&lt;-</span> </span>
+<span id="cb209-8"><a href="gwas---rrblup.html#cb209-8" tabindex="-1"></a>  <span class="fu">ld</span>(genotypes, genotypes[,snp], <span class="at">stats =</span> <span class="fu">c</span>( <span class="st">&quot;R.squared&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb209-9"><a href="gwas---rrblup.html#cb209-9" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb209-10"><a href="gwas---rrblup.html#cb209-10" tabindex="-1"></a></span>
+<span id="cb209-11"><a href="gwas---rrblup.html#cb209-11" tabindex="-1"></a>high_ld_snps <span class="ot">&lt;-</span> </span>
+<span id="cb209-12"><a href="gwas---rrblup.html#cb209-12" tabindex="-1"></a>  ld_results <span class="sc">%&gt;%</span> </span>
+<span id="cb209-13"><a href="gwas---rrblup.html#cb209-13" tabindex="-1"></a>  <span class="fu">filter</span>(HiC_scaffold_2_89017915 <span class="sc">&gt;</span> <span class="fl">0.6</span>)</span></code></pre></div>
 
 </div>
 </div>

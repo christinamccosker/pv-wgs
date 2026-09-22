@@ -21,6 +21,7 @@ library(gridExtra)
 library(conflicted)
 
 conflict_prefer("intersect", "base")
+conflict_prefer("filter", "dplyr")
 ```
 
 ## Data
@@ -116,14 +117,21 @@ kegg_sd %>%
 
 
 ### Biomart annotation
-Each gene was manually annotated with Ensembl identifier to query Ensembl's Biomart
+Each gene was manually annotated with Ensembl identifier to query Ensembl's Biomart  
+2026 Update: biomaRt/Ensembl connection no longer supported. Using archive and exporting as RDS object to preserve functionality of this script.  
 ```{r}
 snp_ensembl <-
   read.csv("Input Files/allsamples_fst_sd_snp_ensemblid.csv") 
 
-ensembl <- 
-  useEnsembl(biomart = "ensembl", 
-             dataset = "hsapiens_gene_ensembl")
+# ensembl <- 
+#   useMart(biomart = "ensembl", 
+#              dataset = "hsapiens_gene_ensembl",
+#              host = "https://may2025.archive.ensembl.org")
+# 
+# saveRDS(ensembl, file = "Output Files/ensembl_mart.rds")
+
+ensembl <-
+  readRDS("Output Files/ensembl_mart.rds")
 
 filters <- 
   listFilters(ensembl)

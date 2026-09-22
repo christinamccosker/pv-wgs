@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 SNP Annotation | Pv-WGS-Analysis</title>
+  <title>7 SNP Annotation | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus</title>
   <meta name="description" content="McCosker Dissertation Chapter 3 Analyses" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 SNP Annotation | Pv-WGS-Analysis" />
+  <meta property="og:title" content="7 SNP Annotation | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="McCosker Dissertation Chapter 3 Analyses" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 SNP Annotation | Pv-WGS-Analysis" />
+  <meta name="twitter:title" content="7 SNP Annotation | Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus" />
   
   <meta name="twitter:description" content="McCosker Dissertation Chapter 3 Analyses" />
   
@@ -143,7 +143,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Pv-WGS-Analysis</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Publication Information</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#authors"><i class="fa fa-check"></i><b>1.1</b> Authors</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#abstract"><i class="fa fa-check"></i><b>1.2</b> Abstract</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html"><i class="fa fa-check"></i><b>2</b> Tidy Data &amp; Exploratory</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="tidy-data-exploratory.html"><a href="tidy-data-exploratory.html#libraries"><i class="fa fa-check"></i><b>2.1</b> Libraries</a></li>
@@ -272,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Pv-WGS-Analysis</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Whole genome sequencing reveals variation in immune and nervous systems associated with harbor seal susceptibility to phocine distemper virus</a>
           </h1>
         </div>
 
@@ -284,18 +288,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">7</span> SNP Annotation<a href="snp-annotation.html#snp-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="libraries-5" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Libraries<a href="snp-annotation.html#libraries-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="snp-annotation.html#cb244-1" tabindex="-1"></a><span class="fu">library</span>(reactome.db)</span>
-<span id="cb244-2"><a href="snp-annotation.html#cb244-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb244-3"><a href="snp-annotation.html#cb244-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb244-4"><a href="snp-annotation.html#cb244-4" tabindex="-1"></a><span class="fu">library</span>(WebGestaltR)</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="snp-annotation.html#cb245-1" tabindex="-1"></a><span class="fu">library</span>(reactome.db)</span>
+<span id="cb245-2"><a href="snp-annotation.html#cb245-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb245-3"><a href="snp-annotation.html#cb245-3" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb245-4"><a href="snp-annotation.html#cb245-4" tabindex="-1"></a><span class="fu">library</span>(WebGestaltR)</span></code></pre></div>
 <pre><code>## ******************************************</code></pre>
 <pre><code>## *                                        *</code></pre>
-<pre><code>## *          Welcome to WebGestaltR !      *</code></pre>
-<pre><code>## *                                        *</code></pre>
+<pre><code>## *       Welcome to WebGestaltR-rust!     *</code></pre>
+<pre><code>## *                                        *
+## *                                        *</code></pre>
 <pre><code>## ******************************************</code></pre>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="snp-annotation.html#cb250-1" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb250-2"><a href="snp-annotation.html#cb250-2" tabindex="-1"></a><span class="fu">library</span>(biomaRt)</span>
-<span id="cb250-3"><a href="snp-annotation.html#cb250-3" tabindex="-1"></a><span class="fu">library</span>(ReactomePA)</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="snp-annotation.html#cb251-1" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb251-2"><a href="snp-annotation.html#cb251-2" tabindex="-1"></a><span class="fu">library</span>(biomaRt)</span>
+<span id="cb251-3"><a href="snp-annotation.html#cb251-3" tabindex="-1"></a><span class="fu">library</span>(ReactomePA)</span></code></pre></div>
 <pre><code>## </code></pre>
 <pre><code>## ReactomePA v1.54.0 Learn more at https://yulab-smu.top/contribution-knowledge-mining/
 ## 
@@ -304,95 +309,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Guangchuang Yu, Qing-Yu He. ReactomePA: an R/Bioconductor package for
 ## reactome pathway analysis and visualization. Molecular BioSystems.
 ## 2016, 12(2):477-479</code></pre>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="snp-annotation.html#cb253-1" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb253-2"><a href="snp-annotation.html#cb253-2" tabindex="-1"></a></span>
-<span id="cb253-3"><a href="snp-annotation.html#cb253-3" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;intersect&quot;</span>, <span class="st">&quot;base&quot;</span>)</span></code></pre></div>
-<pre><code>## [conflicted] Will prefer base::intersect over any other
-## package.</code></pre>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="snp-annotation.html#cb254-1" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb254-2"><a href="snp-annotation.html#cb254-2" tabindex="-1"></a><span class="fu">library</span>(conflicted)</span>
+<span id="cb254-3"><a href="snp-annotation.html#cb254-3" tabindex="-1"></a></span>
+<span id="cb254-4"><a href="snp-annotation.html#cb254-4" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;intersect&quot;</span>, <span class="st">&quot;base&quot;</span>)</span></code></pre></div>
+<pre><code>## [conflicted] Will prefer base::intersect over any other package.</code></pre>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="snp-annotation.html#cb256-1" tabindex="-1"></a><span class="fu">conflict_prefer</span>(<span class="st">&quot;filter&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)</span></code></pre></div>
+<pre><code>## [conflicted] Removing existing preference.</code></pre>
+<pre><code>## [conflicted] Will prefer dplyr::filter over any other package.</code></pre>
 </div>
 <div id="data-5" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Data<a href="snp-annotation.html#data-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Read in: SNP gene/exon/cds information</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="snp-annotation.html#cb255-1" tabindex="-1"></a>gwas_snp <span class="ot">&lt;-</span> </span>
-<span id="cb255-2"><a href="snp-annotation.html#cb255-2" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Output Files/allsamples_gwas.csv&quot;</span>)</span>
-<span id="cb255-3"><a href="snp-annotation.html#cb255-3" tabindex="-1"></a></span>
-<span id="cb255-4"><a href="snp-annotation.html#cb255-4" tabindex="-1"></a>fst_sd_genes <span class="ot">&lt;-</span> </span>
-<span id="cb255-5"><a href="snp-annotation.html#cb255-5" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_outlier_genes_snps.txt&quot;</span>)</span>
-<span id="cb255-6"><a href="snp-annotation.html#cb255-6" tabindex="-1"></a></span>
-<span id="cb255-7"><a href="snp-annotation.html#cb255-7" tabindex="-1"></a>fst_sd_exons <span class="ot">&lt;-</span> </span>
-<span id="cb255-8"><a href="snp-annotation.html#cb255-8" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_outlier_exons_snps.txt&quot;</span>)</span>
-<span id="cb255-9"><a href="snp-annotation.html#cb255-9" tabindex="-1"></a></span>
-<span id="cb255-10"><a href="snp-annotation.html#cb255-10" tabindex="-1"></a>fst_sd_cds <span class="ot">&lt;-</span> </span>
-<span id="cb255-11"><a href="snp-annotation.html#cb255-11" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_outlier_cds_snps.txt&quot;</span>)</span>
-<span id="cb255-12"><a href="snp-annotation.html#cb255-12" tabindex="-1"></a></span>
-<span id="cb255-13"><a href="snp-annotation.html#cb255-13" tabindex="-1"></a>fst_sd_fst <span class="ot">&lt;-</span> </span>
-<span id="cb255-14"><a href="snp-annotation.html#cb255-14" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Output Files/allsamples_fst_sd_outlierposition.csv&quot;</span>)</span>
-<span id="cb255-15"><a href="snp-annotation.html#cb255-15" tabindex="-1"></a></span>
-<span id="cb255-16"><a href="snp-annotation.html#cb255-16" tabindex="-1"></a>pv_genes <span class="ot">&lt;-</span> </span>
-<span id="cb255-17"><a href="snp-annotation.html#cb255-17" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/GSC_HSeal_1.0_HiC_genes.gff3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="snp-annotation.html#cb259-1" tabindex="-1"></a>gwas_snp <span class="ot">&lt;-</span> </span>
+<span id="cb259-2"><a href="snp-annotation.html#cb259-2" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Output Files/allsamples_gwas.csv&quot;</span>)</span>
+<span id="cb259-3"><a href="snp-annotation.html#cb259-3" tabindex="-1"></a></span>
+<span id="cb259-4"><a href="snp-annotation.html#cb259-4" tabindex="-1"></a>fst_sd_genes <span class="ot">&lt;-</span> </span>
+<span id="cb259-5"><a href="snp-annotation.html#cb259-5" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_outlier_genes_snps.txt&quot;</span>)</span>
+<span id="cb259-6"><a href="snp-annotation.html#cb259-6" tabindex="-1"></a></span>
+<span id="cb259-7"><a href="snp-annotation.html#cb259-7" tabindex="-1"></a>fst_sd_exons <span class="ot">&lt;-</span> </span>
+<span id="cb259-8"><a href="snp-annotation.html#cb259-8" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_outlier_exons_snps.txt&quot;</span>)</span>
+<span id="cb259-9"><a href="snp-annotation.html#cb259-9" tabindex="-1"></a></span>
+<span id="cb259-10"><a href="snp-annotation.html#cb259-10" tabindex="-1"></a>fst_sd_cds <span class="ot">&lt;-</span> </span>
+<span id="cb259-11"><a href="snp-annotation.html#cb259-11" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_outlier_cds_snps.txt&quot;</span>)</span>
+<span id="cb259-12"><a href="snp-annotation.html#cb259-12" tabindex="-1"></a></span>
+<span id="cb259-13"><a href="snp-annotation.html#cb259-13" tabindex="-1"></a>fst_sd_fst <span class="ot">&lt;-</span> </span>
+<span id="cb259-14"><a href="snp-annotation.html#cb259-14" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Output Files/allsamples_fst_sd_outlierposition.csv&quot;</span>)</span>
+<span id="cb259-15"><a href="snp-annotation.html#cb259-15" tabindex="-1"></a></span>
+<span id="cb259-16"><a href="snp-annotation.html#cb259-16" tabindex="-1"></a>pv_genes <span class="ot">&lt;-</span> </span>
+<span id="cb259-17"><a href="snp-annotation.html#cb259-17" tabindex="-1"></a>  <span class="fu">fread</span>(<span class="st">&quot;Input Files/GSC_HSeal_1.0_HiC_genes.gff3&quot;</span>)</span></code></pre></div>
 </div>
 <div id="tidy-harbor-seal-genes" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Tidy Harbor seal genes<a href="snp-annotation.html#tidy-harbor-seal-genes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="snp-annotation.html#cb256-1" tabindex="-1"></a>pv_genes_tidy <span class="ot">&lt;-</span> </span>
-<span id="cb256-2"><a href="snp-annotation.html#cb256-2" tabindex="-1"></a>  pv_genes <span class="sc">%&gt;%</span> </span>
-<span id="cb256-3"><a href="snp-annotation.html#cb256-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene =</span> V9,</span>
-<span id="cb256-4"><a href="snp-annotation.html#cb256-4" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_split_fixed</span>(gene, <span class="st">&quot;;&quot;</span>, <span class="dv">5</span>),</span>
-<span id="cb256-5"><a href="snp-annotation.html#cb256-5" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_extract</span>(gene[,<span class="dv">4</span>], <span class="st">&quot;(?&lt;=to ).*(?=:)&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb256-6"><a href="snp-annotation.html#cb256-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gene))</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="snp-annotation.html#cb260-1" tabindex="-1"></a>pv_genes_tidy <span class="ot">&lt;-</span> </span>
+<span id="cb260-2"><a href="snp-annotation.html#cb260-2" tabindex="-1"></a>  pv_genes <span class="sc">%&gt;%</span> </span>
+<span id="cb260-3"><a href="snp-annotation.html#cb260-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene =</span> V9,</span>
+<span id="cb260-4"><a href="snp-annotation.html#cb260-4" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_split_fixed</span>(gene, <span class="st">&quot;;&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb260-5"><a href="snp-annotation.html#cb260-5" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_extract</span>(gene[,<span class="dv">4</span>], <span class="st">&quot;(?&lt;=to ).*(?=:)&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb260-6"><a href="snp-annotation.html#cb260-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gene))</span></code></pre></div>
 </div>
 <div id="fst-5-sd" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> FST 5 SD<a href="snp-annotation.html#fst-5-sd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="id-genes" class="section level3 hasAnchor" number="7.4.1">
 <h3><span class="header-section-number">7.4.1</span> ID genes<a href="snp-annotation.html#id-genes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="snp-annotation.html#cb257-1" tabindex="-1"></a>fst_sd_genes_tidy <span class="ot">&lt;-</span> </span>
-<span id="cb257-2"><a href="snp-annotation.html#cb257-2" tabindex="-1"></a>  fst_sd_genes <span class="sc">%&gt;%</span> </span>
-<span id="cb257-3"><a href="snp-annotation.html#cb257-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene =</span> V9,</span>
-<span id="cb257-4"><a href="snp-annotation.html#cb257-4" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_split_fixed</span>(gene, <span class="st">&quot;;&quot;</span>, <span class="dv">5</span>),</span>
-<span id="cb257-5"><a href="snp-annotation.html#cb257-5" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_extract</span>(gene[,<span class="dv">4</span>], <span class="st">&quot;(?&lt;=to ).*(?=:)&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb257-6"><a href="snp-annotation.html#cb257-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gene)) <span class="sc">%&gt;%</span> </span>
-<span id="cb257-7"><a href="snp-annotation.html#cb257-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">classification =</span> </span>
-<span id="cb257-8"><a href="snp-annotation.html#cb257-8" tabindex="-1"></a>           <span class="fu">ifelse</span>(V4 <span class="sc">%in%</span> fst_sd_cds<span class="sc">$</span>V4, <span class="st">&quot;cds&quot;</span>, </span>
-<span id="cb257-9"><a href="snp-annotation.html#cb257-9" tabindex="-1"></a>                  <span class="fu">ifelse</span>(V4 <span class="sc">%in%</span> fst_sd_exons<span class="sc">$</span>V4, <span class="st">&quot;exon&quot;</span>, <span class="st">&quot;gene&quot;</span>)))</span>
-<span id="cb257-10"><a href="snp-annotation.html#cb257-10" tabindex="-1"></a></span>
-<span id="cb257-11"><a href="snp-annotation.html#cb257-11" tabindex="-1"></a><span class="fu">write.csv</span>(fst_sd_genes_tidy, <span class="st">&quot;Output Files/allsamples_fst_sd_snp_geneid.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="snp-annotation.html#cb261-1" tabindex="-1"></a>fst_sd_genes_tidy <span class="ot">&lt;-</span> </span>
+<span id="cb261-2"><a href="snp-annotation.html#cb261-2" tabindex="-1"></a>  fst_sd_genes <span class="sc">%&gt;%</span> </span>
+<span id="cb261-3"><a href="snp-annotation.html#cb261-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gene =</span> V9,</span>
+<span id="cb261-4"><a href="snp-annotation.html#cb261-4" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_split_fixed</span>(gene, <span class="st">&quot;;&quot;</span>, <span class="dv">5</span>),</span>
+<span id="cb261-5"><a href="snp-annotation.html#cb261-5" tabindex="-1"></a>         <span class="at">gene =</span> <span class="fu">str_extract</span>(gene[,<span class="dv">4</span>], <span class="st">&quot;(?&lt;=to ).*(?=:)&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-6"><a href="snp-annotation.html#cb261-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gene)) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-7"><a href="snp-annotation.html#cb261-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">classification =</span> </span>
+<span id="cb261-8"><a href="snp-annotation.html#cb261-8" tabindex="-1"></a>           <span class="fu">ifelse</span>(V4 <span class="sc">%in%</span> fst_sd_cds<span class="sc">$</span>V4, <span class="st">&quot;cds&quot;</span>, </span>
+<span id="cb261-9"><a href="snp-annotation.html#cb261-9" tabindex="-1"></a>                  <span class="fu">ifelse</span>(V4 <span class="sc">%in%</span> fst_sd_exons<span class="sc">$</span>V4, <span class="st">&quot;exon&quot;</span>, <span class="st">&quot;gene&quot;</span>)))</span>
+<span id="cb261-10"><a href="snp-annotation.html#cb261-10" tabindex="-1"></a></span>
+<span id="cb261-11"><a href="snp-annotation.html#cb261-11" tabindex="-1"></a><span class="fu">write.csv</span>(fst_sd_genes_tidy, <span class="st">&quot;Output Files/allsamples_fst_sd_snp_geneid.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="over-representation" class="section level3 hasAnchor" number="7.4.2">
 <h3><span class="header-section-number">7.4.2</span> Over-representation<a href="snp-annotation.html#over-representation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="go-terms" class="section level4 hasAnchor" number="7.4.2.1">
 <h4><span class="header-section-number">7.4.2.1</span> GO Terms<a href="snp-annotation.html#go-terms" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="snp-annotation.html#cb258-1" tabindex="-1"></a>go_bp_sd <span class="ot">&lt;-</span> </span>
-<span id="cb258-2"><a href="snp-annotation.html#cb258-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
-<span id="cb258-3"><a href="snp-annotation.html#cb258-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Biological_Process&quot;</span>,</span>
-<span id="cb258-4"><a href="snp-annotation.html#cb258-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
-<span id="cb258-5"><a href="snp-annotation.html#cb258-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
-<span id="cb258-6"><a href="snp-annotation.html#cb258-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
-<span id="cb258-7"><a href="snp-annotation.html#cb258-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="snp-annotation.html#cb262-1" tabindex="-1"></a>go_bp_sd <span class="ot">&lt;-</span> </span>
+<span id="cb262-2"><a href="snp-annotation.html#cb262-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb262-3"><a href="snp-annotation.html#cb262-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Biological_Process&quot;</span>,</span>
+<span id="cb262-4"><a href="snp-annotation.html#cb262-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
+<span id="cb262-5"><a href="snp-annotation.html#cb262-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb262-6"><a href="snp-annotation.html#cb262-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb262-7"><a href="snp-annotation.html#cb262-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Loading the functional categories...
 ## Loading the ID list...
 ## Loading the reference list...
 ## Performing the enrichment analysis...</code></pre>
 <pre><code>## Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
 ## minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="snp-annotation.html#cb261-1" tabindex="-1"></a>go_cc_sd <span class="ot">&lt;-</span> </span>
-<span id="cb261-2"><a href="snp-annotation.html#cb261-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
-<span id="cb261-3"><a href="snp-annotation.html#cb261-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Cellular_Component&quot;</span>,</span>
-<span id="cb261-4"><a href="snp-annotation.html#cb261-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
-<span id="cb261-5"><a href="snp-annotation.html#cb261-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
-<span id="cb261-6"><a href="snp-annotation.html#cb261-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
-<span id="cb261-7"><a href="snp-annotation.html#cb261-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="snp-annotation.html#cb265-1" tabindex="-1"></a>go_cc_sd <span class="ot">&lt;-</span> </span>
+<span id="cb265-2"><a href="snp-annotation.html#cb265-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb265-3"><a href="snp-annotation.html#cb265-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Cellular_Component&quot;</span>,</span>
+<span id="cb265-4"><a href="snp-annotation.html#cb265-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
+<span id="cb265-5"><a href="snp-annotation.html#cb265-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb265-6"><a href="snp-annotation.html#cb265-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb265-7"><a href="snp-annotation.html#cb265-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Loading the functional categories...
 ## Loading the ID list...
 ## Loading the reference list...
 ## Performing the enrichment analysis...</code></pre>
 <pre><code>## Warning in oraEnrichment(interestGeneList, referenceGeneList, geneSet, minNum =
 ## minNum, : No significant gene set is identified based on FDR 0.05!</code></pre>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="snp-annotation.html#cb264-1" tabindex="-1"></a>go_mf_sd <span class="ot">&lt;-</span> </span>
-<span id="cb264-2"><a href="snp-annotation.html#cb264-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
-<span id="cb264-3"><a href="snp-annotation.html#cb264-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Molecular_Function&quot;</span>,</span>
-<span id="cb264-4"><a href="snp-annotation.html#cb264-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
-<span id="cb264-5"><a href="snp-annotation.html#cb264-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
-<span id="cb264-6"><a href="snp-annotation.html#cb264-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
-<span id="cb264-7"><a href="snp-annotation.html#cb264-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="snp-annotation.html#cb268-1" tabindex="-1"></a>go_mf_sd <span class="ot">&lt;-</span> </span>
+<span id="cb268-2"><a href="snp-annotation.html#cb268-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod=</span><span class="st">&quot;ORA&quot;</span>, <span class="at">organism=</span><span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb268-3"><a href="snp-annotation.html#cb268-3" tabindex="-1"></a>              <span class="at">enrichDatabase=</span><span class="st">&quot;geneontology_Molecular_Function&quot;</span>,</span>
+<span id="cb268-4"><a href="snp-annotation.html#cb268-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
+<span id="cb268-5"><a href="snp-annotation.html#cb268-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb268-6"><a href="snp-annotation.html#cb268-6" tabindex="-1"></a>              <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">fdrThr =</span> <span class="fl">0.05</span>, </span>
+<span id="cb268-7"><a href="snp-annotation.html#cb268-7" tabindex="-1"></a>              <span class="at">isOutput =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Loading the functional categories...
 ## Loading the ID list...
 ## Loading the reference list...
@@ -402,19 +410,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="kegg-pathway" class="section level4 hasAnchor" number="7.4.2.2">
 <h4><span class="header-section-number">7.4.2.2</span> KEGG Pathway<a href="snp-annotation.html#kegg-pathway" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="snp-annotation.html#cb267-1" tabindex="-1"></a>kegg_sd <span class="ot">&lt;-</span></span>
-<span id="cb267-2"><a href="snp-annotation.html#cb267-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod =</span> <span class="st">&quot;ORA&quot;</span>, <span class="at">organism =</span> <span class="st">&quot;hsapiens&quot;</span>, </span>
-<span id="cb267-3"><a href="snp-annotation.html#cb267-3" tabindex="-1"></a>              <span class="at">enrichDatabase =</span> <span class="st">&quot;pathway_KEGG&quot;</span>,</span>
-<span id="cb267-4"><a href="snp-annotation.html#cb267-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
-<span id="cb267-5"><a href="snp-annotation.html#cb267-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
-<span id="cb267-6"><a href="snp-annotation.html#cb267-6" tabindex="-1"></a>              <span class="at">minNum =</span> <span class="dv">5</span>, <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">isOutput =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="snp-annotation.html#cb271-1" tabindex="-1"></a>kegg_sd <span class="ot">&lt;-</span></span>
+<span id="cb271-2"><a href="snp-annotation.html#cb271-2" tabindex="-1"></a>  <span class="fu">WebGestaltR</span>(<span class="at">enrichMethod =</span> <span class="st">&quot;ORA&quot;</span>, <span class="at">organism =</span> <span class="st">&quot;hsapiens&quot;</span>, </span>
+<span id="cb271-3"><a href="snp-annotation.html#cb271-3" tabindex="-1"></a>              <span class="at">enrichDatabase =</span> <span class="st">&quot;pathway_KEGG&quot;</span>,</span>
+<span id="cb271-4"><a href="snp-annotation.html#cb271-4" tabindex="-1"></a>              <span class="at">interestGene =</span> fst_sd_genes_tidy<span class="sc">$</span>gene, <span class="at">interestGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>, </span>
+<span id="cb271-5"><a href="snp-annotation.html#cb271-5" tabindex="-1"></a>              <span class="at">referenceGene =</span> pv_genes_tidy<span class="sc">$</span>gene, <span class="at">referenceGeneType =</span> <span class="st">&quot;genesymbol&quot;</span>,</span>
+<span id="cb271-6"><a href="snp-annotation.html#cb271-6" tabindex="-1"></a>              <span class="at">minNum =</span> <span class="dv">5</span>, <span class="at">sigMethod =</span> <span class="st">&quot;fdr&quot;</span>, <span class="at">isOutput =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
 <pre><code>## Loading the functional categories...
 ## Loading the ID list...
 ## Loading the reference list...
 ## Performing the enrichment analysis...</code></pre>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="snp-annotation.html#cb269-1" tabindex="-1"></a>kegg_sd <span class="sc">%&gt;%</span></span>
-<span id="cb269-2"><a href="snp-annotation.html#cb269-2" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb269-3"><a href="snp-annotation.html#cb269-3" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="snp-annotation.html#cb273-1" tabindex="-1"></a>kegg_sd <span class="sc">%&gt;%</span></span>
+<span id="cb273-2"><a href="snp-annotation.html#cb273-2" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb273-3"><a href="snp-annotation.html#cb273-3" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -471,16 +479,16 @@ Insulin resistance
 7
 </td>
 <td style="text-align:right;">
-0.6380715
+0.6737326
 </td>
 <td style="text-align:right;">
-10.970558
+10.389879
 </td>
 <td style="text-align:right;">
-0.0000025
+0.0000039
 </td>
 <td style="text-align:right;">
-0.0008123
+0.0013592
 </td>
 <td style="text-align:left;">
 11001;32;5291;5524;5792;5836;6720
@@ -500,22 +508,22 @@ Insulin signaling pathway
 <a href="http://www.kegg.jp/kegg-bin/show_pathway?hsa04910+32+5291+5792+5836+6655+6720" class="uri">http://www.kegg.jp/kegg-bin/show_pathway?hsa04910+32+5291+5792+5836+6655+6720</a>
 </td>
 <td style="text-align:right;">
-123
+122
 </td>
 <td style="text-align:right;">
 6
 </td>
 <td style="text-align:right;">
-0.7770574
+0.8138156
 </td>
 <td style="text-align:right;">
-7.721438
+7.372678
 </td>
 <td style="text-align:right;">
-0.0001045
+0.0001415
 </td>
 <td style="text-align:right;">
-0.0168825
+0.0246910
 </td>
 <td style="text-align:left;">
 32;5291;5792;5836;6655;6720
@@ -530,32 +538,39 @@ ACACB;SREBF1;PTPRF;SOS2;PYGL;PIK3CB
 </div>
 <div id="biomart-annotation" class="section level3 hasAnchor" number="7.4.3">
 <h3><span class="header-section-number">7.4.3</span> Biomart annotation<a href="snp-annotation.html#biomart-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Each gene was manually annotated with Ensembl identifier to query Ensembl’s Biomart</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="snp-annotation.html#cb270-1" tabindex="-1"></a>snp_ensembl <span class="ot">&lt;-</span></span>
-<span id="cb270-2"><a href="snp-annotation.html#cb270-2" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_snp_ensemblid.csv&quot;</span>) </span>
-<span id="cb270-3"><a href="snp-annotation.html#cb270-3" tabindex="-1"></a></span>
-<span id="cb270-4"><a href="snp-annotation.html#cb270-4" tabindex="-1"></a>ensembl <span class="ot">&lt;-</span> </span>
-<span id="cb270-5"><a href="snp-annotation.html#cb270-5" tabindex="-1"></a>  <span class="fu">useEnsembl</span>(<span class="at">biomart =</span> <span class="st">&quot;ensembl&quot;</span>, </span>
-<span id="cb270-6"><a href="snp-annotation.html#cb270-6" tabindex="-1"></a>             <span class="at">dataset =</span> <span class="st">&quot;hsapiens_gene_ensembl&quot;</span>)</span>
-<span id="cb270-7"><a href="snp-annotation.html#cb270-7" tabindex="-1"></a></span>
-<span id="cb270-8"><a href="snp-annotation.html#cb270-8" tabindex="-1"></a>filters <span class="ot">&lt;-</span> </span>
-<span id="cb270-9"><a href="snp-annotation.html#cb270-9" tabindex="-1"></a>  <span class="fu">listFilters</span>(ensembl)</span>
-<span id="cb270-10"><a href="snp-annotation.html#cb270-10" tabindex="-1"></a></span>
-<span id="cb270-11"><a href="snp-annotation.html#cb270-11" tabindex="-1"></a>attributes <span class="ot">&lt;-</span> </span>
-<span id="cb270-12"><a href="snp-annotation.html#cb270-12" tabindex="-1"></a>  <span class="fu">listAttributes</span>(ensembl)</span></code></pre></div>
+<p>Each gene was manually annotated with Ensembl identifier to query Ensembl’s Biomart<br />
+2026 Update: biomaRt/Ensembl connection no longer supported. Using archive and exporting as RDS object to preserve functionality of this script.</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="snp-annotation.html#cb274-1" tabindex="-1"></a>snp_ensembl <span class="ot">&lt;-</span></span>
+<span id="cb274-2"><a href="snp-annotation.html#cb274-2" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">&quot;Input Files/allsamples_fst_sd_snp_ensemblid.csv&quot;</span>) </span>
+<span id="cb274-3"><a href="snp-annotation.html#cb274-3" tabindex="-1"></a></span>
+<span id="cb274-4"><a href="snp-annotation.html#cb274-4" tabindex="-1"></a><span class="co"># ensembl &lt;- </span></span>
+<span id="cb274-5"><a href="snp-annotation.html#cb274-5" tabindex="-1"></a><span class="co">#   useMart(biomart = &quot;ensembl&quot;, </span></span>
+<span id="cb274-6"><a href="snp-annotation.html#cb274-6" tabindex="-1"></a><span class="co">#              dataset = &quot;hsapiens_gene_ensembl&quot;,</span></span>
+<span id="cb274-7"><a href="snp-annotation.html#cb274-7" tabindex="-1"></a><span class="co">#              host = &quot;https://may2025.archive.ensembl.org&quot;)</span></span>
+<span id="cb274-8"><a href="snp-annotation.html#cb274-8" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb274-9"><a href="snp-annotation.html#cb274-9" tabindex="-1"></a><span class="co"># saveRDS(ensembl, file = &quot;Output Files/ensembl_mart.rds&quot;)</span></span>
+<span id="cb274-10"><a href="snp-annotation.html#cb274-10" tabindex="-1"></a></span>
+<span id="cb274-11"><a href="snp-annotation.html#cb274-11" tabindex="-1"></a>ensembl <span class="ot">&lt;-</span></span>
+<span id="cb274-12"><a href="snp-annotation.html#cb274-12" tabindex="-1"></a>  <span class="fu">readRDS</span>(<span class="st">&quot;Output Files/ensembl_mart.rds&quot;</span>)</span>
+<span id="cb274-13"><a href="snp-annotation.html#cb274-13" tabindex="-1"></a></span>
+<span id="cb274-14"><a href="snp-annotation.html#cb274-14" tabindex="-1"></a>filters <span class="ot">&lt;-</span> </span>
+<span id="cb274-15"><a href="snp-annotation.html#cb274-15" tabindex="-1"></a>  <span class="fu">listFilters</span>(ensembl)</span>
+<span id="cb274-16"><a href="snp-annotation.html#cb274-16" tabindex="-1"></a></span>
+<span id="cb274-17"><a href="snp-annotation.html#cb274-17" tabindex="-1"></a>attributes <span class="ot">&lt;-</span> </span>
+<span id="cb274-18"><a href="snp-annotation.html#cb274-18" tabindex="-1"></a>  <span class="fu">listAttributes</span>(ensembl)</span></code></pre></div>
 <div id="entrez-description" class="section level4 hasAnchor" number="7.4.3.1">
 <h4><span class="header-section-number">7.4.3.1</span> Entrez description<a href="snp-annotation.html#entrez-description" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="snp-annotation.html#cb271-1" tabindex="-1"></a>snp_entrez_description <span class="ot">&lt;-</span> </span>
-<span id="cb271-2"><a href="snp-annotation.html#cb271-2" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
-<span id="cb271-3"><a href="snp-annotation.html#cb271-3" tabindex="-1"></a>                       <span class="st">&quot;entrezgene_description&quot;</span>),</span>
-<span id="cb271-4"><a href="snp-annotation.html#cb271-4" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
-<span id="cb271-5"><a href="snp-annotation.html#cb271-5" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
-<span id="cb271-6"><a href="snp-annotation.html#cb271-6" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
-<span id="cb271-7"><a href="snp-annotation.html#cb271-7" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb271-8"><a href="snp-annotation.html#cb271-8" tabindex="-1"></a></span>
-<span id="cb271-9"><a href="snp-annotation.html#cb271-9" tabindex="-1"></a>snp_entrez_description <span class="sc">%&gt;%</span> </span>
-<span id="cb271-10"><a href="snp-annotation.html#cb271-10" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb271-11"><a href="snp-annotation.html#cb271-11" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="snp-annotation.html#cb275-1" tabindex="-1"></a>snp_entrez_description <span class="ot">&lt;-</span> </span>
+<span id="cb275-2"><a href="snp-annotation.html#cb275-2" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb275-3"><a href="snp-annotation.html#cb275-3" tabindex="-1"></a>                       <span class="st">&quot;entrezgene_description&quot;</span>),</span>
+<span id="cb275-4"><a href="snp-annotation.html#cb275-4" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb275-5"><a href="snp-annotation.html#cb275-5" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
+<span id="cb275-6"><a href="snp-annotation.html#cb275-6" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
+<span id="cb275-7"><a href="snp-annotation.html#cb275-7" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb275-8"><a href="snp-annotation.html#cb275-8" tabindex="-1"></a></span>
+<span id="cb275-9"><a href="snp-annotation.html#cb275-9" tabindex="-1"></a>snp_entrez_description <span class="sc">%&gt;%</span> </span>
+<span id="cb275-10"><a href="snp-annotation.html#cb275-10" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb275-11"><a href="snp-annotation.html#cb275-11" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1381,118 +1396,118 @@ solute carrier family 26 member 6
 </div>
 <div id="go-terms-1" class="section level4 hasAnchor" number="7.4.3.2">
 <h4><span class="header-section-number">7.4.3.2</span> GO terms<a href="snp-annotation.html#go-terms-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="snp-annotation.html#cb272-1" tabindex="-1"></a>snp_go <span class="ot">&lt;-</span> </span>
-<span id="cb272-2"><a href="snp-annotation.html#cb272-2" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
-<span id="cb272-3"><a href="snp-annotation.html#cb272-3" tabindex="-1"></a>                       <span class="st">&quot;go_id&quot;</span>, <span class="st">&quot;name_1006&quot;</span>, <span class="st">&quot;definition_1006&quot;</span>, <span class="st">&quot;namespace_1003&quot;</span>),</span>
-<span id="cb272-4"><a href="snp-annotation.html#cb272-4" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
-<span id="cb272-5"><a href="snp-annotation.html#cb272-5" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
-<span id="cb272-6"><a href="snp-annotation.html#cb272-6" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
-<span id="cb272-7"><a href="snp-annotation.html#cb272-7" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb272-8"><a href="snp-annotation.html#cb272-8" tabindex="-1"></a></span>
-<span id="cb272-9"><a href="snp-annotation.html#cb272-9" tabindex="-1"></a>snp_go_tidy <span class="ot">&lt;-</span></span>
-<span id="cb272-10"><a href="snp-annotation.html#cb272-10" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
-<span id="cb272-11"><a href="snp-annotation.html#cb272-11" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
-<span id="cb272-12"><a href="snp-annotation.html#cb272-12" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>())</span>
-<span id="cb272-13"><a href="snp-annotation.html#cb272-13" tabindex="-1"></a></span>
-<span id="cb272-14"><a href="snp-annotation.html#cb272-14" tabindex="-1"></a>snp_go <span class="sc">%&gt;%</span> </span>
-<span id="cb272-15"><a href="snp-annotation.html#cb272-15" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;biological_process&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb272-16"><a href="snp-annotation.html#cb272-16" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
-<span id="cb272-17"><a href="snp-annotation.html#cb272-17" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb272-18"><a href="snp-annotation.html#cb272-18" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb272-19"><a href="snp-annotation.html#cb272-19" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(name_1006, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
-<span id="cb272-20"><a href="snp-annotation.html#cb272-20" tabindex="-1"></a>                <span class="at">y =</span> freq)) <span class="sc">+</span></span>
-<span id="cb272-21"><a href="snp-annotation.html#cb272-21" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb272-22"><a href="snp-annotation.html#cb272-22" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb272-23"><a href="snp-annotation.html#cb272-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Biological Process&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb272-24"><a href="snp-annotation.html#cb272-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb272-25"><a href="snp-annotation.html#cb272-25" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="snp-annotation.html#cb273-1" tabindex="-1"></a>snp_go <span class="sc">%&gt;%</span> </span>
-<span id="cb273-2"><a href="snp-annotation.html#cb273-2" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;molecular_function&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb273-3"><a href="snp-annotation.html#cb273-3" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
-<span id="cb273-4"><a href="snp-annotation.html#cb273-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb273-5"><a href="snp-annotation.html#cb273-5" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb273-6"><a href="snp-annotation.html#cb273-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(name_1006, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
-<span id="cb273-7"><a href="snp-annotation.html#cb273-7" tabindex="-1"></a>                <span class="at">y =</span> freq)) <span class="sc">+</span></span>
-<span id="cb273-8"><a href="snp-annotation.html#cb273-8" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb273-9"><a href="snp-annotation.html#cb273-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb273-10"><a href="snp-annotation.html#cb273-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Molecular Function&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb273-11"><a href="snp-annotation.html#cb273-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb273-12"><a href="snp-annotation.html#cb273-12" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-81-2.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="snp-annotation.html#cb274-1" tabindex="-1"></a>snp_go <span class="sc">%&gt;%</span> </span>
-<span id="cb274-2"><a href="snp-annotation.html#cb274-2" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;cellular_component&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb274-3"><a href="snp-annotation.html#cb274-3" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
-<span id="cb274-4"><a href="snp-annotation.html#cb274-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb274-5"><a href="snp-annotation.html#cb274-5" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb274-6"><a href="snp-annotation.html#cb274-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(name_1006, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
-<span id="cb274-7"><a href="snp-annotation.html#cb274-7" tabindex="-1"></a>                <span class="at">y =</span> freq)) <span class="sc">+</span></span>
-<span id="cb274-8"><a href="snp-annotation.html#cb274-8" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb274-9"><a href="snp-annotation.html#cb274-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb274-10"><a href="snp-annotation.html#cb274-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Cellular Component&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
-<span id="cb274-11"><a href="snp-annotation.html#cb274-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb274-12"><a href="snp-annotation.html#cb274-12" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-81-3.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="snp-annotation.html#cb275-1" tabindex="-1"></a>snp_go_output <span class="ot">&lt;-</span> </span>
-<span id="cb275-2"><a href="snp-annotation.html#cb275-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
-<span id="cb275-3"><a href="snp-annotation.html#cb275-3" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-4"><a href="snp-annotation.html#cb275-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-5"><a href="snp-annotation.html#cb275-5" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-6"><a href="snp-annotation.html#cb275-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>name_1006 <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-7"><a href="snp-annotation.html#cb275-7" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by =</span> <span class="st">&quot;name_1006&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>, <span class="at">all.y =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb275-8"><a href="snp-annotation.html#cb275-8" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(go_id))</span>
-<span id="cb275-9"><a href="snp-annotation.html#cb275-9" tabindex="-1"></a></span>
-<span id="cb275-10"><a href="snp-annotation.html#cb275-10" tabindex="-1"></a><span class="fu">write.csv</span>(snp_go_output, </span>
-<span id="cb275-11"><a href="snp-annotation.html#cb275-11" tabindex="-1"></a>          <span class="st">&quot;Output Files/allsamples_fst_sd_snp_goterm.csv&quot;</span>, </span>
-<span id="cb275-12"><a href="snp-annotation.html#cb275-12" tabindex="-1"></a>          <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-</div>
-<div id="reactome-pathways" class="section level4 hasAnchor" number="7.4.3.3">
-<h4><span class="header-section-number">7.4.3.3</span> Reactome pathways<a href="snp-annotation.html#reactome-pathways" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="snp-annotation.html#cb276-1" tabindex="-1"></a>all_reactome <span class="ot">&lt;-</span> </span>
-<span id="cb276-2"><a href="snp-annotation.html#cb276-2" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(reactomePATHID2NAME)</span>
-<span id="cb276-3"><a href="snp-annotation.html#cb276-3" tabindex="-1"></a></span>
-<span id="cb276-4"><a href="snp-annotation.html#cb276-4" tabindex="-1"></a>snp_reactome <span class="ot">&lt;-</span> </span>
-<span id="cb276-5"><a href="snp-annotation.html#cb276-5" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
-<span id="cb276-6"><a href="snp-annotation.html#cb276-6" tabindex="-1"></a>                       <span class="st">&quot;reactome&quot;</span>),</span>
-<span id="cb276-7"><a href="snp-annotation.html#cb276-7" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
-<span id="cb276-8"><a href="snp-annotation.html#cb276-8" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
-<span id="cb276-9"><a href="snp-annotation.html#cb276-9" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
-<span id="cb276-10"><a href="snp-annotation.html#cb276-10" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb276-11"><a href="snp-annotation.html#cb276-11" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>reactome <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb276-12"><a href="snp-annotation.html#cb276-12" tabindex="-1"></a>  <span class="fu">merge</span>(., all_reactome, <span class="at">by.x =</span> <span class="st">&quot;reactome&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;DB_ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb276-13"><a href="snp-annotation.html#cb276-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">path_name =</span> <span class="fu">gsub</span>(<span class="st">&quot;Homo sapiens: &quot;</span>, <span class="st">&quot;&quot;</span>, path_name))</span>
-<span id="cb276-14"><a href="snp-annotation.html#cb276-14" tabindex="-1"></a></span>
-<span id="cb276-15"><a href="snp-annotation.html#cb276-15" tabindex="-1"></a>snp_reactome <span class="sc">%&gt;%</span> </span>
-<span id="cb276-16"><a href="snp-annotation.html#cb276-16" tabindex="-1"></a>  <span class="fu">group_by</span>(path_name) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="snp-annotation.html#cb276-1" tabindex="-1"></a>snp_go <span class="ot">&lt;-</span> </span>
+<span id="cb276-2"><a href="snp-annotation.html#cb276-2" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb276-3"><a href="snp-annotation.html#cb276-3" tabindex="-1"></a>                       <span class="st">&quot;go_id&quot;</span>, <span class="st">&quot;name_1006&quot;</span>, <span class="st">&quot;definition_1006&quot;</span>, <span class="st">&quot;namespace_1003&quot;</span>),</span>
+<span id="cb276-4"><a href="snp-annotation.html#cb276-4" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb276-5"><a href="snp-annotation.html#cb276-5" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
+<span id="cb276-6"><a href="snp-annotation.html#cb276-6" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
+<span id="cb276-7"><a href="snp-annotation.html#cb276-7" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb276-8"><a href="snp-annotation.html#cb276-8" tabindex="-1"></a></span>
+<span id="cb276-9"><a href="snp-annotation.html#cb276-9" tabindex="-1"></a>snp_go_tidy <span class="ot">&lt;-</span></span>
+<span id="cb276-10"><a href="snp-annotation.html#cb276-10" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb276-11"><a href="snp-annotation.html#cb276-11" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
+<span id="cb276-12"><a href="snp-annotation.html#cb276-12" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>())</span>
+<span id="cb276-13"><a href="snp-annotation.html#cb276-13" tabindex="-1"></a></span>
+<span id="cb276-14"><a href="snp-annotation.html#cb276-14" tabindex="-1"></a>snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb276-15"><a href="snp-annotation.html#cb276-15" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;biological_process&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb276-16"><a href="snp-annotation.html#cb276-16" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
 <span id="cb276-17"><a href="snp-annotation.html#cb276-17" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
 <span id="cb276-18"><a href="snp-annotation.html#cb276-18" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb276-19"><a href="snp-annotation.html#cb276-19" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(path_name, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
+<span id="cb276-19"><a href="snp-annotation.html#cb276-19" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(name_1006, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
 <span id="cb276-20"><a href="snp-annotation.html#cb276-20" tabindex="-1"></a>                <span class="at">y =</span> freq)) <span class="sc">+</span></span>
 <span id="cb276-21"><a href="snp-annotation.html#cb276-21" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
 <span id="cb276-22"><a href="snp-annotation.html#cb276-22" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb276-23"><a href="snp-annotation.html#cb276-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Reactome Pathway&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequeny&quot;</span>) <span class="sc">+</span></span>
+<span id="cb276-23"><a href="snp-annotation.html#cb276-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Biological Process&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
 <span id="cb276-24"><a href="snp-annotation.html#cb276-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb276-25"><a href="snp-annotation.html#cb276-25" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<span id="cb276-25"><a href="snp-annotation.html#cb276-25" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="snp-annotation.html#cb277-1" tabindex="-1"></a>snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb277-2"><a href="snp-annotation.html#cb277-2" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;molecular_function&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-3"><a href="snp-annotation.html#cb277-3" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-4"><a href="snp-annotation.html#cb277-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-5"><a href="snp-annotation.html#cb277-5" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb277-6"><a href="snp-annotation.html#cb277-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(name_1006, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
+<span id="cb277-7"><a href="snp-annotation.html#cb277-7" tabindex="-1"></a>                <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb277-8"><a href="snp-annotation.html#cb277-8" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb277-9"><a href="snp-annotation.html#cb277-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb277-10"><a href="snp-annotation.html#cb277-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Molecular Function&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb277-11"><a href="snp-annotation.html#cb277-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb277-12"><a href="snp-annotation.html#cb277-12" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-2.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="snp-annotation.html#cb278-1" tabindex="-1"></a>snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb278-2"><a href="snp-annotation.html#cb278-2" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;cellular_component&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-3"><a href="snp-annotation.html#cb278-3" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-4"><a href="snp-annotation.html#cb278-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-5"><a href="snp-annotation.html#cb278-5" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-6"><a href="snp-annotation.html#cb278-6" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(name_1006, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
+<span id="cb278-7"><a href="snp-annotation.html#cb278-7" tabindex="-1"></a>                <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb278-8"><a href="snp-annotation.html#cb278-8" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb278-9"><a href="snp-annotation.html#cb278-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb278-10"><a href="snp-annotation.html#cb278-10" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Cellular Component&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>) <span class="sc">+</span></span>
+<span id="cb278-11"><a href="snp-annotation.html#cb278-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb278-12"><a href="snp-annotation.html#cb278-12" tabindex="-1"></a>  <span class="fu">coord_flip</span>() </span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-3.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="snp-annotation.html#cb279-1" tabindex="-1"></a>snp_go_output <span class="ot">&lt;-</span> </span>
+<span id="cb279-2"><a href="snp-annotation.html#cb279-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb279-3"><a href="snp-annotation.html#cb279-3" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
+<span id="cb279-4"><a href="snp-annotation.html#cb279-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb279-5"><a href="snp-annotation.html#cb279-5" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb279-6"><a href="snp-annotation.html#cb279-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>name_1006 <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb279-7"><a href="snp-annotation.html#cb279-7" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by =</span> <span class="st">&quot;name_1006&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>, <span class="at">all.y =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb279-8"><a href="snp-annotation.html#cb279-8" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">duplicated</span>(go_id))</span>
+<span id="cb279-9"><a href="snp-annotation.html#cb279-9" tabindex="-1"></a></span>
+<span id="cb279-10"><a href="snp-annotation.html#cb279-10" tabindex="-1"></a><span class="fu">write.csv</span>(snp_go_output, </span>
+<span id="cb279-11"><a href="snp-annotation.html#cb279-11" tabindex="-1"></a>          <span class="st">&quot;Output Files/allsamples_fst_sd_snp_goterm.csv&quot;</span>, </span>
+<span id="cb279-12"><a href="snp-annotation.html#cb279-12" tabindex="-1"></a>          <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="reactome-pathways" class="section level4 hasAnchor" number="7.4.3.3">
+<h4><span class="header-section-number">7.4.3.3</span> Reactome pathways<a href="snp-annotation.html#reactome-pathways" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="snp-annotation.html#cb280-1" tabindex="-1"></a>all_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb280-2"><a href="snp-annotation.html#cb280-2" tabindex="-1"></a>  <span class="fu">as.data.frame</span>(reactomePATHID2NAME)</span>
+<span id="cb280-3"><a href="snp-annotation.html#cb280-3" tabindex="-1"></a></span>
+<span id="cb280-4"><a href="snp-annotation.html#cb280-4" tabindex="-1"></a>snp_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb280-5"><a href="snp-annotation.html#cb280-5" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb280-6"><a href="snp-annotation.html#cb280-6" tabindex="-1"></a>                       <span class="st">&quot;reactome&quot;</span>),</span>
+<span id="cb280-7"><a href="snp-annotation.html#cb280-7" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb280-8"><a href="snp-annotation.html#cb280-8" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
+<span id="cb280-9"><a href="snp-annotation.html#cb280-9" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
+<span id="cb280-10"><a href="snp-annotation.html#cb280-10" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb280-11"><a href="snp-annotation.html#cb280-11" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>reactome <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb280-12"><a href="snp-annotation.html#cb280-12" tabindex="-1"></a>  <span class="fu">merge</span>(., all_reactome, <span class="at">by.x =</span> <span class="st">&quot;reactome&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;DB_ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb280-13"><a href="snp-annotation.html#cb280-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">path_name =</span> <span class="fu">gsub</span>(<span class="st">&quot;Homo sapiens: &quot;</span>, <span class="st">&quot;&quot;</span>, path_name))</span>
+<span id="cb280-14"><a href="snp-annotation.html#cb280-14" tabindex="-1"></a></span>
+<span id="cb280-15"><a href="snp-annotation.html#cb280-15" tabindex="-1"></a>snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb280-16"><a href="snp-annotation.html#cb280-16" tabindex="-1"></a>  <span class="fu">group_by</span>(path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb280-17"><a href="snp-annotation.html#cb280-17" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb280-18"><a href="snp-annotation.html#cb280-18" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb280-19"><a href="snp-annotation.html#cb280-19" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(path_name, freq, <span class="at">.desc=</span><span class="cn">TRUE</span>), </span>
+<span id="cb280-20"><a href="snp-annotation.html#cb280-20" tabindex="-1"></a>                <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb280-21"><a href="snp-annotation.html#cb280-21" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb280-22"><a href="snp-annotation.html#cb280-22" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb280-23"><a href="snp-annotation.html#cb280-23" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Reactome Pathway&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequeny&quot;</span>) <span class="sc">+</span></span>
+<span id="cb280-24"><a href="snp-annotation.html#cb280-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb280-25"><a href="snp-annotation.html#cb280-25" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-82-1.png" alt="" width="672" /></p>
 </div>
 <div id="reactome-pathway-over-representation" class="section level4 hasAnchor" number="7.4.3.4">
 <h4><span class="header-section-number">7.4.3.4</span> Reactome Pathway Over-representation<a href="snp-annotation.html#reactome-pathway-over-representation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="snp-annotation.html#cb277-1" tabindex="-1"></a><span class="co"># Convert to entrez gene ID</span></span>
-<span id="cb277-2"><a href="snp-annotation.html#cb277-2" tabindex="-1"></a>snp_entrez_id <span class="ot">&lt;-</span> </span>
-<span id="cb277-3"><a href="snp-annotation.html#cb277-3" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="st">&quot;entrezgene_id&quot;</span>),</span>
-<span id="cb277-4"><a href="snp-annotation.html#cb277-4" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
-<span id="cb277-5"><a href="snp-annotation.html#cb277-5" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
-<span id="cb277-6"><a href="snp-annotation.html#cb277-6" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
-<span id="cb277-7"><a href="snp-annotation.html#cb277-7" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb277-8"><a href="snp-annotation.html#cb277-8" tabindex="-1"></a></span>
-<span id="cb277-9"><a href="snp-annotation.html#cb277-9" tabindex="-1"></a>snp_overrep_reactome <span class="ot">&lt;-</span> </span>
-<span id="cb277-10"><a href="snp-annotation.html#cb277-10" tabindex="-1"></a>  <span class="fu">enrichPathway</span>(<span class="at">gene =</span> snp_entrez_id<span class="sc">$</span>entrezgene_id,</span>
-<span id="cb277-11"><a href="snp-annotation.html#cb277-11" tabindex="-1"></a>                <span class="at">organism =</span> <span class="st">&quot;human&quot;</span>,</span>
-<span id="cb277-12"><a href="snp-annotation.html#cb277-12" tabindex="-1"></a>                <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
-<span id="cb277-13"><a href="snp-annotation.html#cb277-13" tabindex="-1"></a>                <span class="at">pAdjustMethod =</span> <span class="st">&quot;fdr&quot;</span>,</span>
-<span id="cb277-14"><a href="snp-annotation.html#cb277-14" tabindex="-1"></a>                <span class="at">readable =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb277-15"><a href="snp-annotation.html#cb277-15" tabindex="-1"></a>                <span class="at">universe =</span> pv_genes_tidy<span class="sc">$</span>gene,</span>
-<span id="cb277-16"><a href="snp-annotation.html#cb277-16" tabindex="-1"></a>                <span class="at">minGSSize =</span> <span class="dv">2</span>)<span class="sc">$</span>result</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="snp-annotation.html#cb281-1" tabindex="-1"></a><span class="co"># Convert to entrez gene ID</span></span>
+<span id="cb281-2"><a href="snp-annotation.html#cb281-2" tabindex="-1"></a>snp_entrez_id <span class="ot">&lt;-</span> </span>
+<span id="cb281-3"><a href="snp-annotation.html#cb281-3" tabindex="-1"></a>  <span class="fu">getBM</span>(<span class="at">attributes =</span> <span class="fu">c</span>(<span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="st">&quot;entrezgene_id&quot;</span>),</span>
+<span id="cb281-4"><a href="snp-annotation.html#cb281-4" tabindex="-1"></a>        <span class="at">filter =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>,</span>
+<span id="cb281-5"><a href="snp-annotation.html#cb281-5" tabindex="-1"></a>        <span class="at">values =</span> snp_ensembl<span class="sc">$</span>Ensembl.ID,</span>
+<span id="cb281-6"><a href="snp-annotation.html#cb281-6" tabindex="-1"></a>        <span class="at">mart =</span> ensembl,</span>
+<span id="cb281-7"><a href="snp-annotation.html#cb281-7" tabindex="-1"></a>        <span class="at">uniqueRows =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb281-8"><a href="snp-annotation.html#cb281-8" tabindex="-1"></a></span>
+<span id="cb281-9"><a href="snp-annotation.html#cb281-9" tabindex="-1"></a>snp_overrep_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb281-10"><a href="snp-annotation.html#cb281-10" tabindex="-1"></a>  <span class="fu">enrichPathway</span>(<span class="at">gene =</span> snp_entrez_id<span class="sc">$</span>entrezgene_id,</span>
+<span id="cb281-11"><a href="snp-annotation.html#cb281-11" tabindex="-1"></a>                <span class="at">organism =</span> <span class="st">&quot;human&quot;</span>,</span>
+<span id="cb281-12"><a href="snp-annotation.html#cb281-12" tabindex="-1"></a>                <span class="at">pvalueCutoff =</span> <span class="fl">0.05</span>,</span>
+<span id="cb281-13"><a href="snp-annotation.html#cb281-13" tabindex="-1"></a>                <span class="at">pAdjustMethod =</span> <span class="st">&quot;fdr&quot;</span>,</span>
+<span id="cb281-14"><a href="snp-annotation.html#cb281-14" tabindex="-1"></a>                <span class="at">readable =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb281-15"><a href="snp-annotation.html#cb281-15" tabindex="-1"></a>                <span class="at">universe =</span> pv_genes_tidy<span class="sc">$</span>gene,</span>
+<span id="cb281-16"><a href="snp-annotation.html#cb281-16" tabindex="-1"></a>                <span class="at">minGSSize =</span> <span class="dv">2</span>)<span class="sc">$</span>result</span></code></pre></div>
 <pre><code>## Loading required package: org.Hs.eg.db</code></pre>
 <pre><code>## </code></pre>
 <pre><code>## No gene sets have size between 2 and 500 ...</code></pre>
@@ -1503,24 +1518,24 @@ solute carrier family 26 member 6
 <h3><span class="header-section-number">7.4.4</span> Exonic, CDS Genes<a href="snp-annotation.html#exonic-cds-genes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="identify-genes" class="section level4 hasAnchor" number="7.4.4.1">
 <h4><span class="header-section-number">7.4.4.1</span> Identify genes<a href="snp-annotation.html#identify-genes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="snp-annotation.html#cb282-1" tabindex="-1"></a>fst_sd_cds_tidy <span class="ot">&lt;-</span> </span>
-<span id="cb282-2"><a href="snp-annotation.html#cb282-2" tabindex="-1"></a>  fst_sd_cds <span class="sc">%&gt;%</span></span>
-<span id="cb282-3"><a href="snp-annotation.html#cb282-3" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy[,<span class="fu">c</span>(<span class="dv">12</span><span class="sc">:</span><span class="dv">14</span>)], <span class="at">by =</span> <span class="st">&quot;V12&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-4"><a href="snp-annotation.html#cb282-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;gene&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Gene&quot;</span>)</span>
-<span id="cb282-5"><a href="snp-annotation.html#cb282-5" tabindex="-1"></a></span>
-<span id="cb282-6"><a href="snp-annotation.html#cb282-6" tabindex="-1"></a>fst_sd_exons_tidy <span class="ot">&lt;-</span> </span>
-<span id="cb282-7"><a href="snp-annotation.html#cb282-7" tabindex="-1"></a>  fst_sd_exons <span class="sc">%&gt;%</span></span>
-<span id="cb282-8"><a href="snp-annotation.html#cb282-8" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy[,<span class="fu">c</span>(<span class="dv">12</span><span class="sc">:</span><span class="dv">14</span>)], <span class="at">by =</span> <span class="st">&quot;V12&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb282-9"><a href="snp-annotation.html#cb282-9" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;gene&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Gene&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="snp-annotation.html#cb286-1" tabindex="-1"></a>fst_sd_cds_tidy <span class="ot">&lt;-</span> </span>
+<span id="cb286-2"><a href="snp-annotation.html#cb286-2" tabindex="-1"></a>  fst_sd_cds <span class="sc">%&gt;%</span></span>
+<span id="cb286-3"><a href="snp-annotation.html#cb286-3" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy[,<span class="fu">c</span>(<span class="dv">12</span><span class="sc">:</span><span class="dv">14</span>)], <span class="at">by =</span> <span class="st">&quot;V12&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb286-4"><a href="snp-annotation.html#cb286-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;gene&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Gene&quot;</span>)</span>
+<span id="cb286-5"><a href="snp-annotation.html#cb286-5" tabindex="-1"></a></span>
+<span id="cb286-6"><a href="snp-annotation.html#cb286-6" tabindex="-1"></a>fst_sd_exons_tidy <span class="ot">&lt;-</span> </span>
+<span id="cb286-7"><a href="snp-annotation.html#cb286-7" tabindex="-1"></a>  fst_sd_exons <span class="sc">%&gt;%</span></span>
+<span id="cb286-8"><a href="snp-annotation.html#cb286-8" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy[,<span class="fu">c</span>(<span class="dv">12</span><span class="sc">:</span><span class="dv">14</span>)], <span class="at">by =</span> <span class="st">&quot;V12&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb286-9"><a href="snp-annotation.html#cb286-9" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;gene&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Gene&quot;</span>)</span></code></pre></div>
 </div>
 <div id="go-terms-2" class="section level4 hasAnchor" number="7.4.4.2">
 <h4><span class="header-section-number">7.4.4.2</span> GO terms<a href="snp-annotation.html#go-terms-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="snp-annotation.html#cb283-1" tabindex="-1"></a>fst_sd_cds_tidy <span class="sc">%&gt;%</span> </span>
-<span id="cb283-2"><a href="snp-annotation.html#cb283-2" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb283-3"><a href="snp-annotation.html#cb283-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
-<span id="cb283-4"><a href="snp-annotation.html#cb283-4" tabindex="-1"></a>  <span class="fu">arrange</span>(namespace_1003) <span class="sc">%&gt;%</span> </span>
-<span id="cb283-5"><a href="snp-annotation.html#cb283-5" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb283-6"><a href="snp-annotation.html#cb283-6" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="snp-annotation.html#cb287-1" tabindex="-1"></a>fst_sd_cds_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb287-2"><a href="snp-annotation.html#cb287-2" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-3"><a href="snp-annotation.html#cb287-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-4"><a href="snp-annotation.html#cb287-4" tabindex="-1"></a>  <span class="fu">arrange</span>(namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb287-5"><a href="snp-annotation.html#cb287-5" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb287-6"><a href="snp-annotation.html#cb287-6" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1541,14 +1556,10 @@ namespace_1003
 </tr>
 <tr>
 <td style="text-align:left;">
+autophagy
 </td>
 <td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
+biological_process
 </td>
 </tr>
 <tr>
@@ -1561,47 +1572,7 @@ biological_process
 </tr>
 <tr>
 <td style="text-align:left;">
-autophagy
-</td>
-<td style="text-align:left;">
-biological_process
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-intrinsic apoptotic signaling pathway in response to DNA damage
-</td>
-<td style="text-align:left;">
-biological_process
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-response to xenobiotic stimulus
-</td>
-<td style="text-align:left;">
-biological_process
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 negative regulation of cell growth
-</td>
-<td style="text-align:left;">
-biological_process
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-neuromuscular process controlling balance
-</td>
-<td style="text-align:left;">
-biological_process
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-positive regulation of intrinsic apoptotic signaling pathway
 </td>
 <td style="text-align:left;">
 biological_process
@@ -1697,18 +1668,22 @@ molecular_function
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="snp-annotation.html#cb284-1" tabindex="-1"></a>fst_sd_exons_tidy <span class="sc">%&gt;%</span> </span>
-<span id="cb284-2"><a href="snp-annotation.html#cb284-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>classification <span class="sc">==</span> <span class="st">&quot;cds&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb284-3"><a href="snp-annotation.html#cb284-3" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb284-4"><a href="snp-annotation.html#cb284-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
-<span id="cb284-5"><a href="snp-annotation.html#cb284-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>name_1006 <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb284-6"><a href="snp-annotation.html#cb284-6" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
-<span id="cb284-7"><a href="snp-annotation.html#cb284-7" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb284-8"><a href="snp-annotation.html#cb284-8" tabindex="-1"></a>  <span class="fu">arrange</span>(namespace_1003) <span class="sc">%&gt;%</span> </span>
-<span id="cb284-9"><a href="snp-annotation.html#cb284-9" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb284-10"><a href="snp-annotation.html#cb284-10" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;name_1006&#39;. You can
-## override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="snp-annotation.html#cb288-1" tabindex="-1"></a>fst_sd_exons_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb288-2"><a href="snp-annotation.html#cb288-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>classification <span class="sc">==</span> <span class="st">&quot;cds&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-3"><a href="snp-annotation.html#cb288-3" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-4"><a href="snp-annotation.html#cb288-4" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-5"><a href="snp-annotation.html#cb288-5" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>name_1006 <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-6"><a href="snp-annotation.html#cb288-6" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-7"><a href="snp-annotation.html#cb288-7" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-8"><a href="snp-annotation.html#cb288-8" tabindex="-1"></a>  <span class="fu">arrange</span>(namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb288-9"><a href="snp-annotation.html#cb288-9" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb288-10"><a href="snp-annotation.html#cb288-10" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<pre><code>## `summarise()` has regrouped the output.
+## ℹ Summaries were computed grouped by name_1006 and namespace_1003.
+## ℹ Output is grouped by name_1006.
+## ℹ Use `summarise(.groups = &quot;drop_last&quot;)` to silence this message.
+## ℹ Use `summarise(.by = c(name_1006, namespace_1003))` for
+##   per-operation grouping (`?dplyr::dplyr_by`) instead.</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1891,6 +1866,17 @@ cellular_component
 </tr>
 <tr>
 <td style="text-align:left;">
+Golgi membrane
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 Golgi-associated vesicle membrane
 </td>
 <td style="text-align:left;">
@@ -1935,6 +1921,17 @@ cellular_component
 </tr>
 <tr>
 <td style="text-align:left;">
+collagen-containing extracellular matrix
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 cytoplasm
 </td>
 <td style="text-align:left;">
@@ -1947,6 +1944,17 @@ cellular_component
 <tr>
 <td style="text-align:left;">
 cytoplasmic ribonucleoprotein granule
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cytoplasmic side of endoplasmic reticulum membrane
 </td>
 <td style="text-align:left;">
 cellular_component
@@ -2013,6 +2021,17 @@ cellular_component
 <tr>
 <td style="text-align:left;">
 extracellular space
+</td>
+<td style="text-align:left;">
+cellular_component
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+lumenal side of endoplasmic reticulum membrane
 </td>
 <td style="text-align:left;">
 cellular_component
@@ -2111,6 +2130,17 @@ cellular_component
 </tr>
 <tr>
 <td style="text-align:left;">
+aspartic endopeptidase activity, intramembrane cleaving
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 cullin family protein binding
 </td>
 <td style="text-align:left;">
@@ -2134,17 +2164,6 @@ molecular_function
 <tr>
 <td style="text-align:left;">
 hyaluronic acid binding
-</td>
-<td style="text-align:left;">
-molecular_function
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-hydrolase activity
 </td>
 <td style="text-align:left;">
 molecular_function
@@ -2202,12 +2221,12 @@ molecular_function
 </div>
 <div id="reactome-pathways-1" class="section level4 hasAnchor" number="7.4.4.3">
 <h4><span class="header-section-number">7.4.4.3</span> Reactome Pathways<a href="snp-annotation.html#reactome-pathways-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="snp-annotation.html#cb286-1" tabindex="-1"></a>fst_sd_cds_tidy <span class="sc">%&gt;%</span> </span>
-<span id="cb286-2"><a href="snp-annotation.html#cb286-2" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_reactome, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb286-3"><a href="snp-annotation.html#cb286-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(reactome, path_name) <span class="sc">%&gt;%</span> </span>
-<span id="cb286-4"><a href="snp-annotation.html#cb286-4" tabindex="-1"></a>  <span class="fu">arrange</span>(path_name) <span class="sc">%&gt;%</span> </span>
-<span id="cb286-5"><a href="snp-annotation.html#cb286-5" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb286-6"><a href="snp-annotation.html#cb286-6" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="snp-annotation.html#cb290-1" tabindex="-1"></a>fst_sd_cds_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb290-2"><a href="snp-annotation.html#cb290-2" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_reactome, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-3"><a href="snp-annotation.html#cb290-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(reactome, path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-4"><a href="snp-annotation.html#cb290-4" tabindex="-1"></a>  <span class="fu">arrange</span>(path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb290-5"><a href="snp-annotation.html#cb290-5" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb290-6"><a href="snp-annotation.html#cb290-6" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2238,13 +2257,13 @@ NA
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="snp-annotation.html#cb287-1" tabindex="-1"></a>fst_sd_exons_tidy <span class="sc">%&gt;%</span> </span>
-<span id="cb287-2"><a href="snp-annotation.html#cb287-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>classification <span class="sc">==</span> <span class="st">&quot;cds&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb287-3"><a href="snp-annotation.html#cb287-3" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_reactome, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb287-4"><a href="snp-annotation.html#cb287-4" tabindex="-1"></a>  <span class="fu">arrange</span>(path_name) <span class="sc">%&gt;%</span> </span>
-<span id="cb287-5"><a href="snp-annotation.html#cb287-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(reactome, path_name) <span class="sc">%&gt;%</span> </span>
-<span id="cb287-6"><a href="snp-annotation.html#cb287-6" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb287-7"><a href="snp-annotation.html#cb287-7" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="snp-annotation.html#cb291-1" tabindex="-1"></a>fst_sd_exons_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb291-2"><a href="snp-annotation.html#cb291-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>classification <span class="sc">==</span> <span class="st">&quot;cds&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb291-3"><a href="snp-annotation.html#cb291-3" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_reactome, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb291-4"><a href="snp-annotation.html#cb291-4" tabindex="-1"></a>  <span class="fu">arrange</span>(path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb291-5"><a href="snp-annotation.html#cb291-5" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(reactome, path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb291-6"><a href="snp-annotation.html#cb291-6" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb291-7"><a href="snp-annotation.html#cb291-7" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2287,6 +2306,22 @@ R-HSA-73887
 </td>
 <td style="text-align:left;">
 Death Receptor Signaling
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-3000178
+</td>
+<td style="text-align:left;">
+ECM proteoglycans
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R-HSA-1474244
+</td>
+<td style="text-align:left;">
+Extracellular matrix organization
 </td>
 </tr>
 <tr>
@@ -2352,19 +2387,19 @@ TNF signaling
 </div>
 <div id="gwas" class="section level2 hasAnchor" number="7.5">
 <h2><span class="header-section-number">7.5</span> GWAS<a href="snp-annotation.html#gwas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="snp-annotation.html#cb288-1" tabindex="-1"></a>gwas_snp <span class="ot">&lt;-</span> </span>
-<span id="cb288-2"><a href="snp-annotation.html#cb288-2" tabindex="-1"></a>  gwas_snp <span class="sc">%&gt;%</span> </span>
-<span id="cb288-3"><a href="snp-annotation.html#cb288-3" tabindex="-1"></a>  <span class="fu">filter</span>(fdr <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-4"><a href="snp-annotation.html#cb288-4" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy, <span class="at">by.x =</span> <span class="st">&quot;BP&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;V4&quot;</span>) </span>
-<span id="cb288-5"><a href="snp-annotation.html#cb288-5" tabindex="-1"></a></span>
-<span id="cb288-6"><a href="snp-annotation.html#cb288-6" tabindex="-1"></a>snp_ensembl <span class="sc">%&gt;%</span> </span>
-<span id="cb288-7"><a href="snp-annotation.html#cb288-7" tabindex="-1"></a>  <span class="fu">filter</span>(Gene <span class="sc">==</span> <span class="st">&quot;HAPLN1&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-8"><a href="snp-annotation.html#cb288-8" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-9"><a href="snp-annotation.html#cb288-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>name_1006 <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-10"><a href="snp-annotation.html#cb288-10" tabindex="-1"></a>  <span class="fu">arrange</span>(namespace_1003) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-11"><a href="snp-annotation.html#cb288-11" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
-<span id="cb288-12"><a href="snp-annotation.html#cb288-12" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb288-13"><a href="snp-annotation.html#cb288-13" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="snp-annotation.html#cb292-1" tabindex="-1"></a>gwas_snp <span class="ot">&lt;-</span> </span>
+<span id="cb292-2"><a href="snp-annotation.html#cb292-2" tabindex="-1"></a>  gwas_snp <span class="sc">%&gt;%</span> </span>
+<span id="cb292-3"><a href="snp-annotation.html#cb292-3" tabindex="-1"></a>  <span class="fu">filter</span>(fdr <span class="sc">&lt;</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb292-4"><a href="snp-annotation.html#cb292-4" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy, <span class="at">by.x =</span> <span class="st">&quot;BP&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;V4&quot;</span>) </span>
+<span id="cb292-5"><a href="snp-annotation.html#cb292-5" tabindex="-1"></a></span>
+<span id="cb292-6"><a href="snp-annotation.html#cb292-6" tabindex="-1"></a>snp_ensembl <span class="sc">%&gt;%</span> </span>
+<span id="cb292-7"><a href="snp-annotation.html#cb292-7" tabindex="-1"></a>  <span class="fu">filter</span>(Gene <span class="sc">==</span> <span class="st">&quot;HAPLN1&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb292-8"><a href="snp-annotation.html#cb292-8" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_go, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb292-9"><a href="snp-annotation.html#cb292-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>name_1006 <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb292-10"><a href="snp-annotation.html#cb292-10" tabindex="-1"></a>  <span class="fu">arrange</span>(namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb292-11"><a href="snp-annotation.html#cb292-11" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(name_1006, namespace_1003) <span class="sc">%&gt;%</span> </span>
+<span id="cb292-12"><a href="snp-annotation.html#cb292-12" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb292-13"><a href="snp-annotation.html#cb292-13" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2377,14 +2412,6 @@ namespace_1003
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-cell adhesion
-</td>
-<td style="text-align:left;">
-biological_process
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 central nervous system development
@@ -2403,10 +2430,10 @@ biological_process
 </tr>
 <tr>
 <td style="text-align:left;">
-perineuronal net
+cell adhesion
 </td>
 <td style="text-align:left;">
-cellular_component
+biological_process
 </td>
 </tr>
 <tr>
@@ -2435,7 +2462,7 @@ cellular_component
 </tr>
 <tr>
 <td style="text-align:left;">
-extracellular matrix
+collagen-containing extracellular matrix
 </td>
 <td style="text-align:left;">
 cellular_component
@@ -2443,10 +2470,18 @@ cellular_component
 </tr>
 <tr>
 <td style="text-align:left;">
-extracellular matrix structural constituent conferring compression resistance
+perineuronal net
 </td>
 <td style="text-align:left;">
-molecular_function
+cellular_component
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+extracellular matrix
+</td>
+<td style="text-align:left;">
+cellular_component
 </td>
 </tr>
 <tr>
@@ -2457,13 +2492,21 @@ hyaluronic acid binding
 molecular_function
 </td>
 </tr>
+<tr>
+<td style="text-align:left;">
+extracellular matrix structural constituent conferring compression resistance
+</td>
+<td style="text-align:left;">
+molecular_function
+</td>
+</tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="snp-annotation.html#cb289-1" tabindex="-1"></a>snp_ensembl <span class="sc">%&gt;%</span> </span>
-<span id="cb289-2"><a href="snp-annotation.html#cb289-2" tabindex="-1"></a>  <span class="fu">filter</span>(Gene <span class="sc">==</span> <span class="st">&quot;HAPLN1&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb289-3"><a href="snp-annotation.html#cb289-3" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_reactome, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb289-4"><a href="snp-annotation.html#cb289-4" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb289-5"><a href="snp-annotation.html#cb289-5" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="snp-annotation.html#cb293-1" tabindex="-1"></a>snp_ensembl <span class="sc">%&gt;%</span> </span>
+<span id="cb293-2"><a href="snp-annotation.html#cb293-2" tabindex="-1"></a>  <span class="fu">filter</span>(Gene <span class="sc">==</span> <span class="st">&quot;HAPLN1&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb293-3"><a href="snp-annotation.html#cb293-3" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_reactome, <span class="at">by.x =</span> <span class="st">&quot;Ensembl.ID&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb293-4"><a href="snp-annotation.html#cb293-4" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb293-5"><a href="snp-annotation.html#cb293-5" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="st">&quot;basic&quot;</span>)</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -2484,30 +2527,30 @@ path_name
 <tbody>
 <tr>
 <td style="text-align:left;">
-NA
+ENSG00000145681
 </td>
 <td style="text-align:left;">
-NA
+HAPLN1
 </td>
 <td style="text-align:left;">
-NA
+R-HSA-3000178
 </td>
 <td style="text-align:left;">
-NA
+ECM proteoglycans
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-:———-
+ENSG00000145681
 </td>
 <td style="text-align:left;">
-:—-
+HAPLN1
 </td>
 <td style="text-align:left;">
-:——–
+R-HSA-1474244
 </td>
 <td style="text-align:left;">
-:———
+Extracellular matrix organization
 </td>
 </tr>
 </tbody>
@@ -2519,214 +2562,214 @@ Predicted to enable hyaluronic acid binding activity. Predicted to be an extrace
 <h2><span class="header-section-number">7.6</span> Follow up for Discussion<a href="snp-annotation.html#follow-up-for-discussion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="innate-immune-system" class="section level3 hasAnchor" number="7.6.1">
 <h3><span class="header-section-number">7.6.1</span> Innate Immune System<a href="snp-annotation.html#innate-immune-system" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="snp-annotation.html#cb290-1" tabindex="-1"></a>innate_go <span class="ot">&lt;-</span> </span>
-<span id="cb290-2"><a href="snp-annotation.html#cb290-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
-<span id="cb290-3"><a href="snp-annotation.html#cb290-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;innate immune|cytokine|pattern recognition receptor&quot;</span>, name_1006, </span>
-<span id="cb290-4"><a href="snp-annotation.html#cb290-4" tabindex="-1"></a>               <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb290-5"><a href="snp-annotation.html#cb290-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb290-6"><a href="snp-annotation.html#cb290-6" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_entrez_description, <span class="at">by =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) </span>
-<span id="cb290-7"><a href="snp-annotation.html#cb290-7" tabindex="-1"></a></span>
-<span id="cb290-8"><a href="snp-annotation.html#cb290-8" tabindex="-1"></a>innate_reactome <span class="ot">&lt;-</span></span>
-<span id="cb290-9"><a href="snp-annotation.html#cb290-9" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
-<span id="cb290-10"><a href="snp-annotation.html#cb290-10" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;innate|cytokine|interleukin&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb290-11"><a href="snp-annotation.html#cb290-11" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
-<span id="cb290-12"><a href="snp-annotation.html#cb290-12" tabindex="-1"></a></span>
-<span id="cb290-13"><a href="snp-annotation.html#cb290-13" tabindex="-1"></a>innate_gene <span class="ot">&lt;-</span> </span>
-<span id="cb290-14"><a href="snp-annotation.html#cb290-14" tabindex="-1"></a>  <span class="fu">c</span>(innate_go<span class="sc">$</span>Gene, innate_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
-<span id="cb290-15"><a href="snp-annotation.html#cb290-15" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb290-16"><a href="snp-annotation.html#cb290-16" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="snp-annotation.html#cb294-1" tabindex="-1"></a>innate_go <span class="ot">&lt;-</span> </span>
+<span id="cb294-2"><a href="snp-annotation.html#cb294-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb294-3"><a href="snp-annotation.html#cb294-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;innate immune|cytokine|pattern recognition receptor&quot;</span>, name_1006, </span>
+<span id="cb294-4"><a href="snp-annotation.html#cb294-4" tabindex="-1"></a>               <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb294-5"><a href="snp-annotation.html#cb294-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb294-6"><a href="snp-annotation.html#cb294-6" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_entrez_description, <span class="at">by =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) </span>
+<span id="cb294-7"><a href="snp-annotation.html#cb294-7" tabindex="-1"></a></span>
+<span id="cb294-8"><a href="snp-annotation.html#cb294-8" tabindex="-1"></a>innate_reactome <span class="ot">&lt;-</span></span>
+<span id="cb294-9"><a href="snp-annotation.html#cb294-9" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb294-10"><a href="snp-annotation.html#cb294-10" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;innate|cytokine|interleukin&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb294-11"><a href="snp-annotation.html#cb294-11" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb294-12"><a href="snp-annotation.html#cb294-12" tabindex="-1"></a></span>
+<span id="cb294-13"><a href="snp-annotation.html#cb294-13" tabindex="-1"></a>innate_gene <span class="ot">&lt;-</span> </span>
+<span id="cb294-14"><a href="snp-annotation.html#cb294-14" tabindex="-1"></a>  <span class="fu">c</span>(innate_go<span class="sc">$</span>Gene, innate_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb294-15"><a href="snp-annotation.html#cb294-15" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb294-16"><a href="snp-annotation.html#cb294-16" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
 </div>
 <div id="signal-transduction" class="section level3 hasAnchor" number="7.6.2">
 <h3><span class="header-section-number">7.6.2</span> Signal Transduction<a href="snp-annotation.html#signal-transduction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="snp-annotation.html#cb291-1" tabindex="-1"></a>signal_go <span class="ot">&lt;-</span> </span>
-<span id="cb291-2"><a href="snp-annotation.html#cb291-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
-<span id="cb291-3"><a href="snp-annotation.html#cb291-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;signal&quot;</span>, name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb291-4"><a href="snp-annotation.html#cb291-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb291-5"><a href="snp-annotation.html#cb291-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_entrez_description, <span class="at">by =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) </span>
-<span id="cb291-6"><a href="snp-annotation.html#cb291-6" tabindex="-1"></a></span>
-<span id="cb291-7"><a href="snp-annotation.html#cb291-7" tabindex="-1"></a>signal_reactome <span class="ot">&lt;-</span> </span>
-<span id="cb291-8"><a href="snp-annotation.html#cb291-8" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
-<span id="cb291-9"><a href="snp-annotation.html#cb291-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;signal&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb291-10"><a href="snp-annotation.html#cb291-10" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
-<span id="cb291-11"><a href="snp-annotation.html#cb291-11" tabindex="-1"></a></span>
-<span id="cb291-12"><a href="snp-annotation.html#cb291-12" tabindex="-1"></a>signal_gene <span class="ot">&lt;-</span> </span>
-<span id="cb291-13"><a href="snp-annotation.html#cb291-13" tabindex="-1"></a>  <span class="fu">c</span>(signal_go<span class="sc">$</span>Gene, signal_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
-<span id="cb291-14"><a href="snp-annotation.html#cb291-14" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb291-15"><a href="snp-annotation.html#cb291-15" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="snp-annotation.html#cb295-1" tabindex="-1"></a>signal_go <span class="ot">&lt;-</span> </span>
+<span id="cb295-2"><a href="snp-annotation.html#cb295-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb295-3"><a href="snp-annotation.html#cb295-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;signal&quot;</span>, name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb295-4"><a href="snp-annotation.html#cb295-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb295-5"><a href="snp-annotation.html#cb295-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_entrez_description, <span class="at">by =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) </span>
+<span id="cb295-6"><a href="snp-annotation.html#cb295-6" tabindex="-1"></a></span>
+<span id="cb295-7"><a href="snp-annotation.html#cb295-7" tabindex="-1"></a>signal_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb295-8"><a href="snp-annotation.html#cb295-8" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb295-9"><a href="snp-annotation.html#cb295-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;signal&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb295-10"><a href="snp-annotation.html#cb295-10" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb295-11"><a href="snp-annotation.html#cb295-11" tabindex="-1"></a></span>
+<span id="cb295-12"><a href="snp-annotation.html#cb295-12" tabindex="-1"></a>signal_gene <span class="ot">&lt;-</span> </span>
+<span id="cb295-13"><a href="snp-annotation.html#cb295-13" tabindex="-1"></a>  <span class="fu">c</span>(signal_go<span class="sc">$</span>Gene, signal_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb295-14"><a href="snp-annotation.html#cb295-14" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb295-15"><a href="snp-annotation.html#cb295-15" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
 </div>
 <div id="cytokines" class="section level3 hasAnchor" number="7.6.3">
 <h3><span class="header-section-number">7.6.3</span> Cytokines<a href="snp-annotation.html#cytokines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="snp-annotation.html#cb292-1" tabindex="-1"></a>cytokine_go <span class="ot">&lt;-</span> </span>
-<span id="cb292-2"><a href="snp-annotation.html#cb292-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
-<span id="cb292-3"><a href="snp-annotation.html#cb292-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;cytokine &quot;</span>, name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb292-4"><a href="snp-annotation.html#cb292-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb292-5"><a href="snp-annotation.html#cb292-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_entrez_description, <span class="at">by =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) </span>
-<span id="cb292-6"><a href="snp-annotation.html#cb292-6" tabindex="-1"></a></span>
-<span id="cb292-7"><a href="snp-annotation.html#cb292-7" tabindex="-1"></a>cytokine_reactome <span class="ot">&lt;-</span> </span>
-<span id="cb292-8"><a href="snp-annotation.html#cb292-8" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
-<span id="cb292-9"><a href="snp-annotation.html#cb292-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;cytokine &quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb292-10"><a href="snp-annotation.html#cb292-10" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
-<span id="cb292-11"><a href="snp-annotation.html#cb292-11" tabindex="-1"></a></span>
-<span id="cb292-12"><a href="snp-annotation.html#cb292-12" tabindex="-1"></a>cytokine_gene <span class="ot">&lt;-</span> </span>
-<span id="cb292-13"><a href="snp-annotation.html#cb292-13" tabindex="-1"></a>  <span class="fu">c</span>(cytokine_go<span class="sc">$</span>Gene, cytokine_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
-<span id="cb292-14"><a href="snp-annotation.html#cb292-14" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb292-15"><a href="snp-annotation.html#cb292-15" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="snp-annotation.html#cb296-1" tabindex="-1"></a>cytokine_go <span class="ot">&lt;-</span> </span>
+<span id="cb296-2"><a href="snp-annotation.html#cb296-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb296-3"><a href="snp-annotation.html#cb296-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;cytokine &quot;</span>, name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb296-4"><a href="snp-annotation.html#cb296-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb296-5"><a href="snp-annotation.html#cb296-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_entrez_description, <span class="at">by =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>) </span>
+<span id="cb296-6"><a href="snp-annotation.html#cb296-6" tabindex="-1"></a></span>
+<span id="cb296-7"><a href="snp-annotation.html#cb296-7" tabindex="-1"></a>cytokine_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb296-8"><a href="snp-annotation.html#cb296-8" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb296-9"><a href="snp-annotation.html#cb296-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;cytokine &quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb296-10"><a href="snp-annotation.html#cb296-10" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb296-11"><a href="snp-annotation.html#cb296-11" tabindex="-1"></a></span>
+<span id="cb296-12"><a href="snp-annotation.html#cb296-12" tabindex="-1"></a>cytokine_gene <span class="ot">&lt;-</span> </span>
+<span id="cb296-13"><a href="snp-annotation.html#cb296-13" tabindex="-1"></a>  <span class="fu">c</span>(cytokine_go<span class="sc">$</span>Gene, cytokine_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb296-14"><a href="snp-annotation.html#cb296-14" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb296-15"><a href="snp-annotation.html#cb296-15" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
 </div>
 <div id="adaptive-immune-system" class="section level3 hasAnchor" number="7.6.4">
 <h3><span class="header-section-number">7.6.4</span> Adaptive Immune System<a href="snp-annotation.html#adaptive-immune-system" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="snp-annotation.html#cb293-1" tabindex="-1"></a>adaptive_go <span class="ot">&lt;-</span> </span>
-<span id="cb293-2"><a href="snp-annotation.html#cb293-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
-<span id="cb293-3"><a href="snp-annotation.html#cb293-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;adaptive|antigen |MHC&quot;</span>, name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb293-4"><a href="snp-annotation.html#cb293-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) </span>
-<span id="cb293-5"><a href="snp-annotation.html#cb293-5" tabindex="-1"></a></span>
-<span id="cb293-6"><a href="snp-annotation.html#cb293-6" tabindex="-1"></a>adaptive_reactome <span class="ot">&lt;-</span> </span>
-<span id="cb293-7"><a href="snp-annotation.html#cb293-7" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
-<span id="cb293-8"><a href="snp-annotation.html#cb293-8" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;adaptive|antigen |MHC|complement&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb293-9"><a href="snp-annotation.html#cb293-9" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
-<span id="cb293-10"><a href="snp-annotation.html#cb293-10" tabindex="-1"></a></span>
-<span id="cb293-11"><a href="snp-annotation.html#cb293-11" tabindex="-1"></a>adaptive_gene <span class="ot">&lt;-</span></span>
-<span id="cb293-12"><a href="snp-annotation.html#cb293-12" tabindex="-1"></a>  <span class="fu">c</span>(adaptive_go<span class="sc">$</span>Gene, adaptive_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
-<span id="cb293-13"><a href="snp-annotation.html#cb293-13" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb293-14"><a href="snp-annotation.html#cb293-14" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="snp-annotation.html#cb297-1" tabindex="-1"></a>adaptive_go <span class="ot">&lt;-</span> </span>
+<span id="cb297-2"><a href="snp-annotation.html#cb297-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb297-3"><a href="snp-annotation.html#cb297-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;adaptive|antigen |MHC&quot;</span>, name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-4"><a href="snp-annotation.html#cb297-4" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>) </span>
+<span id="cb297-5"><a href="snp-annotation.html#cb297-5" tabindex="-1"></a></span>
+<span id="cb297-6"><a href="snp-annotation.html#cb297-6" tabindex="-1"></a>adaptive_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb297-7"><a href="snp-annotation.html#cb297-7" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb297-8"><a href="snp-annotation.html#cb297-8" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;adaptive|antigen |MHC|complement&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-9"><a href="snp-annotation.html#cb297-9" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb297-10"><a href="snp-annotation.html#cb297-10" tabindex="-1"></a></span>
+<span id="cb297-11"><a href="snp-annotation.html#cb297-11" tabindex="-1"></a>adaptive_gene <span class="ot">&lt;-</span></span>
+<span id="cb297-12"><a href="snp-annotation.html#cb297-12" tabindex="-1"></a>  <span class="fu">c</span>(adaptive_go<span class="sc">$</span>Gene, adaptive_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb297-13"><a href="snp-annotation.html#cb297-13" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb297-14"><a href="snp-annotation.html#cb297-14" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
 </div>
 <div id="nervous-system" class="section level3 hasAnchor" number="7.6.5">
 <h3><span class="header-section-number">7.6.5</span> Nervous System<a href="snp-annotation.html#nervous-system" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="snp-annotation.html#cb294-1" tabindex="-1"></a>nervous_go <span class="ot">&lt;-</span> </span>
-<span id="cb294-2"><a href="snp-annotation.html#cb294-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
-<span id="cb294-3"><a href="snp-annotation.html#cb294-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;nervous|neur|axon|synap|dendrit|brain|dopamine|norepinephrine|sensory&quot;</span>, </span>
-<span id="cb294-4"><a href="snp-annotation.html#cb294-4" tabindex="-1"></a>               name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb294-5"><a href="snp-annotation.html#cb294-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
-<span id="cb294-6"><a href="snp-annotation.html#cb294-6" tabindex="-1"></a></span>
-<span id="cb294-7"><a href="snp-annotation.html#cb294-7" tabindex="-1"></a>nervous_reactome <span class="ot">&lt;-</span> </span>
-<span id="cb294-8"><a href="snp-annotation.html#cb294-8" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
-<span id="cb294-9"><a href="snp-annotation.html#cb294-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;nervous|neur|synap|axon&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb294-10"><a href="snp-annotation.html#cb294-10" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
-<span id="cb294-11"><a href="snp-annotation.html#cb294-11" tabindex="-1"></a></span>
-<span id="cb294-12"><a href="snp-annotation.html#cb294-12" tabindex="-1"></a>nervous_gene <span class="ot">&lt;-</span> </span>
-<span id="cb294-13"><a href="snp-annotation.html#cb294-13" tabindex="-1"></a>  <span class="fu">c</span>(nervous_go<span class="sc">$</span>Gene, nervous_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
-<span id="cb294-14"><a href="snp-annotation.html#cb294-14" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb294-15"><a href="snp-annotation.html#cb294-15" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="snp-annotation.html#cb298-1" tabindex="-1"></a>nervous_go <span class="ot">&lt;-</span> </span>
+<span id="cb298-2"><a href="snp-annotation.html#cb298-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb298-3"><a href="snp-annotation.html#cb298-3" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;nervous|neur|axon|synap|dendrit|brain|dopamine|norepinephrine|sensory&quot;</span>, </span>
+<span id="cb298-4"><a href="snp-annotation.html#cb298-4" tabindex="-1"></a>               name_1006, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb298-5"><a href="snp-annotation.html#cb298-5" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb298-6"><a href="snp-annotation.html#cb298-6" tabindex="-1"></a></span>
+<span id="cb298-7"><a href="snp-annotation.html#cb298-7" tabindex="-1"></a>nervous_reactome <span class="ot">&lt;-</span> </span>
+<span id="cb298-8"><a href="snp-annotation.html#cb298-8" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb298-9"><a href="snp-annotation.html#cb298-9" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">&quot;nervous|neur|synap|axon&quot;</span>, path_name, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb298-10"><a href="snp-annotation.html#cb298-10" tabindex="-1"></a>  <span class="fu">merge</span>(., snp_ensembl, <span class="at">by.x =</span> <span class="st">&quot;ensembl_gene_id&quot;</span>, <span class="at">by.y =</span> <span class="st">&quot;Ensembl.ID&quot;</span>)</span>
+<span id="cb298-11"><a href="snp-annotation.html#cb298-11" tabindex="-1"></a></span>
+<span id="cb298-12"><a href="snp-annotation.html#cb298-12" tabindex="-1"></a>nervous_gene <span class="ot">&lt;-</span> </span>
+<span id="cb298-13"><a href="snp-annotation.html#cb298-13" tabindex="-1"></a>  <span class="fu">c</span>(nervous_go<span class="sc">$</span>Gene, nervous_reactome<span class="sc">$</span>Gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb298-14"><a href="snp-annotation.html#cb298-14" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb298-15"><a href="snp-annotation.html#cb298-15" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
 </div>
 </div>
 <div id="manuscript-figure" class="section level2 hasAnchor" number="7.7">
 <h2><span class="header-section-number">7.7</span> Manuscript Figure<a href="snp-annotation.html#manuscript-figure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="snp-annotation.html#cb295-1" tabindex="-1"></a>bp_freq <span class="ot">&lt;-</span> </span>
-<span id="cb295-2"><a href="snp-annotation.html#cb295-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
-<span id="cb295-3"><a href="snp-annotation.html#cb295-3" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;biological_process&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb295-4"><a href="snp-annotation.html#cb295-4" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
-<span id="cb295-5"><a href="snp-annotation.html#cb295-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb295-6"><a href="snp-annotation.html#cb295-6" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb295-7"><a href="snp-annotation.html#cb295-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">category =</span> <span class="st">&quot;GO Biological Process&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb295-8"><a href="snp-annotation.html#cb295-8" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;title&quot;</span>, <span class="st">&quot;freq&quot;</span>, <span class="st">&quot;category&quot;</span>))</span>
-<span id="cb295-9"><a href="snp-annotation.html#cb295-9" tabindex="-1"></a></span>
-<span id="cb295-10"><a href="snp-annotation.html#cb295-10" tabindex="-1"></a>reactome_freq <span class="ot">&lt;-</span> </span>
-<span id="cb295-11"><a href="snp-annotation.html#cb295-11" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
-<span id="cb295-12"><a href="snp-annotation.html#cb295-12" tabindex="-1"></a>  <span class="fu">group_by</span>(path_name) <span class="sc">%&gt;%</span> </span>
-<span id="cb295-13"><a href="snp-annotation.html#cb295-13" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb295-14"><a href="snp-annotation.html#cb295-14" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb295-15"><a href="snp-annotation.html#cb295-15" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">category =</span> <span class="st">&quot;Reactome Pathway&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb295-16"><a href="snp-annotation.html#cb295-16" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;title&quot;</span>, <span class="st">&quot;freq&quot;</span>, <span class="st">&quot;category&quot;</span>))</span>
-<span id="cb295-17"><a href="snp-annotation.html#cb295-17" tabindex="-1"></a></span>
-<span id="cb295-18"><a href="snp-annotation.html#cb295-18" tabindex="-1"></a><span class="fu">ggplot</span>(bp_freq, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(title, freq), <span class="at">y =</span> freq)) <span class="sc">+</span></span>
-<span id="cb295-19"><a href="snp-annotation.html#cb295-19" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
-<span id="cb295-20"><a href="snp-annotation.html#cb295-20" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="cn">NULL</span>, <span class="at">y=</span><span class="st">&quot;Number of Genes&quot;</span>, <span class="at">title =</span> <span class="st">&quot;GO Biological Process&quot;</span>) <span class="sc">+</span></span>
-<span id="cb295-21"><a href="snp-annotation.html#cb295-21" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(description) <span class="fu">str_wrap</span>(description, <span class="at">width =</span> <span class="dv">60</span>)) <span class="sc">+</span></span>
-<span id="cb295-22"><a href="snp-annotation.html#cb295-22" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb295-23"><a href="snp-annotation.html#cb295-23" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb295-24"><a href="snp-annotation.html#cb295-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>(), <span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="snp-annotation.html#cb299-1" tabindex="-1"></a>bp_freq <span class="ot">&lt;-</span> </span>
+<span id="cb299-2"><a href="snp-annotation.html#cb299-2" tabindex="-1"></a>  snp_go <span class="sc">%&gt;%</span> </span>
+<span id="cb299-3"><a href="snp-annotation.html#cb299-3" tabindex="-1"></a>  <span class="fu">filter</span>(namespace_1003 <span class="sc">==</span> <span class="st">&quot;biological_process&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-4"><a href="snp-annotation.html#cb299-4" tabindex="-1"></a>  <span class="fu">group_by</span>(name_1006) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-5"><a href="snp-annotation.html#cb299-5" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-6"><a href="snp-annotation.html#cb299-6" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-7"><a href="snp-annotation.html#cb299-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">category =</span> <span class="st">&quot;GO Biological Process&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-8"><a href="snp-annotation.html#cb299-8" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;title&quot;</span>, <span class="st">&quot;freq&quot;</span>, <span class="st">&quot;category&quot;</span>))</span>
+<span id="cb299-9"><a href="snp-annotation.html#cb299-9" tabindex="-1"></a></span>
+<span id="cb299-10"><a href="snp-annotation.html#cb299-10" tabindex="-1"></a>reactome_freq <span class="ot">&lt;-</span> </span>
+<span id="cb299-11"><a href="snp-annotation.html#cb299-11" tabindex="-1"></a>  snp_reactome <span class="sc">%&gt;%</span> </span>
+<span id="cb299-12"><a href="snp-annotation.html#cb299-12" tabindex="-1"></a>  <span class="fu">group_by</span>(path_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-13"><a href="snp-annotation.html#cb299-13" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">freq =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-14"><a href="snp-annotation.html#cb299-14" tabindex="-1"></a>  <span class="fu">filter</span>(freq <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-15"><a href="snp-annotation.html#cb299-15" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">category =</span> <span class="st">&quot;Reactome Pathway&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb299-16"><a href="snp-annotation.html#cb299-16" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;title&quot;</span>, <span class="st">&quot;freq&quot;</span>, <span class="st">&quot;category&quot;</span>))</span>
+<span id="cb299-17"><a href="snp-annotation.html#cb299-17" tabindex="-1"></a></span>
+<span id="cb299-18"><a href="snp-annotation.html#cb299-18" tabindex="-1"></a><span class="fu">ggplot</span>(bp_freq, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(title, freq), <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb299-19"><a href="snp-annotation.html#cb299-19" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb299-20"><a href="snp-annotation.html#cb299-20" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="cn">NULL</span>, <span class="at">y=</span><span class="st">&quot;Number of Genes&quot;</span>, <span class="at">title =</span> <span class="st">&quot;GO Biological Process&quot;</span>) <span class="sc">+</span></span>
+<span id="cb299-21"><a href="snp-annotation.html#cb299-21" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(description) <span class="fu">str_wrap</span>(description, <span class="at">width =</span> <span class="dv">60</span>)) <span class="sc">+</span></span>
+<span id="cb299-22"><a href="snp-annotation.html#cb299-22" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb299-23"><a href="snp-annotation.html#cb299-23" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb299-24"><a href="snp-annotation.html#cb299-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>(), <span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="snp-annotation.html#cb296-1" tabindex="-1"></a><span class="fu">ggplot</span>(reactome_freq, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(title, freq), <span class="at">y =</span> freq)) <span class="sc">+</span></span>
-<span id="cb296-2"><a href="snp-annotation.html#cb296-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
-<span id="cb296-3"><a href="snp-annotation.html#cb296-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="cn">NULL</span>, <span class="at">y=</span><span class="st">&quot;Number of Genes&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Reactome Pathway&quot;</span>) <span class="sc">+</span></span>
-<span id="cb296-4"><a href="snp-annotation.html#cb296-4" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(description) <span class="fu">str_wrap</span>(description, <span class="at">width =</span> <span class="dv">35</span>)) <span class="sc">+</span></span>
-<span id="cb296-5"><a href="snp-annotation.html#cb296-5" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb296-6"><a href="snp-annotation.html#cb296-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb296-7"><a href="snp-annotation.html#cb296-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>(), <span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="snp-annotation.html#cb300-1" tabindex="-1"></a><span class="fu">ggplot</span>(reactome_freq, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(title, freq), <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb300-2"><a href="snp-annotation.html#cb300-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb300-3"><a href="snp-annotation.html#cb300-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="cn">NULL</span>, <span class="at">y=</span><span class="st">&quot;Number of Genes&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Reactome Pathway&quot;</span>) <span class="sc">+</span></span>
+<span id="cb300-4"><a href="snp-annotation.html#cb300-4" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(description) <span class="fu">str_wrap</span>(description, <span class="at">width =</span> <span class="dv">35</span>)) <span class="sc">+</span></span>
+<span id="cb300-5"><a href="snp-annotation.html#cb300-5" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb300-6"><a href="snp-annotation.html#cb300-6" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb300-7"><a href="snp-annotation.html#cb300-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid=</span><span class="fu">element_blank</span>(), <span class="at">text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-93-2.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="snp-annotation.html#cb297-1" tabindex="-1"></a>bp_reactome_freq <span class="ot">&lt;-</span> </span>
-<span id="cb297-2"><a href="snp-annotation.html#cb297-2" tabindex="-1"></a>  <span class="fu">rbind</span>(bp_freq, reactome_freq) <span class="sc">%&gt;%</span> </span>
-<span id="cb297-3"><a href="snp-annotation.html#cb297-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">fct_reorder</span>(title, freq), <span class="at">y =</span> freq)) <span class="sc">+</span></span>
-<span id="cb297-4"><a href="snp-annotation.html#cb297-4" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
-<span id="cb297-5"><a href="snp-annotation.html#cb297-5" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(title) <span class="fu">str_wrap</span>(title, <span class="at">width =</span> <span class="dv">35</span>))<span class="sc">+</span></span>
-<span id="cb297-6"><a href="snp-annotation.html#cb297-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Number of Genes&quot;</span>) <span class="sc">+</span></span>
-<span id="cb297-7"><a href="snp-annotation.html#cb297-7" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>category, <span class="at">scale =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
-<span id="cb297-8"><a href="snp-annotation.html#cb297-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb297-9"><a href="snp-annotation.html#cb297-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb297-10"><a href="snp-annotation.html#cb297-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb297-11"><a href="snp-annotation.html#cb297-11" tabindex="-1"></a>bp_reactome_freq</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="snp-annotation.html#cb301-1" tabindex="-1"></a>bp_reactome_freq <span class="ot">&lt;-</span> </span>
+<span id="cb301-2"><a href="snp-annotation.html#cb301-2" tabindex="-1"></a>  <span class="fu">rbind</span>(bp_freq, reactome_freq) <span class="sc">%&gt;%</span> </span>
+<span id="cb301-3"><a href="snp-annotation.html#cb301-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">fct_reorder</span>(title, freq), <span class="at">y =</span> freq)) <span class="sc">+</span></span>
+<span id="cb301-4"><a href="snp-annotation.html#cb301-4" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb301-5"><a href="snp-annotation.html#cb301-5" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(title) <span class="fu">str_wrap</span>(title, <span class="at">width =</span> <span class="dv">35</span>))<span class="sc">+</span></span>
+<span id="cb301-6"><a href="snp-annotation.html#cb301-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Number of Genes&quot;</span>) <span class="sc">+</span></span>
+<span id="cb301-7"><a href="snp-annotation.html#cb301-7" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>category, <span class="at">scale =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span></span>
+<span id="cb301-8"><a href="snp-annotation.html#cb301-8" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb301-9"><a href="snp-annotation.html#cb301-9" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb301-10"><a href="snp-annotation.html#cb301-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb301-11"><a href="snp-annotation.html#cb301-11" tabindex="-1"></a>bp_reactome_freq</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-93-3.png" alt="" width="672" /></p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="snp-annotation.html#cb298-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Figures/snp_bp_reactome.jpg&quot;</span>, bp_reactome_freq,</span>
-<span id="cb298-2"><a href="snp-annotation.html#cb298-2" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="snp-annotation.html#cb302-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Figures/snp_bp_reactome.jpg&quot;</span>, bp_reactome_freq,</span>
+<span id="cb302-2"><a href="snp-annotation.html#cb302-2" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">9</span>, <span class="at">height =</span> <span class="dv">7</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span></code></pre></div>
 </div>
 <div id="presentation-figure" class="section level2 hasAnchor" number="7.8">
 <h2><span class="header-section-number">7.8</span> Presentation Figure<a href="snp-annotation.html#presentation-figure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="snp-annotation.html#cb299-1" tabindex="-1"></a>adaptive_gene <span class="ot">&lt;-</span> </span>
-<span id="cb299-2"><a href="snp-annotation.html#cb299-2" tabindex="-1"></a>  adaptive_gene <span class="sc">%&gt;%</span> </span>
-<span id="cb299-3"><a href="snp-annotation.html#cb299-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Adaptive Immunity&quot;</span>) </span>
-<span id="cb299-4"><a href="snp-annotation.html#cb299-4" tabindex="-1"></a></span>
-<span id="cb299-5"><a href="snp-annotation.html#cb299-5" tabindex="-1"></a>innate_gene <span class="ot">&lt;-</span> </span>
-<span id="cb299-6"><a href="snp-annotation.html#cb299-6" tabindex="-1"></a>  innate_gene <span class="sc">%&gt;%</span> </span>
-<span id="cb299-7"><a href="snp-annotation.html#cb299-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Innate Immunity&quot;</span>) </span>
-<span id="cb299-8"><a href="snp-annotation.html#cb299-8" tabindex="-1"></a></span>
-<span id="cb299-9"><a href="snp-annotation.html#cb299-9" tabindex="-1"></a>nervous_gene <span class="ot">&lt;-</span> </span>
-<span id="cb299-10"><a href="snp-annotation.html#cb299-10" tabindex="-1"></a>  nervous_gene <span class="sc">%&gt;%</span> </span>
-<span id="cb299-11"><a href="snp-annotation.html#cb299-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Nervous System&quot;</span>)</span>
-<span id="cb299-12"><a href="snp-annotation.html#cb299-12" tabindex="-1"></a></span>
-<span id="cb299-13"><a href="snp-annotation.html#cb299-13" tabindex="-1"></a>genes_all <span class="ot">&lt;-</span></span>
-<span id="cb299-14"><a href="snp-annotation.html#cb299-14" tabindex="-1"></a>  <span class="fu">rbind</span>(adaptive_gene, innate_gene, nervous_gene) <span class="sc">%&gt;%</span> </span>
-<span id="cb299-15"><a href="snp-annotation.html#cb299-15" tabindex="-1"></a>  <span class="fu">group_by</span>(role) <span class="sc">%&gt;%</span> </span>
-<span id="cb299-16"><a href="snp-annotation.html#cb299-16" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sum =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb299-17"><a href="snp-annotation.html#cb299-17" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="fu">factor</span>(role, </span>
-<span id="cb299-18"><a href="snp-annotation.html#cb299-18" tabindex="-1"></a>                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Innate Immunity&quot;</span>, </span>
-<span id="cb299-19"><a href="snp-annotation.html#cb299-19" tabindex="-1"></a>                                  <span class="st">&quot;Adaptive Immunity&quot;</span>, </span>
-<span id="cb299-20"><a href="snp-annotation.html#cb299-20" tabindex="-1"></a>                                  <span class="st">&quot;Nervous System&quot;</span>)))</span>
-<span id="cb299-21"><a href="snp-annotation.html#cb299-21" tabindex="-1"></a></span>
-<span id="cb299-22"><a href="snp-annotation.html#cb299-22" tabindex="-1"></a>snp_genes_plot <span class="ot">&lt;-</span> </span>
-<span id="cb299-23"><a href="snp-annotation.html#cb299-23" tabindex="-1"></a>  genes_all <span class="sc">%&gt;%</span> </span>
-<span id="cb299-24"><a href="snp-annotation.html#cb299-24" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> role, <span class="at">y =</span> sum, <span class="at">fill =</span> role)) <span class="sc">+</span></span>
-<span id="cb299-25"><a href="snp-annotation.html#cb299-25" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb299-26"><a href="snp-annotation.html#cb299-26" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Innate Immunity&quot;</span> <span class="ot">=</span> <span class="st">&quot;#B5CDD3&quot;</span>, </span>
-<span id="cb299-27"><a href="snp-annotation.html#cb299-27" tabindex="-1"></a>                               <span class="st">&quot;Adaptive Immunity&quot;</span> <span class="ot">=</span> <span class="st">&quot;#AFBABB&quot;</span>,</span>
-<span id="cb299-28"><a href="snp-annotation.html#cb299-28" tabindex="-1"></a>                               <span class="st">&quot;Nervous System&quot;</span> <span class="ot">=</span> <span class="st">&quot;#7F7B9A&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb299-29"><a href="snp-annotation.html#cb299-29" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Number of Genes&quot;</span>) <span class="sc">+</span></span>
-<span id="cb299-30"><a href="snp-annotation.html#cb299-30" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(role) <span class="fu">str_wrap</span>(role, <span class="at">width =</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
-<span id="cb299-31"><a href="snp-annotation.html#cb299-31" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb299-32"><a href="snp-annotation.html#cb299-32" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb299-33"><a href="snp-annotation.html#cb299-33" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
-<span id="cb299-34"><a href="snp-annotation.html#cb299-34" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span>
-<span id="cb299-35"><a href="snp-annotation.html#cb299-35" tabindex="-1"></a></span>
-<span id="cb299-36"><a href="snp-annotation.html#cb299-36" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Figures/snp_annotation_num.jpeg&quot;</span>, snp_genes_plot,</span>
-<span id="cb299-37"><a href="snp-annotation.html#cb299-37" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="snp-annotation.html#cb303-1" tabindex="-1"></a>adaptive_gene <span class="ot">&lt;-</span> </span>
+<span id="cb303-2"><a href="snp-annotation.html#cb303-2" tabindex="-1"></a>  adaptive_gene <span class="sc">%&gt;%</span> </span>
+<span id="cb303-3"><a href="snp-annotation.html#cb303-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Adaptive Immunity&quot;</span>) </span>
+<span id="cb303-4"><a href="snp-annotation.html#cb303-4" tabindex="-1"></a></span>
+<span id="cb303-5"><a href="snp-annotation.html#cb303-5" tabindex="-1"></a>innate_gene <span class="ot">&lt;-</span> </span>
+<span id="cb303-6"><a href="snp-annotation.html#cb303-6" tabindex="-1"></a>  innate_gene <span class="sc">%&gt;%</span> </span>
+<span id="cb303-7"><a href="snp-annotation.html#cb303-7" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Innate Immunity&quot;</span>) </span>
+<span id="cb303-8"><a href="snp-annotation.html#cb303-8" tabindex="-1"></a></span>
+<span id="cb303-9"><a href="snp-annotation.html#cb303-9" tabindex="-1"></a>nervous_gene <span class="ot">&lt;-</span> </span>
+<span id="cb303-10"><a href="snp-annotation.html#cb303-10" tabindex="-1"></a>  nervous_gene <span class="sc">%&gt;%</span> </span>
+<span id="cb303-11"><a href="snp-annotation.html#cb303-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Nervous System&quot;</span>)</span>
+<span id="cb303-12"><a href="snp-annotation.html#cb303-12" tabindex="-1"></a></span>
+<span id="cb303-13"><a href="snp-annotation.html#cb303-13" tabindex="-1"></a>genes_all <span class="ot">&lt;-</span></span>
+<span id="cb303-14"><a href="snp-annotation.html#cb303-14" tabindex="-1"></a>  <span class="fu">rbind</span>(adaptive_gene, innate_gene, nervous_gene) <span class="sc">%&gt;%</span> </span>
+<span id="cb303-15"><a href="snp-annotation.html#cb303-15" tabindex="-1"></a>  <span class="fu">group_by</span>(role) <span class="sc">%&gt;%</span> </span>
+<span id="cb303-16"><a href="snp-annotation.html#cb303-16" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sum =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb303-17"><a href="snp-annotation.html#cb303-17" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="fu">factor</span>(role, </span>
+<span id="cb303-18"><a href="snp-annotation.html#cb303-18" tabindex="-1"></a>                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Innate Immunity&quot;</span>, </span>
+<span id="cb303-19"><a href="snp-annotation.html#cb303-19" tabindex="-1"></a>                                  <span class="st">&quot;Adaptive Immunity&quot;</span>, </span>
+<span id="cb303-20"><a href="snp-annotation.html#cb303-20" tabindex="-1"></a>                                  <span class="st">&quot;Nervous System&quot;</span>)))</span>
+<span id="cb303-21"><a href="snp-annotation.html#cb303-21" tabindex="-1"></a></span>
+<span id="cb303-22"><a href="snp-annotation.html#cb303-22" tabindex="-1"></a>snp_genes_plot <span class="ot">&lt;-</span> </span>
+<span id="cb303-23"><a href="snp-annotation.html#cb303-23" tabindex="-1"></a>  genes_all <span class="sc">%&gt;%</span> </span>
+<span id="cb303-24"><a href="snp-annotation.html#cb303-24" tabindex="-1"></a>  <span class="fu">ggplot</span>(., <span class="fu">aes</span>(<span class="at">x =</span> role, <span class="at">y =</span> sum, <span class="at">fill =</span> role)) <span class="sc">+</span></span>
+<span id="cb303-25"><a href="snp-annotation.html#cb303-25" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb303-26"><a href="snp-annotation.html#cb303-26" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Innate Immunity&quot;</span> <span class="ot">=</span> <span class="st">&quot;#B5CDD3&quot;</span>, </span>
+<span id="cb303-27"><a href="snp-annotation.html#cb303-27" tabindex="-1"></a>                               <span class="st">&quot;Adaptive Immunity&quot;</span> <span class="ot">=</span> <span class="st">&quot;#AFBABB&quot;</span>,</span>
+<span id="cb303-28"><a href="snp-annotation.html#cb303-28" tabindex="-1"></a>                               <span class="st">&quot;Nervous System&quot;</span> <span class="ot">=</span> <span class="st">&quot;#7F7B9A&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb303-29"><a href="snp-annotation.html#cb303-29" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Number of Genes&quot;</span>) <span class="sc">+</span></span>
+<span id="cb303-30"><a href="snp-annotation.html#cb303-30" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="cf">function</span>(role) <span class="fu">str_wrap</span>(role, <span class="at">width =</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb303-31"><a href="snp-annotation.html#cb303-31" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb303-32"><a href="snp-annotation.html#cb303-32" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb303-33"><a href="snp-annotation.html#cb303-33" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb303-34"><a href="snp-annotation.html#cb303-34" tabindex="-1"></a>        <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span>
+<span id="cb303-35"><a href="snp-annotation.html#cb303-35" tabindex="-1"></a></span>
+<span id="cb303-36"><a href="snp-annotation.html#cb303-36" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;Figures/snp_annotation_num.jpeg&quot;</span>, snp_genes_plot,</span>
+<span id="cb303-37"><a href="snp-annotation.html#cb303-37" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>)</span></code></pre></div>
 </div>
 <div id="link-genes-to-snps-for-figure" class="section level2 hasAnchor" number="7.9">
 <h2><span class="header-section-number">7.9</span> Link genes to SNPs for figure<a href="snp-annotation.html#link-genes-to-snps-for-figure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="snp-annotation.html#cb300-1" tabindex="-1"></a>snp_immune_genes <span class="ot">&lt;-</span></span>
-<span id="cb300-2"><a href="snp-annotation.html#cb300-2" tabindex="-1"></a>  <span class="fu">c</span>(adaptive_gene<span class="sc">$</span>., innate_gene<span class="sc">$</span>.) <span class="sc">%&gt;%</span> </span>
-<span id="cb300-3"><a href="snp-annotation.html#cb300-3" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb300-4"><a href="snp-annotation.html#cb300-4" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb300-5"><a href="snp-annotation.html#cb300-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Immune System&quot;</span>) </span>
-<span id="cb300-6"><a href="snp-annotation.html#cb300-6" tabindex="-1"></a></span>
-<span id="cb300-7"><a href="snp-annotation.html#cb300-7" tabindex="-1"></a>snp_immunenervous_genes <span class="ot">&lt;-</span></span>
-<span id="cb300-8"><a href="snp-annotation.html#cb300-8" tabindex="-1"></a>  <span class="fu">intersect</span>(snp_immune_genes<span class="sc">$</span>., nervous_gene<span class="sc">$</span>.) <span class="sc">%&gt;%</span> </span>
-<span id="cb300-9"><a href="snp-annotation.html#cb300-9" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb300-10"><a href="snp-annotation.html#cb300-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Immune &amp; Nervous System&quot;</span>)</span>
-<span id="cb300-11"><a href="snp-annotation.html#cb300-11" tabindex="-1"></a></span>
-<span id="cb300-12"><a href="snp-annotation.html#cb300-12" tabindex="-1"></a>snp_immune_genes <span class="ot">&lt;-</span> </span>
-<span id="cb300-13"><a href="snp-annotation.html#cb300-13" tabindex="-1"></a>  snp_immune_genes <span class="sc">%&gt;%</span> </span>
-<span id="cb300-14"><a href="snp-annotation.html#cb300-14" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>. <span class="sc">%in%</span> snp_immunenervous_genes<span class="sc">$</span>.)</span>
-<span id="cb300-15"><a href="snp-annotation.html#cb300-15" tabindex="-1"></a></span>
-<span id="cb300-16"><a href="snp-annotation.html#cb300-16" tabindex="-1"></a>snp_nervous_genes <span class="ot">&lt;-</span> </span>
-<span id="cb300-17"><a href="snp-annotation.html#cb300-17" tabindex="-1"></a>  nervous_gene <span class="sc">%&gt;%</span> </span>
-<span id="cb300-18"><a href="snp-annotation.html#cb300-18" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>. <span class="sc">%in%</span> snp_immunenervous_genes<span class="sc">$</span>.)</span>
-<span id="cb300-19"><a href="snp-annotation.html#cb300-19" tabindex="-1"></a></span>
-<span id="cb300-20"><a href="snp-annotation.html#cb300-20" tabindex="-1"></a>snp_genes <span class="ot">&lt;-</span> </span>
-<span id="cb300-21"><a href="snp-annotation.html#cb300-21" tabindex="-1"></a>  <span class="fu">rbind</span>(snp_immunenervous_genes, snp_immune_genes, snp_nervous_genes) <span class="sc">%&gt;%</span> </span>
-<span id="cb300-22"><a href="snp-annotation.html#cb300-22" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;gene&quot;</span>, <span class="st">&quot;role&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb300-23"><a href="snp-annotation.html#cb300-23" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy, <span class="at">by =</span> <span class="st">&quot;gene&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>, <span class="at">all.y =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb300-24"><a href="snp-annotation.html#cb300-24" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">snp =</span> <span class="fu">paste</span>(V1, <span class="st">&quot;_&quot;</span>, V4, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb300-25"><a href="snp-annotation.html#cb300-25" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(gene, role, snp))</span>
-<span id="cb300-26"><a href="snp-annotation.html#cb300-26" tabindex="-1"></a></span>
-<span id="cb300-27"><a href="snp-annotation.html#cb300-27" tabindex="-1"></a><span class="fu">write.csv</span>(snp_genes, <span class="st">&quot;Output Files/snp_gene_roles.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="snp-annotation.html#cb304-1" tabindex="-1"></a>snp_immune_genes <span class="ot">&lt;-</span></span>
+<span id="cb304-2"><a href="snp-annotation.html#cb304-2" tabindex="-1"></a>  <span class="fu">c</span>(adaptive_gene<span class="sc">$</span>., innate_gene<span class="sc">$</span>.) <span class="sc">%&gt;%</span> </span>
+<span id="cb304-3"><a href="snp-annotation.html#cb304-3" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb304-4"><a href="snp-annotation.html#cb304-4" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb304-5"><a href="snp-annotation.html#cb304-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Immune System&quot;</span>) </span>
+<span id="cb304-6"><a href="snp-annotation.html#cb304-6" tabindex="-1"></a></span>
+<span id="cb304-7"><a href="snp-annotation.html#cb304-7" tabindex="-1"></a>snp_immunenervous_genes <span class="ot">&lt;-</span></span>
+<span id="cb304-8"><a href="snp-annotation.html#cb304-8" tabindex="-1"></a>  <span class="fu">intersect</span>(snp_immune_genes<span class="sc">$</span>., nervous_gene<span class="sc">$</span>.) <span class="sc">%&gt;%</span> </span>
+<span id="cb304-9"><a href="snp-annotation.html#cb304-9" tabindex="-1"></a>  <span class="fu">data.frame</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb304-10"><a href="snp-annotation.html#cb304-10" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">role =</span> <span class="st">&quot;Immune &amp; Nervous System&quot;</span>)</span>
+<span id="cb304-11"><a href="snp-annotation.html#cb304-11" tabindex="-1"></a></span>
+<span id="cb304-12"><a href="snp-annotation.html#cb304-12" tabindex="-1"></a>snp_immune_genes <span class="ot">&lt;-</span> </span>
+<span id="cb304-13"><a href="snp-annotation.html#cb304-13" tabindex="-1"></a>  snp_immune_genes <span class="sc">%&gt;%</span> </span>
+<span id="cb304-14"><a href="snp-annotation.html#cb304-14" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>. <span class="sc">%in%</span> snp_immunenervous_genes<span class="sc">$</span>.)</span>
+<span id="cb304-15"><a href="snp-annotation.html#cb304-15" tabindex="-1"></a></span>
+<span id="cb304-16"><a href="snp-annotation.html#cb304-16" tabindex="-1"></a>snp_nervous_genes <span class="ot">&lt;-</span> </span>
+<span id="cb304-17"><a href="snp-annotation.html#cb304-17" tabindex="-1"></a>  nervous_gene <span class="sc">%&gt;%</span> </span>
+<span id="cb304-18"><a href="snp-annotation.html#cb304-18" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>. <span class="sc">%in%</span> snp_immunenervous_genes<span class="sc">$</span>.)</span>
+<span id="cb304-19"><a href="snp-annotation.html#cb304-19" tabindex="-1"></a></span>
+<span id="cb304-20"><a href="snp-annotation.html#cb304-20" tabindex="-1"></a>snp_genes <span class="ot">&lt;-</span> </span>
+<span id="cb304-21"><a href="snp-annotation.html#cb304-21" tabindex="-1"></a>  <span class="fu">rbind</span>(snp_immunenervous_genes, snp_immune_genes, snp_nervous_genes) <span class="sc">%&gt;%</span> </span>
+<span id="cb304-22"><a href="snp-annotation.html#cb304-22" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">&quot;gene&quot;</span>, <span class="st">&quot;role&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb304-23"><a href="snp-annotation.html#cb304-23" tabindex="-1"></a>  <span class="fu">merge</span>(., fst_sd_genes_tidy, <span class="at">by =</span> <span class="st">&quot;gene&quot;</span>, <span class="at">all.x =</span> <span class="cn">TRUE</span>, <span class="at">all.y =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb304-24"><a href="snp-annotation.html#cb304-24" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">snp =</span> <span class="fu">paste</span>(V1, <span class="st">&quot;_&quot;</span>, V4, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb304-25"><a href="snp-annotation.html#cb304-25" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">c</span>(gene, role, snp))</span>
+<span id="cb304-26"><a href="snp-annotation.html#cb304-26" tabindex="-1"></a></span>
+<span id="cb304-27"><a href="snp-annotation.html#cb304-27" tabindex="-1"></a><span class="fu">write.csv</span>(snp_genes, <span class="st">&quot;Output Files/snp_gene_roles.csv&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

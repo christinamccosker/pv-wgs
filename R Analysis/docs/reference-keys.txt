@@ -1,4 +1,6 @@
-about
+publication-information
+authors
+abstract
 tidy-data-exploratory
 libraries
 data
